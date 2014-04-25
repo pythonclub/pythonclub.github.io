@@ -21,10 +21,16 @@ Informações Técnicas
 --------------------
 
 O site está sendo hospedado usando o Github Pages que hospeda arquivos HTML sem
-qualquer tipo de custo, bastando para isso que existe uma repositório chamado
+qualquer tipo de custo, bastando para isso que exista um repositório chamado
 ``seu-usuario.github.io`` o que faz com que qualquer arquivo HTML existente na
-branch master seja servido numa web, para gerar esses arquivos HTML usamos o 
+branch ``master`` seja servido numa web, para gerar esses arquivos HTML usamos o 
 **Pelican** que é um projeto feito em Python.
+
+Como a branch ``master`` é usada internamente pelo Github para servir os
+arquivos HTML criamos uma branch chamada ``pelican`` para armazenar os arquivos
+de configuração e as publicação em seu "estado-bruto", essa branch está definida
+como padrão para o repositório e você possivelmente não precisará se preocupar
+com isso.
 
 
 Visualizando sua publicação antes de enviar
