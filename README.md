@@ -66,9 +66,9 @@ Futuras Publicações
 | Artur Felipe Sousa      | O que é six e como ele te ajuda a escrever código compatível com python 2 e 3 | 29/04/2014 |
 | Francisco André         | Configurando um servidor de repositórios Git                                  | 15/05/2014 |
 
-[0]: https://github.com/trentm/python-markdown2
+[0]: http://pythonclub.com.br/
 [1]: https://pages.github.com/
 [2]: http://docs.getpelican.com/en/3.3.0/
-[3]: http://localhost/
+[3]: http://localhost:8000/
 [4]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [5]: http://docutils.sourceforge.net/docs/user/rst/quickref.html
