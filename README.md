@@ -1,5 +1,5 @@
-pythonclub.github.io
-====================
+[pythonclub.com.br][0]
+======================
 
 Blog colaborativo sobre tecnologias que envolvam a linguagem Python
 
@@ -11,8 +11,8 @@ Como Contribuir
 * Clone seu fork ``git clone git@github.com:USUARIO/pythonclub.github.io.git``
 * Instale os requirements ``pip install -r requirements.txt``
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
-  no formato **Markdown** ou **reStructuredText**, fique a vontade para usar o
-  que você sentir mais afinidade.
+  no formato **[Markdown][4]** ou **[reStructuredText][5]**, fique a vontade
+  para usar o que você sentir mais afinidade.
 * Após criar ou editar seu artigo faça um pull-request para que ele seja
   adicionado ao site.
 
@@ -20,11 +20,11 @@ Como Contribuir
 Informações Técnicas
 --------------------
 
-O site está sendo hospedado usando o Github Pages que hospeda arquivos HTML sem
-qualquer tipo de custo, bastando para isso que exista um repositório chamado
-``seu-usuario.github.io`` o que faz com que qualquer arquivo HTML existente na
-branch ``master`` seja servido numa web, para gerar esses arquivos HTML usamos o 
-**Pelican** que é um projeto feito em Python.
+O site está sendo hospedado usando o **[Github Pages][1]** que hospeda arquivos
+HTML sem qualquer tipo de custo, bastando para isso que exista um repositório
+chamado ``seu-usuario.github.io`` o que faz com que qualquer arquivo HTML
+existente na branch ``master`` seja servido numa web, para gerar esses arquivos
+HTML usamos o **[Pelican][2]** que é um projeto feito em Python.
 
 Como a branch ``master`` é usada internamente pelo Github para servir os
 arquivos HTML criamos uma branch chamada ``pelican`` para armazenar os arquivos
@@ -43,7 +43,7 @@ executar o comando:
 
 ``./develop_server.sh start``
 
-Então basta visitar o endereço http://localhost:8000/
+Então basta visitar o endereço [http://localhost:8000/][3]
 
 Para finalizar o servidor use:
 
@@ -65,3 +65,10 @@ Futuras Publicações
 | Rafael Trevisan         | Entendendo versionamento com Git                                              | 10/05/2014 |
 | Artur Felipe Sousa      | O que é six e como ele te ajuda a escrever código compatível com python 2 e 3 | 29/04/2014 |
 | Francisco André         | Configurando um servidor de repositórios Git                                  | 15/05/2014 |
+
+[0]: https://github.com/trentm/python-markdown2
+[1]: https://pages.github.com/
+[2]: http://docs.getpelican.com/en/3.3.0/
+[3]: http://localhost/
+[4]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+[5]: http://docutils.sourceforge.net/docs/user/rst/quickref.html
