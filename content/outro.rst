@@ -4,9 +4,9 @@ Mais um exemplo de Publicação
 :date: 2014-04-25 12:21
 :tags: exemplo
 :category: Geral
-:slug: exemplo-de-publicacao
+:slug: mais-um-exemplo-de-Publicacao
 :author: Fábio C. Barrionuevo da Luz
-:summary: Exemplo de Publicação
+:summary: Mais um exemplo de Publicação sobre qualquer coisa
 
 ===========
 Lorem Ipsum
