@@ -8,7 +8,10 @@ Como Contribuir
 ---------------
 
 * Faça um fork desse repositório
-* Clone seu fork ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
+* Clone seu fork:
+
+    ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
+
 * Instale os requirements ``pip install -r requirements.txt``
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
   no formato **[Markdown][4]** ou **[reStructuredText][5]**, fique a vontade
@@ -20,15 +23,17 @@ Como Contribuir
 Informações Técnicas
 --------------------
 
-O site está sendo hospedado usando o **[Github Pages][1]** que hospeda arquivos
-HTML sem qualquer tipo de custo, bastando para isso que exista um repositório
+O site está sendo hospedado usando o **[Github Pages][1]**. Ele hospeda arquivos
+HTML sem qualquer tipo de custo, bastando que exista um repositório
 chamado ``seu-usuario.github.io`` o que faz com que qualquer arquivo HTML
-existente na branch ``master`` seja servido numa web, para gerar esses arquivos
-HTML usamos o **[Pelican][2]** que é um projeto feito em Python.
+existente na branch ``master`` seja servido numa web.
+
+Para gerar esses arquivos
+HTML utilizamos o **[Pelican][2]**, que é um projeto feito em Python.
 
 Como a branch ``master`` é usada internamente pelo Github para servir os
-arquivos HTML criamos uma branch chamada ``pelican`` para armazenar os arquivos
-de configuração e as publicação em seu "estado-bruto", essa branch está definida
+arquivos HTML. Criamos uma branch chamado ``pelican`` para armazenar os arquivos
+de configuração e as publicação em seu "estado-bruto". Essa branch está definida
 como padrão para o repositório e você possivelmente não precisará se preocupar
 com isso.
 
@@ -37,8 +42,10 @@ Visualizando sua publicação antes de enviar
 -------------------------------------------
 
 O **Pelican** conta com algumas facilidades que permitem que você teste o site
-localmente na medida que você vai escrevendo o texto antes de enviar para o
-servidor, inclusive vem com um script para facilitar isso, para iniciar basta
+localmente na medida que você vai escrevendo o texto e antes de enviar para o
+servidor, inclusive vem com um script para facilitar isso.
+
+Para utilizar o script para iniciar basta
 executar o comando:
 
 ``./develop_server.sh start``
