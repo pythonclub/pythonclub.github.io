@@ -8,7 +8,7 @@ Como Contribuir
 ---------------
 
 * Faça um fork desse repositório
-* Clone seu fork ``git clone https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
+* Clone seu fork ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
 * Instale os requirements ``pip install -r requirements.txt``
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
   no formato **[Markdown][4]** ou **[reStructuredText][5]**, fique a vontade
