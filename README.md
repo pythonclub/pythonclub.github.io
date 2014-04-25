@@ -9,6 +9,7 @@ Como Contribuir
 
 * Faça um fork desse repositório
 * Clone seu fork ``git clone git@github.com:USUARIO/pythonclub.github.io.git``
+* Instale os requirements ``pip install -r requirements.txt``
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
   no formato **Markdown** ou **reStructuredText**, fique a vontade para usar o
   que você sentir mais afinidade.
@@ -29,12 +30,18 @@ branch master seja servido numa web, para gerar esses arquivos HTML usamos o
 Visualizando sua publicação antes de enviar
 -------------------------------------------
 
-O **Pelican** conta com um micro-servidor de desenvolvimento para que você possa
-acompanhar em "tempo-real" as mudanças que você efetua nos seus artigos, para
-usa-lo basta usando o comando:
+O **Pelican** conta com algumas facilidades que permitem que você teste o site
+localmente na medida que você vai escrevendo o texto antes de enviar para o
+servidor, inclusive vem com um script para facilitar isso, para iniciar basta
+executar o comando:
 
-``pelican -r content -o output -s pelicanconf.py``
+``./develop_server.sh start``
 
+Então basta visitar o endereço http://localhost:8000/
+
+Para finalizar o servidor use:
+
+``./develop_server.sh stop``
 
 Futuras Publicações
 -------------------
