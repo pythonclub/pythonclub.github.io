@@ -10,8 +10,8 @@ script:
 - make html
 notifications:
   email:
-    on_success: always
-    on_failure: always
+    on_success: never
+    on_failure: never
 env:
   global:
   - secure: fjtVZfyJ7SOg1Glo3T6zYyyzf3OcBiIKY3Lx2abwNt3jIrZalTAc/T2EpeRF+0cLp4NAhHGxylD/pQahWYAw30+SBD5wghd9iBpbJmTxyWHaM9zdLHiU5M3fuSeRwRdIVSG46tLv5wulCIBDubw/b32Ewc4VfEqHtjIahBuGvr4=
