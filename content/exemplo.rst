@@ -6,6 +6,7 @@ Exemplo de Publicação
 :category: Geral
 :slug: exemplo-de-publicacao
 :author: André Luiz
+:email:  contato@xdvl.info
 :summary: Exemplo de Publicação
 
 ===========
