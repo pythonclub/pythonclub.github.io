@@ -73,6 +73,7 @@ Futuras Publicações
 | Artur Felipe Sousa      | O que é six e como ele te ajuda a escrever código compatível com python 2 e 3 | 29/04/2014 |
 | Francisco André         | Configurando um servidor de repositórios Git                                  | 15/05/2014 |
 | Anderson Rodrigues      | Configurando Django com Framework Twitter Bootstrap e Foundation              | 10/05/2014 |
+| Maurício Sipmann        | Editando o template do admin do django com templatetags                       | 15/05/2014 |
 
 [0]: http://pythonclub.com.br/
 [1]: https://pages.github.com/
