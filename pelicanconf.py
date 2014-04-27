@@ -34,5 +34,8 @@ DEFAULT_PAGINATION = 10
 PLUGIN_PATH = 'plugins'
 # PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
 
+# Path themes pelican
+THEME = './themes/bootstrap'
+
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
