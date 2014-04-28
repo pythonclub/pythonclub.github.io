@@ -36,20 +36,34 @@ Ambiente usado durante a escrita deste artigo
 ---------------------------------------
 
 No Linux/Ubuntu não precisamos instalar Python, isso porque já é nativo em sistemas operacionais baseados em Unix, 
-mas pra ter certeza basta executar o comando no terminal:
+mas pra ter certeza basta executar o comando no terminal::
 
-``
-$ python –version
-``
+	$ python –version
 
-vamos começar instalando os pacotes necessários no Sistema Operacional:
-=======================================================================
+o resultado deve ser::
 
-	$ sudo apt-get update.	
-	$ sudo apt-get install python-dev python-setuptools.		
-	$ sudo apt-get install python-virtualenv.		
-	$ sudo easy_install pip.	
+	Python 2.7.4
+
+vamos começar instalando os pacotes necessários no Sistema Operacional::
+
+    $ sudo apt-get update
+    $ sudo apt-get install python-dev python-setuptools
+    $ sudo apt-get install python-virtualenv
+    $ sudo easy_install pip
 	
+pra testar se o virtualenv está instalado corretamente execute no terminal::
 
+	$ virtualenv –version	
 	
+resultado::
 
+	1.9.1
+
+O pacote **python-setuptools** foi necessário pra instalar o **easy_install** que usamos apenas para instalar o **pip**
+A partir de agora dentro do ambiente virtual sempre usaremos o pip para instalar os pacotes necessários.	
+
+muito bem, com o **virtualenv** instalado o próximo passo será criar um ambiente virtual e assim instalarmos o **Django**.
+
+vamos criar nosso virtualenv chamado **pythonclub**::
+	
+	$ virtualenv pythonclub –system-site-packages 
