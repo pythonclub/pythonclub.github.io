@@ -36,7 +36,7 @@ Ambiente usado durante a escrita deste artigo
 ---------------------------------------
 
 No Linux/Ubuntu não precisamos instalar Python, isso porque já é nativo em sistemas operacionais baseados em Unix, 
-mas pra ter certeza basta executar o comando no terminal:
+mas pra ter certeza basta executar o comando no terminal: /s/s
 ``$ python –version``
 
 vamos começar instalando os pacotes necessários no Sistema Operacional:
