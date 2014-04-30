@@ -13,6 +13,8 @@ TIMEZONE = 'America/Sao_Paulo'
 
 DEFAULT_LANG = u'pt'
 
+DEFAULT_PAGINATION = 10
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -30,12 +32,16 @@ SOCIAL = (
     ('Github', 'https://github.com/pythonclub/pythonclub.github.io'),
 )
 
+# static
+IGNORE_FILES = ['exemplos/*.rst']
 STATIC_PATHS = ['images', 'extras/CNAME']
 
-DEFAULT_PAGINATION = 10
-
+# plugins
 PLUGIN_PATH = 'plugins'
 # PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
+
+# theme
+THEME = 'theme'
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
