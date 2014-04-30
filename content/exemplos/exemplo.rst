@@ -48,6 +48,7 @@ Imagem
 ------
 
 .. image:: images/python-logo-master-v3-TM.png
+   :alt: python logo
 
 Syntax Highlight
 ----------------
