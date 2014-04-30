@@ -35,7 +35,7 @@ SOCIAL = (
 # static
 STATIC_PATHS = ['images', 'extras/CNAME']
 EXTRA_PATH_METADATA = {
-    'extra/CNAME': {'path': 'CNAME'}
+    'extras/CNAME': {'path': 'CNAME'}
 }
 
 # plugins
