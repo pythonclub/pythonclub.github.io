@@ -6,6 +6,9 @@ AUTHOR = u'PythonClub'
 SITENAME = u'PythonClub'
 SITEURL = 'http://pythonclub.com.br'
 
+# DISQUS_SITENAME = ''
+GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
+
 TIMEZONE = 'America/Sao_Paulo'
 
 DEFAULT_LANG = u'pt'
@@ -16,18 +19,18 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (
+LINKS = (
     ('Pelican', 'http://getpelican.com/'),
     ('Python.org', 'http://python.org/'),
     ('Jinja2', 'http://jinja.pocoo.org/'),
-    ('You can modify those links in your config file', '#'),
 )
 
 # Social widget
 SOCIAL = (
-    ('You can add links in your config file', '#'),
-    ('Another social link', '#'),
+    ('Github', 'https://github.com/pythonclub/pythonclub.github.io'),
 )
+
+STATIC_PATHS = ['images', 'extras/CNAME']
 
 DEFAULT_PAGINATION = 10
 
