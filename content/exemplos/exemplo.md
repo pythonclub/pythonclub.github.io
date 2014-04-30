@@ -5,7 +5,6 @@ Category: Geral
 Slug: exemplo-de-publicacao-em-markdown
 Author: André Luiz
 Email:  contato@xdvl.info
-Summary: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 
 Lorem Ipsum
 -----------

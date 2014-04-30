@@ -7,7 +7,6 @@ Exemplo de Publicação (em RST)
 :slug: exemplo-de-publicacao-em-rst
 :author: André Luiz
 :email:  contato@xdvl.info
-:summary: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 
 ===========
 Lorem Ipsum
