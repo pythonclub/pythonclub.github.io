@@ -1,13 +1,13 @@
-Exemplo de Publicação
-#####################
+Exemplo de Publicação (em RST)
+##############################
 
 :date: 2014-04-24 17:21
 :tags: exemplo
 :category: Geral
-:slug: exemplo-de-publicacao
+:slug: exemplo-de-publicacao-em-rst
 :author: André Luiz
 :email:  contato@xdvl.info
-:summary: Exemplo de Publicação
+:summary: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 
 ===========
 Lorem Ipsum
