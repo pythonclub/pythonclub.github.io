@@ -61,6 +61,7 @@ Futuras Publicações
 
 | Autor                   | Assunto                                                                       | Data       |
 |-------------------------|-------------------------------------------------------------------------------|------------|
+| Eric Hideki             | Como colaborar na tradução do Djangobook sem conhecer programação             | 29/04/2014 |
 | Renato Oliveira         | Introdução ao django.contrib.auth                                             | 03/05/2014 |
 | Régis da Silva          | As 20 principais dúvidas que atormentam um iniciante em Django                | ?          |
 | Gilmar Soares           | Parseando sites com BeaultifulSoup                                            | 16/05/2014 |
