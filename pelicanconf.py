@@ -10,6 +10,8 @@ SITEURL = 'http://pythonclub.com.br'
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
 
+FACEBOOK_APPID = '1487080281503641'
+
 TIMEZONE = 'America/Sao_Paulo'
 
 DEFAULT_LANG = u'pt'
