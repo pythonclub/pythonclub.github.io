@@ -8,6 +8,7 @@ SITEURL = 'http://pythonclub.com.br'
 
 # DISQUS_SITENAME = ''
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
+DISQUS_SITENAME = 'pythonclub'
 
 TIMEZONE = 'America/Sao_Paulo'
 
