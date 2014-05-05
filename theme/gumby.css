@@ -209,9 +209,9 @@ h6 {
 }
 
 /*=====================================================
- 
+
   Links & Paragraph styles
-  
+
   ======================================================*/
 p {
   font-family: "Open Sans";
@@ -247,7 +247,7 @@ a:hover {
 /*=====================================================
 
   Lists
-  
+
  ======================================================*/
 ul, ol {
   margin-bottom: 0.273em;
@@ -7094,4 +7094,12 @@ footer#credits .socbtns {
 
 #templates {
   padding-bottom: 200px;
+}
+
+/* share buttons */
+.sharing {
+  margin-bottom: 25px;
+}
+.twitter-share-button {
+  margin: 0 0 -6px 6px;
 }
