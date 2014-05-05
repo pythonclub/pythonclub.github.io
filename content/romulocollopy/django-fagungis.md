@@ -1,0 +1,85 @@
+Title: Publicação de projetos com o Django-Fagungis 
+Date: 2014-05-5 00:00
+Tags: Django Fabric Gunicorn Nginx Supervisor Deploy
+Category: deploy infraestrutura
+Slug: deploy-com-django-fagugis
+Author: Rômulo Collopy
+Email: romulocollopy@gmail.com 
+
+Django-Fagungis
+-----------
+
+### O que é?
+
+Django-Fagungis é um projeto original do [Denis Darii](http://github.com/dnx), [disponível no Pypi para instalação via pip](https://pypi.python.org/pypi/django-fagungis/0.0.17). A idéia do projeto é simples: automatizar o deploy de projetos Django para servidores com acesso root, utilizando o [Fabric](http://www.fabfile.org/), uma biblioteca e ferramenta de linha de comando em Python (2.5-2.7) que usa o protocolo SSH para o deploy de aplicações e realização de tarefas administrativas no sistema, não restrita a projetos Python.
+
+Porém, nesse artigo, **não vamos usar a versão original do Django-Fagungis**, porque as últimas atualizações no projeto são de 2012. em vez dela, **usaremos um fork** feito pelo [Cadu Leite](https://github.com/cadu-leite/), da [ZNC Sistemas](https://github.com/znc-sistemas), que está em atulização mais constante.
+
+Por isso, a instalação não será feita diretamente pelo pip, mas pelo repositório do Cadu Leite, em [https://github.com/cadu-leite/django-fagungis](https://github.com/cadu-leite/django-fagungis).
+
+**Cuidado**: no prepositório do Cadu, o comando disponível para a instalação é de outro fork mais antigo! ~~O que me deu uma dor de cabeça bem maior do que a que vocês terão.~~
+
+`pip install git+https://github.com/cadul-leite/django-fagungis.git`
+
+__Pediu a senha de root? Que tal criar um virtualenv primeiro?__
+
+Atualmente, trabalho mais com Python3 que com Python2, porém o Fabric ainda não foi completamente portado para o Python3, por isso, sempre crio um virtualenv para trabalhar com ele. ~~Na verdade, crio virtualenv pra tudo.~~
+
+No caso do Django-Fagungis creio que você tem um argumento a mais para usar um virtualenv: existem forks mais atuais que o projeto disponóvel no pip e possivelmente você vai querer testar diferentes forks.
+
+Então, vamos ao passo a passo. Digamos que você queira criar um projeto chamado simpleproject, em python3, na sua pasta de trabalho favorita. (Eu gosto de ~/dev/).
+
+`mkdir simpleproject.com`
+`cd simpleproject`
+`virtualenv --unzip-setuptools --python=/usr/bin/python3.4 .`
+`source bin\activate`
+`pip install django`
+`django-admin.py startproject simpleproject .`
+
+
+__Oops__, temos um problema, pois o fabric não suporta o Python3. Então criamos outro virtualenv para o django-fagungis. Você pode fazer isso em qualquer lugar. Nesse exemplo vou instalar em:
+
+`~/dev/tools/django-fagungis-cadu-leite`
+
+__Notem que deixei o nome do usuário github na pasta para lembrar que estou usando um fork.__
+
+Agora vou até a pasta e crio o virtualenv com Python2
+
+`deactivate`
+`mkdir -p ~/dev/tools/django-fagungis-cadu-leite`
+`cd ~/dev/tools/django-fagungis-cadu-leite`
+`virtualenv --unzip-setuptools --python=/usr/bin/python2.7 .`
+`source bin\activate`
+
+E instalo o django-fagungis
+`pip install git+https://github.com/damianmoore/django-fagungis.git`
+
+E copio o fabfile.py de exemplo para meu projeto:
+`cp lib/python2.7/fagungis/example_fabfile.py ~/dev/simpleproject/fabfile.py`
+
+
+
+
+
+### Lista
+
+* Lorem ipsum
+* dolor sit amet
+* consectetur adipisicing elit
+* sed do eiusmod
+
+### Imagem
+
+![python logo](images/python-logo-master-v3-TM.png "Python Logo")
+
+### Syntax Highlight
+
+    :::python
+
+    from django.views.generic import TemplateView
+
+    from braces.views import LoginRequiredMixin
+
+
+    class IndexView(LoginRequiredMixin, TemplateView):
+        template_name = 'core/index.html'
