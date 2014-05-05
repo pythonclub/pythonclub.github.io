@@ -15,7 +15,7 @@ Como Contribuir
 * Instale os requirements ``pip install -r requirements.txt``
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
   no formato **[Markdown][4]** ou **[reStructuredText][5]**, fique a vontade
-  para usar o que você sentir mais afinidade.
+  para usar o que você sentir mais afinidade, veja alguns **[exemplos][6]**.
 * Após criar ou editar seu artigo faça um pull-request para que ele seja
   adicionado ao site.
 
@@ -82,3 +82,4 @@ Futuras Publicações
 [3]: http://localhost:8000/
 [4]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [5]: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+[6]: https://github.com/pythonclub/pythonclub.github.io/tree/pelican/exemplos
