@@ -9,6 +9,7 @@
 :email:  igr.exe@gmail.com
 :summary: 5 Django Apps que não vivo sem
 
+
 =====================
 1. South (Migrations)
 =====================
@@ -31,7 +32,6 @@ Comandos utilizados:
     ./manage.py migration app_name          [realiza migracao na app especificada]
     ./manage.py migration --all         [realiza migracao em todas as apps instaladas]
     ./manage.py schemamigration app_name --auto [realiza migracao no modelo alterado]
-
 
 
 ================================
@@ -84,3 +84,8 @@ O coverage mostra a seguinte tabela:
 - Miss: Linhas que não foram testadas.
 - Cover: Quantidade de código coberto por testes em porcentagem.
 - Missing: Linhas que não foram testadas.
+
+
+================================
+3. django-debug-toolbar (Test)
+================================
