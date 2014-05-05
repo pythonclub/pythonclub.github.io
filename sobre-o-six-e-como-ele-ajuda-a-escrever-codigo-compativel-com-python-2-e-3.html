@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+        <title>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="./theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/pygment.css" />
+
+        <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href=".">PythonClub <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href=".">Home</a></li>
+
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="./sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" rel="bookmark"
+                   title="Permalink to Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3">Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-05-04T22:21:00">
+                Sun 04 May 2014
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="./author/artur-felipe-de-sousa.html">Artur Felipe de Sousa</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h3>Python 2.x ou python 3.x?</h3>
+<p>Quem de nós já não se deparou com a seguinte dúvida: Qual versão do
+python devo usar para começar meu projeto?</p>
+<p>Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão
+polêmica, a primeira incopatível com suas anteriores (2.x). A intenção era de
+corrigir antigas "chatices" que vinham incomodando o Guido van Rossum e a
+comunidade, e remover coisas desnecessárias. Alguns exemplos mais comuns:</p>
+<ul>
+<li>Todas as strings são unicode <strong>str()</strong></li>
+<li>O comando print virou a built-in <strong>print()</strong></li>
+<li>Iterators ao invés de listas: <strong>map(), filter(), zip()</strong> e <strong>range()</strong></li>
+<li>Tipo long passou a ser somente int</li>
+<li>Todas as classes são new-style</li>
+</ul>
+<p>Para mais detalhes <a href="https://docs
+.python.org/3.0/whatsnew/3.0.html">https://docs.python.org/3.0/whatsnew/3.0.html</a>.</p>
+<p>O python 3 já está na versão 3.4 e vem sendo cada vez mais suportado por
+bibliotecas e frameworks mais populares tais como:</p>
+<ul>
+<li>Django (1.5+)</li>
+<li>Pyramid (1.3a1+)</li>
+<li>Flask</li>
+<li>SqlAlchemy</li>
+</ul>
+<p>Todas essas ferramentas tiveram a mesma preocupação que deve estar passando
+pela sua cabeça agora: Como migrar ou criar código compatível o máximo possível
+entre essas versões?</p>
+<p>É aí que entra a biblioteca six.</p>
+<h3>Six?</h3>
+<p>O six é uma biblioteca de compatibilidade entre o python 2 e 3. O nome "six"
+surgiu da grande sacada do Benjamin Petersons, 2 * 3 == 6, muita imaginação
+não? Todo o código do six está contido em apenas um arquivo python
+<a href="https://bitbucket.org/gutworth/six/src/a497bee85dd833681574672b5a2ec29
+6e33c525c/six.py?at=default" title="Repositório do six">six.py</a>.</p>
+<p>Para instalar o six, basta usar o pip:</p>
+<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">six</span>
+</pre></div>
+
+
+<p>Vamos começar com um exemplo de código que funciona somente na versão 2.7.5:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="s">u&#39;Python 2 compatible&#39;</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;is unicode&#39;</span>
+</pre></div>
+
+
+<p>O primeiro erro observado é o comando print que gera um erro de sintaxe, o
+seguinte é o identificador unicode que não existe mais no python 3 (passou a
+ser str somente).</p>
+<p>Uma versão deste código que funciona no python 3.4.0 seria:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="s">u&#39;Python 3 compatible&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;is unicode&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Utilizando o six para compatibilizar o código, teríamos:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">six</span>
+<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="s">u&#39;Python 2 and 3 compatible&#39;</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">):</span>
+    <span class="n">six</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s">&#39;is unicode&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>No exemplo acima foi utilizada a constante <strong>six.string_types</strong>. Essas
+constantes são normalmente utilizadas como segundo argumento da função
+<strong>isinstance()</strong>. <a href="https://pythonhosted.org/six/#constants">Veja mais delas</a>.</p>
+<p>No python 3 alguns atributos e metódos foram substituídos ou removidos de
+alguns tipos de estrutura de dados. Os métodos <strong>iterkeys(), itervalues(),
+iteritems()</strong> e <strong>iterlists()</strong>, por exemplo, foram renomeados dos dicionários
+por <strong>keys(), values(), items()</strong> e <strong>lists()</strong> respectivamente.</p>
+<div class="highlight"><pre><span class="c"># Python 2.7.5</span>
+<span class="o">&gt;</span> <span class="n">my_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Artur Sousa&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">my_info</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">dictionary</span><span class="o">-</span><span class="n">valueiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10738e680</span><span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="n">my_info</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="s">&#39;Artur Sousa&#39;</span><span class="p">]</span>
+
+<span class="c"># Python 3.4.0</span>
+<span class="o">&gt;</span> <span class="n">my_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Artur Sousa&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">my_info</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="n">dict_values</span><span class="p">([</span><span class="mi">29</span><span class="p">,</span> <span class="s">&#39;Artur Sousa&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Versões compatíveis destes métodos podem ser encontradas no six:</p>
+<div class="highlight"><pre><span class="c"># Python 2.x 3.x</span>
+<span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">six</span>
+<span class="o">&gt;</span> <span class="n">my_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Artur Sousa&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">six</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(</span><span class="n">my_info</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">dictionary</span><span class="o">-</span><span class="n">valueiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10738e680</span><span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="n">six</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">dict_keyiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10b2f4638</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p><a href="https://pythonhosted.org/six/#object-model-compatibility">Dentre outras...</a></p>
+<p>No python 3 algumas libs foram reorganizadas da biblioteca padrão. O
+<strong>HTMLParser</strong> por exemplo virou <strong>html.parser</strong>. Para isso o six oferece o
+módulo moves.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">html_parser</span> <span class="c"># 2.x: HTMLParser 3.x: html.parser</span>
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">cPickle</span>  <span class="c"># 2.x: cPickle 3.x: pickle</span>
+</pre></div>
+
+
+<p>Uma tabela de compatibilidade de métodos e atributos pode ser vista
+<a href="https://pythonhosted.org/six/#module-six.moves">aqui</a>.</p>
+<p>Esta foi apenas uma parte das funcionalidades que o six oferece para garantir
+o funcionamento de códigos escritos nas versões 2 e 3 do python.</p>
+<p>O Django utiliza o six a partir da versão 1.5. Veja um exemplo de uso:</p>
+<div class="highlight"><pre><span class="c"># django.contrib.admin.helpers.py - Django 1.7b3</span>
+<span class="k">class</span> <span class="nc">AdminErrorList</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">ErrorList</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stores all errors for the form/formsets in an add/change stage view.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">inline_formsets</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdminErrorList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_bound</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">errors</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">inline_formset</span> <span class="ow">in</span> <span class="n">inline_formsets</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inline_formset</span><span class="o">.</span><span class="n">non_form_errors</span><span class="p">())</span>
+                <span class="k">for</span> <span class="n">errors_in_inline_form</span> <span class="ow">in</span> <span class="n">inline_formset</span><span class="o">.</span><span class="n">errors</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(</span><span class="n">errors_in_inline_form</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>Então galera, esse foi um artigo introdutório sobre o six, mostrando alguns
+casos de uso e um pouco das diferenças entre o python 2 e 3. Espero que vocês
+tenham gostado. Fiquem à vontade para enviar dúvidas, sugestões ou críticas.</p>
+<p>Até mais...</p>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+        
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="./category/geral.html">Geral</a></li>
+		<li><a href="./category/python.html">Python</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="./tag/six.html">six</a></li>
+	    <li class="tag-4"><a href="./tag/python3.html">python3</a></li>
+	    <li class="tag-1"><a href="./tag/exemplo.html">exemplo</a></li>
+	    <li class="tag-4"><a href="./tag/compatibility.html">compatibility</a></li>
+	    <li class="tag-4"><a href="./tag/python.html">python</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="https://github.com/pythonclub/pythonclub.github.io">Github</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/pythonclub/pythonclub.github.io" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="./theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="./theme/js/libs/gumby.min.js"></script>
+  <script src="./theme/js/plugins.js"></script>
+</body>
+</html>
