@@ -17,6 +17,8 @@ Porém, nesse artigo, **não vamos usar a versão original do Django-Fagungis**,
 
 Por isso, a instalação não será feita diretamente pelo pip, mas pelo repositório do Cadu Leite, em [https://github.com/cadu-leite/django-fagungis](https://github.com/cadu-leite/django-fagungis).
 
+**Cuidado**: no prepositório do Cadu, o comando disponível para a instalação é de outro fork mais antigo! ~~O que me deu uma dor de cabeça bem maior do que a que vocês terão.~~
+
 `pip install git+https://github.com/cadul-leite/django-fagungis.git`
 
 __Pediu a senha de root? Que tal criar um virtualenv primeiro?__
@@ -25,18 +27,39 @@ Atualmente, trabalho mais com Python3 que com Python2, porém o Fabric ainda nã
 
 No caso do Django-Fagungis creio que você tem um argumento a mais para usar um virtualenv: existem forks mais atuais que o projeto disponóvel no pip e possivelmente você vai querer testar diferentes forks.
 
-Então, vamos ao passo a passo. Digamos que você queira criar um projeto chamado simpleproject, em python3, na sua pasta de trabalho favorita. (Eu gosto de ~/dev/)
+Então, vamos ao passo a passo. Digamos que você queira criar um projeto chamado simpleproject, em python3, na sua pasta de trabalho favorita. (Eu gosto de ~/dev/).
 
-`mkdir simpleproject`
+`mkdir simpleproject.com`
 `cd simpleproject`
-`virtualenv --unzip-setuptools --python=python=/usr/bin/python3.4 .`
+`virtualenv --unzip-setuptools --python=/usr/bin/python3.4 .`
+`source bin\activate`
+`pip install django`
+`django-admin.py startproject simpleproject .`
 
-Ops, temos um problema, pois o fabric não suporta o Python3. Então criamos outro virtualenv para o django-fagungis.
 
-/usr/local/lib/django-fagungis
+__Oops__, temos um problema, pois o fabric não suporta o Python3. Então criamos outro virtualenv para o django-fagungis. Você pode fazer isso em qualquer lugar. Nesse exemplo vou instalar em:
 
+`~/dev/tools/django-fagungis-cadu-leite`
 
-**Cuidado**: no prepositório do Cadu Leite, o comando disponível para a instalação é de outro fork mais antigo! ~~O que me deu uma dor de cabeça bem maior do que a que vocês terão.~~
+__Notem que deixei o nome do usuário github na pasta para lembrar que estou usando um fork.__
+
+Agora vou até a pasta e crio o virtualenv com Python2
+
+::
+deactivate
+mkdir -p ~/dev/tools/django-fagungis-cadu-leite
+cd ~/dev/tools/django-fagungis-cadu-leite
+virtualenv --unzip-setuptools --python=/usr/bin/python2.7 .
+source bin\activate
+
+E instalo o django-fagungis::
+pip install git+https://github.com/damianmoore/django-fagungis.git
+
+E copio o fabfile.py de exemplo para meu projeto:
+::
+cp lib/python2.7/fagungis/example_fabfile.py ~/dev/simpleproject/fabfile.py`
+
+Feito isso, podemos voltar ao projeto e editar o fabfile para as configurações do seu projeto. A configuração é bem simple e o arquivo é autoexplicativo:
 
 
 

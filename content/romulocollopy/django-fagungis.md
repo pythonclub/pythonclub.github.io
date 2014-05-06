@@ -45,17 +45,21 @@ __Notem que deixei o nome do usuário github na pasta para lembrar que estou usa
 
 Agora vou até a pasta e crio o virtualenv com Python2
 
-`deactivate`
-`mkdir -p ~/dev/tools/django-fagungis-cadu-leite`
-`cd ~/dev/tools/django-fagungis-cadu-leite`
-`virtualenv --unzip-setuptools --python=/usr/bin/python2.7 .`
-`source bin\activate`
+:::
+deactivate
+mkdir -p ~/dev/tools/django-fagungis-cadu-leite
+cd ~/dev/tools/django-fagungis-cadu-leite
+virtualenv --unzip-setuptools --python=/usr/bin/python2.7 .
+source bin\activate
 
-E instalo o django-fagungis
-`pip install git+https://github.com/damianmoore/django-fagungis.git`
+E instalo o django-fagungis::
+pip install git+https://github.com/damianmoore/django-fagungis.git
 
 E copio o fabfile.py de exemplo para meu projeto:
-`cp lib/python2.7/fagungis/example_fabfile.py ~/dev/simpleproject/fabfile.py`
+::
+cp lib/python2.7/fagungis/example_fabfile.py ~/dev/simpleproject/fabfile.py`
+
+Feito isso, podemos voltar ao projeto e editar o fabfile para as configurações do seu projeto. A configuração é bem simple e o arquivo é autoexplicativo:
 
 
 
