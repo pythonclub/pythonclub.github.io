@@ -86,6 +86,44 @@ O coverage mostra a seguinte tabela:
 - Missing: Linhas que não foram testadas.
 
 
-================================
-3. django-debug-toolbar (Test)
-================================
+=====================
+3. model_mommy (Mock)
+=====================
+
+`model_mommy <https://github.com/vandersonmota/model_mommy>`_ oferece um jeito fácil e inteligente de criar fixtures para Django, é muito simples, e tem o objetivo de facilitar a escrita de testes, fazendo com que você consiga criar um objeto com apenas uma linha de código.
+
+Esse é um simples exemplo, com coisas mais comuns no seu dia,
+
+.. code-block:: python
+
+    from model_mommy import mommy
+
+    class MyCaseTest(TestCase):
+        def setUp(self):
+            # criar e persiste o User na database
+            self.user = mommy.make('auth.User')
+            # cria o User sem persistir
+            self.user = mommy.prepare('auth.User')
+            # cria o User, atribui um username e persiste
+            self.user = mommy.make('auth.User', username=u'user.test')
+            # cria e persiste uma lista de User
+            self.list_users = mommy.make('auth.User', _quantity=3)
+
+**Note:** não foi preciso importar o model User, pois o model_mommy faz isso pra você, mas tome cuidado, o model_mommy é case sensitive.
+
+**Dica:** seguindo a mesma dica do django-nose, adicione o model_mock ao INSTALLED_APPS de uma settings especifica para testes, ou para desenvolvimento.
+
+Essa é uma django app muito poderosa e possui diversas outras funcionalidades, vale a pena fazer uma visitinha no `seu repositório <https://github.com/vandersonmota/model_mommy>`_.
+
+
+=================================
+4. Django Extensions (Extensions)
+=================================
+
+O `django extensions <http://django-extensions.readthedocs.org/en/latest/index.html>`_ possui uma `lista considerável <http://django-extensions.readthedocs.org/en/latest/command_extensions.html>`_ de funcionalidades, a ideia é juntar diversas funcionalidades que agilizam o desenvolvimento, e adicioná-los a lista de comandos do **manage.py**.
+
+Mas quero falar de uma funcionalidade especifica que uso muito, é o `shell_plus <http://django-extensions.readthedocs.org/en/latest/shell_plus.html>`_, que carrega automaticamente models das apps instaladas no meu projeto, no shell interativo do python, além disso você possui diversas configurações bacanas, como escolher tipos diferentes de shell python, como por exemplo `ipython <https://github.com/ipython/ipython>`_.
+
+.. code-block:: shell
+
+    ./manage.py shell_plus --use-ipython
