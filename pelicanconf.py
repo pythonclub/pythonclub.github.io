@@ -6,7 +6,6 @@ AUTHOR = u'PythonClub'
 SITENAME = u'PythonClub'
 SITEURL = 'http://pythonclub.com.br'
 
-# DISQUS_SITENAME = ''
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
 
@@ -35,17 +34,17 @@ SOCIAL = (
     ('Github', 'https://github.com/pythonclub/pythonclub.github.io'),
 )
 
-# static
+# Static
 STATIC_PATHS = ['images', 'extras/CNAME']
 EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'}
 }
 
-# plugins
+# Plugins
 PLUGIN_PATH = 'plugins'
 # PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
 
-# theme
+# Theme
 THEME = 'theme'
 
 # Uncomment following line if you want document-relative URLs when developing
