@@ -66,7 +66,7 @@ Futuras Publicações
 | Régis da Silva          | As 20 principais dúvidas que atormentam um iniciante em Django                | ?          |
 | Gilmar Soares           | Parseando sites com BeaultifulSoup                                            | 16/05/2014 |
 | Fábio Barrionuevo       | Limpando automaticamente o cache do Django ao fazer deploy no Heroku          | 17/05/2014 |
-| Igor Santos             | 5 Django Apps que não vivo sem                                                | 06/05/2014 |
+| Igor Santos             | 5 Django Apps que não vivo sem                                                | 08/05/2014 |
 | Guilherme Rezende       | Criando uma ferramenta de pentest com Python, Nmap e Scapy                    | 12/05/2014 |
 | Fabiano Góes            | Seu primeiro projeto Django com Sublime Text no Linux                         | 12/05/2014 | 
 | Rômulo Collopy          | Deploy de projetos com Django-Fagungis                                        | 05/05/2014 |
