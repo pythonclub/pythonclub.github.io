@@ -20,12 +20,12 @@ O objetivo deste artigo:
 5. Instalar o Django dentro do virtualenv.
 6. Criar um projeto Django.
 7. Criar uma app Django dentro do projeto.
-9. Instalar Sublime Text.
-10. Criar uma classe Model.
-11. Criar uma rota: home.
-12. Criar a view: home.
-13. Configurar o Admin.
-14. Rodar o Projeto.
+8. Instalar Sublime Text.
+9. Criar uma classe Model.
+10. Criar uma rota: home.
+11. Criar a view: home.
+12. Configurar o Admin.
+13. Rodar o Projeto.
 
 
 Ambiente usado durante a escrita deste artigo
