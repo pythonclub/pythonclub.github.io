@@ -60,10 +60,10 @@ resultado::
 
 	1.9.1
 
-O pacote **python-setuptools** foi necessário pra instalar o **easy_install** que usamos apenas para instalar o **pip**
+O pacote **python-setuptools** foi necessário apenas para instalar o **easy_install** que usamos para instalar o **pip**
 A partir de agora dentro do ambiente virtual sempre usaremos o pip para instalar os pacotes necessários.	
 
-muito bem, com o **virtualenv** instalado o próximo passo será criar um ambiente virtual e assim instalarmos o **Django**.
+muito bem, com o **virtualenv** instalado o próximo passo será criar um **virtualenv** e assim instalarmos o **Django**.
 
 vamos criar nosso virtualenv chamado **pythonclub**::
 	
