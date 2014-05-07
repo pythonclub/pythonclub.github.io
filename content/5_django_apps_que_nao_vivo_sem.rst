@@ -127,3 +127,58 @@ Mas quero falar de uma funcionalidade especifica que uso muito, é o `shell_plus
 .. code-block:: shell
 
     ./manage.py shell_plus --use-ipython
+
+
+===============================
+5. Django Debug Toolbar (Debug)
+===============================
+
+O `django debug toolbar <https://github.com/django-debug-toolbar/django-debug-toolbar>`_, é um panel que exibe diversas informações sobre o request e response atual, o debug toolbar possui diversas configurações o que faz que seja possível configurá-lo até em produção, apenas para o administrador do projeto, como *quase tudo* em python simples, está tudo bem detalhado na `documentação <http://django-debug-toolbar.readthedocs.org/en/1.2/>`_
+
+Basta instalar com pip e adicionar o projeto no ``INSTALLED_APPS``, e realizar uma configuração simples:
+
+.. code-block:: python
+
+    MIDDLEWARE_CLASSES = (
+        # ...
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+        # ...
+    )
+
+    INSTALLED_APPS = (
+        # ...
+        # certifique de que a app staticfiles esta instalada
+        'django.contrib.staticfiles',
+        # ...
+        # app necessario para Django 1.7+
+        'debug_toolbar.apps.DebugToolbarConfig',
+        # caso versao do django < 1.7, instale a app abaixo
+        'debug_toolbar',
+    )
+
+    STATIC_URL = '/static/'
+
+    DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+    # se internal ips estiver vazio por default o ip e 127.0.0.1, essa
+    # variavel se faz necessaria para que seja apresentado o panel com
+    # as inforamacoes
+    INTERNAL_IPS = []
+
+Configurando o ``views.py``:
+
+.. code-block:: python
+
+    from django.conf import settings
+    from django.conf.urls import include, patterns, url
+
+    import debug_toolbar
+
+
+    if settings.DEBUG:
+        urlpatterns += patterns(
+            '',
+            url(r'^__debug__/', include(debug_toolbar.urls)),
+        )
+
+O django-debug-toolbar possui muitas funcionalidades, e como dito antes, é bem fácil `configurá-las <http://django-debug-toolbar.readthedocs.org/en/1.2/configuration.html>`_, sinta-se a vontade para usar e abusar.
