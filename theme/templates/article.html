@@ -4,6 +4,7 @@
 {% block head %}
   {{ super() }}
   <meta property="fb:app_id" content="{{ FACEBOOK_APPID }}" />
+  <meta property="og:type" content="article" />
   <meta property="og:title" content="{{ article.title }}" />
   <meta property="og:site_name" content="{{ SITENAME }}" />
   <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
