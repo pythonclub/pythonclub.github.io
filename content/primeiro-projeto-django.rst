@@ -49,8 +49,8 @@ vamos começar instalando os pacotes necessários no Sistema Operacional::
 
     $ sudo apt-get update
     $ sudo apt-get install python-dev python-setuptools
-    $ sudo apt-get install python-virtualenv
     $ sudo easy_install pip
+    $ sudo pip install virtualenv
 	
 pra testar se o virtualenv está instalado corretamente execute no terminal::
 
