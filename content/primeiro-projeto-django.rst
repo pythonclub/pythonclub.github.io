@@ -13,19 +13,19 @@ Seu primeiro projeto Django com Sublime Text no Linux
 ========================
 O objetivo deste artigo:
 ========================
-1. Instalar/Verificar python instalado no Sistema Operacional.
-2. Instalar gerenciador de pacotes python: pip.
-3. Instalar o virtualenv.
-4. Criar/Ativar o virtualenv do projeto.
-5. Instalar o Django dentro do virtualenv.
-6. Criar um projeto Django.
-7. Criar uma app Django dentro do projeto.
-8. Instalar Sublime Text.
-9. Criar uma classe Model.
-10. Criar uma rota: home.
-11. Criar a view: home.
-12. Configurar o Admin.
-13. Rodar o Projeto.
+* Instalar/Verificar python instalado no Sistema Operacional.
+* Instalar gerenciador de pacotes python: pip.
+* Instalar o virtualenv.
+* Criar/Ativar o virtualenv do projeto.
+* Instalar o Django dentro do virtualenv.
+* Criar um projeto Django.
+* Criar uma app Django dentro do projeto.
+* Instalar Sublime Text.
+* Criar uma classe Model.
+* Criar uma rota: home.
+* Criar a view: home.
+* Configurar o Admin.
+* Rodar o Projeto.
 
 
 Ambiente usado durante a escrita deste artigo
