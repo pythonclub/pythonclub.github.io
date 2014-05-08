@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/python.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-04T22:21:00-03:00</updated><entry><title>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</title><link href="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" rel="alternate"></link><updated>2014-05-04T22:21:00-03:00</updated><author><name>Artur Felipe de Sousa</name></author><id>tag:pythonclub.com.br,2014-05-04:sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html</id><summary type="html">&lt;h3&gt;Python 2.x ou python 3.x?&lt;/h3&gt;
+&lt;p&gt;Quem de nós já não se deparou com a seguinte dúvida: Qual versão do
+python devo usar para começar meu projeto?&lt;/p&gt;
+&lt;p&gt;Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão
+polêmica, a primeira incopatível com suas anteriores (2.x). A intenção era de
+corrigir antigas "chatices" que vinham incomodando o Guido van Rossum e a
+comunidade, e remover coisas desnecessárias. Alguns exemplos mais comuns:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Todas as strings são unicode &lt;strong&gt;str()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;O comando print virou a built-in &lt;strong&gt;print()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Iterators ao invés de listas: &lt;strong&gt;map(), filter(), zip()&lt;/strong&gt; e &lt;strong&gt;range()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Tipo long passou a ser somente int&lt;/li&gt;
+&lt;li&gt;Todas as classes são new-style&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para mais detalhes &lt;a href="https://docs
+.python.org/3.0/whatsnew/3.0.html"&gt;https://docs.python.org/3.0/whatsnew/3.0.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;O python 3 já está na versão 3.4 e vem sendo cada vez mais suportado por
+bibliotecas e frameworks mais populares tais como:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Django (1.5+)&lt;/li&gt;
+&lt;li&gt;Pyramid (1.3a1+)&lt;/li&gt;
+&lt;li&gt;Flask&lt;/li&gt;
+&lt;li&gt;SqlAlchemy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Todas essas ferramentas tiveram a mesma preocupação que deve estar passando
+pela sua cabeça agora: Como migrar ou criar código compatível o máximo possível
+entre essas versões?&lt;/p&gt;
+&lt;p&gt;É aí que entra a biblioteca six.&lt;/p&gt;
+&lt;h3&gt;Six?&lt;/h3&gt;
+&lt;p&gt;O six é uma biblioteca de compatibilidade entre o python 2 e 3. O nome "six"
+surgiu da grande sacada do Benjamin Petersons, 2 * 3 == 6, muita imaginação
+não? Todo o código do six está contido em apenas um arquivo python
+&lt;a href="https://bitbucket.org/gutworth/six/src/a497bee85dd833681574672b5a2ec29
+6e33c525c/six.py?at=default" title="Repositório do six"&gt;six.py&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Para instalar o six, basta usar o pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Vamos começar com um exemplo de código que funciona somente na versão 2.7.5:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;Python 2 compatible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;is unicode&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O primeiro erro observado é o comando print que gera um erro de sintaxe, o
+seguinte é o identificador unicode que não existe mais no python 3 (passou a
+ser str somente).&lt;/p&gt;
+&lt;p&gt;Uma versão deste código que funciona no python 3.4.0 seria:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;Python 3 compatible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;is unicode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Utilizando o six para compatibilizar o código, teríamos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;six&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;Python 2 and 3 compatible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;string_types&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;is unicode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;No exemplo acima foi utilizada a constante &lt;strong&gt;six.string_types&lt;/strong&gt;. Essas
+constantes são normalmente utilizadas como segundo argumento da função
+&lt;strong&gt;isinstance()&lt;/strong&gt;. &lt;a href="https://pythonhosted.org/six/#constants"&gt;Veja mais delas&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;No python 3 alguns atributos e metódos foram substituídos ou removidos de
+alguns tipos de estrutura de dados. Os métodos &lt;strong&gt;iterkeys(), itervalues(),
+iteritems()&lt;/strong&gt; e &lt;strong&gt;iterlists()&lt;/strong&gt;, por exemplo, foram renomeados dos dicionários
+por &lt;strong&gt;keys(), values(), items()&lt;/strong&gt; e &lt;strong&gt;lists()&lt;/strong&gt; respectivamente.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Python 2.7.5&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;valueiterator&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x10738e680&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# Python 3.4.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;dict_values&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Versões compatíveis destes métodos podem ser encontradas no six:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Python 2.x 3.x&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;six&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;valueiterator&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x10738e680&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iterkeys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dict_keyiterator&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x10b2f4638&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://pythonhosted.org/six/#object-model-compatibility"&gt;Dentre outras...&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;No python 3 algumas libs foram reorganizadas da biblioteca padrão. O
+&lt;strong&gt;HTMLParser&lt;/strong&gt; por exemplo virou &lt;strong&gt;html.parser&lt;/strong&gt;. Para isso o six oferece o
+módulo moves.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;six.moves&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;html_parser&lt;/span&gt; &lt;span class="c"&gt;# 2.x: HTMLParser 3.x: html.parser&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;six.moves&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cPickle&lt;/span&gt;  &lt;span class="c"&gt;# 2.x: cPickle 3.x: pickle&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Uma tabela de compatibilidade de métodos e atributos pode ser vista
+&lt;a href="https://pythonhosted.org/six/#module-six.moves"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Esta foi apenas uma parte das funcionalidades que o six oferece para garantir
+o funcionamento de códigos escritos nas versões 2 e 3 do python.&lt;/p&gt;
+&lt;p&gt;O Django utiliza o six a partir da versão 1.5. Veja um exemplo de uso:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# django.contrib.admin.helpers.py - Django 1.7b3&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;AdminErrorList&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;forms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ErrorList&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Stores all errors for the form/formsets in an add/change stage view.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;inline_formsets&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AdminErrorList&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_bound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;inline_formset&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;inline_formsets&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inline_formset&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;non_form_errors&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+                &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;errors_in_inline_form&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;inline_formset&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;errors_in_inline_form&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Então galera, esse foi um artigo introdutório sobre o six, mostrando alguns
+casos de uso e um pouco das diferenças entre o python 2 e 3. Espero que vocês
+tenham gostado. Fiquem à vontade para enviar dúvidas, sugestões ou críticas.&lt;/p&gt;
+&lt;p&gt;Até mais...&lt;/p&gt;</summary><category term="python"></category><category term="six"></category><category term="compatibility"></category><category term="python3"></category></entry></feed>

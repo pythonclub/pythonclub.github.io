@@ -1,78 +1,60 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="en">
 <head>
-  
-        <title>5 Django Apps que não vivo sem</title>
-        <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
 
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+        <title>5 Django Apps que não vivo sem // PythonClub // </title>
 
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/pygment.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pygments.css">
 
-        <script src="http://pythonclub.com.br/theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-
-
-
-
-
-  <meta property="fb:app_id" content="1487080281503641" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="5 Django Apps que não vivo sem" />
-  <meta property="og:site_name" content="PythonClub" />
-  <meta property="og:url" content="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" />
-  <meta property="og:description" content="5 Django Apps que não vivo sem" />
-  <!-- <meta property="og:image" content="" /> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
 </head>
 
-<body id="index" class="home">
-
-
-    <div class="container">
-
-        <div class="row">
-
-          <header id="banner" class="body">
-                  <h1><a href="http://pythonclub.com.br">PythonClub <strong></strong></a></h1>
-          </header><!-- /#banner -->
-
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="http://pythonclub.com.br">Home</a></li>
-
-
-              </ul>
-            </div>
-
-<section id="content" class="body">
-
-   <div class="row">
-        <div class="eleven columns">
-
-
-            <header>
-              <h2 class="entry-title">
-                <a href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="bookmark"
-                   title="Permalink to 5 Django Apps que não vivo sem">5 Django Apps que não vivo sem</a></h2>
-           
-            </header>
-            <footer class="post-info">
-              <abbr class="published" title="2014-05-06T19:35:00">
-                Tue 06 May 2014
-              </abbr>
-              <address class="vcard author">
-                By <a class="url fn" href="http://pythonclub.com.br/author/igor-santos.html">Igor Santos</a>
-              </address>
-            </footer><!-- /.post-info -->
-            <div class="entry-content">
-              <div class="section" id="south-migrations">
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://pythonclub.com.br/author/igor-santos.html" title="See posts by Igor Santos">
+                    <img class="article-avatar" alt="Igor Santos" src="http://www.gravatar.com/avatar/094de17290dd77b6111b0f45a7c247e2">
+                </a>
+                <h2 class="article-info">Igor Santos</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Tue 06 May 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>5 Django Apps que não vivo sem</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://pythonclub.com.br/tag/django.html">django</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/django-apps.html">django-apps</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/south.html">south</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/test.html">test</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/nose.html">nose</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/coverage.html">coverage</a>
+                        </p>
+                </header>
+            </section>
+            <div class="section" id="south-migrations">
 <h2>1. South (Migrations)</h2>
 <p>O <a class="reference external" href="http://south.readthedocs.org/en/latest/">South</a>, faz com que o Django suporte migrações de banco de dados de forma simples, estável e totalmente independente do backend de banco de dados utilizado, a partir da alteração dos models, você roda um comando e plin a &quot;mágica&quot; acontece, o base de dados está novamente igual aos seus modelos.</p>
 <p>Essa app se tornou tão popular que na versão <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/migrations/">Django 1.7</a> passou a ser nativo do Django.</p>
@@ -203,128 +185,54 @@ Bullet list ends without a blank line; unexpected unindent.</div>
 <p>O django-debug-toolbar possui muitas funcionalidades, e como dito antes, é bem fácil <a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/configuration.html">configurá-las</a>, sinta-se a vontade para usar e abusar.</p>
 </div>
 
-            </div><!-- /.entry-content -->
-            <div class="sharing">
-              <!-- Facebook sharing -->
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-share-button" data-href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" data-type="button_count"></div>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "pythonclub"; // required: replace example with your forum shortname
 
-              <!-- Twitter sharing -->
-              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            </div>
-            <div class="comments">
-              <h3>Comments</h3>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-                var disqus_identifier = "5-django-apps-que-nao-vivo-se.html";
-                (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://pythonclub.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-              </script>
-            </div>
-
-
-        </div><!-- /.eleven.columns -->
-
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-  </ul>
-
-<h4>Categories</h4>
-<ul>
-		<li><a href="http://pythonclub.com.br/category/geral-django.html">Geral, Django</a></li>
-		<li><a href="http://pythonclub.com.br/category/python.html">Python</a></li>
-</ul>
-
-
-<h4>Tags</h4>
-	<ul>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/nose.html">nose</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/south.html">south</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/django-apps.html">django-apps</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/coverage.html">coverage</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/six.html">six</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/djangobook.html">djangobook</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/python.html">python</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/compatibility.html">compatibility</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/test.html">test</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/django.html">django</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/python3.html">python3</a></li>
-</ul>
-
-
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="https://github.com/pythonclub/pythonclub.github.io">Github</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-
-</section>
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/pythonclub/pythonclub.github.io" target="_blank">Github</a></div></li>
-
-
-
-
-              </ul>
-            </div>
-          </div>
-        </footer>
-
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; PythonClub &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
     </div>
+</div>
+    <script>
+        var $top = $('.go-top');
 
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-<script type="text/javascript">
-    var disqus_shortname = 'pythonclub';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="http://pythonclub.com.br/theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="http://pythonclub.com.br/theme/js/libs/gumby.min.js"></script>
-  <script src="http://pythonclub.com.br/theme/js/plugins.js"></script>
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

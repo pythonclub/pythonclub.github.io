@@ -1,78 +1,58 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="en">
 <head>
-  
-        <title>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</title>
-        <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
 
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+        <title>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3 // PythonClub // </title>
 
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/pygment.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pygments.css">
 
-        <script src="http://pythonclub.com.br/theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-
-
-
-
-
-  <meta property="fb:app_id" content="1487080281503641" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3" />
-  <meta property="og:site_name" content="PythonClub" />
-  <meta property="og:url" content="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" />
-  <meta property="og:description" content="Python 2.x ou python 3.x? Quem de nós já não se deparou com a seguinte dúvida: Qual versão do python devo usar para começar meu projeto? Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão polêmica, a primeira incopatível com ..." />
-  <!-- <meta property="og:image" content="" /> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
 </head>
 
-<body id="index" class="home">
-
-
-    <div class="container">
-
-        <div class="row">
-
-          <header id="banner" class="body">
-                  <h1><a href="http://pythonclub.com.br">PythonClub <strong></strong></a></h1>
-          </header><!-- /#banner -->
-
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="http://pythonclub.com.br">Home</a></li>
-
-
-              </ul>
-            </div>
-
-<section id="content" class="body">
-
-   <div class="row">
-        <div class="eleven columns">
-
-
-            <header>
-              <h2 class="entry-title">
-                <a href="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" rel="bookmark"
-                   title="Permalink to Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3">Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</a></h2>
-           
-            </header>
-            <footer class="post-info">
-              <abbr class="published" title="2014-05-04T22:21:00">
-                Sun 04 May 2014
-              </abbr>
-              <address class="vcard author">
-                By <a class="url fn" href="http://pythonclub.com.br/author/artur-felipe-de-sousa.html">Artur Felipe de Sousa</a>
-              </address>
-            </footer><!-- /.post-info -->
-            <div class="entry-content">
-              <h3>Python 2.x ou python 3.x?</h3>
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://pythonclub.com.br/author/artur-felipe-de-sousa.html" title="See posts by Artur Felipe de Sousa">
+                    <img class="article-avatar" alt="Artur Felipe de Sousa" src="http://www.gravatar.com/avatar/806fc27cc8cd1fada8bbf11a6f85fade">
+                </a>
+                <h2 class="article-info">Artur Felipe de Sousa</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Sun 04 May 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://pythonclub.com.br/tag/python.html">python</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/six.html">six</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/compatibility.html">compatibility</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/python3.html">python3</a>
+                        </p>
+                </header>
+            </section>
+            <h3>Python 2.x ou python 3.x?</h3>
 <p>Quem de nós já não se deparou com a seguinte dúvida: Qual versão do
 python devo usar para começar meu projeto?</p>
 <p>Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão
@@ -200,128 +180,54 @@ o funcionamento de códigos escritos nas versões 2 e 3 do python.</p>
 casos de uso e um pouco das diferenças entre o python 2 e 3. Espero que vocês
 tenham gostado. Fiquem à vontade para enviar dúvidas, sugestões ou críticas.</p>
 <p>Até mais...</p>
-            </div><!-- /.entry-content -->
-            <div class="sharing">
-              <!-- Facebook sharing -->
-              <div id="fb-root"></div>
-              <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
-                fjs.parentNode.insertBefore(js, fjs);
-              }(document, 'script', 'facebook-jssdk'));</script>
-              <div class="fb-share-button" data-href="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" data-type="button_count"></div>
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "pythonclub"; // required: replace example with your forum shortname
 
-              <!-- Twitter sharing -->
-              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            </div>
-            <div class="comments">
-              <h3>Comments</h3>
-              <div id="disqus_thread"></div>
-              <script type="text/javascript">
-                var disqus_identifier = "sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html";
-                (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://pythonclub.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                })();
-              </script>
-            </div>
-
-
-        </div><!-- /.eleven.columns -->
-
-<div class="three columns">
-
-<h4>Pages</h4>
-
- <ul>
-  </ul>
-
-<h4>Categories</h4>
-<ul>
-		<li><a href="http://pythonclub.com.br/category/geral-django.html">Geral, Django</a></li>
-		<li><a href="http://pythonclub.com.br/category/python.html">Python</a></li>
-</ul>
-
-
-<h4>Tags</h4>
-	<ul>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/nose.html">nose</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/south.html">south</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/django-apps.html">django-apps</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/coverage.html">coverage</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/six.html">six</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/djangobook.html">djangobook</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/python.html">python</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/compatibility.html">compatibility</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/test.html">test</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/django.html">django</a></li>
-	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/python3.html">python3</a></li>
-</ul>
-
-
-<nav class="widget">
-  <h4>Social</h4>
-  <ul>
-    <li><a href="https://github.com/pythonclub/pythonclub.github.io">Github</a></li>
-  </ul>
-</nav>
-
-</div> </div><!-- /.row -->
-
-
-</section>
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/pythonclub/pythonclub.github.io" target="_blank">Github</a></div></li>
-
-
-
-
-              </ul>
-            </div>
-          </div>
-        </footer>
-
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; PythonClub &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
     </div>
+</div>
+    <script>
+        var $top = $('.go-top');
 
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-<script type="text/javascript">
-    var disqus_shortname = 'pythonclub';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="http://pythonclub.com.br/theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="http://pythonclub.com.br/theme/js/libs/gumby.min.js"></script>
-  <script src="http://pythonclub.com.br/theme/js/plugins.js"></script>
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

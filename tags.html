@@ -1,154 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
 
-        <title>PythonClub</title>
-        <meta charset="utf-8" />
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
 
+        <title>PythonClub - Tags</title>
 
-        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
 
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/pygment.css" />
-
-        <script src="http://pythonclub.com.br/theme/js/libs/modernizr-2.6.2.min.js"></script>
-
-
-
-
-
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
-<body id="index" class="home">
+<body>
+    <h1>Tags for PythonClub</h1>        <li><a href="http://pythonclub.com.br/tag/compatibility.html">compatibility</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/coverage.html">coverage</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/django.html">django</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/django-apps.html">django-apps</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/djangobook.html">djangobook</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/nose.html">nose</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/python.html">python</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/python3.html">python3</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/six.html">six</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/south.html">south</a> (1)</li>
+        <li><a href="http://pythonclub.com.br/tag/test.html">test</a> (1)</li>
+    <script>
+        var $top = $('.go-top');
 
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-    <div class="container">
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
-        <div class="row">
-
-          <header id="banner" class="body">
-                  <h1><a href="http://pythonclub.com.br">PythonClub <strong></strong></a></h1>
-          </header><!-- /#banner -->
-
-            <div id="navigation" class="navbar row">
-              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
-             
-              <ul class="columns">
-                <li><a href="http://pythonclub.com.br">Home</a></li>
-
-
-              </ul>
-            </div>
-
-<ul>
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/nose.html">
-		<i class="icon-tag icon-large"></i>nose
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/south.html">
-		<i class="icon-tag icon-large"></i>south
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/django-apps.html">
-		<i class="icon-tag icon-large"></i>django-apps
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/coverage.html">
-		<i class="icon-tag icon-large"></i>coverage
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/six.html">
-		<i class="icon-tag icon-large"></i>six
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/djangobook.html">
-		<i class="icon-tag icon-large"></i>djangobook
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/python.html">
-		<i class="icon-tag icon-large"></i>python
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/compatibility.html">
-		<i class="icon-tag icon-large"></i>compatibility
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/test.html">
-		<i class="icon-tag icon-large"></i>test
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/django.html">
-		<i class="icon-tag icon-large"></i>django
-	</a>
-</li>
-<li class="tag-4">
-	<a href="http://pythonclub.com.br/tag/python3.html">
-		<i class="icon-tag icon-large"></i>python3
-	</a>
-</li>
-</ul>
-
-       </div><!-- /.row -->
-    </div><!-- /.container -->
-
-
-       <div class="container.nopad bg">
-
-    
-        <footer id="credits" class="row">
-          <div class="seven columns left-center">
-
-                   <address id="about" class="vcard body">
-                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                    which takes great advantage of <a href="http://python.org">Python</a>.
-                    <br />
-                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
-                    </address>
-          </div>
-
-
-          <div class="seven columns">
-            <div class="row">
-              <ul class="socbtns">
-
-                <li><div class="btn primary"><a href="https://github.com/pythonclub/pythonclub.github.io" target="_blank">Github</a></div></li>
-
-
-
-
-              </ul>
-            </div>
-          </div>
-        </footer>
-
-    </div>
-
-
-<script type="text/javascript">
-    var disqus_shortname = 'pythonclub';
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
-  <script src="http://pythonclub.com.br/theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="http://pythonclub.com.br/theme/js/libs/gumby.min.js"></script>
-  <script src="http://pythonclub.com.br/theme/js/plugins.js"></script>
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>
