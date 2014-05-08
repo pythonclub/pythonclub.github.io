@@ -59,7 +59,7 @@ Para finalizar o servidor use:
 Futuras Publicações
 -------------------
 
-As publicações estão no GoogleDrive[7], sendo mais fácil e interativo manipular uma planilha excel.
+As publicações estão no [Google Drive][7], sendo mais fácil e interativo manipular uma planilha excel.
 Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finalizar o seu artigo, envie o pull request e atualiza a planilha marcando que sua publicação já foi entregue.
 
 
