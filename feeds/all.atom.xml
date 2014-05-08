@@ -1,5 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/all.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-06T19:35:00-03:00</updated><entry><title>5 Django Apps que não vivo sem</title><link href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="alternate"></link><updated>2014-05-06T19:35:00-03:00</updated><author><name>Igor Santos</name></author><id>tag:pythonclub.com.br,2014-05-06:5-django-apps-que-nao-vivo-se.html</id><summary type="html">&lt;p&gt;Existem diversas apps para Django, e todas tem suas caracteristicas e são muito uteis. Abaixo uma lista de 5 apps que são indispensáveis para começar o desenvolvimento em Django, no &lt;a class="reference external" href="https://www.djangopackages.com/"&gt;django packages&lt;/a&gt; você vai encontrar uma infinidade de apps, podendo filtrar a sua busca por categorias :D&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/all.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-08T12:09:00-03:00</updated><entry><title>Selenium - O que você deveria saber - Parte 1</title><link href="http://pythonclub.com.br/selenium-parte-1.html" rel="alternate"></link><updated>2014-05-08T12:09:00-03:00</updated><author><name>Lucas Magnum</name></author><id>tag:pythonclub.com.br,2014-05-08:selenium-parte-1.html</id><summary type="html">&lt;p&gt;Esse é o primeiro post da série sobre o Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)&lt;/p&gt;
+&lt;div class="section" id="introducao"&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.seleniumhq.org/"&gt;Selenium&lt;/a&gt; é um ótimo framework para realizar diversos tipos de tarefas com o browser.&lt;/p&gt;
+&lt;p&gt;Nesta série, vou tentar compartilhar com vocês o que acredito ser necessário para o bom uso da ferramenta.&lt;/p&gt;
+&lt;p&gt;Veja como está organizada a série:&lt;/p&gt;
+&lt;div class="section" id="parte-i"&gt;
+&lt;h3&gt;Parte I&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#instalacao"&gt;Instalação&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#abrindo-uma-pagina"&gt;Abrindo uma página&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#manipulando-elementos"&gt;Manipulando elementos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parte-2"&gt;
+&lt;h3&gt;Parte 2&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Brincando formulários&lt;/li&gt;
+&lt;li&gt;Trabalhando com múltiplas janelas&lt;/li&gt;
+&lt;li&gt;Trabalhando com frames&lt;/li&gt;
+&lt;li&gt;E se eu quiser esperar?!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parte-3"&gt;
+&lt;h3&gt;Parte 3&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Executando código javascript&lt;/li&gt;
+&lt;li&gt;Como utilizar diferentes navegadores&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parte-4"&gt;
+&lt;h3&gt;Parte 4&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Expected conditions&lt;/li&gt;
+&lt;li&gt;ActionsChains - Operações avançadas com o mouse&lt;/li&gt;
+&lt;li&gt;EventListener - Ouvindo seu código&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacao"&gt;
+&lt;h2&gt;Instalação&lt;/h2&gt;
+&lt;p&gt;Para instalar o Selenium não existe nenhum segredo, basta executar:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install selenium
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="abrindo-uma-pagina"&gt;
+&lt;h2&gt;Abrindo uma página&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+
+&lt;span class="n"&gt;firefox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://google.com.br&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vamos entender o que está acontecendo aqui.&lt;/p&gt;
+&lt;p&gt;Primeiro eu importo o &lt;tt class="docutils literal"&gt;webdriver&lt;/tt&gt; que é o módulo que provê implementações para diferentes browsers.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Nesse caso utilizaremos o &amp;quot;Mozila Firefox&amp;quot;, pois não precisa de nenhuma configuração adicional, basta que ele esteja instalado.&lt;/p&gt;
+&lt;p&gt;Então criamos uma instância chamada &lt;tt class="docutils literal"&gt;firefox&lt;/tt&gt; e depois invocamos o metódo &lt;tt class="docutils literal"&gt;get&lt;/tt&gt; passando como parâmetro a URL da página que desejamos abrir.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;firefox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://google.com.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Outros exemplos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Abrir o site da Python Brasil&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://python.org.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Abrir o site da Python MG&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://pythonmg.com.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="manipulando-elementos"&gt;
+&lt;h2&gt;Manipulando elementos&lt;/h2&gt;
+&lt;p&gt;Sempre existe a necessidade de manipularmos algum elemento da página,
+para isso você precisa saber como encontrá-lo.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Conhecimento em HTML é necessário para facilitar a manipulação da página&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Se precisarmos encontrar um elemento pelo id, invocamos o metódo &lt;tt class="docutils literal"&gt;find_element_by_id&lt;/tt&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Se o elemento não for encontrado uma exception é gerada&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;id&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Se precisarmos encontrar todos os elementos que possuem uma classe específica, invocamos o metódo &lt;tt class="docutils literal"&gt;find_elements_by_class_name&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Retornam vários elementos ou uma lista vazia&lt;/span&gt;
+&lt;span class="n"&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;class_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Existem diversos metódos disponíveis, abaixo estão os que mais utilizo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Encontrar elemento pelo ID&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;id&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elemento pelo atributo name&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elemento pelo texto do link&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_link_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;text&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elemento pelo seu seletor css&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_css_selector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;css_selector&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elementos pelo nome da tag&lt;/span&gt;
+&lt;span class="n"&gt;find_elements_by_tag_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;tag_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elementos pela classe&lt;/span&gt;
+&lt;span class="n"&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;class_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para visualizar todos os metódos, veja a &lt;a class="reference external" href="http://selenium-python.readthedocs.org/locating-elements.html#locating-elements"&gt;documentação&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="exemplo-para-estudo"&gt;
+&lt;h3&gt;Exemplo para estudo&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Let's code&lt;/em&gt;&lt;/p&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Premissas&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No &lt;a class="reference external" href="http://pythonclub.com.br/"&gt;Python Club&lt;/a&gt; os &lt;tt class="docutils literal"&gt;posts&lt;/tt&gt; estão localizados dentro de uma &lt;tt class="docutils literal"&gt;div&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;[...]&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;[...]&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;[...]&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;E cada &lt;tt class="docutils literal"&gt;post&lt;/tt&gt; está dentro de uma &lt;tt class="docutils literal"&gt;section&lt;/tt&gt; que possue a &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;class=&amp;quot;post&amp;quot;&lt;/span&gt;&lt;/tt&gt; .&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;header&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post-header&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    [...]
+    &lt;span class="nt"&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post-title&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;post_url&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;post&lt;/span&gt;&lt;span class="na"&gt;_title&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+    [...]
+  &lt;span class="nt"&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Objetivo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Queremos que seja mostrado o título de cada &lt;tt class="docutils literal"&gt;post&lt;/tt&gt; e seu &lt;tt class="docutils literal"&gt;link&lt;/tt&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Execute o código abaixo e veja o resultado.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+
+&lt;span class="c"&gt;# Criar instância do navegador&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# Abrir a página do Python Club&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://pythonclub.com.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Seleciono todos os elementos que possuem a class post&lt;/span&gt;
+&lt;span class="n"&gt;posts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Para cada post printar as informações&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="c"&gt;# O elemento `a` com a class `post-title`&lt;/span&gt;
+    &lt;span class="c"&gt;# contém todas as informações que queremos mostrar&lt;/span&gt;
+    &lt;span class="n"&gt;post_title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;post-title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# `get_attribute` serve para extrair qualquer atributo do elemento&lt;/span&gt;
+    &lt;span class="n"&gt;post_link&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post_title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_attribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;href&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# printar informações&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;        Títutlo: {titulo}, &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&lt;/span&gt;
+&lt;span class="s"&gt;        Link: {link} &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;titulo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;post_title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;post_link&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# Fechar navegador&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Código-fonte do exemplo: &lt;a class="reference external" href="https://github.com/LucasMagnum/selenium-serie/blob/master/pythonclub.py"&gt;pythonclub.py&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="desafios"&gt;
+&lt;h3&gt;Desafios&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Desafio 1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Modificar o exemplo para mostrar o nome do autor do &lt;tt class="docutils literal"&gt;post&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Desafio 2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Modificar o exemplo 01 para salvar os dados(titulo, link, autor) em um arquivo &lt;tt class="docutils literal"&gt;json&lt;/tt&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Por hoje é só!&lt;/p&gt;
+&lt;p&gt;Qualquer dúvida pode enviar um e-mail &lt;a class="reference external" href="mailto:contato&amp;#64;lucasmagnum.com.br"&gt;contato&amp;#64;lucasmagnum.com.br&lt;/a&gt; ficarei feliz em ajudar =)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="selenium"></category><category term="python"></category><category term="selenium-serie"></category></entry><entry><title>5 Django Apps que não vivo sem</title><link href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="alternate"></link><updated>2014-05-06T19:35:00-03:00</updated><author><name>Igor Santos</name></author><id>tag:pythonclub.com.br,2014-05-06:5-django-apps-que-nao-vivo-se.html</id><summary type="html">&lt;p&gt;Existem diversas apps para Django, e todas tem suas caracteristicas e são muito uteis. Abaixo uma lista de 5 apps que são indispensáveis para começar o desenvolvimento em Django, no &lt;a class="reference external" href="https://www.djangopackages.com/"&gt;django packages&lt;/a&gt; você vai encontrar uma infinidade de apps, podendo filtrar a sua busca por categorias :D&lt;/p&gt;
 &lt;p&gt;Bora para de balela e vamos ao que interessa,&lt;/p&gt;
 &lt;div class="section" id="south-migrations"&gt;
 &lt;h2&gt;1. South (Migrations)&lt;/h2&gt;

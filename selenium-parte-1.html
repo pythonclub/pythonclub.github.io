@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
+
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
+    
+    <link rel="shortcut icon" href="http://pythonclub.com.br/theme/images/favicon.ico" >
+
+            <title>Selenium - O que você deveria saber - Parte 1 // PythonClub // </title>
+
+    <meta property="fb:app_id" content="1487080281503641" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Selenium - O que você deveria saber - Parte 1" />
+    <meta property="og:site_name" content="PythonClub" />
+    <meta property="og:url" content="http://pythonclub.com.br/selenium-parte-1.html" />
+    <meta property="og:description" content="Esse é o primeiro post da série sobre o Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :) Introdução Selenium é um ótimo framework para realizar diversos tipos de tarefas com o browser. Nesta série, vou tentar compartilhar com vocês o que acredito ser necessário para o bom ..." />
+    <!-- <meta property="og:image" content="" /> -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://pythonclub.com.br/author/lucas-magnum.html" title="See posts by Lucas Magnum">
+                    <img class="article-avatar" alt="Lucas Magnum" src="http://www.gravatar.com/avatar/f880a9c9877b6103cefae911ffeabf43">
+                </a>
+                <h2 class="article-info">Lucas Magnum</h2>
+                <small class="about-author"></small>
+                <h5>Published</h5>
+                <p>Thu 08 May 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Selenium - O que você deveria saber - Parte 1</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://pythonclub.com.br/tag/selenium.html">selenium</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/python.html">python</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/selenium-serie.html">selenium-serie</a>
+                        </p>
+                </header>
+            </section>
+            <p>Esse é o primeiro post da série sobre o Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)</p>
+<div class="section" id="introducao">
+<h2>Introdução</h2>
+<p><a class="reference external" href="http://docs.seleniumhq.org/">Selenium</a> é um ótimo framework para realizar diversos tipos de tarefas com o browser.</p>
+<p>Nesta série, vou tentar compartilhar com vocês o que acredito ser necessário para o bom uso da ferramenta.</p>
+<p>Veja como está organizada a série:</p>
+<div class="section" id="parte-i">
+<h3>Parte I</h3>
+<blockquote>
+<ul class="simple">
+<li><a class="reference internal" href="#instalacao">Instalação</a></li>
+<li><a class="reference internal" href="#abrindo-uma-pagina">Abrindo uma página</a></li>
+<li><a class="reference internal" href="#manipulando-elementos">Manipulando elementos</a></li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="parte-2">
+<h3>Parte 2</h3>
+<blockquote>
+<ul class="simple">
+<li>Brincando formulários</li>
+<li>Trabalhando com múltiplas janelas</li>
+<li>Trabalhando com frames</li>
+<li>E se eu quiser esperar?!</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="parte-3">
+<h3>Parte 3</h3>
+<blockquote>
+<ul class="simple">
+<li>Executando código javascript</li>
+<li>Como utilizar diferentes navegadores</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="parte-4">
+<h3>Parte 4</h3>
+<blockquote>
+<ul class="simple">
+<li>Expected conditions</li>
+<li>ActionsChains - Operações avançadas com o mouse</li>
+<li>EventListener - Ouvindo seu código</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div class="section" id="instalacao">
+<h2>Instalação</h2>
+<p>Para instalar o Selenium não existe nenhum segredo, basta executar:</p>
+<div class="highlight"><pre>pip install selenium
+</pre></div>
+</div>
+<div class="section" id="abrindo-uma-pagina">
+<h2>Abrindo uma página</h2>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="n">firefox</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">firefox</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://google.com.br&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Vamos entender o que está acontecendo aqui.</p>
+<p>Primeiro eu importo o <tt class="docutils literal">webdriver</tt> que é o módulo que provê implementações para diferentes browsers.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+</pre></div>
+<p>Nesse caso utilizaremos o &quot;Mozila Firefox&quot;, pois não precisa de nenhuma configuração adicional, basta que ele esteja instalado.</p>
+<p>Então criamos uma instância chamada <tt class="docutils literal">firefox</tt> e depois invocamos o metódo <tt class="docutils literal">get</tt> passando como parâmetro a URL da página que desejamos abrir.</p>
+<div class="highlight"><pre><span class="n">firefox</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">firefox</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://google.com.br/&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Outros exemplos:</p>
+<div class="highlight"><pre><span class="c"># Abrir o site da Python Brasil</span>
+<span class="n">firefox</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://python.org.br/&#39;</span><span class="p">)</span>
+
+<span class="c"># Abrir o site da Python MG</span>
+<span class="n">firefox</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://pythonmg.com.br/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="manipulando-elementos">
+<h2>Manipulando elementos</h2>
+<p>Sempre existe a necessidade de manipularmos algum elemento da página,
+para isso você precisa saber como encontrá-lo.</p>
+<p><em>Conhecimento em HTML é necessário para facilitar a manipulação da página</em></p>
+<p>Se precisarmos encontrar um elemento pelo id, invocamos o metódo <tt class="docutils literal">find_element_by_id</tt>:</p>
+<div class="highlight"><pre><span class="c"># Se o elemento não for encontrado uma exception é gerada</span>
+<span class="n">find_element_by_id</span><span class="p">(</span><span class="s">&#39;&lt;id&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Se precisarmos encontrar todos os elementos que possuem uma classe específica, invocamos o metódo <tt class="docutils literal">find_elements_by_class_name</tt>.</p>
+<div class="highlight"><pre><span class="c"># Retornam vários elementos ou uma lista vazia</span>
+<span class="n">find_elements_by_class_name</span><span class="p">(</span><span class="s">&#39;&lt;class_name&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Existem diversos metódos disponíveis, abaixo estão os que mais utilizo:</p>
+<div class="highlight"><pre><span class="c"># Encontrar elemento pelo ID</span>
+<span class="n">find_element_by_id</span><span class="p">(</span><span class="s">&#39;&lt;id&gt;&#39;</span><span class="p">)</span>
+
+<span class="c"># Encontrar elemento pelo atributo name</span>
+<span class="n">find_element_by_name</span><span class="p">(</span><span class="s">&#39;&lt;name&gt;&#39;</span><span class="p">)</span>
+
+<span class="c"># Encontrar elemento pelo texto do link</span>
+<span class="n">find_element_by_link_text</span><span class="p">(</span><span class="s">&#39;&lt;text&gt;&#39;</span><span class="p">)</span>
+
+<span class="c"># Encontrar elemento pelo seu seletor css</span>
+<span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s">&#39;&lt;css_selector&gt;&#39;</span><span class="p">)</span>
+
+<span class="c"># Encontrar elementos pelo nome da tag</span>
+<span class="n">find_elements_by_tag_name</span><span class="p">(</span><span class="s">&#39;&lt;tag_name&gt;&#39;</span><span class="p">)</span>
+
+<span class="c"># Encontrar elementos pela classe</span>
+<span class="n">find_elements_by_class_name</span><span class="p">(</span><span class="s">&#39;&lt;class_name&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Para visualizar todos os metódos, veja a <a class="reference external" href="http://selenium-python.readthedocs.org/locating-elements.html#locating-elements">documentação</a>.</p>
+<div class="section" id="exemplo-para-estudo">
+<h3>Exemplo para estudo</h3>
+<p><em>Let's code</em></p>
+<!--  -->
+<blockquote>
+<p><strong>Premissas</strong></p>
+<p>No <a class="reference external" href="http://pythonclub.com.br/">Python Club</a> os <tt class="docutils literal">posts</tt> estão localizados dentro de uma <tt class="docutils literal">div</tt>.</p>
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;posts&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>[...]<span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>[...]<span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>[...]<span class="nt">&lt;/section&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+<p>E cada <tt class="docutils literal">post</tt> está dentro de uma <tt class="docutils literal">section</tt> que possue a <tt class="docutils literal"><span class="pre">class=&quot;post&quot;</span></tt> .</p>
+<div class="highlight"><pre><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;post-header&quot;</span><span class="nt">&gt;</span>
+    [...]
+    <span class="nt">&lt;h3&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;post-title&quot;</span> <span class="na">href=</span><span class="s">&quot;&lt;post_url&gt;&quot;</span><span class="nt">&gt;&lt;post</span><span class="na">_title</span><span class="nt">&gt;&lt;/a&gt;</span>
+    <span class="nt">&lt;/h3&gt;</span>
+    [...]
+  <span class="nt">&lt;/header&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</pre></div>
+<p><strong>Objetivo</strong></p>
+<p>Queremos que seja mostrado o título de cada <tt class="docutils literal">post</tt> e seu <tt class="docutils literal">link</tt>.</p>
+</blockquote>
+<p>Execute o código abaixo e veja o resultado.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="c"># Criar instância do navegador</span>
+<span class="n">firefox</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+
+<span class="c"># Abrir a página do Python Club</span>
+<span class="n">firefox</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;http://pythonclub.com.br/&#39;</span><span class="p">)</span>
+
+<span class="c"># Seleciono todos os elementos que possuem a class post</span>
+<span class="n">posts</span> <span class="o">=</span> <span class="n">firefox</span><span class="o">.</span><span class="n">find_elements_by_class_name</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">)</span>
+
+<span class="c"># Para cada post printar as informações</span>
+<span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">posts</span><span class="p">:</span>
+
+    <span class="c"># O elemento `a` com a class `post-title`</span>
+    <span class="c"># contém todas as informações que queremos mostrar</span>
+    <span class="n">post_title</span> <span class="o">=</span> <span class="n">post</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s">&#39;post-title&#39;</span><span class="p">)</span>
+
+    <span class="c"># `get_attribute` serve para extrair qualquer atributo do elemento</span>
+    <span class="n">post_link</span> <span class="o">=</span> <span class="n">post_title</span><span class="o">.</span><span class="n">get_attribute</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">)</span>
+
+    <span class="c"># printar informações</span>
+    <span class="k">print</span> <span class="s">u&quot;&quot;&quot;</span>
+<span class="s">        Títutlo: {titulo}, </span><span class="se">\n</span><span class="s"></span>
+<span class="s">        Link: {link} </span><span class="se">\n</span><span class="s"></span>
+<span class="s">    &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">titulo</span><span class="o">=</span><span class="n">post_title</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="n">post_link</span><span class="p">)</span>
+
+
+<span class="c"># Fechar navegador</span>
+<span class="n">firefox</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+<p>Código-fonte do exemplo: <a class="reference external" href="https://github.com/LucasMagnum/selenium-serie/blob/master/pythonclub.py">pythonclub.py</a>.</p>
+</div>
+<div class="section" id="desafios">
+<h3>Desafios</h3>
+<blockquote>
+<p><strong>Desafio 1</strong></p>
+<p>Modificar o exemplo para mostrar o nome do autor do <tt class="docutils literal">post</tt>.</p>
+<p><strong>Desafio 2</strong></p>
+<p>Modificar o exemplo 01 para salvar os dados(titulo, link, autor) em um arquivo <tt class="docutils literal">json</tt>.</p>
+</blockquote>
+<p>Por hoje é só!</p>
+<p>Qualquer dúvida pode enviar um e-mail <a class="reference external" href="mailto:contato&#64;lucasmagnum.com.br">contato&#64;lucasmagnum.com.br</a> ficarei feliz em ajudar =)</p>
+</div>
+</div>
+
+            <div class="sharing">
+                <!-- Facebook sharing -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button" data-href="http://pythonclub.com.br/selenium-parte-1.html" data-type="button_count"></div>
+
+                <!-- Twitter sharing -->
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+            
+            <div class="hr"></div>
+            <a href="#" class="go-top">Go Top</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "pythonclub"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; PythonClub &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
