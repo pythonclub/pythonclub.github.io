@@ -14,6 +14,17 @@
     </script>
 {% endblock %}
 
+{% block head %}
+    {{ super() }}
+    <meta property="fb:app_id" content="{{ FACEBOOK_APPID }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ article.title }}" />
+    <meta property="og:site_name" content="{{ SITENAME }}" />
+    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+    <meta property="og:description" content="{{ article.summary|striptags }}" />
+    <!-- <meta property="og:image" content="" /> -->
+{% endblock head %}
+
 {% block content %}
 <div class="pure-g-r" id="layout">
     <div class="sidebar sidebar-article pure-u">
@@ -43,6 +54,23 @@
                 </header>
             </section>
             {{ article.content }}
+            <div class="sharing">
+                <!-- Facebook sharing -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId={{ FACEBOOK_APPID }}&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button" data-href="{{ SITEURL }}/{{ article.url }}" data-type="button_count"></div>
+
+                <!-- Twitter sharing -->
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+            
             <div class="hr"></div>
             <a href="#" class="go-top">Go Top</a>
             {% if DISQUS_SITENAME %}
