@@ -31,7 +31,8 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ('Github', 'https://github.com/pythonclub/pythonclub.github.io'),
+    ('github', 'https://github.com/pythonclub/pythonclub.github.io'),
+    ('rss', '/feeds/all.atom.xml'),
 )
 
 STATIC_PATHS = ['images', 'extras/CNAME']
@@ -41,7 +42,7 @@ EXTRA_PATH_METADATA = {
 
 # Plugins
 PLUGIN_PATH = 'plugins'
-# PLUGINS = ['cjk-auto-spacing', 'gzip_cache', 'neighbors', 'optimize_images', 'sitemap']
+PLUGINS = ['gravatar']
 
 # Theme
 THEME = 'theme'
