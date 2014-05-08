@@ -3,12 +3,14 @@
 
 :date: 2014-05-06 19:35
 :tags: django, django-apps, south, test, nose, coverage
-:category: Geral, Django
+:category: Geral, Django, Python
 :slug: 5-django-apps-que-nao-vivo-se
 :author: Igor Santos
 :email:  igr.exe@gmail.com
-:summary: 5 Django Apps que não vivo sem
 
+Existem diversas apps para Django, e todas tem suas caracteristicas e são muito uteis. Abaixo uma lista de 5 apps que são indispensáveis para começar o desenvolvimento em Django, no `django packages <https://www.djangopackages.com/>`_ você vai encontrar uma infinidade de apps, podendo filtrar a sua busca por categorias :D
+
+Bora para de balela e vamos ao que interessa,
 
 =====================
 1. South (Migrations)
@@ -18,7 +20,7 @@ O `South <http://south.readthedocs.org/en/latest/>`_, faz com que o Django supor
 
 Essa app se tornou tão popular que na versão `Django 1.7 <https://docs.djangoproject.com/en/dev/topics/migrations/>`_ passou a ser nativo do Django.
 
-Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no *INSTALLED_APPS*.
+Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no ``INSTALLED_APPS``.
 
 .. code-block:: bash
 
@@ -84,7 +86,6 @@ O coverage mostra a seguinte tabela:
 - Miss: Linhas que não foram testadas.
 - Cover: Quantidade de código coberto por testes em porcentagem.
 - Missing: Linhas que não foram testadas.
-<<<<<<< HEAD
 
 
 =====================

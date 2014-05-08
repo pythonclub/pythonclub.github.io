@@ -59,22 +59,9 @@ Para finalizar o servidor use:
 Futuras Publicações
 -------------------
 
-| Autor                   | Assunto                                                                       | Data       |
-|-------------------------|-------------------------------------------------------------------------------|------------|
-| Eric Hideki             | Como colaborar na tradução do Djangobook sem conhecer programação             | 29/04/2014 |
-| Renato Oliveira         | Introdução ao django.contrib.auth                                             | 03/05/2014 |
-| Régis da Silva          | As 20 principais dúvidas que atormentam um iniciante em Django                | ?          |
-| Gilmar Soares           | Parseando sites com BeaultifulSoup                                            | 16/05/2014 |
-| Fábio Barrionuevo       | Limpando automaticamente o cache do Django ao fazer deploy no Heroku          | 17/05/2014 |
-| Igor Santos             | 5 Django Apps que não vivo sem                                                | 08/05/2014 |
-| Guilherme Rezende       | Criando uma ferramenta de pentest com Python, Nmap e Scapy                    | 12/05/2014 |
-| Fabiano Góes            | Seu primeiro projeto Django com Sublime Text no Linux                         | 12/05/2014 | 
-| Rômulo Collopy          | Deploy de projetos com Django-Fagungis                                        | 05/05/2014 |
-| Rafael Trevisan         | Entendendo versionamento com Git                                              | 10/05/2014 |
-| Artur Felipe Sousa      | O que é six e como ele te ajuda a escrever código compatível com python 2 e 3 | 29/04/2014 |
-| Francisco André         | Configurando um servidor de repositórios Git                                  | 15/05/2014 |
-| Anderson Rodrigues      | Configurando Django com Framework Twitter Bootstrap e Foundation              | 10/05/2014 |
-| Maurício Sipmann        | Editando o template do admin do django com templatetags                       | 15/05/2014 |
+As publicações estão no GoogleDrive[7], sendo mais fácil e interativo manipular uma planilha excel.
+Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finalizar o seu artigo, envie o pull request e atualiza a planilha marcando que sua publicação já foi entregue.
+
 
 [0]: http://pythonclub.com.br/
 [1]: https://pages.github.com/
@@ -83,3 +70,4 @@ Futuras Publicações
 [4]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 [5]: http://docutils.sourceforge.net/docs/user/rst/quickref.html
 [6]: https://github.com/pythonclub/pythonclub.github.io/tree/pelican/exemplos
+[7]: https://docs.google.com/spreadsheets/d/1sddA5pa5LcssPvibBYOHUujyfRpmL1zKw_-MSn784Tg/edit#gid=0
