@@ -5,6 +5,9 @@
         </a>
         <h3><a class="post-title" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
             <p class="post-meta">{{ article.summary }}</p>
+            <p>
+                <a class="pure-button pure-button-primary" href="{{ SITEURL }}/{{ article.url }}">Leia mais...</a>
+            </p>            
             <p class="post-meta">
                 in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a> &middot; {{ article.locale_date }}
             </p>
