@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  
+        <title>5 Django Apps que não vivo sem</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="http://pythonclub.com.br/theme/pygment.css" />
+
+        <script src="http://pythonclub.com.br/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+
+
+
+  <meta property="fb:app_id" content="1487080281503641" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="5 Django Apps que não vivo sem" />
+  <meta property="og:site_name" content="PythonClub" />
+  <meta property="og:url" content="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" />
+  <meta property="og:description" content="5 Django Apps que não vivo sem" />
+  <!-- <meta property="og:image" content="" /> -->
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="http://pythonclub.com.br">PythonClub <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="http://pythonclub.com.br">Home</a></li>
+
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="bookmark"
+                   title="Permalink to 5 Django Apps que não vivo sem">5 Django Apps que não vivo sem</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2014-05-06T19:35:00">
+                Tue 06 May 2014
+              </abbr>
+              <address class="vcard author">
+                By <a class="url fn" href="http://pythonclub.com.br/author/igor-santos.html">Igor Santos</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <div class="section" id="south-migrations">
+<h2>1. South (Migrations)</h2>
+<p>O <a class="reference external" href="http://south.readthedocs.org/en/latest/">South</a>, faz com que o Django suporte migrações de banco de dados de forma simples, estável e totalmente independente do backend de banco de dados utilizado, a partir da alteração dos models, você roda um comando e plin a &quot;mágica&quot; acontece, o base de dados está novamente igual aos seus modelos.</p>
+<p>Essa app se tornou tão popular que na versão <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/migrations/">Django 1.7</a> passou a ser nativo do Django.</p>
+<p>Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no <em>INSTALLED_APPS</em>.</p>
+<div class="highlight"><pre>pip install south
+</pre></div>
+<p>Comandos utilizados:</p>
+<div class="highlight"><pre>./manage.py schemamigration app_name --initial  <span class="o">[</span>cria a estrutura de migracao inicial<span class="o">]</span>
+./manage.py migration app_name          <span class="o">[</span>realiza migracao na app especificada<span class="o">]</span>
+./manage.py migration --all         <span class="o">[</span>realiza migracao em todas as apps instaladas<span class="o">]</span>
+./manage.py schemamigration app_name --auto <span class="o">[</span>realiza migracao no modelo alterado<span class="o">]</span>
+</pre></div>
+</div>
+<div class="section" id="django-nose-coverage-test">
+<h2>2. django-nose + coverage (Test)</h2>
+<p>O <a class="reference external" href="https://github.com/django-nose/django-nose">django-nose</a> é uma django app que utiliza o <a class="reference external" href="https://nose.readthedocs.org/en/latest/">nose</a> como TestRunner do Django, isso possibilita você adicionar qualquer plugin compatível com o Nose, além de outras muitas vantagens, que na verdade não conheço a fundo.</p>
+<p>Um plugin do Nose que achei muito bacana é o <a class="reference external" href="http://django-testing-docs.readthedocs.org/en/latest/coverage.html">coverage</a>, ele informa a cobertura de testes em seu código, basicamente ele realiza uma analise linha a linha, e verifica se seus testes unitários passaram por essas linhas, e no final ele apresenta um relatório com a quantidade de código testado.</p>
+<p>Testei ele até a versão Django 1.6 e funcionou muito bem, é muito simples de instalar e configurar.</p>
+<div class="highlight"><pre>pip install django-nose
+pip install coverage
+</pre></div>
+<p>Configurando o settings do projeto.</p>
+<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;django_nose&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c"># diz ao Django que o TestRunner sera o Nose</span>
+<span class="n">TEST_RUNNER</span> <span class="o">=</span> <span class="s">&#39;django_nose.NoseTestSuitRunner&#39;</span>
+
+<span class="c"># alguns parametros que serao passados default ao nose</span>
+<span class="n">NOSE_ARGS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;--with-coverage&#39;</span><span class="p">,</span>
+    <span class="s">&#39;--cover-package=foo,bar&#39;</span><span class="p">,</span> <span class="c"># informa os pacotes que ele que verifica a cobertura de tests</span>
+<span class="p">]</span>
+</pre></div>
+<p><strong>Dica:</strong> O recomendado é que essa configuração fique em um settings especifico para test, eu costumo separar meu settings em 4 arquivos diferentes, [common, prod, dev, test].</p>
+<p>O coverage mostra a seguinte tabela:</p>
+<div class="highlight"><pre>Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+foo.models            30      5    85%   10-12, 16, 19
+bar.models            10      1    90%   4
+------------------------------------------------
+TOTAL                 40      6    87%
+</pre></div>
+<ul class="simple">
+<li>Stmts: Linhas que precisam ser testadas.</li>
+<li>Miss: Linhas que não foram testadas.</li>
+<li>Cover: Quantidade de código coberto por testes em porcentagem.</li>
+<li>Missing: Linhas que não foram testadas.</li>
+</ul>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/travis/build/pythonclub/pythonclub.github.io/content/5_django_apps_que_nao_vivo_sem.rst</tt>, line 87)</p>
+Bullet list ends without a blank line; unexpected unindent.</div>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+</div>
+<div class="section" id="model-mommy-mock">
+<h2>3. model_mommy (Mock)</h2>
+<p><a class="reference external" href="https://github.com/vandersonmota/model_mommy">model_mommy</a> oferece um jeito fácil e inteligente de criar fixtures para Django, é muito simples, e tem o objetivo de facilitar a escrita de testes, fazendo com que você consiga criar um objeto com apenas uma linha de código.</p>
+<p>Esse é um simples exemplo, com coisas mais comuns no seu dia,</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">model_mommy</span> <span class="kn">import</span> <span class="n">mommy</span>
+
+<span class="k">class</span> <span class="nc">MyCaseTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># criar e persiste o User na database</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">mommy</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s">&#39;auth.User&#39;</span><span class="p">)</span>
+        <span class="c"># cria o User sem persistir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">mommy</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s">&#39;auth.User&#39;</span><span class="p">)</span>
+        <span class="c"># cria o User, atribui um username e persiste</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">mommy</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s">&#39;auth.User&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s">u&#39;user.test&#39;</span><span class="p">)</span>
+        <span class="c"># cria e persiste uma lista de User</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_users</span> <span class="o">=</span> <span class="n">mommy</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s">&#39;auth.User&#39;</span><span class="p">,</span> <span class="n">_quantity</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<p><strong>Note:</strong> não foi preciso importar o model User, pois o model_mommy faz isso pra você, mas tome cuidado, o model_mommy é case sensitive.</p>
+<p><strong>Dica:</strong> seguindo a mesma dica do django-nose, adicione o model_mock ao INSTALLED_APPS de uma settings especifica para testes, ou para desenvolvimento.</p>
+<p>Essa é uma django app muito poderosa e possui diversas outras funcionalidades, vale a pena fazer uma visitinha no <a class="reference external" href="https://github.com/vandersonmota/model_mommy">seu repositório</a>.</p>
+</div>
+<div class="section" id="django-extensions-extensions">
+<h2>4. Django Extensions (Extensions)</h2>
+<p>O <a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/index.html">django extensions</a> possui uma <a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/command_extensions.html">lista considerável</a> de funcionalidades, a ideia é juntar diversas funcionalidades que agilizam o desenvolvimento, e adicioná-los a lista de comandos do <strong>manage.py</strong>.</p>
+<p>Mas quero falar de uma funcionalidade especifica que uso muito, é o <a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/shell_plus.html">shell_plus</a>, que carrega automaticamente models das apps instaladas no meu projeto, no shell interativo do python, além disso você possui diversas configurações bacanas, como escolher tipos diferentes de shell python, como por exemplo <a class="reference external" href="https://github.com/ipython/ipython">ipython</a>.</p>
+<div class="highlight"><pre>./manage.py shell_plus --use-ipython
+</pre></div>
+</div>
+<div class="section" id="django-debug-toolbar-debug">
+<h2>5. Django Debug Toolbar (Debug)</h2>
+<p>O <a class="reference external" href="https://github.com/django-debug-toolbar/django-debug-toolbar">django debug toolbar</a>, é um panel que exibe diversas informações sobre o request e response atual, o debug toolbar possui diversas configurações o que faz que seja possível configurá-lo até em produção, apenas para o administrador do projeto, como <em>quase tudo</em> em python simples, está tudo bem detalhado na <a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/">documentação</a></p>
+<p>Basta instalar com pip e adicionar o projeto no <tt class="docutils literal">INSTALLED_APPS</tt>, e realizar uma configuração simples:</p>
+<div class="highlight"><pre><span class="n">MIDDLEWARE_CLASSES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;debug_toolbar.middleware.DebugToolbarMiddleware&#39;</span><span class="p">,</span>
+    <span class="c"># ...</span>
+<span class="p">)</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># ...</span>
+    <span class="c"># certifique de que a app staticfiles esta instalada</span>
+    <span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="c"># ...</span>
+    <span class="c"># app necessario para Django 1.7+</span>
+    <span class="s">&#39;debug_toolbar.apps.DebugToolbarConfig&#39;</span><span class="p">,</span>
+    <span class="c"># caso versao do django &lt; 1.7, instale a app abaixo</span>
+    <span class="s">&#39;debug_toolbar&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">&#39;/static/&#39;</span>
+
+<span class="n">DEBUG_TOOLBAR_PATCH_SETTINGS</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c"># se internal ips estiver vazio por default o ip e 127.0.0.1, essa</span>
+<span class="c"># variavel se faz necessaria para que seja apresentado o panel com</span>
+<span class="c"># as inforamacoes</span>
+<span class="n">INTERNAL_IPS</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+<p>Configurando o <tt class="docutils literal">views.py</tt>:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">url</span>
+
+<span class="kn">import</span> <span class="nn">debug_toolbar</span>
+
+
+<span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span>
+        <span class="s">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^__debug__/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">debug_toolbar</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    <span class="p">)</span>
+</pre></div>
+<p>O django-debug-toolbar possui muitas funcionalidades, e como dito antes, é bem fácil <a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/configuration.html">configurá-las</a>, sinta-se a vontade para usar e abusar.</p>
+</div>
+
+            </div><!-- /.entry-content -->
+            <div class="sharing">
+              <!-- Facebook sharing -->
+              <div id="fb-root"></div>
+              <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+              <div class="fb-share-button" data-href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" data-type="button_count"></div>
+
+              <!-- Twitter sharing -->
+              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+            <div class="comments">
+              <h3>Comments</h3>
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                var disqus_identifier = "5-django-apps-que-nao-vivo-se.html";
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://pythonclub.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+              </script>
+            </div>
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+<h4>Pages</h4>
+
+ <ul>
+  </ul>
+
+<h4>Categories</h4>
+<ul>
+		<li><a href="http://pythonclub.com.br/category/geral-django.html">Geral, Django</a></li>
+		<li><a href="http://pythonclub.com.br/category/python.html">Python</a></li>
+</ul>
+
+
+<h4>Tags</h4>
+	<ul>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/nose.html">nose</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/south.html">south</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/django-apps.html">django-apps</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/coverage.html">coverage</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/six.html">six</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/djangobook.html">djangobook</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/python.html">python</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/compatibility.html">compatibility</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/test.html">test</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/django.html">django</a></li>
+	    <li class="tag-4"><a href="http://pythonclub.com.br/tag/python3.html">python3</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul>
+    <li><a href="https://github.com/pythonclub/pythonclub.github.io">Github</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://github.com/pythonclub/pythonclub.github.io" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+<script type="text/javascript">
+    var disqus_shortname = 'pythonclub';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+  <script src="http://pythonclub.com.br/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="http://pythonclub.com.br/theme/js/libs/gumby.min.js"></script>
+  <script src="http://pythonclub.com.br/theme/js/plugins.js"></script>
+</body>
+</html>
