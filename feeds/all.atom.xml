@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/all.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-06T19:35:00-03:00</updated><entry><title>5 Django Apps que não vivo sem</title><link href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="alternate"></link><updated>2014-05-06T19:35:00-03:00</updated><author><name>Igor Santos</name></author><id>tag:pythonclub.com.br,2014-05-06:5-django-apps-que-nao-vivo-se.html</id><summary type="html">&lt;div class="section" id="south-migrations"&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/all.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-06T19:35:00-03:00</updated><entry><title>5 Django Apps que não vivo sem</title><link href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="alternate"></link><updated>2014-05-06T19:35:00-03:00</updated><author><name>Igor Santos</name></author><id>tag:pythonclub.com.br,2014-05-06:5-django-apps-que-nao-vivo-se.html</id><summary type="html">&lt;p&gt;Existem diversas apps para Django, e todas tem suas caracteristicas e são muito uteis. Abaixo uma lista de 5 apps que são indispensáveis para começar o desenvolvimento em Django, no &lt;a class="reference external" href="https://www.djangopackages.com/"&gt;django packages&lt;/a&gt; você vai encontrar uma infinidade de apps, podendo filtrar a sua busca por categorias :D&lt;/p&gt;
+&lt;p&gt;Bora para de balela e vamos ao que interessa,&lt;/p&gt;
+&lt;div class="section" id="south-migrations"&gt;
 &lt;h2&gt;1. South (Migrations)&lt;/h2&gt;
 &lt;p&gt;O &lt;a class="reference external" href="http://south.readthedocs.org/en/latest/"&gt;South&lt;/a&gt;, faz com que o Django suporte migrações de banco de dados de forma simples, estável e totalmente independente do backend de banco de dados utilizado, a partir da alteração dos models, você roda um comando e plin a &amp;quot;mágica&amp;quot; acontece, o base de dados está novamente igual aos seus modelos.&lt;/p&gt;
 &lt;p&gt;Essa app se tornou tão popular que na versão &lt;a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/migrations/"&gt;Django 1.7&lt;/a&gt; passou a ser nativo do Django.&lt;/p&gt;
-&lt;p&gt;Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no &lt;em&gt;INSTALLED_APPS&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no &lt;tt class="docutils literal"&gt;INSTALLED_APPS&lt;/tt&gt;.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;pip install south
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Comandos utilizados:&lt;/p&gt;
@@ -51,10 +53,6 @@ TOTAL                 40      6    87%
 &lt;li&gt;Cover: Quantidade de código coberto por testes em porcentagem.&lt;/li&gt;
 &lt;li&gt;Missing: Linhas que não foram testadas.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: WARNING/2 (&lt;tt class="docutils"&gt;/home/travis/build/pythonclub/pythonclub.github.io/content/5_django_apps_que_nao_vivo_sem.rst&lt;/tt&gt;, line 87)&lt;/p&gt;
-Bullet list ends without a blank line; unexpected unindent.&lt;/div&gt;
-&lt;p&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="model-mommy-mock"&gt;
 &lt;h2&gt;3. model_mommy (Mock)&lt;/h2&gt;
@@ -256,9 +254,7 @@ o funcionamento de códigos escritos nas versões 2 e 3 do python.&lt;/p&gt;
 &lt;p&gt;Então galera, esse foi um artigo introdutório sobre o six, mostrando alguns
 casos de uso e um pouco das diferenças entre o python 2 e 3. Espero que vocês
 tenham gostado. Fiquem à vontade para enviar dúvidas, sugestões ou críticas.&lt;/p&gt;
-&lt;p&gt;Até mais...&lt;/p&gt;</summary><category term="python"></category><category term="six"></category><category term="compatibility"></category><category term="python3"></category></entry><entry><title>Como colaborar na tradução do Djangobook sem conhecer programação</title><link href="http://pythonclub.com.br/como_colaborar_com_projetos_open_source.html" rel="alternate"></link><updated>2014-05-01T13:16:00-03:00</updated><author><name>Eric Hideki</name></author><id>tag:pythonclub.com.br,2014-05-01:como_colaborar_com_projetos_open_source.html</id><summary type="html">&lt;div class="section" id="id1"&gt;
-&lt;h2&gt;Como colaborar na tradução do Djangobook sem conhecer programação&lt;/h2&gt;
-&lt;p&gt;Uma das perguntas que os iniciantes sempre se perguntam é: Como ganhar experiência? Ou colaborar com projetos open source sem ter conhecimentos? Pois é, saiba que você pode colaborar sem dificuldades, e que
+&lt;p&gt;Até mais...&lt;/p&gt;</summary><category term="python"></category><category term="six"></category><category term="compatibility"></category><category term="python3"></category></entry><entry><title>Como colaborar na tradução do Djangobook sem conhecer programação</title><link href="http://pythonclub.com.br/como_colaborar_com_projetos_open_source.html" rel="alternate"></link><updated>2014-05-01T13:16:00-03:00</updated><author><name>Eric Hideki</name></author><id>tag:pythonclub.com.br,2014-05-01:como_colaborar_com_projetos_open_source.html</id><summary type="html">&lt;p&gt;Uma das perguntas que os iniciantes sempre se perguntam é: Como ganhar experiência? Ou colaborar com projetos open source sem ter conhecimentos? Pois é, saiba que você pode colaborar sem dificuldades, e que
 qualquer colaboração é muito importante.&lt;/p&gt;
 &lt;p&gt;Um dos projetos que estão em andamento é a tradução do Djangobook. Djangobook é um dos tutoriais mais lidos em todo o mundo, uma das principais portas de entrada no mundo do desenvolvimento web. Através dos tutoriais do livro você será capaz de criar rápidas, robustas e organizadas aplicações.&lt;/p&gt;
 &lt;p&gt;Sabe um pouco de inglês e gostaria de praticar? Nada melhor do que traduzir um texto ou artigo.&lt;/p&gt;
@@ -270,5 +266,4 @@ qualquer colaboração é muito importante.&lt;/p&gt;
 &lt;p&gt;Depois temos a seção abaixo escrito Propose file change, nele podemos colocar o título do arquivo que estamos alterando/enviado, e logo depois os comentários sobre quais foram as alterações que efetuamos. Então clicamos no botão &lt;tt class="docutils literal"&gt;Propose file change&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;Na parte inferior estará demonstrando algumas linhas de código em vermelho e verde, respectivamente. Nas linhas vermelhas estão os arquivos que serão deletados, já os de cor verde serão os substitutos. E agora basta enviar um &lt;tt class="docutils literal"&gt;Pull Request&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;Pronto. Você acaba de encaminhar uma proposta de melhoria de um projeto, basta o mantenedor observar suas alterações, se estiver de acordo com os padrões de qualidade ele irá dar um &lt;tt class="docutils literal"&gt;Merge&lt;/tt&gt; com o antigo código e pronto.&lt;/p&gt;
-&lt;/div&gt;
 </summary><category term="djangobook"></category></entry></feed>
