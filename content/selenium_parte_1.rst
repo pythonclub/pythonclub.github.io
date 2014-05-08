@@ -27,7 +27,7 @@ Parte I
 
 Parte 2
 ---------
-    - Brincando formulários
+    - Brincando com formulários
     - Trabalhando com múltiplas janelas
     - Trabalhando com frames
     - E se eu quiser esperar?!
@@ -208,11 +208,10 @@ Execute o código abaixo e veja o resultado.
       post_link = post_title.get_attribute('href')
 
       # printar informações
-      print u"""
-          Títutlo: {titulo}, \n
-          Link: {link} \n
-      """.format(titulo=post_title.text, link=post_link)
-
+      print u"Títutlo: {titulo}, \nLink: {link}".format(
+        titulo=post_title.text,
+        link=post_link
+    )
 
   # Fechar navegador
   firefox.quit()
