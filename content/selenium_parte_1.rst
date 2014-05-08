@@ -163,7 +163,7 @@ Exemplo para estudo
       <section class="post">[...]</section>
     </div>
 
-  E cada ``post`` está dentro de uma ``section`` que possue a ``class="post"`` .
+  E cada ``post`` está dentro de uma ``section`` que possui a ``class="post"`` .
 
   .. code-block:: html
 
