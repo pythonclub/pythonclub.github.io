@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'PythonClub'
+AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
 SITENAME = u'PythonClub'
 SITEURL = 'http://pythonclub.com.br'
 
