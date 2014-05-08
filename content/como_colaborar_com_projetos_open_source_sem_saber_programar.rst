@@ -6,12 +6,8 @@ Como colaborar na tradução do Djangobook sem conhecer programação
 :category: Geral, Django
 :slug: como_colaborar_com_projetos_open_source
 :author: Eric Hideki
-:summary: Como colaborar com projetos open source
+:email: eric8197@gmail.com
 
-
-=================================================================
-Como colaborar na tradução do Djangobook sem conhecer programação
-=================================================================
 
 Uma das perguntas que os iniciantes sempre se perguntam é: Como ganhar experiência? Ou colaborar com projetos open source sem ter conhecimentos? Pois é, saiba que você pode colaborar sem dificuldades, e que
 qualquer colaboração é muito importante.
