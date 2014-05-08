@@ -8,7 +8,7 @@ Selenium - O que você deveria saber - Parte 1
 :author: Lucas Magnum
 :email:  contato@lucasmagnum.com.br
 
-Esse é o primeiro post da série sobre o Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)
+Esse é o primeiro post da série sobre Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)
 
 ================
 Introdução
