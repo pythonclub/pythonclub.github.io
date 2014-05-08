@@ -34,7 +34,6 @@ SOCIAL = (
     ('Github', 'https://github.com/pythonclub/pythonclub.github.io'),
 )
 
-# Static
 STATIC_PATHS = ['images', 'extras/CNAME']
 EXTRA_PATH_METADATA = {
     'extras/CNAME': {'path': 'CNAME'}
