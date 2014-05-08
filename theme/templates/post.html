@@ -1,0 +1,12 @@
+<section class="post">
+    <header class="post-header">
+        <a href="{{ SITEURL }}/{{ article.author.url }}" title="See posts by {{ article.author }}">
+            <img class="avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+        </a>
+        <h3><a class="post-title" href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h3>
+            <p class="post-meta">{{ article.summary }}</p>
+            <p class="post-meta">
+                in <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a> &middot; {{ article.locale_date }}
+            </p>
+    </header>
+</section>
