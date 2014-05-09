@@ -106,9 +106,7 @@ até aqui a estrutura de diretórios deve estar assim::
 	│   └── views.py
 	├── first_django_project
 	│   ├── __init__.py
-	│   ├── __init__.pyc
 	│   ├── settings.py
-	│   ├── settings.pyc
 	│   ├── urls.py
 	│   └── wsgi.py
 	└── manage.py
