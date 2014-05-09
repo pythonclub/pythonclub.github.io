@@ -69,5 +69,12 @@ vamos criar nosso virtualenv chamado **pythonclub**::
 	
 	$ virtualenv pythonclub –no-site-packages 
 	
-> –no-site-packages - esse parametro do virtualenv indica que meu ambiente virtual será totalmente isolado 
-> do meu sistema operacional, e só enxergara os pacotes instalados dentro do virtualenv
+–no-site-packages - esse parametro do virtualenv indica que meu ambiente virtual será totalmente isolado 
+do meu sistema operacional, e só enxergara os pacotes instalados dentro do virtualenv.
+
+agora vamos entrar dentro do ambiente virtual que criamos, e vamos ativar o virtualenv::
+	$ cd pythonclub/
+	$ source bin/activate
+	
+
+
