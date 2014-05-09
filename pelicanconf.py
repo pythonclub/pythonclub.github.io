@@ -25,16 +25,17 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (
-    ('Pelican', 'http://getpelican.com/'),
-    ('Python.org', 'http://python.org/'),
-    ('Jinja2', 'http://jinja.pocoo.org/'),
+MENUITEMS = (
+    ('Arquivo', 'archives.html'),
+    # ('Autores', 'authors.html'),
+    # ('Categorias', 'categories.html'),
+    # ('Tags', 'tags.html'),
 )
 
 # Social widget
 SOCIAL = (
     ('github', 'https://github.com/pythonclub/pythonclub.github.io'),
-    ('rss', '/feeds/all.atom.xml'),
+    ('rss', 'feeds/all.atom.xml'),
 )
 
 STATIC_PATHS = ['images', 'extras/CNAME']
