@@ -6,6 +6,7 @@ AUTHOR = u'PythonClub'
 AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
 SITENAME = u'PythonClub'
 SITEURL = 'http://pythonclub.com.br'
+SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1399599503/pythonclub/logo_275x130.png'
 
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
@@ -24,16 +25,17 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (
-    ('Pelican', 'http://getpelican.com/'),
-    ('Python.org', 'http://python.org/'),
-    ('Jinja2', 'http://jinja.pocoo.org/'),
+MENUITEMS = (
+    ('Arquivo', 'archives.html'),
+    # ('Autores', 'authors.html'),
+    # ('Categorias', 'categories.html'),
+    # ('Tags', 'tags.html'),
 )
 
 # Social widget
 SOCIAL = (
     ('github', 'https://github.com/pythonclub/pythonclub.github.io'),
-    ('rss', '/feeds/all.atom.xml'),
+    ('rss', 'feeds/all.atom.xml'),
 )
 
 STATIC_PATHS = ['images', 'extras/CNAME']
@@ -47,6 +49,9 @@ PLUGINS = ['gravatar']
 
 # Theme
 THEME = 'theme'
+
+# Theme Pure config
+PROFILE_IMAGE_URL = "http://res.cloudinary.com/diu8g9l0s/image/upload/v1399566411/fundo_python_a6iqip.png"
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
