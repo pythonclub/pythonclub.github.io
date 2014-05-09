@@ -91,7 +91,7 @@ Então podemos finalmente criar nosso projeto django executando o comando::
 Com nosso projeto criado podemos criar uma app para este projeto, e vamos criar uma app com o nome: **core**::
 
 	$ cd first_django_project
-	$ 
+	$ python manage.py startapp core
 	
 até aqui a estrutura de diretórios deve estar assim::
 
