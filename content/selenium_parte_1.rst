@@ -27,10 +27,10 @@ Parte I
 
 Parte 2
 ---------
-    - Brincando com formulários
-    - Trabalhando com múltiplas janelas
-    - Trabalhando com frames
-    - E se eu quiser esperar?!
+    - `Brincando com formulários <http://localhost:8000/selenium-parte-2.html#brincando-com-formularios>`_
+    - `Trabalhando com múltiplas janelas <http://localhost:8000/selenium-parte-2.html#trabalhando-com-multiplas-janelas>`_
+    - `Trabalhando com frames <http://localhost:8000/selenium-parte-2.html#trabalhando-com-frames>`_
+    - `E se eu quiser esperar?! <http://localhost:8000/selenium-parte-2.html#e-se-eu-quiser-esperar>`_
 
 Parte 3
 --------
@@ -232,7 +232,8 @@ Desafios
   Modificar o exemplo 01 para salvar os dados(titulo, link, autor) em um arquivo ``json``.
 
 
-Por hoje é só!
+Gostou? Leia a `segunda parte <http://pythonclub.com.br/selenium-parte-2.html>`_.
+
 
 Qualquer dúvida pode enviar um e-mail `contato@lucasmagnum.com.br <contato@lucasmagnum.com.br>`_ ficarei feliz em ajudar =)
 
