@@ -77,5 +77,57 @@ agora vamos entrar dentro do ambiente virtual que criamos, e vamos ativar o virt
 	$ cd pythonclub/
 	$ source bin/activate
 	
+Neste momento temos nosso ambiente virtual criado e ativado, pronto para instalar o django, e é isso que vamos fazer::
+
+	$ pip install django
+	
+Quando executamos o **pip install django** e não especificamos a versão, será instalado ultima versão disponivel, 
+se quizermos instalar uma versão especifica podemos executar assim: **$ pip install django==1.5.4**
+
+Então podemos finalmente criar nosso projeto django executando o comando::
+
+	$ django-admin.py startproject first_django_project
+	
+Com nosso projeto criado podemos criar uma app para este projeto, e vamos criar uma app com o nome: **core**::
+
+	$ cd first_django_project
+	$ 
+	
+até aqui a estrutura de diretórios deve estar assim::
+
+	pythonclub/
+	bin/
+	first_django_project/
+	├── core
+	│   ├── __init__.py
+	│   ├── admin.py
+	│   ├── models.py
+	│   ├── tests.py
+	│   └── views.py
+	├── first_django_project
+	│   ├── __init__.py
+	│   ├── __init__.pyc
+	│   ├── settings.py
+	│   ├── settings.pyc
+	│   ├── urls.py
+	│   └── wsgi.py
+	└── manage.py
+	include/
+	lib/
+	
+	
+OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv, o restante são diretórios do projeto.
+
+TODO: Instalar Sublime Text.
+
+TODO: Criar uma classe Model.
+
+TODO: Criar uma rota: home.
+
+TODO: Criar a view: home.
+
+TODO: Configurar o Admin.
+
+TODO: Rodar o Projeto.	
 
 
