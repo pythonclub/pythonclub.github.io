@@ -3,7 +3,7 @@ Como colaborar na tradução do Djangobook sem conhecer programação
 
 :date: 2014-05-01 13:16
 :tags: djangobook
-:category: Geral, Django
+:category: Django
 :slug: como_colaborar_com_projetos_open_source
 :author: Eric Hideki
 :email: eric8197@gmail.com
