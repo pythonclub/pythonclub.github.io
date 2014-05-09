@@ -67,4 +67,7 @@ muito bem, com o **virtualenv** instalado o próximo passo será criar um **virt
 
 vamos criar nosso virtualenv chamado **pythonclub**::
 	
-	$ virtualenv pythonclub –system-site-packages 
+	$ virtualenv pythonclub –no-site-packages 
+	
+> –no-site-packages - esse parametro do virtualenv indica que meu ambiente virtual será totalmente isolado 
+> do meu sistema operacional, e só enxergara os pacotes instalados dentro do virtualenv
