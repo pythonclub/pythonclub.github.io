@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
+
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
+    
+    <link rel="shortcut icon" href="http://pythonclub.com.br/theme/images/favicon.ico" >
+
+            <title>Introdução a testes funcionais com Selenium e Python // PythonClub // </title>
+
+    <meta property="fb:app_id" content="1487080281503641" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Introdução a testes funcionais com Selenium e Python" />
+    <meta property="og:site_name" content="PythonClub" />
+    <meta property="og:url" content="http://pythonclub.com.br/introducao-a-testes-funcionais-com-selenium-e-python.html" />
+    <meta property="og:description" content="Nesse post darei apenas uma introdução básica focada em auxiliar testadores a usar a linguagem de programação Python para executar e guardar seus scripts de teste. Porquê usar a linguagem Python nos testes funcionais? Como sabemos os testes funcionais são em sua grande parte desenvolvidos por Testadores e/ou Analistas ..." />
+    <!-- <meta property="og:image" content="" /> -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://pythonclub.com.br/author/mario-chaves.html" title="See posts by Mário Chaves">
+                    <img class="article-avatar" alt="Mário Chaves" src="http://www.gravatar.com/avatar/1387fb1a185367bc11181777f482f3ea">
+                </a>
+                <h2 class="article-info">Mário Chaves</h2>
+                <small class="about-author"></small>
+                <h5>Publicado em:</h5>
+                <p>Fri 09 May 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Introdução a testes funcionais com Selenium e Python</h1>
+                        <p class="post-meta">
+                            // Tags                                 <a class="post-category" href="http://pythonclub.com.br/tag/selenium.html">selenium</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/python.html">python</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/selenium-serie.html">selenium-serie</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/testes-funcionais.html">testes-funcionais</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/testes.html">testes</a>
+                        </p>
+                </header>
+            </section>
+            <p>Nesse post darei apenas uma introdução básica focada em auxiliar testadores a usar a linguagem de programação Python
+para executar e guardar seus scripts de teste.</p>
+<div class="section" id="porque-usar-a-linguagem-python-nos-testes-funcionais">
+<h2>Porquê usar a linguagem Python nos testes funcionais?</h2>
+<p>Como sabemos os testes funcionais são em sua grande parte desenvolvidos por Testadores e/ou Analistas de Testes
+esses testes tem que estar bem coesos e entendíveis para que se tenha uma manutenção mais rápida e eficaz a medida
+que o código do projeto vai crescendo e ganhando mais funcionalidades. <a class="reference external" href="http://pt.wiktionary.org/wiki/IMHO">IMHO</a>
+Python é a linguagem que deixa seu código mais elegante, limpo e entendível.</p>
+<blockquote>
+<em>&quot;Python é uma linguagem de programação de alto nível , interpretada, imperativa, orientada a objetos, funcional,
+de tipagem dinâmica e forte.&quot;</em> <a class="reference external" href="http://pt.wikipedia.org/wiki/Python">Wikipedia</a></blockquote>
+<p>Em uma rápida comparação de verbosidade entre Python e Java com o tão criticado &quot;Hello, World!&quot;, podemos notar o
+que quero dizer quando citei <em>&quot;IMHO Python é a linguagem que deixa seu código mais elegante, limpo e entendível&quot;</em>.</p>
+<p>Exemplo em Java:</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>public class HelloWorld {public static void main (String[] args) {System.out.println(&quot;Hello, world!&quot;);}}</p>
+<p>Exemplo em Python 2.x</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;Hello, world!&#39;</span>
+</pre></div>
+<p>Isso mesmo, os dois exemplos fazem a mesma coisa, porém, o exemplo em Java tem 104 caracteres contra o exemplo
+em Python com apenas 21 caracteres.</p>
+<p>Deixando o &quot;Lero-lero&quot; de lado e indo ao que interessa. O próximo passo será uma espécie de passo-a-passo de
+como configurar seu ambiente e depois testaremos executando algo.</p>
+</div>
+<div class="section" id="montando-o-ambiente">
+<h2>Montando o ambiente</h2>
+<p>Supondo que você usa Windows e não tem nada do que vamos precisar instalado, então faça o download dos
+seguintes itens:</p>
+<blockquote>
+<dl class="docutils">
+<dt>Python 2.7.6 - <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></dt>
+<dd><em>Linguagem de programação de alto nível</em></dd>
+<dt>Pip - <a class="reference external" href="https://bootstrap.pypa.io/get-pip.py">https://bootstrap.pypa.io/get-pip.py</a></dt>
+<dd><em>Gerenciador de bibliotecas geralmente usado para instalar e remover libs</em></dd>
+<dt>Mozilla Firefox - <a class="reference external" href="http://www.mozilla.org/pt-BR/firefox/new/">http://www.mozilla.org/pt-BR/firefox/new/</a></dt>
+<dd><em>Navegador Web mais recomendado para o uso do Selenium e onde será instalado o plugin SeleniumIDE</em></dd>
+<dt>PhantomJS v1.9 - <a class="reference external" href="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-windows.zip">https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-windows.zip</a></dt>
+<dd><em>Navegador Headless que possibilita a execução dos testes em background, sem a necessidade de executar
+toda a interface gráfica do navegador</em></dd>
+</dl>
+</blockquote>
+<div class="section" id="passos-para-a-instalacao-do-python-no-windows-ja-que-ele-ja-vem-instalado-no-mac-e-linux">
+<h3>Passos para a instalação do Python no Windows, Já que ele já vem instalado no Mac e Linux</h3>
+<blockquote>
+<ol class="arabic simple">
+<li>Executar o instalador e instalar com passos simples (Avançar, Avançar, Concluir)</li>
+<li>Entre no CMD (Terminal) e digite python, se entrar no interpretador então já está instalado, se não, vá para o passo 3</li>
+<li>Feche o Terminal, vá em Iniciar e clique com o botão direito sobre o “Computador” e selecione “Propriedades”</li>
+<li>No menu lateral clique em “Definições avançadas de sistema” e selecione “Variáveis de ambiente”</li>
+<li>Na caixa “Variáveis do sistema” selecione com um duplo clique o item “Path”</li>
+<li>Ao final da linha “Valor da variável” insira “;C:Python27Scripts” então dê Ok, Ok e Ok novamente</li>
+<li>Abra o CMD (Terminal) novamente, digite <cite>python</cite>, e dê enter. Dessa vez vai entrar no interpretador!</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="pip-gerenciador-de-pacotes-do-python-no-windows">
+<h3>Pip (Gerênciador de pacotes do Python) no Windows</h3>
+<blockquote>
+<ol class="arabic simple">
+<li>Através do Terminal vá até a pasta onde você fez download do arquivo get-pip.py, provavelmente em C:UsersSeuUsuarioDownloads</li>
+<li>Ao entrar na pasta Downloads (Se o get-pip.py estiver nela) execute: python get-pip.py (Ele fará toda a instalação do Pip)</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="sei-que-nao-tem-necessidade-mas-mozilla-firefox-navegador-web">
+<h3>Sei que não tem necessidade, mas: Mozilla Firefox (Navegador Web)</h3>
+<blockquote>
+<ol class="arabic simple">
+<li>Executar o instalador e instalar com passos simples (Avançar, Avançar, Concluir)</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="phantomjs-no-windows">
+<h3>PhantomJS no Windows</h3>
+<blockquote>
+<ol class="arabic simple">
+<li>Descompactar o arquivo e colocar a pasta “phantomjs-1.9.7-windows” dentro de C: (Veja se logo dentro dessa pasta existe um arquivo chamado phantomjs, que é um arquivo executável com o ícone de um Fantasminha) se tem, está certo, se não tem, então você tem que colocar a pasta “phantomjs-1.9.7-windows” que está dentro de “phantomjs-1.9.7-windows” em C: as vezes ao descompactar um arquivo no Windows ele descompacta em uma pasta com o mesmo nome</li>
+<li>Vá em Iniciar e clique com o botão direito sobre o “Computador” e selecione “Propriedades”</li>
+<li>No menu lateral clique em “Definições avançadas de sistema” e selecione “Variáveis de ambiente”</li>
+<li>Na caixa “Variáveis do sistema” selecione com um duplo clique o item “Path”</li>
+<li>Ao final da linha “Valor da variável” insira “;C:phantomjs-1.9.7-windows” então dê Ok, Ok e Ok novamente</li>
+<li>Abra o CMD (Terminal) e digite <cite>phantomjs</cite> e dê enter, se entrar no interpretador é porquê deu certo, Ctrl+c pra sair e então feche o terminal</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="selenium-ide-ide-para-facilitar-a-criacao-de-testes-com-o-selenium-no-firefox">
+<h3>Selenium IDE (IDE para facilitar a criação de testes com o Selenium) no Firefox</h3>
+<blockquote>
+<ol class="arabic simple">
+<li>Execute o Mozilla Firefox</li>
+<li>Abra a seguinte URL: <a class="reference external" href="http://release.seleniumhq.org/selenium-ide/2.5.0/selenium-ide-2.5.0.xpi">http://release.seleniumhq.org/selenium-ide/2.5.0/selenium-ide-2.5.0.xpi</a> e a instalação já é feita de forma automática</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="biblioteca-selenium-para-o-python">
+<h3>Biblioteca Selenium para o Python</h3>
+<blockquote>
+<ol class="arabic simple">
+<li>Abra o Terminal, digite &quot;<cite>pip install -U selenium</cite>&quot; e dê enter, a instalação é feita de forma automática</li>
+</ol>
+<p>Levando em conta que o público alvo do artigo são testadores então, não estenderei ao uso de ferramentas muito interessantes também para esse fim só que mais utilizadas por desenvolvedores como: <a class="reference external" href="https://virtualenv.pypa.io">Virtualenv</a>, <a class="reference external" href="http://www.fabfile.org">Fabric</a>, <a class="reference external" href="http://sphinx-doc.org">Sphinx</a> e etc.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="criando-um-teste-simples-com-a-famosa-selenium-ide">
+<h2>Criando um teste simples com a famosa Selenium IDE</h2>
+<p>Após instalar a Selenium IDE dentro do Firefox e reiniciar o navegador, clique no ícone da ferramenta que está no
+canto superior direito do Navegador.</p>
+<img alt="" src="images/test-ff-sel-btn.png" />
+<p>Note que na Selenium IDE a opção de gravar já vem selecionada por padrão.</p>
+<img alt="" src="images/test-ff-sel-gravar-ligado.png" />
+<p>E para nossa alegria a URL do site atual que está em nosso Firefox, já está definida no campo &quot;URL Base&quot; da Selenium IDE.</p>
+<p>Cliquei no link &quot;Como apoiar o IFIC&quot; e acessei a seguinte página.</p>
+<img alt="" src="images/test-ff-sel-clicar-no-link.png" />
+<p>Ao ver o que está acontecendo na Selenium IDE, notamos que ela está gravando tudo o que está acontecendo no navegador.</p>
+<img alt="" src="images/test-ff-sel-initial-view.png" />
+<p>Retorno ao navegador e faço um simples assert para ver se ao entrar na página o título H1 está correto.</p>
+<img alt="" src="images/test-ff-sel-assert-h1.png" />
+<p>Veja como é simples ver as propriedades que podem ser usadas para certificar que você realmente está na tela correta e
+verificar se os textos estão corretamente aplicados em seus devidos lugares.</p>
+<p>Nesse exemplo eu verifico se o título H1 da página contém &quot;Como Apoiar o IFIC&quot;, para isso foi necessário:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>Selecionar o texto na página</li>
+<li>Clicar com o botão direito do mouse sobre a seleção</li>
+<li>Selecionar &quot;Exibir todos os comandos disponíveis&quot;, note que ele já me dar como opção na primeira tela do menu suspenso esse item que selecionei na segunda, mas preferi correr até lá apenas para ilustrar as outras opções disponíveis que existem na segunda tela do menu suspenso</li>
+<li>Clicar em &quot;assertText css=h1 Como Apoiar o IFIC&quot;</li>
+</ol>
+</blockquote>
+<p>Agora veja o que a Selenium IDE gravou:</p>
+<img alt="" src="images/test-ff-sel-assert-h1-view.png" />
+<p>Como era de se esperar, apenas o que você fez no navegador ;)</p>
+<blockquote>
+<em>Note que se você já for um usuário experiente da Selenium IDE, souber usar os seletores e conhecer bem o código HTML
+da página, você pode ir escrevendo todo o seu código na própria Selenium IDE para somente depois executar.</em></blockquote>
+<p>Para executar o teste criado basta clicar no botão &quot;Play entire test suite&quot; como na imagem abaixo:</p>
+<img alt="" src="images/test-ff-sel-play-test.png" />
+<p>Note que o teste foi executado com sucesso, pois está tudo verdinho :) . E logo abaixo tem uma sequência de mensagens
+na forma que foram executadas.</p>
+</div>
+<div class="section" id="salvando-exportando-e-executando-os-testes">
+<h2>Salvando/Exportando e executando os testes</h2>
+<div class="section" id="selenium-ide">
+<h3>Selenium IDE</h3>
+<p>Ao concluir seu teste obviamente você tem a opção de salvá-lo para executar os mesmos testes futuramente e verificar
+se o sistema continua funcionando como deveria.</p>
+<p>Para salvar é muito simples, se estiver no Windows ou Linux basta dar um Ctrl+S no Mac Command+S e salvar em
+uma pasta qualquer e clicar em Salvar.</p>
+<img alt="" src="images/test-ff-sel-save.png" />
+<p>Sinceramente se você sempre quiser executar seus testes usando o Mozilla Firefox eu aconselho usar a própria
+Selenium IDE para esse propósito, pois com ela você salva seus testes em HTML e os executa tranquilamente com
+opção de rodar todo um Test Case de uma vez. Observe que após salvar o teste ele fica disponível na coluna
+&quot;Test Case&quot; da Selenium IDE e você pode ir adicionando os demais testes a essa coluna para que sejam todos executados.</p>
+</div>
+<div class="section" id="exportando-para-uma-linguagem-de-programacao">
+<h3>Exportando para uma linguagem de programação</h3>
+<p>Na Selenium IDE existe a opção de exportar seu teste para várias linguagens de programação como: Ruby, Python,
+Java e C#.</p>
+<p>Ter seu teste exportado para uma linguagem de programação pode ser bem útil para o caso de integrar seu teste
+ao código de teste desenvolvido pelos programadores já que os testes exportados pela Selenium IDE são
+codificados utilizando a lib unittest, ou seja, na forma de testes unitários.</p>
+<p>Abaixo uma imagem mostrando como exportar o teste para uma das linguagens disponíveis:</p>
+<img alt="" src="images/test-ff-sel-export-lang.png" />
+<p>No caso, Python 2 / unittest / Webdriver, mas obviamente, poderia exportar para qualquer outra dessas disponíveis.
+Clique nesse item e salve na pasta que desejar com um nome sucinto e seguido da extensão .py (por exemplo: test_como_apoiar.py)</p>
+<p>Veja abaixo o código gerado pela exportação do teste para Python (48 linhas):</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">Select</span>
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">NoSuchElementException</span>
+<span class="kn">import</span> <span class="nn">unittest</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">re</span>
+
+<span class="k">class</span> <span class="nc">TestComoApoiar</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s">&quot;http://www.ific.com.br/&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verificationErrors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_next_alert</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">test_como_apoiar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_link_text</span><span class="p">(</span><span class="s">&quot;Como apoiar o IFIC&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s">&quot;Como Apoiar o IFIC&quot;</span><span class="p">,</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_element_present</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">how</span><span class="p">,</span> <span class="n">what</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">how</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">what</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NoSuchElementException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">is_alert_present</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">switch_to_alert</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">NoAlertPresentException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">close_alert_and_get_its_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">alert</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">switch_to_alert</span><span class="p">()</span>
+            <span class="n">alert_text</span> <span class="o">=</span> <span class="n">alert</span><span class="o">.</span><span class="n">text</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept_next_alert</span><span class="p">:</span>
+                <span class="n">alert</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">alert</span><span class="o">.</span><span class="n">dismiss</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">alert_text</span>
+        <span class="k">finally</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept_next_alert</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">([],</span> <span class="bp">self</span><span class="o">.</span><span class="n">verificationErrors</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+<p>Veja abaixo o mesmo código gerado pela exportação do teste para Java (73 linhas):</p>
+<div class="highlight"><pre><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">.</span><span class="na">tests</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.regex.Pattern</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">.</span><span class="na">CoreMatchers</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">org.openqa.selenium.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.openqa.selenium.firefox.FirefoxDriver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.openqa.selenium.support.ui.Select</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestComoApoiar</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="n">WebDriver</span> <span class="n">driver</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">baseUrl</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">acceptNextAlert</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="n">StringBuffer</span> <span class="n">verificationErrors</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+
+  <span class="nd">@Before</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="o">();</span>
+    <span class="n">baseUrl</span> <span class="o">=</span> <span class="s">&quot;http://www.ific.com.br/&quot;</span><span class="o">;</span>
+    <span class="n">driver</span><span class="o">.</span><span class="na">manage</span><span class="o">().</span><span class="na">timeouts</span><span class="o">().</span><span class="na">implicitlyWait</span><span class="o">(</span><span class="mi">30</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testComoApoiar</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">driver</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">baseUrl</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span><span class="o">);</span>
+    <span class="n">driver</span><span class="o">.</span><span class="na">findElement</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">linkText</span><span class="o">(</span><span class="s">&quot;Como apoiar o IFIC&quot;</span><span class="o">)).</span><span class="na">click</span><span class="o">();</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;Como Apoiar o IFIC&quot;</span><span class="o">,</span> <span class="n">driver</span><span class="o">.</span><span class="na">findElement</span><span class="o">(</span><span class="n">By</span><span class="o">.</span><span class="na">cssSelector</span><span class="o">(</span><span class="s">&quot;h1&quot;</span><span class="o">)).</span><span class="na">getText</span><span class="o">());</span>
+  <span class="o">}</span>
+
+  <span class="nd">@After</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">tearDown</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">driver</span><span class="o">.</span><span class="na">quit</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">verificationErrorString</span> <span class="o">=</span> <span class="n">verificationErrors</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">verificationErrorString</span><span class="o">))</span> <span class="o">{</span>
+      <span class="n">fail</span><span class="o">(</span><span class="n">verificationErrorString</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isElementPresent</span><span class="o">(</span><span class="n">By</span> <span class="n">by</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">driver</span><span class="o">.</span><span class="na">findElement</span><span class="o">(</span><span class="n">by</span><span class="o">);</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchElementException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isAlertPresent</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">driver</span><span class="o">.</span><span class="na">switchTo</span><span class="o">().</span><span class="na">alert</span><span class="o">();</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoAlertPresentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">private</span> <span class="n">String</span> <span class="nf">closeAlertAndGetItsText</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">Alert</span> <span class="n">alert</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="na">switchTo</span><span class="o">().</span><span class="na">alert</span><span class="o">();</span>
+      <span class="n">String</span> <span class="n">alertText</span> <span class="o">=</span> <span class="n">alert</span><span class="o">.</span><span class="na">getText</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">acceptNextAlert</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">accept</span><span class="o">();</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">alert</span><span class="o">.</span><span class="na">dismiss</span><span class="o">();</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">alertText</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+      <span class="n">acceptNextAlert</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<p>Tendo a versão do teste escrita em Python posso simplesmente dar 2 cliques sobre o ícone do arquivo
+test_como_apoiar.py que instantaneamente é aberto o navegador (Mozilla Firefox) e executado todo teste
+ao vivo.</p>
+<p>Mas como já disse, se for para rodar o teste no Firefox, é melhor executar pela própria Selenium IDE.</p>
+<p>É por isso que agora vamos saber porquê instalamos o PhantomJS.</p>
+<p>Com o PhantomJS temos a possibilidade de executar o browser em &quot;Background&quot; podemos chamar de modo &quot;Headless&quot;,
+isso faz com que possamos executar toda a nossa suíte de testes sem precisar ligar o Mozilla Firefox e todo o
+peso de sua interface gráfica.</p>
+<p>Alterando a primeira linha do método setUp() e trocar o webdriver Firefox para PhantomJS:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">TestComoApoiar</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">()</span>
+</pre></div>
+<p>Então abro o terminal, console ou cmd como queira chamar e então navego até a pasta onde salvei o arquivo test_como_apoiar.py e executo o teste com o seguinte comando:</p>
+<div class="highlight"><pre>python test_como_apoiar.py
+</pre></div>
+<p>E então é executado como na imagem abaixo:</p>
+<img alt="" src="images/test-ff-change-webdriver.png" />
+<p>Bem amigos é isso, vimos:</p>
+<blockquote>
+<ul class="simple">
+<li>Porquê usar Python para guardar seus testes funcionais</li>
+<li>Como montar o ambiente no Windows</li>
+<li>Como criar um teste simples na Selenium IDE</li>
+<li>Como salvar/exportar e executar com um browser Headless os testes que foram criados com a IDE</li>
+</ul>
+</blockquote>
+<p>Caro amigo(a) testador para mais detalhes sobre o uso da biblioteca Selenium do Python acompanhe a série de artigos iniciados pelo <a class="reference external" href="http://pythonclub.com.br/author/lucas-magnum.html">Lucas Magnum</a></p>
+<p>Qualquer dúvida pode entrar em contato comigo:</p>
+<blockquote>
+<ul class="simple">
+<li>Email <a class="reference external" href="mailto:macndesign&#64;gmail.com">macndesign&#64;gmail.com</a></li>
+<li>Twitter <a class="reference external" href="https://twitter.com/macndesign">&#64;macndesign</a></li>
+<li>Facebook <a class="reference external" href="https://www.facebook.com/macndesign">facebook.com/macndesign</a></li>
+<li>Google + <a class="reference external" href="https://plus.google.com/+M%C3%A1rioChaves81">plus.google.com/+MárioChaves81</a></li>
+</ul>
+</blockquote>
+<p>Grande abraço!</p>
+</div>
+</div>
+
+            <div class="sharing">
+                <!-- Facebook sharing -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button" data-href="http://pythonclub.com.br/introducao-a-testes-funcionais-com-selenium-e-python.html" data-type="button_count"></div>
+
+                <!-- Twitter sharing -->
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Topo</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "pythonclub"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; PythonClub &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
