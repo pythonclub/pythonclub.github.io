@@ -3,10 +3,8 @@
 para executar e guardar seus scripts de teste.&lt;/p&gt;
 &lt;div class="section" id="porque-usar-a-linguagem-python-nos-testes-funcionais"&gt;
 &lt;h2&gt;Porquê usar a linguagem Python nos testes funcionais?&lt;/h2&gt;
-&lt;p&gt;Como sabemos os testes funcionais são em sua grande parte desenvolvidos por Testadores e/ou Analistas de Testes
-esses testes tem que estar bem coesos e entendíveis para que se tenha uma manutenção mais rápida e eficaz a medida
-que o código do projeto vai crescendo e ganhando mais funcionalidades. &lt;a class="reference external" href="http://pt.wiktionary.org/wiki/IMHO"&gt;IMHO&lt;/a&gt;
-Python é a linguagem que deixa seu código mais elegante, limpo e entendível.&lt;/p&gt;
+&lt;p&gt;Como sabemos os testes funcionais são em sua grande parte desenvolvidos por Analistas de Testes e/ou Testadores.
+Para que se tenha uma manutenção mais rápida e eficaz a medida que o código do projeto vai crescendo e ganhando mais funcionalidades, é interessante que os testes estejam coesos e de fácil entendimento. &lt;a class="reference external" href="http://pt.wiktionary.org/wiki/IMHO"&gt;IMHO&lt;/a&gt;  Python é a linguagem que deixa seu código mais elegante, limpo e entendível.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;em&gt;&amp;quot;Python é uma linguagem de programação de alto nível , interpretada, imperativa, orientada a objetos, funcional,
 de tipagem dinâmica e forte.&amp;quot;&lt;/em&gt; &lt;a class="reference external" href="http://pt.wikipedia.org/wiki/Python"&gt;Wikipedia&lt;/a&gt;&lt;/blockquote&gt;
@@ -19,18 +17,16 @@ que quero dizer quando citei &lt;em&gt;&amp;quot;IMHO Python é a linguagem que 
     &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;public class HelloWorld {public static void main (String[] args) {System.out.println(&amp;quot;Hello, world!&amp;quot;);}}&lt;/p&gt;
 &lt;p&gt;Exemplo em Python 2.x&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Hello, world!&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Isso mesmo, os dois exemplos fazem a mesma coisa, porém, o exemplo em Java tem 104 caracteres contra o exemplo
-em Python com apenas 21 caracteres.&lt;/p&gt;
-&lt;p&gt;Deixando o &amp;quot;Lero-lero&amp;quot; de lado e indo ao que interessa. O próximo passo será uma espécie de passo-a-passo de
-como configurar seu ambiente e depois testaremos executando algo.&lt;/p&gt;
+&lt;p&gt;Isso mesmo, os dois exemplos fazem a mesma coisa, porém, o exemplo em Java tem 104 caracteres enquanto o exemplo
+em Python possui apenas 21 caracteres.&lt;/p&gt;
+&lt;p&gt;Mas, voltando ao que interessa, vamos ao passo-a-passo de como configurar seu ambiente e depois testar executando algo como exemplo.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="montando-o-ambiente"&gt;
 &lt;h2&gt;Montando o ambiente&lt;/h2&gt;
-&lt;p&gt;Supondo que você usa Windows e não tem nada do que vamos precisar instalado, então faça o download dos
+&lt;p&gt;Supondo que você usa Windows e não tem nada do que vamos precisar instalado, faça o download dos
 seguintes itens:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;dl class="docutils"&gt;
@@ -45,8 +41,9 @@ seguintes itens:&lt;/p&gt;
 toda a interface gráfica do navegador&lt;/em&gt;&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/blockquote&gt;
-&lt;div class="section" id="passos-para-a-instalacao-do-python-no-windows-ja-que-ele-ja-vem-instalado-no-mac-e-linux"&gt;
-&lt;h3&gt;Passos para a instalação do Python no Windows, Já que ele já vem instalado no Mac e Linux&lt;/h3&gt;
+&lt;div class="section" id="passos-para-a-instalacao-do-python-no-windows"&gt;
+&lt;h3&gt;Passos para a instalação do Python no Windows&lt;/h3&gt;
+&lt;p&gt;Nota: ele já vem instalado no Mac e Linux&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Executar o instalador e instalar com passos simples (Avançar, Avançar, Concluir)&lt;/li&gt;
@@ -104,18 +101,18 @@ toda a interface gráfica do navegador&lt;/em&gt;&lt;/dd&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt;Abra o Terminal, digite &amp;quot;&lt;cite&gt;pip install -U selenium&lt;/cite&gt;&amp;quot; e dê enter, a instalação é feita de forma automática&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Levando em conta que o público alvo do artigo são testadores então, não estenderei ao uso de ferramentas muito interessantes também para esse fim só que mais utilizadas por desenvolvedores como: &lt;a class="reference external" href="https://virtualenv.pypa.io"&gt;Virtualenv&lt;/a&gt;, &lt;a class="reference external" href="http://www.fabfile.org"&gt;Fabric&lt;/a&gt;, &lt;a class="reference external" href="http://sphinx-doc.org"&gt;Sphinx&lt;/a&gt; e etc.&lt;/p&gt;
+&lt;p&gt;Levando em conta que o público alvo do artigo são testadores, não estenderei ao uso de ferramentas muito interessantes também para esse fim, porém mais utilizadas por desenvolvedores, como: &lt;a class="reference external" href="https://virtualenv.pypa.io"&gt;Virtualenv&lt;/a&gt;, &lt;a class="reference external" href="http://www.fabfile.org"&gt;Fabric&lt;/a&gt;, &lt;a class="reference external" href="http://sphinx-doc.org"&gt;Sphinx&lt;/a&gt; e etc.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="section" id="criando-um-teste-simples-com-a-famosa-selenium-ide"&gt;
-&lt;h2&gt;Criando um teste simples com a famosa Selenium IDE&lt;/h2&gt;
+&lt;div class="section" id="criando-um-teste-simples-com-a-famosa-selenium-ide-lo"&gt;
+&lt;h2&gt;Criando um teste simples com a famosa Selenium IDE lo/&lt;/h2&gt;
 &lt;p&gt;Após instalar a Selenium IDE dentro do Firefox e reiniciar o navegador, clique no ícone da ferramenta que está no
 canto superior direito do Navegador.&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-sel-btn.png" /&gt;
-&lt;p&gt;Note que na Selenium IDE a opção de gravar já vem selecionada por padrão.&lt;/p&gt;
+&lt;p&gt;Note que na Selenium IDE, a opção de gravar já vem selecionada por padrão.&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-sel-gravar-ligado.png" /&gt;
-&lt;p&gt;E para nossa alegria a URL do site atual que está em nosso Firefox, já está definida no campo &amp;quot;URL Base&amp;quot; da Selenium IDE.&lt;/p&gt;
+&lt;p&gt;E para nossa alegria, a URL do site atual que está em nosso Firefox, já está definida no campo &amp;quot;URL Base&amp;quot; da Selenium IDE.&lt;/p&gt;
 &lt;p&gt;Cliquei no link &amp;quot;Como apoiar o IFIC&amp;quot; e acessei a seguinte página.&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-sel-clicar-no-link.png" /&gt;
 &lt;p&gt;Ao ver o que está acontecendo na Selenium IDE, notamos que ela está gravando tudo o que está acontecendo no navegador.&lt;/p&gt;
@@ -138,22 +135,22 @@ verificar se os textos estão corretamente aplicados em seus devidos lugares.&lt
 &lt;p&gt;Como era de se esperar, apenas o que você fez no navegador ;)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;em&gt;Note que se você já for um usuário experiente da Selenium IDE, souber usar os seletores e conhecer bem o código HTML
-da página, você pode ir escrevendo todo o seu código na própria Selenium IDE para somente depois executar.&lt;/em&gt;&lt;/blockquote&gt;
-&lt;p&gt;Para executar o teste criado basta clicar no botão &amp;quot;Play entire test suite&amp;quot; como na imagem abaixo:&lt;/p&gt;
+da página, você poderá escrever todo o seu código na própria Selenium IDE e depois executar.&lt;/em&gt;&lt;/blockquote&gt;
+&lt;p&gt;Para executar o teste criado, basta clicar no botão &amp;quot;Play entire test suite&amp;quot; como na imagem abaixo:&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-sel-play-test.png" /&gt;
-&lt;p&gt;Note que o teste foi executado com sucesso, pois está tudo verdinho :) . E logo abaixo tem uma sequência de mensagens
-na forma que foram executadas.&lt;/p&gt;
+&lt;p&gt;Note que o teste foi executado com sucesso, pois está tudo verdinho :) . Logo abaixo existem algumas mensagens
+na sequência que foram executadas.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="salvando-exportando-e-executando-os-testes"&gt;
 &lt;h2&gt;Salvando/Exportando e executando os testes&lt;/h2&gt;
 &lt;div class="section" id="selenium-ide"&gt;
 &lt;h3&gt;Selenium IDE&lt;/h3&gt;
-&lt;p&gt;Ao concluir seu teste obviamente você tem a opção de salvá-lo para executar os mesmos testes futuramente e verificar
+&lt;p&gt;Ao concluir seu teste você tem a opção de salvar e então executar futuramente para verificar
 se o sistema continua funcionando como deveria.&lt;/p&gt;
-&lt;p&gt;Para salvar é muito simples, se estiver no Windows ou Linux basta dar um Ctrl+S no Mac Command+S e salvar em
-uma pasta qualquer e clicar em Salvar.&lt;/p&gt;
+&lt;p&gt;Para salvar é muito simples, se estiver no Windows ou Linux, basta dar um Ctrl+S e no Mac Command+S, escolher
+uma pasta e clicar em Salvar.&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-sel-save.png" /&gt;
-&lt;p&gt;Sinceramente se você sempre quiser executar seus testes usando o Mozilla Firefox eu aconselho usar a própria
+&lt;p&gt;Sinceramente, se você sempre quiser executar seus testes usando o Mozilla Firefox eu aconselho usar a própria
 Selenium IDE para esse propósito, pois com ela você salva seus testes em HTML e os executa tranquilamente com
 opção de rodar todo um Test Case de uma vez. Observe que após salvar o teste ele fica disponível na coluna
 &amp;quot;Test Case&amp;quot; da Selenium IDE e você pode ir adicionando os demais testes a essa coluna para que sejam todos executados.&lt;/p&gt;
@@ -162,12 +159,12 @@ opção de rodar todo um Test Case de uma vez. Observe que após salvar o teste 
 &lt;h3&gt;Exportando para uma linguagem de programação&lt;/h3&gt;
 &lt;p&gt;Na Selenium IDE existe a opção de exportar seu teste para várias linguagens de programação como: Ruby, Python,
 Java e C#.&lt;/p&gt;
-&lt;p&gt;Ter seu teste exportado para uma linguagem de programação pode ser bem útil para o caso de integrar seu teste
+&lt;p&gt;Exportar seu teste para uma linguagem de programação pode ser bem útil para o caso de integrar seu teste
 ao código de teste desenvolvido pelos programadores já que os testes exportados pela Selenium IDE são
 codificados utilizando a lib unittest, ou seja, na forma de testes unitários.&lt;/p&gt;
-&lt;p&gt;Abaixo uma imagem mostrando como exportar o teste para uma das linguagens disponíveis:&lt;/p&gt;
+&lt;p&gt;A imagem abaixo mostra como exportar o teste para uma das linguagens disponíveis:&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-sel-export-lang.png" /&gt;
-&lt;p&gt;No caso, Python 2 / unittest / Webdriver, mas obviamente, poderia exportar para qualquer outra dessas disponíveis.
+&lt;p&gt;No caso, Python 2 / unittest / Webdriver, mas o teste poderia ser exportado para qualquer outra linguagem disponível.
 Clique nesse item e salve na pasta que desejar com um nome sucinto e seguido da extensão .py (por exemplo: test_como_apoiar.py)&lt;/p&gt;
 &lt;p&gt;Veja abaixo o código gerado pela exportação do teste para Python (48 linhas):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
@@ -219,7 +216,7 @@ Clique nesse item e salve na pasta que desejar com um nome sucinto e seguido da 
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Veja abaixo o mesmo código gerado pela exportação do teste para Java (73 linhas):&lt;/p&gt;
+&lt;p&gt;Veja o mesmo código gerado pela exportação do teste para Java (73 linhas):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;example&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tests&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.regex.Pattern&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
@@ -294,25 +291,24 @@ Clique nesse item e salve na pasta que desejar com um nome sucinto e seguido da 
   &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;span class="o"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Tendo a versão do teste escrita em Python posso simplesmente dar 2 cliques sobre o ícone do arquivo
+&lt;p&gt;Tendo a versão do teste escrita em Python posso simplesmente dar um clique duplo sobre o ícone do arquivo
 test_como_apoiar.py que instantaneamente é aberto o navegador (Mozilla Firefox) e executado todo teste
 ao vivo.&lt;/p&gt;
 &lt;p&gt;Mas como já disse, se for para rodar o teste no Firefox, é melhor executar pela própria Selenium IDE.&lt;/p&gt;
 &lt;p&gt;É por isso que agora vamos saber porquê instalamos o PhantomJS.&lt;/p&gt;
-&lt;p&gt;Com o PhantomJS temos a possibilidade de executar o browser em &amp;quot;Background&amp;quot; podemos chamar de modo &amp;quot;Headless&amp;quot;,
+&lt;p&gt;Com o PhantomJS temos a possibilidade de executar o browser em &amp;quot;Background&amp;quot;, podemos chamar de modo &amp;quot;Headless&amp;quot;,
 isso faz com que possamos executar toda a nossa suíte de testes sem precisar ligar o Mozilla Firefox e todo o
-peso de sua interface gráfica.&lt;/p&gt;
-&lt;p&gt;Alterando a primeira linha do método setUp() e trocar o webdriver Firefox para PhantomJS:&lt;/p&gt;
+peso de sua interface gráfica, para isso vamos alterar a primeira linha do método setUp() e trocar o webdriver Firefox para PhantomJS:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestComoApoiar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PhantomJS&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Então abro o terminal, console ou cmd como queira chamar e então navego até a pasta onde salvei o arquivo test_como_apoiar.py e executo o teste com o seguinte comando:&lt;/p&gt;
+&lt;p&gt;Então vamos abrir o terminal, console ou cmd, como queira chamar, e navegar até a pasta onde foi salvo o arquivo test_como_apoiar.py e executar o teste com o seguinte comando:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;python test_como_apoiar.py
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;E então é executado como na imagem abaixo:&lt;/p&gt;
+&lt;p&gt;O arquivo é executado como na imagem abaixo:&lt;/p&gt;
 &lt;img alt="" src="images/test-ff-change-webdriver.png" /&gt;
-&lt;p&gt;Bem amigos é isso, vimos:&lt;/p&gt;
+&lt;p&gt;Bem amigos, a leitura foi uma breve descrição sobre os seguintes tópicos:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Porquê usar Python para guardar seus testes funcionais&lt;/li&gt;
@@ -321,8 +317,8 @@ peso de sua interface gráfica.&lt;/p&gt;
 &lt;li&gt;Como salvar/exportar e executar com um browser Headless os testes que foram criados com a IDE&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Caro amigo(a) testador para mais detalhes sobre o uso da biblioteca Selenium do Python acompanhe a série de artigos iniciados pelo &lt;a class="reference external" href="http://pythonclub.com.br/author/lucas-magnum.html"&gt;Lucas Magnum&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Qualquer dúvida pode entrar em contato comigo:&lt;/p&gt;
+&lt;p&gt;Para mais detalhes sobre o uso da biblioteca Selenium do Python acompanhe a série de artigos iniciados pelo &lt;a class="reference external" href="http://pythonclub.com.br/author/lucas-magnum.html"&gt;Lucas Magnum&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Qualquer dúvida pode entrar em contato:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Email &lt;a class="reference external" href="mailto:macndesign&amp;#64;gmail.com"&gt;macndesign&amp;#64;gmail.com&lt;/a&gt;&lt;/li&gt;
