@@ -305,6 +305,6 @@ neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.
 
 Bom pessoal, é isso, um tutorial simples apenas de meio longo.
 
-espero que gostei, um abraço a todos!
+espero que gostem, um abraço a todos!
 
 
