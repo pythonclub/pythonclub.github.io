@@ -36,20 +36,19 @@ Ambiente usado durante a escrita deste artigo
 
 ---------------------------------------
 
-No Linux/Ubuntu não precisamos instalar Python, isso porque já é nativo em sistemas operacionais baseados em Unix, 
-mas pra ter certeza basta executar o comando no terminal:
+No Linux/Ubuntu não precisamos instalar Python, porque já é nativo em sistemas operacionais baseados em Unix, mas para termos certeza basta executar o comando no terminal:
 
 .. code-block:: bash
 
 	$ python –version
 
-o resultado deve ser:
+o resultado será:
 
 .. code-block:: bash
 
 	Python 2.7.3
 
-vamos começar instalando os pacotes necessários no Sistema Operacional:
+Vamos começar instalando os pacotes necessários no Sistema Operacional:
 
 .. code-block:: bash
 
@@ -58,63 +57,67 @@ vamos começar instalando os pacotes necessários no Sistema Operacional:
     $ sudo easy_install pip
     $ sudo pip install virtualenv
 	
-pra testar se o virtualenv está instalado corretamente execute no terminal:
+Para testarmos se o virtualenv está instalado corretamente executaremos no terminal:
 
 .. code-block:: bash
 
 	$ virtualenv --version	
 	
-resultado:
+Resultado:
 
 .. code-block:: bash
 
 	1.11.5
 
 
-O pacote **python-setuptools** foi necessário apenas para instalar o **easy_install** que usamos para instalar o **pip**
-A partir de agora dentro do ambiente virtual sempre usaremos o pip para instalar os pacotes necessários.	
+O pacote **python-setuptools** foi utilizado apenas para instalarmos o **easy_install** que usamos para instalar o **pip**.
 
-muito bem, com o **virtualenv** instalado o próximo passo será criar um **virtualenv** e assim instalarmos o **Django**.
+A partir de agora, no ambiente virtual sempre usaremos o **pip** para instalar os pacotes.	
 
-vamos criar nosso virtualenv chamado **pythonclub**:
+Muito bem, com o **virtualenv** instalado, o próximo passo será criar nosso **virtualenv** e instalarmos o **Django**.
+
+Vamos criar nosso virtualenv chamado **pythonclub**:
 
 .. code-block:: bash
 	
 	$ virtualenv pythonclub --no-site-packages 
 	
-**–no-site-packages** = esse parametro do virtualenv indica que meu ambiente virtual será totalmente isolado 
-do meu sistema operacional, e só enxergara os pacotes instalados dentro do virtualenv.
+**--no-site-packages** = esse parametro do virtualenv indica que o ambiente virtual será totalmente isolado do sistema operacional, que só enxergará os pacotes instalados dentro do virtualenv.
 
-agora vamos entrar dentro do ambiente virtual que criamos, e vamos ativar o virtualenv:
+Agora vamos entrar dentro do ambiente virtual que criamos e vamos ativá-lo:
 
 .. code-block:: bash
 	
 	$ cd pythonclub/
 	$ source bin/activate
 	
-Neste momento temos nosso ambiente virtual criado e ativado, pronto para instalar o django, e é isso que vamos fazer:
+Neste momento temos o ambiente virtual criado e ativado, pronto para instalar o **django**:
 
 .. code-block:: bash
 
 	$ pip install django
 	
-Quando executamos o **pip install django** e não especificamos a versão, será instalado ultima versão disponivel, 
-se quizermos instalar uma versão especifica podemos executar assim: **$ pip install django==1.5.4**
+Quando executamos o comando **pip install django** sem especificarmos a versão desejada, 
+o pip instala a ultima versão disponivel. Se quizermos instalar uma versão específica devemos executar assim: 
 
-Então podemos finalmente criar nosso projeto django executando o comando:
+.. code-block:: bash
+
+	$ pip install django==1.5.4
+
+Então podemos finalmente criar o projeto django executando o seguinte comando:
 
 .. code-block:: bash
 
 	$ django-admin.py startproject first_django_project
 	
-Com nosso projeto criado podemos criar uma app para este projeto, e vamos criar uma app com o nome: **core**:
+Com o projeto criado, devemos criar uma app chamada: **core**:
 
 .. code-block:: bash
 
 	$ cd first_django_project
 	$ python manage.py startapp core
 
-agora alterando o arquivo settings.py vou adicionar a app **core** em **INSTALLED_APPS**
+Alterar o arquivo settings.py para adicionar a app **core** em **INSTALLED_APPS**
 
 .. code-block:: python
 
@@ -128,8 +131,9 @@ agora alterando o arquivo settings.py vou adicionar a app **core** em **INSTALLE
 	    'core',
 	)
 	
-**OBS:** perceba que por estar usando o **Django 1.6** a app admin já está instalada.	
-até aqui a estrutura de diretórios deve estar assim:
+**OBS:** perceba que ao usar o **Django 1.6** a app admin já estará instalada.	
+
+Até aqui a estrutura de diretórios está assim:
 
 .. code-block:: bash
 
@@ -151,9 +155,9 @@ até aqui a estrutura de diretórios deve estar assim:
 
 	
 	
-OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv, o restante são diretórios do projeto.
+OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv. O restante são diretórios do projeto.
 
-vamos executar o projeto digitando o comando:
+Para rodar o projeto, digite o comando:
 	
 .. code-block:: bash
 
@@ -170,7 +174,7 @@ vamos executar o projeto digitando o comando:
 .. image:: images/fabianogoes/django-runserver.png
    :alt: comando runserver do django-admin.py
 
-Chegou o momento de instalar no editor, no caso deste tutorial o **Sublime Text 3**
+Chegou o momento de instalarmos o editor. No caso deste tutorial usaremos o **Sublime Text 3**
 	
 .. code-block:: bash
 
@@ -179,15 +183,14 @@ Chegou o momento de instalar no editor, no caso deste tutorial o **Sublime Text 
 	$ sudo apt-get install sublime-text-installer
 
 
-Com o Sublime instalado, queria dizer que existe inumeros plugins para o sublime,
-mas isso sai um pouco do escopo deste tutorial, mesmo assim quero indicar destre estes inumeros plugins
-2 que não fico sem: **Djaneiro** e **SublimeCodeIntel**
+Com o Sublime já instalado, quero dizer que existe inúmeros plugins disponíveis,
+mas este assunto sai um pouco do escopo deste tutorial, mesmo assim quero indicar dentre estes inúmeros plugins, dois que não vivo sem: **Djaneiro** e **SublimeCodeIntel**
 
-indico 2 sites pra saber um pouco sobre os plugins:
+indico 2 sites para saber um pouco sobre os plugins:
 `Sublime wbond <https://sublime.wbond.net/>`_
 `Sublime Text Dicas <http://sublimetextdicas.com.br/>`_
 
-vou abrir o diretório do projeto através do menu **Project**::
+Para abrirmos o diretório do projeto no Sublime, iremos ao menu **Project**::
 	
 	Project >> Add Forlder to Project...
 
@@ -195,7 +198,7 @@ vou abrir o diretório do projeto através do menu **Project**::
    :alt: menu projeto no SublimeText 3
 		
 
-o fluxo de um request em projetos django é o seguinte:
+O fluxo de um request em projetos django é o seguinte:
 URL --> VIEW --> TEMPLATE
 
 Então vamos começar criando uma url *home* para o projeto, no arquivo urls.py:
@@ -204,7 +207,7 @@ Então vamos começar criando uma url *home* para o projeto, no arquivo urls.py:
 	
 	url(r'^$', 'core.views.home', name='home'),
 
-com a url criar e apontando para view **core.views.home** devemos criar esta view **home**,
+Com a url criada e apontando para view **core.views.home** vamos criar a tal view **home**,
 no arquivo core/views.py
 
 .. code-block:: python
@@ -215,19 +218,19 @@ no arquivo core/views.py
 		context = {'texto': 'Seu primeiro projeto Django no Linux/Ubuntu com Sublime Text 3'}
 		return render(request, 'index.html', context)
 
-E agora resta criar o template **index.html**, e aqui cabe uma observação.
-Sem se aprofundar muito, existe uma convenção no django que procura o template em um diretório: **app_name/templates**
-no nosso caso ficaria em: **first_django_project/core/templates**.
+Agora resta criarmos o template **index.html**. 
+Não me aprofundando muito, quero dizer que existe uma convenção no django que procura o template em um diretório: **app_name/templates**.
+No caso ficará assim: **first_django_project/core/templates**.
 
 OK, vamos criar este diretório e o template **index.html**,
-Estando no diretório root do nosso projeto: **first_django_project**: 
+estando no diretório root do projeto: **first_django_project**: 
 
 .. code-block:: bash
 
 	$ mkdir core/templates
 	$ touch core/templates/index.html 
 
-maravilha, o html do **index.html** será bem básico:
+maravilha, o html do **index.html** é bem básico:
 
 .. code-block:: html
 
@@ -241,10 +244,10 @@ maravilha, o html do **index.html** será bem básico:
 		<img src="{{ STATIC_URL }}images/logo_275x130.png"/>
 	</body>
 
-La na view home escrevemos no contexto uma variavel chamada: **texto** e agora no template
-exibimos esta varival usando: **{{ texto }}**
+Na view **home** escrevemos no contexto uma variável chamada: **texto**, e agora no template
+estou exibindo esta variável usando: **{{ texto }}**
 
-Executando o projeto novamente temos o resultado:
+Executando o projeto novamente o resultado será:
 	
 .. code-block:: bash
 
@@ -263,7 +266,8 @@ Executando o projeto novamente temos o resultado:
    :alt: comando runserver do django-admin.py
 
 
-Pra finalizar vou criar uma classe model simples apenas para ilustrar o uso do **Admin**
+Para finalizarmos vamos criar uma classe model simples, apenas para ilustrar o uso do **Admin**
+
 no arquivo core/models.py
 
 .. code-block:: python
@@ -277,14 +281,15 @@ no arquivo core/models.py
 	    def __unicode__(self):
 		    return self.nome
 
-rodando o comando **syncdb** para criar as tabelas, este comando vai perguntar se deseja criar um super usuário, digite **yes** e crie o usuário **admin** e de uma senha e email.
+Vamos rodar o comando **syncdb** para o dango criar as tabelas. 
+Este comando vai perguntar se você deseja criar um super usuário, digite **yes**, crie o usuário **admin** e dê uma senha e um email.
 
 .. code-block:: bash
 
 	$ python manage.py syncdb
 
 
-e agora vamos registar essa classe no admin, editando o arquivo core/admin.py se o arquivo não existir crie:
+Agora vamos registar esta classe no admin, editando o arquivo core/admin.py(se o arquivo não existir crie):
 
 .. code-block:: python
 
@@ -294,17 +299,15 @@ e agora vamos registar essa classe no admin, editando o arquivo core/admin.py se
 	admin.site.register(Pessoa)
 
 
-agora rodando o projeto e acessando a url: **http://127.0.0.1:8000/admin/**
+Rodando o projeto e acessando a url: **http://127.0.0.1:8000/admin/**
 digite o super usuário e senha criado ao rodar o comando **syncdb**
 
 .. image:: images/fabianogoes/django-admin.png
    :alt: menu de login da interface administrativa do django
 
-neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.
+Neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.
 
 
 Bom pessoal, é isso, um tutorial simples apenas de meio longo.
 
 espero que gostem, um abraço a todos!
-
-
