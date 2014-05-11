@@ -1,7 +1,7 @@
 Seu primeiro projeto Django com Sublime Text no Linux
 #####################################################
 
-:date: 2014-05-11 10:00
+:date: 2014-05-11 02:00
 :tags: python, django, vitualenv
 :category: Django
 :slug: primeiro-projeto-django-no-linux-com-sublime
