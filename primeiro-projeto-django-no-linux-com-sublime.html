@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
+
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
+    
+    <link rel="shortcut icon" href="http://pythonclub.com.br/theme/images/favicon.ico" >
+
+            <title>Seu primeiro projeto Django com Sublime Text no Linux // PythonClub // </title>
+
+    <meta property="fb:app_id" content="1487080281503641" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Seu primeiro projeto Django com Sublime Text no Linux" />
+    <meta property="og:site_name" content="PythonClub" />
+    <meta property="og:url" content="http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime.html" />
+    <meta property="og:description" content="Primeiro projeto Django no Linux/Ubuntu com Sublime Text 3" />
+    <!-- <meta property="og:image" content="" /> -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://pythonclub.com.br/author/fabiano-goes.html" title="See posts by Fabiano Góes">
+                    <img class="article-avatar" alt="Fabiano Góes" src="http://www.gravatar.com/avatar/c23c00b358c434be3991b729fbbbfee3">
+                </a>
+                <h2 class="article-info">Fabiano Góes</h2>
+                <small class="about-author"></small>
+                <h5>Publicado em:</h5>
+                <p>Sun 11 May 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Seu primeiro projeto Django com Sublime Text no Linux</h1>
+                        <p class="post-meta">
+                            // Tags                                 <a class="post-category" href="http://pythonclub.com.br/tag/python.html">python</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/django.html">django</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/vitualenv.html">vitualenv</a>
+                        </p>
+                </header>
+            </section>
+            <div class="section" id="o-objetivo-deste-artigo">
+<h2>O objetivo deste artigo:</h2>
+<ul class="simple">
+<li>Instalar/Verificar python instalado no Sistema Operacional.</li>
+<li>Instalar gerenciador de pacotes python: pip.</li>
+<li>Instalar o virtualenv.</li>
+<li>Criar/Ativar o virtualenv do projeto.</li>
+<li>Instalar o Django dentro do virtualenv.</li>
+<li>Criar um projeto Django.</li>
+<li>Criar uma app Django dentro do projeto.</li>
+<li>Instalar Sublime Text.</li>
+<li>Criar uma classe Model.</li>
+<li>Criar uma rota: home.</li>
+<li>Criar a view: home.</li>
+<li>Configurar o Admin.</li>
+<li>Rodar o Projeto.</li>
+</ul>
+<div class="section" id="ambiente-usado-durante-a-escrita-deste-artigo">
+<h3>Ambiente usado durante a escrita deste artigo</h3>
+<ul class="simple">
+<li>Sistema Operacional: Linux Ubuntu 12.04 LTS</li>
+<li>Python 2.7.3</li>
+<li>Django 2.6</li>
+</ul>
+<hr class="docutils" />
+<p>No Linux/Ubuntu não precisamos instalar Python, isso porque já é nativo em sistemas operacionais baseados em Unix,
+mas pra ter certeza basta executar o comando no terminal:</p>
+<div class="highlight"><pre><span class="nv">$ </span>python –version
+</pre></div>
+<p>o resultado deve ser:</p>
+<div class="highlight"><pre>Python 2.7.3
+</pre></div>
+<p>vamos começar instalando os pacotes necessários no Sistema Operacional:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get update
+<span class="nv">$ </span>sudo apt-get install python-dev python-setuptools
+<span class="nv">$ </span>sudo easy_install pip
+<span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+<p>pra testar se o virtualenv está instalado corretamente execute no terminal:</p>
+<div class="highlight"><pre><span class="nv">$ </span>virtualenv --version
+</pre></div>
+<p>resultado:</p>
+<div class="highlight"><pre>1.11.5
+</pre></div>
+<p>O pacote <strong>python-setuptools</strong> foi necessário apenas para instalar o <strong>easy_install</strong> que usamos para instalar o <strong>pip</strong>
+A partir de agora dentro do ambiente virtual sempre usaremos o pip para instalar os pacotes necessários.</p>
+<p>muito bem, com o <strong>virtualenv</strong> instalado o próximo passo será criar um <strong>virtualenv</strong> e assim instalarmos o <strong>Django</strong>.</p>
+<p>vamos criar nosso virtualenv chamado <strong>pythonclub</strong>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>virtualenv pythonclub --no-site-packages
+</pre></div>
+<p><strong>–no-site-packages</strong> = esse parametro do virtualenv indica que meu ambiente virtual será totalmente isolado
+do meu sistema operacional, e só enxergara os pacotes instalados dentro do virtualenv.</p>
+<p>agora vamos entrar dentro do ambiente virtual que criamos, e vamos ativar o virtualenv:</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>pythonclub/
+<span class="nv">$ </span><span class="nb">source </span>bin/activate
+</pre></div>
+<p>Neste momento temos nosso ambiente virtual criado e ativado, pronto para instalar o django, e é isso que vamos fazer:</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install django
+</pre></div>
+<p>Quando executamos o <strong>pip install django</strong> e não especificamos a versão, será instalado ultima versão disponivel,
+se quizermos instalar uma versão especifica podemos executar assim: <strong>$ pip install django==1.5.4</strong></p>
+<p>Então podemos finalmente criar nosso projeto django executando o comando:</p>
+<div class="highlight"><pre><span class="nv">$ </span>django-admin.py startproject first_django_project
+</pre></div>
+<p>Com nosso projeto criado podemos criar uma app para este projeto, e vamos criar uma app com o nome: <strong>core</strong>:</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first_django_project
+<span class="nv">$ </span>python manage.py startapp core
+</pre></div>
+<p>agora alterando o arquivo settings.py vou adicionar a app <strong>core</strong> em <strong>INSTALLED_APPS</strong></p>
+<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
+    <span class="s">&#39;core&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+<p><strong>OBS:</strong> perceba que por estar usando o <strong>Django 1.6</strong> a app admin já está instalada.
+até aqui a estrutura de diretórios deve estar assim:</p>
+<div class="highlight"><pre>../first_django_project/
+├── core
+│   ├── admin.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── first_django_project
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── settings.py
+│   ├── settings.pyc
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+</pre></div>
+<p>OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv, o restante são diretórios do projeto.</p>
+<p>vamos executar o projeto digitando o comando:</p>
+<div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+Validating models...
+
+0 errors found
+May 11, 2014 - 03:30:48
+Django version 1.6.4, using settings <span class="s1">&#39;first_django_project.settings&#39;</span>
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+<span class="o">[</span>11/May/2014 03:30:59<span class="o">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> 200 1757
+</pre></div>
+<img alt="comando runserver do django-admin.py" src="images/fabianogoes/django-runserver.png" />
+<p>Chegou o momento de instalar no editor, no caso deste tutorial o <strong>Sublime Text 3</strong></p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo add-apt-repository ppa:webupd8team/sublime-text-3
+<span class="nv">$ </span>sudo apt-get update
+<span class="nv">$ </span>sudo apt-get install sublime-text-installer
+</pre></div>
+<p>Com o Sublime instalado, queria dizer que existe inumeros plugins para o sublime,
+mas isso sai um pouco do escopo deste tutorial, mesmo assim quero indicar destre estes inumeros plugins
+2 que não fico sem: <strong>Djaneiro</strong> e <strong>SublimeCodeIntel</strong></p>
+<p>indico 2 sites pra saber um pouco sobre os plugins:
+<a class="reference external" href="https://sublime.wbond.net/">Sublime wbond</a>
+<a class="reference external" href="http://sublimetextdicas.com.br/">Sublime Text Dicas</a></p>
+<p>vou abrir o diretório do projeto através do menu <strong>Project</strong>:</p>
+<pre class="literal-block">
+Project &gt;&gt; Add Forlder to Project...
+</pre>
+<img alt="menu projeto no SublimeText 3" src="images/fabianogoes/sublime-project.png" />
+<p>o fluxo de um request em projetos django é o seguinte:
+URL --&gt; VIEW --&gt; TEMPLATE</p>
+<p>Então vamos começar criando uma url <em>home</em> para o projeto, no arquivo urls.py:</p>
+<div class="highlight"><pre><span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="s">&#39;core.views.home&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">),</span>
+</pre></div>
+<p>com a url criar e apontando para view <strong>core.views.home</strong> devemos criar esta view <strong>home</strong>,
+no arquivo core/views.py</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+
+<span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;texto&#39;</span><span class="p">:</span> <span class="s">&#39;Seu primeiro projeto Django no Linux/Ubuntu com Sublime Text 3&#39;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+<p>E agora resta criar o template <strong>index.html</strong>, e aqui cabe uma observação.
+Sem se aprofundar muito, existe uma convenção no django que procura o template em um diretório: <strong>app_name/templates</strong>
+no nosso caso ficaria em: <strong>first_django_project/core/templates</strong>.</p>
+<p>OK, vamos criar este diretório e o template <strong>index.html</strong>,
+Estando no diretório root do nosso projeto: <strong>first_django_project</strong>:</p>
+<div class="highlight"><pre><span class="nv">$ </span>mkdir core/templates
+<span class="nv">$ </span>touch core/templates/index.html
+</pre></div>
+<p>maravilha, o html do <strong>index.html</strong> será bem básico:</p>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;head&gt;</span>
+                <span class="nt">&lt;title&gt;</span>Pythonclub<span class="nt">&lt;title&gt;</span>
+        <span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>{{ texto }}<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;{{ STATIC_URL }}images/logo_275x130.png&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+<p>La na view home escrevemos no contexto uma variavel chamada: <strong>texto</strong> e agora no template
+exibimos esta varival usando: <strong>{{ texto }}</strong></p>
+<p>Executando o projeto novamente temos o resultado:</p>
+<div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
+Validating models...
+
+0 errors found
+May 11, 2014 - 03:30:48
+Django version 1.6.4, using settings <span class="s1">&#39;first_django_project.settings&#39;</span>
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+<span class="o">[</span>11/May/2014 03:30:59<span class="o">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> 200 1757
+</pre></div>
+<img alt="comando runserver do django-admin.py" src="images/fabianogoes/runserv-index.png" />
+<p>Pra finalizar vou criar uma classe model simples apenas para ilustrar o uso do <strong>Admin</strong>
+no arquivo core/models.py</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Pessoa</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+        <span class="n">nome</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">cpf</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nome</span>
+</pre></div>
+<p>rodando o comando <strong>syncdb</strong> para criar as tabelas, este comando vai perguntar se deseja criar um super usuário, digite <strong>yes</strong> e crie o usuário <strong>admin</strong> e de uma senha e email.</p>
+<div class="highlight"><pre><span class="nv">$ </span>python manage.py syncdb
+</pre></div>
+<p>e agora vamos registar essa classe no admin, editando o arquivo core/admin.py se o arquivo não existir crie:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">core.models</span> <span class="kn">import</span> <span class="n">Pessoa</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Pessoa</span><span class="p">)</span>
+</pre></div>
+<p>agora rodando o projeto e acessando a url: <strong>http://127.0.0.1:8000/admin/</strong>
+digite o super usuário e senha criado ao rodar o comando <strong>syncdb</strong></p>
+<img alt="menu de login da interface administrativa do django" src="images/fabianogoes/django-admin.png" />
+<p>neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.</p>
+<p>Bom pessoal, é isso, um tutorial simples apenas de meio longo.</p>
+<p>espero que gostei, um abraço a todos!</p>
+</div>
+</div>
+
+            <div class="sharing">
+                <!-- Facebook sharing -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button" data-href="http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime.html" data-type="button_count"></div>
+
+                <!-- Twitter sharing -->
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Topo</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "pythonclub"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; PythonClub &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
