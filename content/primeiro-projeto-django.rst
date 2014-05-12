@@ -32,7 +32,7 @@ Ambiente usado durante a escrita deste artigo
 =============================================
 - Sistema Operacional: Linux Ubuntu 12.04 LTS
 - Python 2.7.3
-- Django 2.6 
+- Django 1.6 
 
 ---------------------------------------
 
