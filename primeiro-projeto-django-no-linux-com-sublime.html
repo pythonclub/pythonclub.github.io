@@ -83,53 +83,53 @@
 <ul class="simple">
 <li>Sistema Operacional: Linux Ubuntu 12.04 LTS</li>
 <li>Python 2.7.3</li>
-<li>Django 2.6</li>
+<li>Django 1.6</li>
 </ul>
 <hr class="docutils" />
-<p>No Linux/Ubuntu não precisamos instalar Python, isso porque já é nativo em sistemas operacionais baseados em Unix,
-mas pra ter certeza basta executar o comando no terminal:</p>
+<p>No Linux/Ubuntu não precisamos instalar Python, porque já é nativo em sistemas operacionais baseados em Unix, mas para termos certeza basta executar o comando no terminal:</p>
 <div class="highlight"><pre><span class="nv">$ </span>python –version
 </pre></div>
-<p>o resultado deve ser:</p>
+<p>o resultado será:</p>
 <div class="highlight"><pre>Python 2.7.3
 </pre></div>
-<p>vamos começar instalando os pacotes necessários no Sistema Operacional:</p>
+<p>Vamos começar instalando os pacotes necessários no Sistema Operacional:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo apt-get update
 <span class="nv">$ </span>sudo apt-get install python-dev python-setuptools
 <span class="nv">$ </span>sudo easy_install pip
 <span class="nv">$ </span>sudo pip install virtualenv
 </pre></div>
-<p>pra testar se o virtualenv está instalado corretamente execute no terminal:</p>
+<p>Para testarmos se o virtualenv está instalado corretamente executaremos no terminal:</p>
 <div class="highlight"><pre><span class="nv">$ </span>virtualenv --version
 </pre></div>
-<p>resultado:</p>
+<p>Resultado:</p>
 <div class="highlight"><pre>1.11.5
 </pre></div>
-<p>O pacote <strong>python-setuptools</strong> foi necessário apenas para instalar o <strong>easy_install</strong> que usamos para instalar o <strong>pip</strong>
-A partir de agora dentro do ambiente virtual sempre usaremos o pip para instalar os pacotes necessários.</p>
-<p>muito bem, com o <strong>virtualenv</strong> instalado o próximo passo será criar um <strong>virtualenv</strong> e assim instalarmos o <strong>Django</strong>.</p>
-<p>vamos criar nosso virtualenv chamado <strong>pythonclub</strong>:</p>
+<p>O pacote <strong>python-setuptools</strong> foi utilizado apenas para instalarmos o <strong>easy_install</strong> que usamos para instalar o <strong>pip</strong>.</p>
+<p>A partir de agora, no ambiente virtual sempre usaremos o <strong>pip</strong> para instalar os pacotes.</p>
+<p>Muito bem, com o <strong>virtualenv</strong> instalado, o próximo passo será criar nosso <strong>virtualenv</strong> e instalarmos o <strong>Django</strong>.</p>
+<p>Vamos criar nosso virtualenv chamado <strong>pythonclub</strong>:</p>
 <div class="highlight"><pre><span class="nv">$ </span>virtualenv pythonclub --no-site-packages
 </pre></div>
-<p><strong>–no-site-packages</strong> = esse parametro do virtualenv indica que meu ambiente virtual será totalmente isolado
-do meu sistema operacional, e só enxergara os pacotes instalados dentro do virtualenv.</p>
-<p>agora vamos entrar dentro do ambiente virtual que criamos, e vamos ativar o virtualenv:</p>
+<p><strong>--no-site-packages</strong> = esse parametro do virtualenv indica que o ambiente virtual será totalmente isolado do sistema operacional, que só enxergará os pacotes instalados dentro do virtualenv.</p>
+<p>Agora vamos entrar dentro do ambiente virtual que criamos e vamos ativá-lo:</p>
 <div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>pythonclub/
 <span class="nv">$ </span><span class="nb">source </span>bin/activate
 </pre></div>
-<p>Neste momento temos nosso ambiente virtual criado e ativado, pronto para instalar o django, e é isso que vamos fazer:</p>
+<p>Neste momento temos o ambiente virtual criado e ativado, pronto para instalar o <strong>django</strong>:</p>
 <div class="highlight"><pre><span class="nv">$ </span>pip install django
 </pre></div>
-<p>Quando executamos o <strong>pip install django</strong> e não especificamos a versão, será instalado ultima versão disponivel,
-se quizermos instalar uma versão especifica podemos executar assim: <strong>$ pip install django==1.5.4</strong></p>
-<p>Então podemos finalmente criar nosso projeto django executando o comando:</p>
+<p>Quando executamos o comando <strong>pip install django</strong> sem especificarmos a versão desejada,
+o pip instala a ultima versão disponivel. Se quizermos instalar uma versão específica devemos executar assim:</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install <span class="nv">django</span><span class="o">==</span>1.5.4
+</pre></div>
+<p>Então podemos finalmente criar o projeto django executando o seguinte comando:</p>
 <div class="highlight"><pre><span class="nv">$ </span>django-admin.py startproject first_django_project
 </pre></div>
-<p>Com nosso projeto criado podemos criar uma app para este projeto, e vamos criar uma app com o nome: <strong>core</strong>:</p>
+<p>Com o projeto criado, devemos criar uma app chamada: <strong>core</strong>:</p>
 <div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first_django_project
 <span class="nv">$ </span>python manage.py startapp core
 </pre></div>
-<p>agora alterando o arquivo settings.py vou adicionar a app <strong>core</strong> em <strong>INSTALLED_APPS</strong></p>
+<p>Alterar o arquivo settings.py para adicionar a app <strong>core</strong> em <strong>INSTALLED_APPS</strong></p>
 <div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
     <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
     <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
@@ -140,8 +140,8 @@ se quizermos instalar uma versão especifica podemos executar assim: <strong>$ p
     <span class="s">&#39;core&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
-<p><strong>OBS:</strong> perceba que por estar usando o <strong>Django 1.6</strong> a app admin já está instalada.
-até aqui a estrutura de diretórios deve estar assim:</p>
+<p><strong>OBS:</strong> perceba que ao usar o <strong>Django 1.6</strong> a app admin já estará instalada.</p>
+<p>Até aqui a estrutura de diretórios está assim:</p>
 <div class="highlight"><pre>../first_django_project/
 ├── core
 │   ├── admin.py
@@ -158,8 +158,8 @@ até aqui a estrutura de diretórios deve estar assim:</p>
 │   └── wsgi.py
 └── manage.py
 </pre></div>
-<p>OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv, o restante são diretórios do projeto.</p>
-<p>vamos executar o projeto digitando o comando:</p>
+<p>OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv. O restante são diretórios do projeto.</p>
+<p>Para rodar o projeto, digite o comando:</p>
 <div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
 Validating models...
 
@@ -171,28 +171,27 @@ Quit the server with CONTROL-C.
 <span class="o">[</span>11/May/2014 03:30:59<span class="o">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> 200 1757
 </pre></div>
 <img alt="comando runserver do django-admin.py" src="images/fabianogoes/django-runserver.png" />
-<p>Chegou o momento de instalar no editor, no caso deste tutorial o <strong>Sublime Text 3</strong></p>
+<p>Chegou o momento de instalarmos o editor. No caso deste tutorial usaremos o <strong>Sublime Text 3</strong></p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo add-apt-repository ppa:webupd8team/sublime-text-3
 <span class="nv">$ </span>sudo apt-get update
 <span class="nv">$ </span>sudo apt-get install sublime-text-installer
 </pre></div>
-<p>Com o Sublime instalado, queria dizer que existe inumeros plugins para o sublime,
-mas isso sai um pouco do escopo deste tutorial, mesmo assim quero indicar destre estes inumeros plugins
-2 que não fico sem: <strong>Djaneiro</strong> e <strong>SublimeCodeIntel</strong></p>
-<p>indico 2 sites pra saber um pouco sobre os plugins:
+<p>Com o Sublime já instalado, quero dizer que existe inúmeros plugins disponíveis,
+mas este assunto sai um pouco do escopo deste tutorial, mesmo assim quero indicar dentre estes inúmeros plugins, dois que não vivo sem: <strong>Djaneiro</strong> e <strong>SublimeCodeIntel</strong></p>
+<p>indico 2 sites para saber um pouco sobre os plugins:
 <a class="reference external" href="https://sublime.wbond.net/">Sublime wbond</a>
 <a class="reference external" href="http://sublimetextdicas.com.br/">Sublime Text Dicas</a></p>
-<p>vou abrir o diretório do projeto através do menu <strong>Project</strong>:</p>
+<p>Para abrirmos o diretório do projeto no Sublime, iremos ao menu <strong>Project</strong>:</p>
 <pre class="literal-block">
 Project &gt;&gt; Add Forlder to Project...
 </pre>
 <img alt="menu projeto no SublimeText 3" src="images/fabianogoes/sublime-project.png" />
-<p>o fluxo de um request em projetos django é o seguinte:
+<p>O fluxo de um request em projetos django é o seguinte:
 URL --&gt; VIEW --&gt; TEMPLATE</p>
 <p>Então vamos começar criando uma url <em>home</em> para o projeto, no arquivo urls.py:</p>
 <div class="highlight"><pre><span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="s">&#39;core.views.home&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">),</span>
 </pre></div>
-<p>com a url criar e apontando para view <strong>core.views.home</strong> devemos criar esta view <strong>home</strong>,
+<p>Com a url criada e apontando para view <strong>core.views.home</strong> vamos criar a tal view <strong>home</strong>,
 no arquivo core/views.py</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
@@ -200,15 +199,15 @@ no arquivo core/views.py</p>
         <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;texto&#39;</span><span class="p">:</span> <span class="s">&#39;Seu primeiro projeto Django no Linux/Ubuntu com Sublime Text 3&#39;</span><span class="p">}</span>
         <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
 </pre></div>
-<p>E agora resta criar o template <strong>index.html</strong>, e aqui cabe uma observação.
-Sem se aprofundar muito, existe uma convenção no django que procura o template em um diretório: <strong>app_name/templates</strong>
-no nosso caso ficaria em: <strong>first_django_project/core/templates</strong>.</p>
+<p>Agora resta criarmos o template <strong>index.html</strong>.
+Não me aprofundando muito, quero dizer que existe uma convenção no django que procura o template em um diretório: <strong>app_name/templates</strong>.
+No caso ficará assim: <strong>first_django_project/core/templates</strong>.</p>
 <p>OK, vamos criar este diretório e o template <strong>index.html</strong>,
-Estando no diretório root do nosso projeto: <strong>first_django_project</strong>:</p>
+estando no diretório root do projeto: <strong>first_django_project</strong>:</p>
 <div class="highlight"><pre><span class="nv">$ </span>mkdir core/templates
 <span class="nv">$ </span>touch core/templates/index.html
 </pre></div>
-<p>maravilha, o html do <strong>index.html</strong> será bem básico:</p>
+<p>maravilha, o html do <strong>index.html</strong> é bem básico:</p>
 <div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;head&gt;</span>
@@ -219,9 +218,9 @@ Estando no diretório root do nosso projeto: <strong>first_django_project</stron
         <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;{{ STATIC_URL }}images/logo_275x130.png&quot;</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 </pre></div>
-<p>La na view home escrevemos no contexto uma variavel chamada: <strong>texto</strong> e agora no template
-exibimos esta varival usando: <strong>{{ texto }}</strong></p>
-<p>Executando o projeto novamente temos o resultado:</p>
+<p>Na view <strong>home</strong> escrevemos no contexto uma variável chamada: <strong>texto</strong>, e agora no template
+estou exibindo esta variável usando: <strong>{{ texto }}</strong></p>
+<p>Executando o projeto novamente o resultado será:</p>
 <div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
 Validating models...
 
@@ -233,8 +232,8 @@ Quit the server with CONTROL-C.
 <span class="o">[</span>11/May/2014 03:30:59<span class="o">]</span> <span class="s2">&quot;GET / HTTP/1.1&quot;</span> 200 1757
 </pre></div>
 <img alt="comando runserver do django-admin.py" src="images/fabianogoes/runserv-index.png" />
-<p>Pra finalizar vou criar uma classe model simples apenas para ilustrar o uso do <strong>Admin</strong>
-no arquivo core/models.py</p>
+<p>Para finalizarmos vamos criar uma classe model simples, apenas para ilustrar o uso do <strong>Admin</strong></p>
+<p>no arquivo core/models.py</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="k">class</span> <span class="nc">Pessoa</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
@@ -244,19 +243,20 @@ no arquivo core/models.py</p>
         <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nome</span>
 </pre></div>
-<p>rodando o comando <strong>syncdb</strong> para criar as tabelas, este comando vai perguntar se deseja criar um super usuário, digite <strong>yes</strong> e crie o usuário <strong>admin</strong> e de uma senha e email.</p>
+<p>Vamos rodar o comando <strong>syncdb</strong> para o dango criar as tabelas.
+Este comando vai perguntar se você deseja criar um super usuário, digite <strong>yes</strong>, crie o usuário <strong>admin</strong> e dê uma senha e um email.</p>
 <div class="highlight"><pre><span class="nv">$ </span>python manage.py syncdb
 </pre></div>
-<p>e agora vamos registar essa classe no admin, editando o arquivo core/admin.py se o arquivo não existir crie:</p>
+<p>Agora vamos registar esta classe no admin, editando o arquivo core/admin.py(se o arquivo não existir crie):</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="kn">from</span> <span class="nn">core.models</span> <span class="kn">import</span> <span class="n">Pessoa</span>
 
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Pessoa</span><span class="p">)</span>
 </pre></div>
-<p>agora rodando o projeto e acessando a url: <strong>http://127.0.0.1:8000/admin/</strong>
+<p>Rodando o projeto e acessando a url: <strong>http://127.0.0.1:8000/admin/</strong>
 digite o super usuário e senha criado ao rodar o comando <strong>syncdb</strong></p>
 <img alt="menu de login da interface administrativa do django" src="images/fabianogoes/django-admin.png" />
-<p>neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.</p>
+<p>Neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.</p>
 <p>Bom pessoal, é isso, um tutorial simples apenas de meio longo.</p>
 <p>espero que gostem, um abraço a todos!</p>
 </div>
