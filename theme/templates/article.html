@@ -31,7 +31,9 @@
         <header class="header-article">
             <hgroup>
                 <a href="{{ SITEURL }}/{{ article.author.url }}" title="See posts by {{ article.author }}">
-                    <img class="article-avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+                    {% if article.author_gravatar %}
+                        <img class="article-avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+                    {% endif %}
                 </a>
                 <h2 class="article-info">{{ article.author }}</h2>
                 <div>
