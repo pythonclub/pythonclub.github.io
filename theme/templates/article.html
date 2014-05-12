@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ article.title|striptags }} // {{ super() }}{% endblock title %}
+{% block title %}{{ article.title|striptags }} - {{ article.author }} // {{ super() }}{% endblock title %}
 
 {% block head_css %}
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
