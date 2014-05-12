@@ -11,6 +11,7 @@ SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1399599503/pythonc
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
 
+GOOGLE_ANALYTICS = 'UA-50935105-1'
 FACEBOOK_APPID = '1487080281503641'
 
 TIMEZONE = 'America/Sao_Paulo'
