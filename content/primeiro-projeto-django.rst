@@ -15,7 +15,6 @@ Seu primeiro projeto Django com Sublime Text no Linux
 :facebook: fabianogoes.face
 :linkedin: fabianogoes
 
-
 ========================
 O objetivo deste artigo:
 ========================
