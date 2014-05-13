@@ -1,9 +1,8 @@
 Title: Publicação de projetos com o Django-Fagungis 
 Date: 2014-05-13 16:00
 Tags: Django, Fabric, Gunicorn, Nginx, Supervisor, Deploy, django-fagungis
-
 Category: deploy infraestrutura
-Slug: deploy-com-django-fagugis
+Slug: deploy-com-django-fagungis
 Author: Rômulo Collopy
 Email: romulocollopy@gmail.com 
 
