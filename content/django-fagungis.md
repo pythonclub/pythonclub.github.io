@@ -7,7 +7,7 @@ Author: Rômulo Collopy
 Email: romulocollopy@gmail.com 
 
 Django-Fagungis
------------
+---------------
 
 ### O que é?
 
