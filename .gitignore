@@ -5,3 +5,11 @@ __pycache__/
 # pelican
 output/
 *.pid
+
+bin/*
+include/*
+lib/*
+local/*
+*~
+*.pyc
+
