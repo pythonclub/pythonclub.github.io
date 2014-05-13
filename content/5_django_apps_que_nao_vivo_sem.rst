@@ -3,7 +3,7 @@
 
 :date: 2014-05-06 19:35
 :tags: django, django-apps, south, test, nose, coverage
-:category: Geral, Django, Python
+:category: Django
 :slug: 5-django-apps-que-nao-vivo-se
 :author: Igor Santos
 :email:  igr.exe@gmail.com

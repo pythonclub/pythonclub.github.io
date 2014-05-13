@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ article.title|striptags }} // {{ super() }}{% endblock title %}
+{% block title %}{{ article.title|striptags }} - {{ article.author }} // {{ super() }}{% endblock title %}
 
 {% block head_css %}
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
@@ -31,11 +31,77 @@
         <header class="header-article">
             <hgroup>
                 <a href="{{ SITEURL }}/{{ article.author.url }}" title="See posts by {{ article.author }}">
-                    <img class="article-avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+                    {% if article.author_gravatar %}
+                        <img class="article-avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+                    {% endif %}
                 </a>
                 <h2 class="article-info">{{ article.author }}</h2>
+                <div>
+			<ul class="author-social">
+			 {% if article.gittip %}
+				<li>
+					<a href="https://www.gittip.com/{{ article.gittip }}">
+						<i class="fa fa-lg fa-fw fa-gittip"></i> 
+						<strong>Gittip</strong>
+					</a>
+				</li>
+			 {% endif %}
+
+			 {% if article.github %}
+				<li>
+					<a href="https://github.com/{{ article.github }}">
+						<i class="fa fa-lg fa-fw fa-github"></i>
+						<strong>Github</strong>
+					</a>
+				</li>
+			 {% endif %}
+			 
+			 {% if article.bitbucket %}
+				<li>
+					<a href="https://bitbucket.org/{{ article.bitbucket }}">
+						<i class="fa fa-lg fa-fw fa-bitbucket"></i> 
+						<strong>Bitbucket</strong>
+					</a>
+				</li>
+			 {% endif %}
+
+			 {% if article.twitter %}
+				<li>
+					<a href="https://twitter.com/{{ twitter }}">
+						<i class="fa fa-lg fa-fw fa-twitter"></i> 
+						<strong>Twitter</strong>
+					</a>
+				</li>
+			 {% endif %}
+			 {% if article.linkedin %}
+				<li>
+					<a href="http://www.linkedin.com/in/{{ article.linkedin }}">
+						<i class="fa fa-lg fa-fw fa-linkedin"></i> 
+						<strong>Linkedin</strong>
+					</a>
+				</li>
+			 {% endif %}
+
+			 {% if article.facebook %}
+				<li>
+					<a href="https://www.facebook.com/{{ article.facebook }}">
+						<i class="fa fa-lg fa-fw fa-facebook"></i> 
+						<strong>Facebook</strong>
+					</a>
+				</li>
+			 {% endif %}
+			 {% if article.site %}
+				<li>
+					<a href="{{ article.site }}">
+						<i class="fa fa-lg fa-fw fa-globe"></i> 
+						<strong>Site</strong>
+					</a>
+				</li>
+			 {% endif %}
+			</ul>
+                </div>
                 <small class="about-author">{{ article.about_author }}</small>
-                <h5>Published</h5>
+                <h5>Publicado em:</h5>
                 <p>{{ article.locale_date }}</p>
                 <a href="/">&larr;Home</a>
             </hgroup>
@@ -47,7 +113,7 @@
                 <header class="post-header">
                     <h1>{{ article.title }}</h1>
                         <p class="post-meta">
-                            // under {% for tag in article.tags %}
+                            // Tags {% for tag in article.tags %}
                                 <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
                             {% endfor %}
                         </p>
@@ -70,9 +136,9 @@
                 <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             </div>
-            
+
             <div class="hr"></div>
-            <a href="#" class="go-top">Go Top</a>
+            <a href="#" class="go-top">Topo</a>
             {% if DISQUS_SITENAME %}
                 {% include 'disqus.html' %}
             {% endif %}
