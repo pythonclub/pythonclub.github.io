@@ -63,6 +63,7 @@ Vamos seguir adiante e alterar a página inicial do admin para listar os último
 Tire um tempo e brinque um pouco com este template e veja o que acontece se você alterar algumas coisa. Para adicionarmos a nossa listagem, vamos adicionar um painel lateral, para tal vamos adicionar o código abaixo antes do fechamento da ultima tag div. Nele podemos ver uma chamada para uma template_tag, portanto precisamos carrega-la no topo do template.
 
 .. code-block:: html
+
     {% load comentarios_tag %}
     ...
     ...
@@ -79,6 +80,7 @@ Esta template trata-se da responsável por fazer a consulta na base de dados e r
 Vamos então criar nossa template tag 'comentarios_n_liberados'. Primeiro devemos criar uma pasta chamada templatetags, dentro da nossa app core. Dentro ta pasta vamos inicializar um pacote python e criar o arquivo comentarios_tag.py. Nele precisamos declarar nosso metodo que deve se chamar 'comentarios_n_liberados' e nele fazer uma simples consulta ao banco buscando os comentários não liberados e por fim registrar a tag apontando para o template que será renderizado. Abaixo o código mais explicado.
 
 .. code-block:: python
+
     from django import template
     from core import models
 
@@ -95,6 +97,7 @@ Vamos então criar nossa template tag 'comentarios_n_liberados'. Primeiro devemo
 Abaixo o html do nosso template a ser renderizado, este deve estar dentro da pasta templates da nossa app core.
 
 .. code-block:: html
+
     {% if not comentarios %}
     	<p>Nenhum comentário novo</p>
     {% else %}
