@@ -59,17 +59,23 @@ Syntax Highlight
 ----------------
 
 .. code-block:: python
-	cd “C:\Python27\Scripts\”
-	python get-pip.py install
+
+    cd “C:\Python27\Scripts\”
+    
+    python get-pip.py install
+
 
 Ele efetuará a instalação do pip, para testar digite pip no prompt de comando e execute, ele aparecerá a lista de comandos disponíveis para uso do PIP incluindo o Install que é uma bela mão na roda, onde ele instala pacotes sem precisar baixar arquivos e instalar manualmente.
 O próximo passo será a instalação do Virtualenv, como recomendação para um ambiente de desenvolvimento saudável, instalaremos para evitar problemas com o uso de muitas bibliotecas diferentes para cada projeto, ele separa os ambientes de produção por ambientes virtuais, então é possível usar distribuições e bibliotecas diferentes em diferentes projetos mas no mesmo sistema operacional(usando a instalação limpa), o que seria impossível sem o Virtualenv.
 Instalaremos digitando no prompt de comando:
 
+
 Syntax Highlight
 ----------------
+
 .. code-block:: python
-	pip install virtualenv
+
+    pip install virtualenv
 
 Agora o passo mais difícil, instalar o Django depois do Pip instalado, digite o comando:
 
@@ -78,7 +84,8 @@ Syntax Highlight
 ----------------
 
 .. code-block:: python
-	pip install django==1.4.3
+
+    pip install django==1.4.3
 
 Muito difícil não?
 
