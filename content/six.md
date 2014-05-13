@@ -5,6 +5,12 @@ Category: Python
 Slug: sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3
 Author: Artur Felipe de Sousa
 Email:  arturfelipe.sousa@gmail.com
+Github: arturfelipe
+Bitbucket: arturfsousa
+Site: http://artursousa.com.br
+Twitter: arturfsousa
+Facebook: ArturFelipe
+Linkedin: arturfsousa
 
 
 ### Python 2.x ou python 3.x?
