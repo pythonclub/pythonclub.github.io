@@ -46,7 +46,30 @@ EXTRA_PATH_METADATA = {
 
 # Plugins
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['gravatar']
+
+PLUGINS = [
+    'gravatar',
+    'sitemap',
+    'pelican_youtube', # funciona somente com arquivos rst
+    'pelican_vimeo', # funciona somente com arquivos rst
+    'gzip_cache', # deve ser o ultimo plugin
+    
+]
+
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
 
 # Theme
 THEME = 'theme'
