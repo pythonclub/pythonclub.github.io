@@ -74,7 +74,7 @@ Tire um tempo e brinque um pouco com este template e veja o que acontece se voc�
     </div>
 
 
-Esta template trata-se da responsável por fazer a consulta na base de dados e renderizar a nossa lista, portanto ela é uma 'inclusion tag'. Se você não esta familiarizado com 'template tags', talvez queira dar uma olhada na documentação do django https://docs.djangoproject.com/en/dev/howto/custom-template-tags/.
+Esta template trata-se da responsável por fazer a consulta na base de dados e renderizar a nossa lista, portanto ela é uma 'inclusion tag'. Se você não esta familiarizado com 'template tags', talvez queira dar uma olhada na `documentação do django <https://docs.djangoproject.com/en/dev/howto/custom-template-tags/>`_.
 
 Vamos então criar nossa template tag 'comentarios_n_liberados'. Primeiro devemos criar uma pasta chamada templatetags, dentro da nossa app core. Dentro ta pasta vamos inicializar um pacote python e criar o arquivo comentarios_tag.py. Nele precisamos declarar nosso metodo que deve se chamar 'comentarios_n_liberados' e nele fazer uma simples consulta ao banco buscando os comentários não liberados e por fim registrar a tag apontando para o template que será renderizado. Abaixo o código mais explicado.
 
@@ -135,4 +135,5 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
     	│   │   └── index.html
 	└── manage.py
 
-Espero que tenham gostado, criticas/sugestões são bem-vindas.
+
+ `Download do Projeto <https://mega.co.nz/#!EsEhgJIT!MH9IQKz_n-swWlUx2ENjq93L2zdrEXu-TXPXalf7RzU>`_ Espero que tenham gostado, criticas/sugestões são bem-vindas.
