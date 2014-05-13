@@ -1,15 +1,16 @@
-Title: Publicação de projetos com o Django-Fagungis 
+Title: Sobre o six e como Publicação de projetos com o Django-Fagungis
 Date: 2014-05-13 16:00
 Tags: Django, Fabric, Gunicorn, Nginx, Supervisor, Deploy, django-fagungis
-Category: deploy-infraestrutura
+Category: Python, Django, Deploy
 Slug: deploy-com-django-fagungis
 Author: Rômulo Collopy
-Email: romulocollopy@gmail.com 
+Email:  romulo.collopy@gmail.com
+Github: romulocollopy
+Site: http://collopy.pro.br
+Twitter: romulocollopy
+Facebook: romulocollopy
 
-Django-Fagungis
----------------
-
-### O que é?
+### Django Fagungis
 
 Django-Fagungis é um projeto original do [Denis Darii](http://github.com/dnx), [disponível no Pypi para instalação via pip](https://pypi.python.org/pypi/django-fagungis/0.0.17). A idéia do projeto é simples: automatizar o deploy de projetos Django para servidores com acesso root, utilizando o [Fabric](http://www.fabfile.org/), uma biblioteca e ferramenta de linha de comando em Python (2.5-2.7) que usa o protocolo SSH para o deploy de aplicações e realização de tarefas administrativas no sistema, não restrita a projetos Python.
 
