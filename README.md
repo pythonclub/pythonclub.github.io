@@ -18,6 +18,10 @@ Como Contribuir
   para usar o que você sentir mais afinidade, veja alguns **[exemplos][6]**.
 * Após criar ou editar seu artigo faça um pull-request para que ele seja
   adicionado ao site.
+* Caso tenha dificuldades para escrever Markdown ou reStructuredText, veja esses editores online que auxiliam sua escrita: 
+* https://stackedit-beta.herokuapp.com/ 
+* http://dillinger.io/
+* http://prose.io/
 
 
 Informações Técnicas
