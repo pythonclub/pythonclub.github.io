@@ -54,10 +54,10 @@ Vamos seguir adiante e alterar a página inicial do admin para listar os último
 .. code-block:: bash
 
 	../blog/
-    ├── templates
-    │   ├── admin
-    │   │   ├── index.html
-    ├── core
+    	├── templates
+    	│   ├── admin
+    	│   │   └── index.html
+    	├── core
 
 
 Tire um tempo e brinque um pouco com este template e veja o que acontece se você alterar algumas coisa. Para adicionarmos a nossa listagem, vamos adicionar um painel lateral, para tal vamos adicionar o código abaixo antes do fechamento da ultima tag div. Nele podemos ver uma chamada para uma template_tag, portanto precisamos carrega-la no topo do template.
@@ -115,9 +115,9 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
 	../blog/
 	├── core
 	│   ├── templates
-    │   │   └── comentarios_n_liberados.html
-    │   ├── templatetag
-    │   │   └── comentarios_tag.py
+    	│   │   └── comentarios_n_liberados.html
+    	│   ├── templatetag
+    	│   │   └── comentarios_tag.py
 	│   ├── admin.py
 	│   ├── __init__.py
 	│   ├── models.py
@@ -131,8 +131,8 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
 	│   ├── urls.py
 	│   └── wsgi.py
 	├── templates
-    │   ├── admin
-    │   │   └── index.html
+    	│   ├── admin
+    	│   │   └── index.html
 	└── manage.py
 
 Espero que tenham gostado, criticas/sugestões são bem-vindas.
