@@ -7,12 +7,6 @@ Introdução a testes funcionais com Selenium e Python
 :slug: introducao-a-testes-funcionais-com-selenium-e-python
 :author: Mário Chaves
 :email:  macndesign@gmail.com
-:github: macndesign
-:bitbucket: macndesign
-:site: http://www.xsd.com.br
-:twitter: macndesign
-:facebook: macndesign
-:linkedin: macndesign
 
 
 
