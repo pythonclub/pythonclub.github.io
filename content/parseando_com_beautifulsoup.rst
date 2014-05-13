@@ -13,6 +13,7 @@ Exemplo de como "Parsear" Sites com BeautifulSoup
 Parseando Sites com BeautifulSoup
 =================================
 
+
 Como "pegar" informações de Sites com BeautifulSoup?
 ----------------------------------------------------
 
