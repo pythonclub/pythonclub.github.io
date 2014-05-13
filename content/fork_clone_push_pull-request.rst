@@ -4,7 +4,7 @@ Como fazer fork, clone, push pull-request no Github
 :date: 2014-05-13 01:40
 :tags: tutorial, git, github
 :category: Tutoriais
-:slug: como-fazer-fork-clone-push-pull-request-no-github 
+:slug: como-fazer-fork-clone-push-pull-request-no-github
 :author: Fábio C. Barrionuevo da Luz
 :email:  bnafta@gmail.com
 :github: luzfcb
@@ -12,10 +12,14 @@ Como fazer fork, clone, push pull-request no Github
 :linkedin: fabiocbarrionuevo
 :facebook: fabiocbarrionuevo
 
-Como fazer fork, clone, push pull-request no Github, ou como contribuir com projetos open-source
+
 
 Neste video, ensino o básico que vai lhe ajudar a dar seus primeiros passos no git, github e talvez lhe dar a habilidade necessaria para contribuir com postagens neste blog ou em qualquer outro projeto que você quiser.
 
+
+#################################################################################################
+Como fazer fork, clone, push pull-request no Github, ou como contribuir com projetos open-source
+#################################################################################################
 
 .. youtube::  am1XMMKk0UI
 
