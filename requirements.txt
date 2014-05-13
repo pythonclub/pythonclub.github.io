@@ -1,2 +1,4 @@
 pelican
 Markdown
+pelican-youtube
+pelican-vimeo

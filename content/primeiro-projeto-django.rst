@@ -8,7 +8,12 @@ Seu primeiro projeto Django com Sublime Text no Linux
 :author: Fabiano Góes
 :email:  fabianogoes@gmail.com
 :summary: Primeiro projeto Django no Linux/Ubuntu com Sublime Text 3
-
+:github: fabianogoes
+:bitbucket: fabianogoes
+:site: http://estudepy.wordpress.com/
+:twitter: @fabiano_goes
+:facebook: fabianogoes.face
+:linkedin: fabianogoes
 
 ========================
 O objetivo deste artigo:
