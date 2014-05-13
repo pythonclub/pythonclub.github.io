@@ -3,7 +3,7 @@ Exemplo de como "Parsear" Sites com BeautifulSoup
 
 :date: 2014-05-12 22:00
 :tags: beautifulsoup
-:category: Geral
+:category: Python
 :slug: Parseando Sites com BeautifulSoup
 :author: Gilmar Soares
 :email:  linux.soares@gmail.com
