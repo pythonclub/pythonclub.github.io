@@ -1,7 +1,7 @@
 Exemplo de como "Parsear" Sites com BeautifulSoup
 #################################################
 
-:date: 2014-05-12 22:00
+:date: 2014-05-12 22:40
 :tags: beautifulsoup
 :category: Python
 :slug: Parseando Sites com BeautifulSoup
