@@ -28,6 +28,7 @@ TRANSLATION_FEED_ATOM = None
 # Blogroll
 MENUITEMS = (
     ('Arquivo', 'archives.html'),
+    ('Sobre', 'pages/about.html'),
     # ('Autores', 'authors.html'),
     # ('Categorias', 'categories.html'),
     # ('Tags', 'tags.html'),
