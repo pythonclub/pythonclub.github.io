@@ -7,7 +7,9 @@ Exemplo de como "Parsear" Sites com BeautifulSoup
 :slug: parseando-sites-com-beautifulsoup
 :author: Gilmar Soares
 :email:  linux.soares@gmail.com
-:github: github.com/linuxsoares
+:github: linuxsoares
+:facebook: linux.soares
+:twitter: @linux_soares
 
 
 =================================
@@ -88,11 +90,13 @@ Para as informações desse título:
 	$ soup.title.string: este comando irá trazer o seguinte => Exemplo de Beautifulsoup
 
 Para os “P” de HTML:
+
 .. code-block:: bash
 
 	$ soup.p: este comando irá trazer o seguinte => <p class="title"><b>Exemplo de Beautifulsoup</b></p>
 
 Para pegar o nome da classe usada no “P”:
+
 .. code-block:: bash
 
 	$ soup.p['class']: este comando irá trazer o seguinte => u'title'
@@ -121,8 +125,6 @@ nesse Script implementei bastante coisa do Beautifulsoup e algumas outras coisas
 
 Qualquer dúvida pode entrar em contato:
 	* Email: linux.soares@gmail.com
-	* Twitter: `@gilmar_soares <https://twitter.com/gilmar_soares>`_
-	* Facebook: `facebook.com/linux.soares <https://www.facebook.com/linux.soares>`_
 	
 
 
