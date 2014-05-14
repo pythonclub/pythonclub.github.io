@@ -125,7 +125,6 @@ nesse Script implementei bastante coisa do Beautifulsoup e algumas outras coisas
 
 Qualquer dúvida pode entrar em contato:
 	* Email: linux.soares@gmail.com
-	* Twitter: `@gilmar_soares <https://twitter.com/gilmar_soares>`_
 	
 
 
