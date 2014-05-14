@@ -1,6 +1,15 @@
 Como criar um site com formulário e lista em 30 minutos?
 ########################################################
 
+:date: 2014-05-13 23:00
+:tags: python, django
+:category: Django
+:slug: criar-site-com-form-lista-30-min
+:author: Regis da Silva
+:email: regis.santos.100@gmail.com
+:summary: Como criar um site com formulário e lista em 30 minutos?
+:github: rg3915
+
 Se você já leu as [principais dúvidas de quem quer aprender Django]() agora você já está pronto para criar um site com:
 
 * um **modelo de dados** simples
