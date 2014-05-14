@@ -68,12 +68,7 @@ O próximo passo será a instalação do Virtualenv, como recomendação para um
 Instalaremos digitando no prompt de comando:
 
 
-<<<<<<< HEAD
-=======
-Syntax Highlight
-----------------
 
->>>>>>> cecd4453bd9aaaa61f8e470a0c9a136a1e2b4130
 .. code-block:: python
 
     pip install virtualenv
