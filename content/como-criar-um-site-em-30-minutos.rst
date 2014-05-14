@@ -10,7 +10,7 @@ Como criar um site com formulário e lista em 30 minutos?
 :summary: Como criar um site com formulário e lista em 30 minutos?
 :github: rg3915
 
-Se você já leu as [principais dúvidas de quem quer aprender Django]() agora você já está pronto para criar um site com:
+Se você já leu as `principais dúvidas de quem quer aprender Django <http://pythonclub.com.br/principais-duvidas-de-quem-quer-aprender-django.html>`_ agora você já está pronto para criar um site com:
 
 * um **modelo de dados** simples
 * um **formulário** para inserção dos dados
@@ -82,7 +82,7 @@ Rodando o projeto.
 
 	$ python manage.py runserver
 
-Abra o navegador e digite [http://127.0.0.1:8000/](http://127.0.0.1:8000/). Parabéns, seu projeto está funcionando.
+Abra o navegador e digite `http://127.0.0.1:8000/ <http://127.0.0.1:8000/>`_. Parabéns, seu projeto está funcionando.
 
 Agora vamos criar todos os demais elementos. Considere que estamos na pasta *env_crm/crm*.
 
@@ -102,12 +102,9 @@ Criando os *templates*.
 Veja no diagrama abaixo a relação de dependência entre os arquivos.
 
 .. image:: images/regisdasilva/diagrama.png
-
 	:alt: diagrama.html
 
-![diagrama](./images/regisdasilva/diagrama.png)
-
-Agora vamos editar alguns arquivos usando o [Sublime Text 3](http://www.sublimetext.com/3), leia também [Seu primeiro projeto Django com Sublime Text no Linux](http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime.html) de [Fabiano Góes](http://pythonclub.com.br/author/fabiano-goes.html).
+Agora vamos editar alguns arquivos usando o `Sublime Text 3 <http://www.sublimetext.com/3>`_, leia também `Seu primeiro projeto Django com Sublime Text no Linux <http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime.html>`_ de `Fabiano Góes <http://pythonclub.com.br/author/fabiano-goes.html>`_.
 
 Vamos carregar a pasta *env_crm* clicando em
 
@@ -160,7 +157,7 @@ Vamos criar o banco de dados através do comando **syncdb**.
 
 	$ python manage.py syncdb
 
-Agora vamos editar *crm/cadastro/views.py*. Vamos usar [Generic Views](https://docs.djangoproject.com/en/1.2/ref/generic-views/).
+Agora vamos editar *crm/cadastro/views.py*. Vamos usar `Generic Views <https://docs.djangoproject.com/en/1.2/ref/generic-views/>`_.
 
 .. code-block:: python
 
@@ -256,10 +253,7 @@ Agora vamos editar *crm/cadastro/templates/index.html*.
 	{% endblock content %}
 
 .. image:: images/regisdasilva/index.png
-
 	:alt: index.html
-
-![index.html](./images/regisdasilva/index.png)
 
 Agora vamos editar *crm/cadastro/templates/cadastro.html*.
 
@@ -276,12 +270,9 @@ Agora vamos editar *crm/cadastro/templates/cadastro.html*.
 	{% endblock content %}
 
 .. image:: images/regisdasilva/cadastro.png
-
 	:alt: cadastro.html
 
-![cadastro.html](./images/regisdasilva/cadastro.png)
-
-Leia sobre [as_p](http://docs.djangobrasil.org/topics/forms/#mostrando-um-formul-rio-usando-um-template) que significa que os campos ficarão em parágrafos, e [crsf_token (en)](https://docs.djangoproject.com/en/dev/ref/contrib/csrf/) que é uma proteção usada durante a inserção de dados.
+Leia sobre `as_p <http://docs.djangobrasil.org/topics/forms/#mostrando-um-formul-rio-usando-um-template>`_ que significa que os campos ficarão em parágrafos, e `crsf_token (en) <https://docs.djangoproject.com/en/dev/ref/contrib/csrf/>`_ que é uma proteção usada durante a inserção de dados.
 
 Agora vamos editar *crm/cadastro/templates/lista.html*.
 
@@ -317,11 +308,8 @@ Agora vamos editar *crm/cadastro/templates/lista.html*.
 	{% endblock content %}
 
 .. image:: images/regisdasilva/lista.png
-
 	:alt: lista.html
 
-![lista.html](./images/regisdasilva/lista.png)
+Leia também `Seu primeiro projeto Django com Sublime Text no Linux <http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime. html>`_ de `Fabiano Góes <http://pythonclub.com.br/author/fabiano-goes.html>`_.
 
-Leia também [Seu primeiro projeto Django com Sublime Text no Linux](http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime. html) de [Fabiano Góes](http://pythonclub.com.br/author/fabiano-goes.html).
-
-Baixe o projeto no ![github.com/rg3915/crm](https://github.com/rg3915/crm).
+Baixe o projeto no `github.com/rg3915/crm <https://github.com/rg3915/crm>`_.
