@@ -11,16 +11,19 @@ Principais dúvidas de quem quer aprender Django
 :github: rg3915
 
 Vou começar este post fazendo um pequeno depoimento:
+
 Quando eu ouvi falar de Django pela primeira vez eu me perguntei:
+
 `O que é Django?`_
+
 Daí eu comecei a procurar pela resposta, e surgiram outras perguntas. Eu precisei criar uma apresentação para a faculdade e consequentemente uma página com um **formulário** para inserção de dados, **gravação no banco de dados** e uma **lista** que retornasse os dados já gravados.
 Procurei por vários materiais, inclusive a documentação oficial do `Django <https://www.djangoproject.com/>`_ mas encontrei muitas dificuldades para aprender do zero, só consegui entender o que era Django depois que fiz o curso `Welcome to the Django <http://welcometothedjango.com.br/>`_. Então vejamos:
 
-`O que é Django?`_
-`Instalando o Django`_
-`O que é MTV?`_
-`O que é Virtualenv e Requirements?`_
-`Como criar um site com formulário e lista em 30 minutos? <http://pythonclub.com.br/criar-site-com-form-lista-30-min.html>`_
+- `O que é Django?`_
+- `Instalando o Django`_
+- `O que é MTV?`_
+- `O que é Virtualenv e Requirements?`_
+- `Como criar um site com formulário e lista em 30 minutos? <http://pythonclub.com.br/criar-site-com-form-lista-30-min.html>`_
 
 ===============
 O que é Django?
@@ -57,14 +60,14 @@ E segundo `PyPA <https://python-packaging-user-guide.readthedocs.org/en/latest/c
 Instalando o Django no Windows
 ------------------------------
 
-Veja o post de **Thiago Côroa**.
+Veja o post de **Thiago Côroa** (em breve).
 
 Instalando o Django no Linux
 ------------------------------
 
 Use o **terminal**.
 
-* **Python 2.7** - Já vem instalado no Linux!:) Digite:
+* **Python 2.7** - Já vem instalado no Linux! :) Digite:
 
 .. code-block:: bash
 
@@ -94,13 +97,13 @@ Use o **terminal**.
 
 Fonte: `Welcome to the Django <http://welcometothedjango.com.br/>`_ Curso
 
-Virtualenv
+* **Virtualenv**
 
 .. code-block:: bash
 
 	$ sudo pip install virtualenv
 
-Django 1.6
+* **Django 1.6**
 
 .. code-block:: bash
 
