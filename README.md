@@ -22,6 +22,16 @@ Como Contribuir
   * [StackEdit][8]
   * [Dillinger][9]
   * [Prose][10]
+ 
+
+Sincronizando seu fork
+----------------------
+
+Caso você já tenha feito fork a algum tempo você tem duas opções para garantir que
+estará trabalhando com as ultimas alterações, que pode ser simplesmente deletar
+seu fork e fazer um novo ou sincronizar seu fork com o repositório de origem
+usando as [instruções contidas na wiki][11]
+
 
 
 Informações Técnicas
@@ -78,3 +88,4 @@ Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finaliza
 [8]: https://stackedit-beta.herokuapp.com/ 
 [9]: http://dillinger.io/
 [10]: http://prose.io/
+[11]: https://github.com/pythonclub/pythonclub.github.io/wiki/Sincronizando-seu-fork-com-o-reposit%C3%B3rio-principal
