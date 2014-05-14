@@ -14,7 +14,7 @@ Instalação do Python 2.7
 
 Para começar a desenvolver algo em Python, devemos baixar o Python(Nossa, que descoberta!), 
 sendo a versão mais indicada o 2.7, por ser mais estável, possuir mais bibliotecas disponíveis
- e compatíveis e ser utilizada por mais desenvolvedores no mundo pythonico.
+e compatíveis e ser utilizada por mais desenvolvedores no mundo pythonico.
 
 
 Vejamos como fazer esta instalação:
