@@ -1,6 +1,6 @@
 Instalando e Configurando o Python e Django no Windows
 ######################################################
-:date: 2014-05-13 17:20
+:date: 2014-05-14 10:30
 :tags: python,django,windows
 :category: Tutoriais
 :slug: instalacao-python-django-windows
@@ -19,7 +19,8 @@ sendo a versão mais indicada o 2.7, por ser mais estável, possuir mais bibliot
 
 Vejamos como fazer esta instalação:
 -----------------------------------
--Baixar a versão 2.7 do Python no endereço: https://www.python.org/downloads/
+
+- Baixar a versão 2.7 do Python no endereço: https://www.python.org/downloads/
 
 
 .. image:: images/macabroaff/1.png
@@ -38,14 +39,14 @@ Seguindo os passos:
 
 Após feita a instalação é hora de adicionar o Python às variáveis de ambiente, o Windows não o faz sozinho, para testar, podemos digitar "python" no prompt de comando, caso esteja funcionando corretamente ele deverá mostrar a versão do python que está instalada e ativar o console interativo Python para uso, não estando adicionada a variável ao ambiente, faremos a seguinte operação:
 
-.. image:: images/5.png
+.. image:: images/macabroaff/5.png
 	:alt: Adicionando Variável de Ambiente
 
-Procurar em variáveis do sistema a Variável "Path" e editar a mesma com o caminho onde foi instalado o Python, neste caso, "C:\Python27\" .
+Procurar em variáveis do sistema a Variável "Path" e editar a mesma com o caminho onde foi instalado o Python, neste caso, "C:\\Python27\\" .
 
 Não esquecer de adicionar um ponto e vírgula antes do caminho, pois é o que define o fim da variável anterior e início da próxima.
 
-.. image:: images/6.png
+.. image:: images/macabroaff/6.png
 	:alt: Editando a Variável Path
 
 
@@ -53,7 +54,7 @@ Pronto! O Python 2.7 está instalado, agora instalaremos o Pip, baixaremos do si
 
 "http://www.pip-installer.org/en/latest/installing.html#install-pip"
 
-Baixar o arquivo get-pip.py na pasta “C:\Python27\Scripts”, logo após no cmd digite as seguintes linhas:
+Baixar o arquivo get-pip.py na pasta “C:\\Python27\\Scripts”, logo após no cmd digite as seguintes linhas:
 
 
 .. code-block:: python
