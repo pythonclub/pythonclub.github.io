@@ -94,7 +94,7 @@ Nota: ele já vem instalado no Mac e Linux
   3. Feche o Terminal, vá em Iniciar e clique com o botão direito sobre o “Computador” e selecione “Propriedades”
   4. No menu lateral clique em “Definições avançadas de sistema” e selecione “Variáveis de ambiente”
   5. Na caixa “Variáveis do sistema” selecione com um duplo clique o item “Path”
-  6. Ao final da linha “Valor da variável” insira “;C:\Python27\Scripts\” então dê Ok, Ok e Ok novamente
+  6. Ao final da linha “Valor da variável” insira ";C:\\Python27\\Scripts\\" então dê Ok, Ok e Ok novamente
   7. Abra o CMD (Terminal) novamente, digite `python`, e dê enter. Dessa vez vai entrar no interpretador!
 
 
@@ -102,7 +102,7 @@ Nota: ele já vem instalado no Mac e Linux
 Pip (Gerênciador de pacotes do Python) no Windows
 -------------------------------------------------
 
-  1. Através do Terminal vá até a pasta onde você fez download do arquivo get-pip.py, provavelmente em C:\Users\SeuUsuario\Downloads
+  1. Através do Terminal vá até a pasta onde você fez download do arquivo get-pip.py, provavelmente em "C:\\Users\\SeuUsuario\\Downloads"
   2. Ao entrar na pasta Downloads (Se o get-pip.py estiver nela) execute: python get-pip.py (Ele fará toda a instalação do Pip)
 
 
@@ -121,7 +121,7 @@ PhantomJS no Windows
   2. Vá em Iniciar e clique com o botão direito sobre o “Computador” e selecione “Propriedades”
   3. No menu lateral clique em “Definições avançadas de sistema” e selecione “Variáveis de ambiente”
   4. Na caixa “Variáveis do sistema” selecione com um duplo clique o item “Path”
-  5. Ao final da linha “Valor da variável” insira “;C:\phantomjs-1.9.7-windows\” então dê Ok, Ok e Ok novamente
+  5. Ao final da linha “Valor da variável” insira ";C:\\phantomjs-1.9.7-windows\\" então dê Ok, Ok e Ok novamente
   6. Abra o CMD (Terminal) e digite `phantomjs` e dê enter, se entrar no interpretador é porquê deu certo, Ctrl+c pra sair e então feche o terminal
 
 
@@ -428,4 +428,3 @@ Qualquer dúvida pode entrar em contato:
   * Google + `plus.google.com/+MárioChaves81 <https://plus.google.com/+M%C3%A1rioChaves81>`_
 
 Grande abraço!
-
