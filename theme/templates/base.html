@@ -29,13 +29,16 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pure.css">
     {% block head_css %}{% endblock %}
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
     {% block head_js %}{% endblock %}
 </head>
 
 <body>
     {% block content %}
     {% endblock %}
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script>
         var $top = $('.go-top');
 
