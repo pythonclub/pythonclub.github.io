@@ -1,7 +1,7 @@
 Exemplo de Publicação 2 (em RST) com tags opcionais para redes sociais
 ##############################
 
-:date: 2014-04-24 17:21
+:date: 2014-04-01 17:21
 :tags: exemplo
 :category: Geral
 :slug: exemplo-de-publicacao-em-rst-com-tags-opcionais-para-redes-sociais
@@ -17,9 +17,9 @@ Exemplo de Publicação 2 (em RST) com tags opcionais para redes sociais
 
 
 
-===========
-Lorem Ipsum
-===========
+===================
+MODIFICADO O TITULO
+===================
 
 Sub-titulo
 ----------
