@@ -11,22 +11,25 @@ Principais dúvidas de quem quer aprender Django
 :github: rg3915
 
 Vou começar este post fazendo um pequeno depoimento:
+
 Quando eu ouvi falar de Django pela primeira vez eu me perguntei:
-`O que é Django?`_
-Daí eu comecei a procurar pela resposta, e surgiram outras perguntas. Eu precisei criar uma apresentação para a faculdade e consequentemente uma página com um **formulário** para inserção de dados, **gravação no banco de dados** e uma **lista** que retornasse os dados já gravados.
-Procurei por vários materiais, inclusive a documentação oficial do [Django](https://www.djangoproject.com/) mas encontrei muitas dificuldades para aprender do zero, só consegui entender o que era Django depois que fiz o curso [Welcome to the Django](http://welcometothedjango.com.br/). Então vejamos:
 
 `O que é Django?`_
-`Instalando o Django`_
-`O que é MTV?`_
-`O que é Virtualenv e Requirements?`_
-[Como criar um site com formulário e lista em 30 minutos?]()
+
+Daí eu comecei a procurar pela resposta, e surgiram outras perguntas. Eu precisei criar uma apresentação para a faculdade e consequentemente uma página com um **formulário** para inserção de dados, **gravação no banco de dados** e uma **lista** que retornasse os dados já gravados.
+Procurei por vários materiais, inclusive a documentação oficial do `Django <https://www.djangoproject.com/>`_ mas encontrei muitas dificuldades para aprender do zero, só consegui entender o que era Django depois que fiz o curso `Welcome to the Django <http://welcometothedjango.com.br/>`_. Então vejamos:
+
+- `O que é Django?`_
+- `Instalando o Django`_
+- `O que é MTV?`_
+- `O que é Virtualenv e Requirements?`_
+- `Como criar um site com formulário e lista em 30 minutos? <http://pythonclub.com.br/criar-site-com-form-lista-30-min.html>`_
 
 ===============
 O que é Django?
 ===============
 
-Segundo [Django Brasil](http://www.djangobrasil.org/),
+Segundo `Django Brasil <http://www.djangobrasil.org/>`_,
 
 > *Django é um framework web de alto nível escrito em Python que estimula o desenvolvimento rápido e limpo.*
 
@@ -34,7 +37,7 @@ Foi criado por *Adrian Holovaty* numa agência publicitária.
 
 Django segue o princípio **DRY** *(Dont repeat yourself)* "Não se repita".
 
-Adota o padrão MTV, possui [mapeamento objeto-relacional](http://turing.com.br/material/acpython/mod3/django/orm1.html) [ORM](http://pt.wikipedia.org/wiki/Django_(framework_web)#Mapeamento_Objeto-Relacional_.28ORM.29), orientação à objeto, sistema de [administração](https://docs.djangoproject.com/en/1.6/ref/contrib/admin/) automático e completo, sistema de [templates](https://docs.djangoproject.com/en/1.6/topics/templates/) e é *open source*.
+Adota o padrão MTV, possui `mapeamento objeto-relacional <http://turing.com.br/material/acpython/mod3/django/orm1.html>`_ `ORM <http://pt.wikipedia.org/wiki/Django_(framework_web)#Mapeamento_Objeto-Relacional_.28ORM.29>`_, orientação à objeto, sistema de `administração <https://docs.djangoproject.com/en/1.6/ref/contrib/admin/>`_ automático e completo, sistema de `templates <https://docs.djangoproject.com/en/1.6/topics/templates/>`_ e é *open source*.
 
 =======================
 Instalando o Django
@@ -48,25 +51,23 @@ Na verdade não é só o Django, precisamos de:
 
 * **Git** - Sistema de controle de versão distribuído. 
 
-E segundo [PyPA](https://python-packaging-user-guide.readthedocs.org/en/latest/current.html) é recomendável a instalação das seguintes ferramentas:
+E segundo `PyPA <https://python-packaging-user-guide.readthedocs.org/en/latest/current.html>`_ é recomendável a instalação das seguintes ferramentas:
 
-* **Pip** - O [Pip](http://pip.readthedocs.org/en/latest/) é uma ferramenta para instalar e gerenciar pacotes Python.
+* **Pip** - O `Pip <http://pip.readthedocs.org/en/latest/>`_ é uma ferramenta para instalar e gerenciar pacotes Python.
 
-* **Virtualenv** - O [Virtualenv](https://python-packaging-user-guide.readthedocs.org/en/latest/projects.html#virtualenv) é um ambiente virtual de desenvolvimento que isola o projeto com suas dependências específicas. Ou seja, você pode ter vários projetos com bibliotecas diferentes, versões diferentes; e um não interfere no outro, consequentemente não interfere nas configurações padrões do sistema operacional. Exemplo, você pode ter um projeto com Django 1.6 e outro com Django 1.5, cada um no seu ambiente de desenvolvimento.
+* **Virtualenv** - O `Virtualenv <https://python-packaging-user-guide.readthedocs.org/en/latest/projects.html#virtualenv>`_ é um ambiente virtual de desenvolvimento que isola o projeto com suas dependências específicas. Ou seja, você pode ter vários projetos com bibliotecas diferentes, versões diferentes; e um não interfere no outro, consequentemente não interfere nas configurações padrões do sistema operacional. Exemplo, você pode ter um projeto com Django 1.6 e outro com Django 1.5, cada um no seu ambiente de desenvolvimento.
 
 Instalando o Django no Windows
 ------------------------------
 
-Veja o post de [Thiago Côroa](#).
+Veja o post de **Thiago Côroa** (em breve).
 
 Instalando o Django no Linux
 ------------------------------
 
 Use o **terminal**.
 
-* **Python 2.7**
-
-Já vem instalado no Linux!:) Digite:
+* **Python 2.7** - Já vem instalado no Linux! :) Digite:
 
 .. code-block:: bash
 
@@ -78,17 +79,15 @@ Já vem instalado no Linux!:) Digite:
 
 	$ sudo apt-get install -y git
 
-* **Curl**
-
-Talvez precise.
+* **Curl** - Talvez precise.
 
 .. code-block:: bash
 
 	$ sudo apt-get install -y curl
 
-Pip
+* **Pip**
 
-*Curl menos letra Ó*
+*"Curl menos letra Ó"*
 
 .. code-block:: bash
 
@@ -96,15 +95,15 @@ Pip
 	$ sudo python -y distribute_setup.py
 	$ sudo easy_install pip
 
-Fonte: [Welcome to the Django](http://welcometothedjango.com.br/) Curso
+Fonte: `Welcome to the Django <http://welcometothedjango.com.br/>`_ Curso
 
-Virtualenv
+* **Virtualenv**
 
 .. code-block:: bash
 
 	$ sudo pip install virtualenv
 
-Django 1.6
+* **Django 1.6**
 
 .. code-block:: bash
 
@@ -129,7 +128,7 @@ MTV significa *Model*, *View* e *Template*. É o mesmo modelo de *arquitetura de
 
 * *Templates* (prefiro não traduzir) são as páginas html, apesar de que a saída pode ser um simples texto no terminal. O legal é que templates no Django proporciona facilidade e flexibilidade, podemos criar um modelo *base* e estender sua reutilização, por exemplo.
 
-Leia mais sobre MTV em [Entendendo como o Django trabalha](http://www.aprendendodjango.com/entendendo-como-o-django-trabalha/). E veja o diagrama.
+Leia mais sobre MTV em `Entendendo como o Django trabalha <http://www.aprendendodjango.com/entendendo-como-o-django-trabalha/>`_. E veja o diagrama.
  
 ==================================
 O que é Virtualenv e Requirements?
@@ -153,4 +152,4 @@ Então o que é *requirements*?
 	django-extensions
 	pygraphviz
 
-Leia a continuação deste post em [Como criar um site com formulário e lista em 30 minutos?]().
+Leia a continuação deste post em `Como criar um site com formulário e lista em 30 minutos? <http://pythonclub.com.br/criar-site-com-form-lista-30-min.html>`_.
