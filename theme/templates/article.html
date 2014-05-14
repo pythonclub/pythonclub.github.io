@@ -22,7 +22,7 @@
     <meta property="og:site_name" content="{{ SITENAME }}" />
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
     <meta property="og:description" content="{{ article.summary|striptags }}" />
-    <!-- <meta property="og:image" content="" /> -->
+    <meta property="og:image" content="{{ SITELOGO }}" />
 {% endblock head %}
 
 {% block content %}
@@ -119,44 +119,14 @@
             <div class="sharing">
                 <!-- Facebook sharing -->
                 <div id="fb-root"></div>
-                <script type="text/javascript">
-                window.fbAsyncInit = function() {
-                    // init the FB JS SDK
-                    FB.init({
-                      appId      : '{{ FACEBOOK_APPID }}', // App ID from the App Dashboard
-                      status     : true, // check the login status upon init?
-                      cookie     : true, // set sessions cookies to allow your server to access the session?
-                      xfbml      : true  // parse XFBML tags on this page?
-                    });
-                    // customize share dialog
-                    FB.ui({
-                        method: 'feed',
-                        name: 'PythonClub',
-                        link: 'http://pythonclub.com.br/{{ article.url }}',
-                        picture: 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1399599503/pythonclub/logo_275x130.png',
-                        caption: 'Caption',
-                        description: 'description'
-
-                    }, function(response) {
-                        if(response && response.post_id){
-                        } else {
-                        }
-                    });
-                }
-
-                // Load the SDK asynchronously
-                function fb_callout() {(
-                    function(d){
-                        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                        if (d.getElementById(id)) {return;}
-                        js = d.createElement('script'); js.id = id; js.async = true;
-                        js.src = "//connect.facebook.net/en_US/all.js";
-                        ref.parentNode.insertBefore(js, ref);
-                    }(document));
-                }
-                </script>
-                
-                <div class="fb-share-button" data-href="{{ SITEURL }}/{{ article.url }}" data-type="button_count" onclick="fb_callout()"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId={{ FACEBOOK_APPID }}&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button" data-href="{{ SITEURL }}/{{ article.url }}" data-type="button_count"></div>
 
                 <!-- Twitter sharing -->
                 <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
