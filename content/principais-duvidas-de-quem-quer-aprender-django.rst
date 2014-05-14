@@ -1,6 +1,15 @@
 Principais dúvidas de quem quer aprender Django
 ###############################################
 
+:date: 2014-05-13 23:00
+:tags: python, django
+:category: Django
+:slug: principais-duvidas-de-quem-quer-aprender-django
+:author: Regis da Silva
+:email: regis.santos.100@gmail.com
+:summary: Principais dúvidas de quem quer aprender Django
+:github: rg3915
+
 Vou começar este post fazendo um pequeno depoimento:
 Quando eu ouvi falar de Django pela primeira vez eu me perguntei:
 `O que é Django?`_
