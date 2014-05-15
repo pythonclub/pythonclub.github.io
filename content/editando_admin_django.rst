@@ -136,4 +136,4 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
 
 
 
-Espero que tenham gostado, criticas/sugestões são bem-vindas. `Download do Projeto </codigos_fonte/sipmann/blog.zip>`_
+Espero que tenham gostado, criticas/sugestões são bem-vindas. `Download do Projeto <https://github.com/sipmann/editando-django-admin>`_
