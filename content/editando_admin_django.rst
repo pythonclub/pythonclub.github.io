@@ -12,7 +12,7 @@ Vamos falar um pouco sobre como customizar o admin do Django. Primeiramente porq
 
     - Exibir as vendas do mês em forma de gráfico por região do país
     - Exibir os últimos comentários adicionados
-    - TODO mais um aqui
+    - Exibir log dos ultimos usuários cadastrados
 
 O que faremos aqui será exibir os últimos comentários ainda não liberados de um sistema de blog. Vale lembrar que aqui não discutiremos sobre os primeiros passos da aplicação. Para seguirmos adiante, vamos assumir que já temos um projeto básico com uma estrutura simples, abaixo a estrutura inicial do nosso projeto.
 
@@ -20,16 +20,14 @@ O que faremos aqui será exibir os últimos comentários ainda não liberados de
 
 	../blog/
 	├── core
-	│   ├── admin.py
 	│   ├── __init__.py
+	│   ├── admin.py
 	│   ├── models.py
 	│   ├── tests.py
 	│   └── views.py
 	├── blog
 	│   ├── __init__.py
-	│   ├── __init__.pyc
 	│   ├── settings.py
-	│   ├── settings.pyc
 	│   ├── urls.py
 	│   └── wsgi.py
 	└── manage.py
@@ -121,16 +119,14 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
     	│   │   └── comentarios_n_liberados.html
     	│   ├── templatetag
     	│   │   └── comentarios_tag.py
-	│   ├── admin.py
 	│   ├── __init__.py
+	│   ├── admin.py
 	│   ├── models.py
 	│   ├── tests.py
 	│   └── views.py
 	├── blog
 	│   ├── __init__.py
-	│   ├── __init__.pyc
 	│   ├── settings.py
-	│   ├── settings.pyc
 	│   ├── urls.py
 	│   └── wsgi.py
 	├── templates
@@ -139,4 +135,5 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
 	└── manage.py
 
 
- `Download do Projeto <https://mega.co.nz/#!EsEhgJIT!MH9IQKz_n-swWlUx2ENjq93L2zdrEXu-TXPXalf7RzU>`_ Espero que tenham gostado, criticas/sugestões são bem-vindas.
+
+Espero que tenham gostado, criticas/sugestões são bem-vindas. `Download do Projeto <https://mega.co.nz/#!EsEhgJIT!MH9IQKz_n-swWlUx2ENjq93L2zdrEXu-TXPXalf7RzU>`_
