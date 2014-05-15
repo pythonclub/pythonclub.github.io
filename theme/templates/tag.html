@@ -1,0 +1,3 @@
+{% extends 'index.html' %}
+{% block title %}Tag {{ tag|striptags }} // {{ super() }}{% endblock title %}
+{% block pagetitle %}Postagens com a tag '{{ tag }}'{% endblock pagetitle %}

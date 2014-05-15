@@ -1,3 +1,4 @@
 pelican
 Markdown
-fabric
+pelican-youtube
+pelican-vimeo
