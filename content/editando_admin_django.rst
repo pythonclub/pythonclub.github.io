@@ -47,7 +47,7 @@ Para iniciarmos, precisamos da nossa tabela de comentários, vamos usar a mais s
 |    data     |    Date     |
 +-------------+-------------+
 
-Vamos seguir adiante e alterar a página inicial do admin para listar os últimos comentários de um simples sistema de blog. Para comerçar a editar o admin, precisamos inicialmente copiar o template que desejamos para a pasta uma pasta `admin` dentro ta pasta de templates do nosso projeto. Isto porque o Admin, não passa de uma app como outra qualquer, portanto o sistema de herança vai funcionar aqui, carregamento prioritariamente o seu template. Você pode conseguir o template que desejar (no nosso caso o index.html) dentro do projeto do Django mesmo, no meu caso "C:\Django-1.6.3\django\contrib\admin\templates\admin".
+Vamos seguir adiante e alterar a página inicial do admin para listar os últimos comentários de um simples sistema de blog. Para comerçar a editar o admin, precisamos inicialmente copiar o template que desejamos para a pasta uma pasta `admin` dentro ta pasta de templates do nosso projeto. Isto porque o Admin, não passa de uma app como outra qualquer, portanto o sistema de herança vai funcionar aqui, carregamento prioritariamente o seu template. Você pode conseguir o template que desejar (no nosso caso o index.html) dentro do projeto do Django mesmo, no meu caso "C:\\Django-1.6.3\\django\\contrib\\admin\\templates\\admin".
 
 .. code-block:: bash
 
@@ -136,4 +136,4 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
 
 
 
-Espero que tenham gostado, criticas/sugestões são bem-vindas. `Download do Projeto <https://github.com/sipmann/editando-django-admin>`_
+Espero que tenham gostado, criticas/sugestões são bem-vindas. `Fomtes do Projeto <https://github.com/sipmann/editando-django-admin>`_
