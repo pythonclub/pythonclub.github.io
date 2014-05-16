@@ -7,6 +7,7 @@ Editando o Admin do Django
 :slug: editando-o-admin-do-django
 :author: Maurício Camargo Sipmann
 :email:  sipmann@gmail.com
+:linkedin: sipmann
 
 Vamos falar um pouco sobre como customizar o admin do Django. Primeiramente porque? A resposta é bem simples, quero mostrar algo para o usuário sem que ele precise entrar nas apps e fazer alguma consulta para então tomar alguma ação. Alguns exêmplos para isto seriam:
 
@@ -136,4 +137,4 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final. Lembran
 
 
 
-Espero que tenham gostado, criticas/sugestões são bem-vindas. `Fomtes do Projeto <https://github.com/sipmann/editando-django-admin>`_
+Espero que tenham gostado, criticas/sugestões são bem-vindas. `Fontes do Projeto <https://github.com/sipmann/editando-django-admin>`_
