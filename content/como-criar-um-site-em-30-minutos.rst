@@ -16,6 +16,8 @@ Se você já leu as `principais dúvidas de quem quer aprender Django <http://py
 * um **formulário** para inserção dos dados
 * uma **lista** para exibição dos dados
 
+Talvez seja em menos de 30 minutos, mas vai depender de você!
+
 Não iremos mexer com CSS e nem imagens por enquanto, mas em breve farei um artigo sobre isso também.
 
 Bom, abra o **terminal** e vamos começar. Considere os seguintes nomes:
@@ -57,6 +59,8 @@ Instalando as bibliotecas do Requirements.
 	$ pip install -r requirements.txt
 
 Se não quiser instalar tudo, *instale apenas o* **Django** *e o* **Unipath**:
+
+O `Unipath <http://sluggo.scrapping.cc/python/unipath/>`_ é um pacote que trabalha com caminhos relativos de forma orientada à objetos. Segundo `Henrique Bastos <https://github.com/henriquebastos/slides-django-sem-trabalho/blob/master/settings.rst#n%C3%A3o-use-diret%C3%B3rios-hardcoded>`_, ele evita diretórios *hardcoded*, ou seja, não usa caminho absoluto, e sim caminhos relativos. Em *settings.py* veremos o uso deste pacote. Mas como ele mesmo diz, o uso de *os.path* não é problema, mas o *Unipath* ajuda bastante.
 
 .. code-block:: bash
 
@@ -114,6 +118,12 @@ Primeiro vamos editar *crm/settings.py*.
 
 .. code-block:: python
 
+	# import os
+	# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+	# Unipath aqui
+	from unipath import Path
+	BASE_DIR = Path(__file__).parent
+
 	...
 	INSTALLED_APPS = (
     	'django.contrib.admin',
@@ -126,6 +136,14 @@ Primeiro vamos editar *crm/settings.py*.
 	)
 	...
 	
+	DATABASES = {
+	    'default': {
+	        'ENGINE': 'django.db.backends.sqlite3',
+	        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	        'NAME': BASE_DIR.child('db.sqlite3'), # Unipath aqui
+	    }
+	}
+
 	LANGUAGE_CODE = 'pt-br'
 
 Agora vamos editar *crm/cadastro/models.py*.
@@ -157,33 +175,30 @@ Vamos criar o banco de dados através do comando **syncdb**.
 
 	$ python manage.py syncdb
 
-Agora vamos editar *crm/cadastro/views.py*. Vamos usar `Generic Views <https://docs.djangoproject.com/en/1.2/ref/generic-views/>`_.
+Agora vamos editar *crm/cadastro/views.py*. Vamos usar `Generic Views <https://docs.djangoproject.com/en/1.2/ref/generic-views/>`_. Note o uso do `reverse_lazy<https://docs.djangoproject.com/en/1.5/ref/urlresolvers/#reverse>`_, que facilita no gerenciamento de urls nomeadas.
 
 .. code-block:: python
 
 	# -*- coding: utf-8 -*-
 	from django.shortcuts import render
 	from django.views.generic import CreateView, ListView
-	
+	from django.core.urlresolvers import reverse_lazy
+
 	from cadastro.models import Inscricao
 	from cadastro.forms import InscricaoForm
-	
+
 	def home(request):
-		return render(request, 'index.html')
-	
+		return render(request,'index.html')
+
 	class Criar(CreateView):
 		template_name = 'cadastro.html'
 		model = Inscricao
-		success_url = '../lista'
-	
-		def form_valid(self,form):
-			print(self.request.POST['nome'])
-			return super(Criar,self).form_valid(form)
-	
+		success_url = reverse_lazy('lista')
+
 	class Lista(ListView):
 		template_name = 'lista.html'
 		model = Inscricao
-		context_object_name = 'nome'
+		context_object = 'nome'
 
 Agora vamos editar *crm/urls.py*.
 
