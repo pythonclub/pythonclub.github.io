@@ -22,6 +22,8 @@ Como Contribuir
   * [StackEdit][8]
   * [Dillinger][9]
   * [Prose][10]
+
+Não entendeu nada? Veja o video que explica o processo de fork, clone, push e pull-request : http://pythonclub.com.br/como-fazer-fork-clone-push-pull-request-no-github.html
  
 
 Sincronizando seu fork
