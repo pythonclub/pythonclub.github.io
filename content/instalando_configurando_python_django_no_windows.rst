@@ -83,7 +83,7 @@ Agora o passo mais difícil, instalar o Django depois do Pip instalado, digite o
 
 .. code-block:: python
 
-    pip install django==1.6.4
+    pip install django==1.6.5
 
 Pode ser digitado somente o nome do aplicativo. Ex.:
 
