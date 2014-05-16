@@ -7,7 +7,7 @@ Instalando e Configurando o Python e Django no Windows
 :author: Thiago Corôa
 :email:  macabroaff@hotmail.com
 :github: macabroaff
-
+:linkedin: br.linkedin.com/pub/thiago-corôa/88/406/8aa/
 =========================
 Instalação do Python 2.7
 =========================
@@ -81,7 +81,15 @@ Agora o passo mais difícil, instalar o Django depois do Pip instalado, digite o
 
 .. code-block:: python
 
-    pip install django==1.4.3
+    pip install django==1.6.4
+
+Pode ser digitado somente o nome do aplicativo. Ex.:
+.. code-block:: python
+    
+    pip install django
+
+Mas é sempre interessante saber a versão do que estamos trabalhando para solução de eventuais problemas.
+
 
 Muito difícil não?
 
