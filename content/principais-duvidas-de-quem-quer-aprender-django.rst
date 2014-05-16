@@ -60,7 +60,7 @@ E segundo `PyPA <https://python-packaging-user-guide.readthedocs.org/en/latest/c
 Instalando o Django no Windows
 ------------------------------
 
-Veja o post de **Thiago Côroa** (em breve).
+Veja o post de `Thiago Côroa <http://pythonclub.com.br/instalacao-python-django-windows.html>`_.
 
 Instalando o Django no Linux
 ------------------------------
