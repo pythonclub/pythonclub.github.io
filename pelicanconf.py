@@ -6,7 +6,7 @@ AUTHOR = u'PythonClub'
 AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
 SITENAME = u'PythonClub'
 SITEURL = 'http://pythonclub.com.br'
-SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1399599503/pythonclub/logo_275x130.png'
+SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1400201393/pythonclub/logo_275x130.png'
 
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
@@ -54,7 +54,7 @@ PLUGINS = [
     'pelican_youtube', # funciona somente com arquivos rst
     'pelican_vimeo', # funciona somente com arquivos rst
     'gzip_cache', # deve ser o ultimo plugin
-    
+
 ]
 
 
