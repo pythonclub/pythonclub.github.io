@@ -175,7 +175,7 @@ Vamos criar o banco de dados através do comando **syncdb**.
 
 	$ python manage.py syncdb
 
-Agora vamos editar *crm/cadastro/views.py*. Vamos usar `Generic Views <https://docs.djangoproject.com/en/1.2/ref/generic-views/>`_. Note o uso do `reverse_lazy<https://docs.djangoproject.com/en/1.5/ref/urlresolvers/#reverse>`_, que facilita no gerenciamento de urls nomeadas.
+Agora vamos editar *crm/cadastro/views.py*. Vamos usar `Generic Views <https://docs.djangoproject.com/en/1.2/ref/generic-views/>`_. Note o uso do `reverse_lazy <https://docs.djangoproject.com/en/1.5/ref/urlresolvers/#reverse>`_, que facilita no gerenciamento de urls nomeadas.
 
 .. code-block:: python
 
