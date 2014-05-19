@@ -7,6 +7,7 @@ Editando o Admin do Django
 :slug: editando-o-admin-do-django
 :author: Maurício Camargo Sipmann
 :email:  sipmann@gmail.com
+:linkedin: sipmann
 
 Vamos falar um pouco sobre como customizar o admin do Django. Primeiramente porque? A resposta é bem simples, quero mostrar algo para o usuário sem que ele precise entrar nas apps e fazer alguma consulta para então tomar alguma ação. Alguns exêmplos para isto seriam:
 
@@ -47,7 +48,7 @@ Para iniciarmos, precisamos da nossa tabela de comentários, vamos usar a mais s
 |    data     |    Date     |
 +-------------+-------------+
 
-Vamos seguir adiante e alterar a página inicial do admin para listar os últimos comentários de um simples sistema de blog. Para comerçar a editar o admin, precisamos inicialmente copiar o template que desejamos para a pasta uma pasta `admin` dentro ta pasta de templates do nosso projeto. Isto porque o Admin, não passa de uma app como outra qualquer, portanto o sistema de herança vai funcionar aqui, carregamento prioritariamente o seu template. Você pode conseguir o template que desejar (no nosso caso o index.html) dentro do projeto do Django mesmo, no meu caso "C:\Django-1.6.3\django\contrib\admin\templates\admin".
+Vamos seguir adiante e alterar a página inicial do admin para listar os últimos comentários de um simples sistema de blog. Para comerçar a editar o admin, precisamos inicialmente copiar o template que desejamos para a pasta uma pasta `admin` dentro ta pasta de templates do nosso projeto. Isto porque o Admin, não passa de uma app como outra qualquer, portanto o sistema de herança vai funcionar aqui, carregamento prioritariamente o seu template. Você pode conseguir o template que desejar (no nosso caso o index.html) dentro do projeto do Django mesmo, no meu caso "C:\\Django-1.6.3\\django\\contrib\\admin\\templates\\admin".
 
 .. code-block:: bash
 
@@ -139,4 +140,4 @@ Com tudo isto feito, basta subir o seu servidor e ver o resultado final, que pod
 
 
 
-Espero que tenham gostado, criticas/sugestões são bem-vindas. `Download do Projeto <https://github.com/sipmann/editando-django-admin>`_
+Espero que tenham gostado, criticas/sugestões são bem-vindas. `Fontes do Projeto <https://github.com/sipmann/editando-django-admin>`_
