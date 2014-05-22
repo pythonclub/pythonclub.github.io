@@ -7,6 +7,9 @@ Selenium - O que você deveria saber - Parte 1
 :slug: selenium-parte-1
 :author: Lucas Magnum
 :email:  contato@lucasmagnum.com.br
+:github: lucasmagnum
+:linkedin: lucasmagnum
+
 
 Esse é o primeiro post da série sobre Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)
 
@@ -27,10 +30,10 @@ Parte I
 
 Parte 2
 ---------
-    - `Brincando com formulários <http://localhost:8000/selenium-parte-2.html#brincando-com-formularios>`_
-    - `Trabalhando com múltiplas janelas <http://localhost:8000/selenium-parte-2.html#trabalhando-com-multiplas-janelas>`_
-    - `Trabalhando com frames <http://localhost:8000/selenium-parte-2.html#trabalhando-com-frames>`_
-    - `E se eu quiser esperar?! <http://localhost:8000/selenium-parte-2.html#e-se-eu-quiser-esperar>`_
+    - `Brincando com formulários <http://pythonclub.com.br/selenium-parte-2.html#brincando-com-formularios>`_
+    - `Trabalhando com múltiplas janelas <http://pythonclub.com.br/selenium-parte-2.html#trabalhando-com-multiplas-janelas>`_
+    - `Trabalhando com frames <http://pythonclub.com.br/selenium-parte-2.html#trabalhando-com-frames>`_
+    - `E se eu quiser esperar?! <http://pythonclub.com.br/selenium-parte-2.html#e-se-eu-quiser-esperar>`_
 
 Parte 3
 --------
