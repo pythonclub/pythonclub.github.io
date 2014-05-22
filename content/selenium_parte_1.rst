@@ -7,8 +7,11 @@ Selenium - O que você deveria saber - Parte 1
 :slug: selenium-parte-1
 :author: Lucas Magnum
 :email:  contato@lucasmagnum.com.br
+:github: lucasmagnum
+:linkedin: lucasmagnum
 
-Esse é o primeiro post da série sobre o Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)
+
+Esse é o primeiro post da série sobre Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)
 
 ================
 Introdução
@@ -27,10 +30,10 @@ Parte I
 
 Parte 2
 ---------
-    - Brincando formulários
-    - Trabalhando com múltiplas janelas
-    - Trabalhando com frames
-    - E se eu quiser esperar?!
+    - `Brincando com formulários <http://pythonclub.com.br/selenium-parte-2.html#brincando-com-formularios>`_
+    - `Trabalhando com múltiplas janelas <http://pythonclub.com.br/selenium-parte-2.html#trabalhando-com-multiplas-janelas>`_
+    - `Trabalhando com frames <http://pythonclub.com.br/selenium-parte-2.html#trabalhando-com-frames>`_
+    - `E se eu quiser esperar?! <http://pythonclub.com.br/selenium-parte-2.html#e-se-eu-quiser-esperar>`_
 
 Parte 3
 --------
@@ -163,7 +166,7 @@ Exemplo para estudo
       <section class="post">[...]</section>
     </div>
 
-  E cada ``post`` está dentro de uma ``section`` que possue a ``class="post"`` .
+  E cada ``post`` está dentro de uma ``section`` que possui a ``class="post"`` .
 
   .. code-block:: html
 
@@ -208,11 +211,10 @@ Execute o código abaixo e veja o resultado.
       post_link = post_title.get_attribute('href')
 
       # printar informações
-      print u"""
-          Títutlo: {titulo}, \n
-          Link: {link} \n
-      """.format(titulo=post_title.text, link=post_link)
-
+      print u"Títutlo: {titulo}, \nLink: {link}".format(
+        titulo=post_title.text,
+        link=post_link
+    )
 
   # Fechar navegador
   firefox.quit()
@@ -233,7 +235,8 @@ Desafios
   Modificar o exemplo 01 para salvar os dados(titulo, link, autor) em um arquivo ``json``.
 
 
-Por hoje é só!
+Gostou? Leia a `segunda parte <http://pythonclub.com.br/selenium-parte-2.html>`_.
+
 
 Qualquer dúvida pode enviar um e-mail `contato@lucasmagnum.com.br <contato@lucasmagnum.com.br>`_ ficarei feliz em ajudar =)
 
