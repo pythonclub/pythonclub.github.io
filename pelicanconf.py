@@ -6,11 +6,12 @@ AUTHOR = u'PythonClub'
 AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
 SITENAME = u'PythonClub'
 SITEURL = 'http://pythonclub.com.br'
-SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1399599503/pythonclub/logo_275x130.png'
+SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1400201393/pythonclub/logo_275x130.png'
 
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
 
+GOOGLE_ANALYTICS = 'UA-50935105-1'
 FACEBOOK_APPID = '1487080281503641'
 
 TIMEZONE = 'America/Sao_Paulo'
@@ -27,6 +28,7 @@ TRANSLATION_FEED_ATOM = None
 # Blogroll
 MENUITEMS = (
     ('Arquivo', 'archives.html'),
+    ('Sobre', 'pages/about.html'),
     # ('Autores', 'authors.html'),
     # ('Categorias', 'categories.html'),
     # ('Tags', 'tags.html'),
@@ -45,7 +47,30 @@ EXTRA_PATH_METADATA = {
 
 # Plugins
 PLUGIN_PATH = 'plugins'
-PLUGINS = ['gravatar']
+
+PLUGINS = [
+    'gravatar',
+    'sitemap',
+    'pelican_youtube', # funciona somente com arquivos rst
+    'pelican_vimeo', # funciona somente com arquivos rst
+    'gzip_cache', # deve ser o ultimo plugin
+
+]
+
+
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.5,
+        'indexes': 0.5,
+        'pages': 0.5
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
 
 # Theme
 THEME = 'theme'

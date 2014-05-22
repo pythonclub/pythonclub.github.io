@@ -29,13 +29,20 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pure.css">
     {% block head_css %}{% endblock %}
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    
     {% block head_js %}{% endblock %}
+    
+    {% include 'analytics.html' %}
 </head>
 
 <body>
     {% block content %}
     {% endblock %}
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    {% block bottom_js %}{% endblock %}
+    
     <script>
         var $top = $('.go-top');
 
@@ -60,6 +67,5 @@
             event.preventDefault();
         });
     </script>
-    {% include 'analytics.html' %}
 </body>
 </html>

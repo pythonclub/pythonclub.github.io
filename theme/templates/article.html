@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}{{ article.title|striptags }} // {{ super() }}{% endblock title %}
+{% block title %}{{ article.title|striptags }} - {{ article.author }} // {{ super() }}{% endblock title %}
 
 {% block head_css %}
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
 {% endblock %}
 
-{% block head_js %}
+{% block bottom_js %}
     <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -22,7 +22,7 @@
     <meta property="og:site_name" content="{{ SITENAME }}" />
     <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
     <meta property="og:description" content="{{ article.summary|striptags }}" />
-    <!-- <meta property="og:image" content="" /> -->
+    <meta property="og:image" content="{{ SITELOGO }}" />
 {% endblock head %}
 
 {% block content %}
@@ -31,10 +31,72 @@
         <header class="header-article">
             <hgroup>
                 <a href="{{ SITEURL }}/{{ article.author.url }}" title="See posts by {{ article.author }}">
-                    <img class="article-avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+                    {% if article.author_gravatar %}
+                        <img class="article-avatar" alt="{{ article.author }}" src="{{ article.author_gravatar }}">
+                    {% endif %}
                 </a>
                 <h2 class="article-info">{{ article.author }}</h2>
-                <small class="about-author">{{ article.about_author }}</small>
+    			<ul class="author-social">
+                    {% if article.gittip %}
+                    <li>
+                        <a target="_blank" href="https://www.gittip.com/{{ article.gittip }}">
+                            <i class="fa fa-lg fa-fw fa-gittip"></i>
+                            <strong>Gittip</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if article.github %}
+                    <li>
+                        <a target="_blank" href="https://github.com/{{ article.github }}">
+                            <i class="fa fa-lg fa-fw fa-github"></i>
+                            <strong>Github</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if article.bitbucket %}
+                    <li>
+                        <a target="_blank" href="https://bitbucket.org/{{ article.bitbucket }}">
+                            <i class="fa fa-lg fa-fw fa-bitbucket"></i>
+                            <strong>Bitbucket</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if article.twitter %}
+                    <li>
+                        <a target="_blank" href="https://twitter.com/{{ article.twitter }}">
+                            <i class="fa fa-lg fa-fw fa-twitter"></i>
+                            <strong>Twitter</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if article.linkedin %}
+                    <li>
+                        <a target="_blank" href="http://www.linkedin.com/in/{{ article.linkedin }}">
+                            <i class="fa fa-lg fa-fw fa-linkedin"></i>
+                            <strong>Linkedin</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if article.facebook %}
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/{{ article.facebook }}">
+                            <i class="fa fa-lg fa-fw fa-facebook"></i>
+                            <strong>Facebook</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if article.site %}
+                    <li>
+                        <a target="_blank" href="{{ article.site }}">
+                            <i class="fa fa-lg fa-fw fa-globe"></i>
+                            <strong>Site</strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if article.about_author %}
+                    <small class="about-author">{{ article.about_author }}</small>
+                {% endif %}
                 <h5>Publicado em:</h5>
                 <p>{{ article.locale_date }}</p>
                 <a href="/">&larr;Home</a>
