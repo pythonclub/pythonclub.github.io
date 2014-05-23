@@ -41,10 +41,11 @@ Informações Técnicas
 
 O site pythonclub.com.br está sendo hospedado usando o **[Github Pages][1]**.
 
-O **[Github Pages][1]** hospeda arquivos HTML sem qualquer tipo de custo, bastando que exista um repositório
-chamado ``seu-usuario.github.io`` (Perceba que deve ser incluido o ``.github.io``).
+O **[Github Pages][1]** hospeda arquivos HTML sem qualquer tipo de custo, bastando 
+que exista um repositório chamado ``seu-usuario.github.io`` 
+(Perceba que deve ser incluido o ``.github.io``).
 Os arquivos HTML devem ser incluidos no branch ``master`` para que o Github automaticamente
-publique aqueles arquivos HTML na web no endereço: ``http://seu-usuario.github.io``O que faz com que qualquer arquivo HTML
+publique aqueles arquivos HTML na web no endereço: ``http://seu-usuario.github.io``
 
 
 Para gerar os arquivos HTML, e visando a facilidade de escrever textos utilizando
