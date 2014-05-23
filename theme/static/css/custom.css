@@ -16,3 +16,12 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+code {
+  margin: 0;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+  padding: 0;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
