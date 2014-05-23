@@ -7,7 +7,7 @@ Blog colaborativo sobre tecnologias que envolvam a linguagem Python
 Como Contribuir
 ---------------
 
-* Faça um fork desse repositório
+* Faça um fork desse repositório, clicando no botão "Fork", na parte superior direita da pagina do Github
 * Clone seu fork:
 
     ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
@@ -39,17 +39,24 @@ usando as [instruções contidas na wiki][11]
 Informações Técnicas
 --------------------
 
-O site está sendo hospedado usando o **[Github Pages][1]**. Ele hospeda arquivos
-HTML sem qualquer tipo de custo, bastando que exista um repositório
-chamado ``seu-usuario.github.io`` o que faz com que qualquer arquivo HTML
-existente na branch ``master`` seja servido numa web.
+O site pythonclub.com.br está sendo hospedado usando o **[Github Pages][1]**.
 
-Para gerar esses arquivos
-HTML utilizamos o **[Pelican][2]**, que é um projeto feito em Python.
+O **[Github Pages][1]** hospeda arquivos HTML sem qualquer tipo de custo, bastando 
+que exista um repositório chamado ``seu-usuario.github.io`` 
+(Perceba que deve ser incluido o ``.github.io``).
+Os arquivos HTML devem ser incluidos no branch ``master`` para que o Github automaticamente
+publique aqueles arquivos HTML na web no endereço: ``http://seu-usuario.github.io``
+
+
+Para gerar os arquivos HTML, e visando a facilidade de escrever textos utilizando
+a linguagem de marcação [Markdown][11] e [reStructuredText][12], 
+utilizamos o **[Pelican][2]**, que é um projeto feito em Python.
 
 Como a branch ``master`` é usada internamente pelo Github para servir os
-arquivos HTML. Criamos uma branch chamado ``pelican`` para armazenar os arquivos
-de configuração e as publicação em seu "estado-bruto". Essa branch está definida
+arquivos HTML, criamos uma branch chamado ``pelican`` para armazenar os arquivos
+de configuração e as publicação em seu "estado-bruto".
+
+Essa branch está definida
 como padrão para o repositório e você possivelmente não precisará se preocupar
 com isso.
 
@@ -75,8 +82,13 @@ Para finalizar o servidor use:
 Futuras Publicações
 -------------------
 
-As publicações estão no [Google Drive][7], sendo mais fácil e interativo manipular uma planilha Excel.
-Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finalizar o seu artigo, envie o pull request e atualiza a planilha marcando que sua publicação já foi entregue.
+Alguns dos contribuidores criaram o compromisso de publicar alguns artigos.
+
+Foi estabelecido um prazo maximo para a entrega dos artigos com o intuito de que o contribuidor realmente publique o artigo com o conteudo que ele mesmo definiu.
+
+Você pode ver a lista contendo os nomes dos artigos nesta planilha no [Google Drive][7].
+
+Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finalizar o seu artigo, envie o pull request e atualize a planilha marcando que sua publicação já foi entregue.
 
 
 [0]: http://pythonclub.com.br/
@@ -91,3 +103,5 @@ Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finaliza
 [9]: http://dillinger.io/
 [10]: http://prose.io/
 [11]: https://github.com/pythonclub/pythonclub.github.io/wiki/Sincronizando-seu-fork-com-o-reposit%C3%B3rio-principal
+[12]: http://br-mac.org/2013/09/o-que-e-markdown.html
+[13]: http://pt.wikipedia.org/wiki/Restructuredtext
