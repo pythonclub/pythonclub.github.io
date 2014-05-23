@@ -1,7 +1,7 @@
 Title: What the Flask? Pt-1 Introdução ao desenvolvimento web com Python
 Slug: what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python
 Date: 2014-05-31 17:21
-Tags: flask,web,tutorial
+Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
 Github: rochacbruno
@@ -52,7 +52,7 @@ O Jinja2 já vem com a implementação da maioria das coisas necessárias na con
 - [Good Intentions](https://trinket.io/python/fdedd0fb94): O Flask é **Pythonico**! além do código ter alta qualidade nos quesitos de legibilidade ele também tenta seguir as premissas do [Zen do Python](https://trinket.io/python/fdedd0fb94) e dentro dessas boas intenções nós temos o fato dele ser um [**micro-framework**](http://flask.pocoo.org/docs/foreword/#what-does-micro-mean) deixando que você tenha liberdade de estruturar seu app da maneira que desejar. Tem os [padrões de projeto e extensões](http://flask.pocoo.org/docs/patterns/) que te dão a certeza de que seu app poderá crescer sem problemas. Tem os sensacionais [Blueprints](http://flask.pocoo.org/docs/blueprints/) para que você reaproveite os módulos que desenvolver. Tem o controverso uso de [Thread Locals](http://flask.pocoo.org/docs/advanced_foreword/#thread-locals-in-flask) para facilitar a vida dos desenvolvedores. E além de tudo disso, não posso deixar de mencionar a comunidade que é bastante ativa e compartilha muitos projetos de extensões open-source como o Flask Admin, Flask-Cache, Flask-Google-Maps, Flask-Mongoengine, Flask-SQLAlchemy, Flask-Login, Flask-Mail etc....
 
 
-> Em resumo: o Flask não fica no seu caminho deixando você fluir com o desenvolvimento de seu app, você pode começar pequeno com um app feito em um único arquivo e ir crescendo aos poucos até ter seus módulos bem estruturados de uma maneira que permita a escalabilidade e o trabalho em equipe.
+> **SUMMARY:** o Flask não fica no seu caminho deixando você fluir com o desenvolvimento de seu app, você pode começar pequeno com um app feito em um único arquivo e ir crescendo aos poucos até ter seus módulos bem estruturados de uma maneira que permita a escalabilidade e o trabalho em equipe.
 
 
 ### Por onde começar?
@@ -135,19 +135,23 @@ Agora salve o arquivo e vá para o terminal e execute:
 
 Abra o seu browser na url [http://localhost:5000](http://localhost:5000) e você verá:
 
-> Hello World! **I am learning Flask**
+<div style="border:1px solid black;padding:10px;">
+ Hello World! <strong>I am learning Flask</strong>
+</div>
 
-
-## Congratulations for your fantastic achievement!
-
-> Se tudo ocorreu bem até aqui então parabéns! você passou para o level 1.2 e já pode se considerar um **programador flask nível baby** :)
+> **ACHIEVEMENT UNLOCKED!** Se tudo ocorreu bem até aqui então parabéns! você passou para o level 1.2 e já pode se considerar um **programador flask nível baby** :)
 
 Nosso próximo passo será entender detalhadamente **o que aconteceu** nas 6 linhas que escrevemos no ```app.py```
 
 
 ### Level 1.2 - What The F**** happened here?
 
-Conforme mencionado no início deste artigo, o Flask utiliza como base o **WerkZeug** que é uma biblioteca WSGI. Para lidar com os recursos do WerkZeug precisamos de uma aplicação WSGI, uma instancia de um objeto Python que implemente o protocolo WSGI e possa ser servida pelos web servers e app servers que a implementam. No Flask fazemos isso criando uma instancia da classe **Flask**. O que essa classe faz é basicamente abstrair em métodos simples o fluxo de trabalho do padrão WSGI e do WerkZeug. Você pode ver como isto está implementado dando uma olhada no [código fonte](https://github.com/mitsuhiko/flask/blob/master/flask/app.py#L67).
+
+#### O objeto Flask
+
+Conforme mencionado no início deste artigo, o Flask utiliza como base o **WerkZeug** que é uma biblioteca WSGI. Para lidar com os recursos do WerkZeug precisamos de uma aplicação WSGI que é uma instância de um objeto Python que implemente o protocolo WSGI e possa ser servida pelos web servers que implementam este protocolo como o Gunicorn, Uwsgi, Apache mod_wsgi etc.
+
+No Flask fazemos isso criando uma instancia da classe **Flask**. O que essa classe faz é basicamente abstrair em métodos simples o fluxo de trabalho do padrão WSGI e do WerkZeug. Você pode ver como isto está implementado dando uma olhada no [código fonte](https://github.com/mitsuhiko/flask/blob/master/flask/app.py#L67).
 
 
 ```python
@@ -158,7 +162,9 @@ Conforme mencionado no início deste artigo, o Flask utiliza como base o **WerkZ
 
 Nas duas linhas acima nós importamos a classe base do Flask e criamos uma instancia dela que chamamos de **app**, este **app** que é nossa aplicação WSGI que deverá ser passada para o servidor de aplicação que a estiver servindo.
 
-A classe Flask pode receber alguns parâmetros para instancias o objeto **app** mas geralmente passamos apenas o **import_name** que deve ser o nome exato do pacote onde o **app** está definido. Você pode usar a variável ```__name__``` para pegar este valor dinâmicamente e você verá muitos exemplos assim, porém saiba desde já que isto [não é uma boa prática](https://github.com/mitsuhiko/flask/blob/master/flask/app.py#L98).
+> **BEST PRACTICE ADVICE:** Especifique explicitamente o nome de seu pacote na hora de criar o app Flask, ao invés de ``__name__`` informe "nome_do_pacote".
+
+A classe Flask pode receber alguns parâmetros para instanciar o objeto **app** mas geralmente passamos apenas o **import_name** que deve ser o nome exato do pacote onde o **app** está definido. Você pode usar a variável ```__name__``` para pegar este valor dinâmicamente e você verá muitos exemplos assim, porém saiba desde já que isto [não é uma boa prática](https://github.com/mitsuhiko/flask/blob/master/flask/app.py#L98).
 
 O Flask utiliza o **import_name** para definir o que pertence ao seu projeto e este nome é usado como base path para inferir os recursos como por exemplo a sua pasta de templates e sua pasta de arquivos estáticos.
 
@@ -179,7 +185,9 @@ Eu recomendo usar o primeiro padrão pois é mais bonito :)
 app = Flask("wtf")
 ```
 
-> O único caso onde uso do ```__name__``` é recomendado é quando seu projeto se resume a um único arquivo e não está contido em um pacote.
+> **NOTE:** O único caso onde uso do ```__name__``` é recomendado é quando seu projeto se resume a um único arquivo e não está contido em um pacote.
+
+#### Qual a vantagem de criar apps desta maneira?
 
 Tem duas coisas interessantes nessa forma explicita de criar aplicações no Flask.
 
@@ -197,6 +205,14 @@ rest_api = Flask(__name__, static_folder="path/to/different/folder")
 
 celery_app = Flask(__name__, instance_path="blablabla")
 
+
+class FlaskCustomizedForSoap(Flask):
+    """Um Flask customizado para sempre responder um objeto SOAP válido"""
+    def make_response(self, returned_by_view):
+        """faça alguma coisa para nornalizar a
+        resposta das views para o padrão SOAP"""
+        return soapify(returned_by_view)
+
 soap_api = FlaskCustomizedForSoap(__name__)
 
 ```
@@ -205,7 +221,43 @@ No exemplo acima temos em um único projeto 4 apps Flask que possuem papéis dif
 
 Neste caso para servir todas essas apps poderiamos usar o [WerkZeug Dispatcher Middleware](http://werkzeug.pocoo.org/docs/middlewares/#werkzeug.wsgi.DispatcherMiddleware) para mapear as urls de cada app para um endpoint ou um dominio diferente.
 
-> No último capítulo desta série entraremos em detalhes a respeito desse assunto.
+> **RELAX:** Nos próximos capítulos desta série entraremos em detalhes a respeito do Dispatcher e técnicas de organização e deploy.
+
+#### As views e o roteamento de urls
+
+##### Views:
+
+Views são funções que respondem por uma determinada url, a função da view é capturar os paramêtros enviados pelo cliente via url e então efetuar o processamento necessário com o objetivo de responser com algum tipo de conteúdo ou mensagem de status que pode ser desde um texto plano, um texto com JSON, um stream de dados, um template html renderizado etc.
+
+Por exemplo, se em nosso site de notícias o cliente requisitar via GET a url **http://localhost:8000/noticias/brasil?categoria=ciencia&quantidade=2** precisamos primeiramente ter este **endpoint** ``/noticias`` mapeado para uma view no nosso sistema de rotas e dentro desta view pegaremos o argumento **brasil** e os parâmetros **categoria** e **quantidade** para utilizarmos para efetuar a busca em nosso banco de dados de notícias e então construir um retorno para exibir no navegador.
+
+O Flask através do WerkZeug abstrai uma boa parte deste trabalho tornando isto uma tarefa bastante trivial, por baixo dos panos quando usamos o decorator **@app.route** na verdade estamos alimentando uma lista de mapeamento do Werkzeug implementada pelo [werkzeug.routing.Map](http://werkzeug.pocoo.org/docs/routing/#quickstart) e esta lista de mapeamento contém elementos do tipo **Rule** que é justamente a regra que liga uma url com uma função Python em nosso projeto.
+
+> "Have you looked at werkzeug.routing? It's hard to find anything that's simpler, more self-contained, or purer-WSGI than Werkzeug, in general — I'm quite a fan of it!"  —  Alex Martelli
+
+O Flask oferece 2 formas para o roteamento de views:
+
+1 Roteamento via decorator
+
+```python
+@app.route("/noticias/<pais>")
+def lista_de_noticias(pais):
+    cat = request.args.get("categoria")
+    qtd = request.args.get("quantidade")
+    noticias = BD.query(pais=pais, categoria=cat).limit(qtd)
+    return render_template("lista_de_noticias.html", noticias=noticias), 200
+```
+
+
+2 Roteamento explicito
+
+```python
+
+app.add_url_rule("/noticias/<pais>",
+                 endpoint="noticias",
+                 view_func=lista_de_noticias)
+```
+
 
 
 
