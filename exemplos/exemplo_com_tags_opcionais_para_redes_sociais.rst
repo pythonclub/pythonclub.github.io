@@ -6,6 +6,7 @@ Exemplo de Publicação 2 (em RST) com tags opcionais para redes sociais
 :category: Geral
 :slug: exemplo-de-publicacao-em-rst-com-tags-opcionais-para-redes-sociais
 :author: Fábio Caritas Barrionuevo da Luz
+:about_author: Algo explicando sobre você
 :email:  bnafta@gmail.com
 :github: seu_usuario_do_github
 :bitbucket: seu_usuario_do_bitbucket
