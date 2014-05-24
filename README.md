@@ -7,7 +7,7 @@ Blog colaborativo sobre tecnologias que envolvam a linguagem Python
 Como Contribuir
 ---------------
 
-* Faça um fork desse repositório, clicando no botão ![Fork[15]][14], na parte superior direita da pagina do Github
+* Faça um fork desse repositório, clicando no botão [![Fork][14]][15], na parte superior direita da pagina do Github
 * Clone seu fork:
 
     ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
