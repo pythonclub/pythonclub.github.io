@@ -7,7 +7,7 @@ Blog colaborativo sobre tecnologias que envolvam a linguagem Python
 Como Contribuir
 ---------------
 
-* Faça um fork desse repositório, clicando no botão "Fork", na parte superior direita da pagina do Github
+* Faça um fork desse repositório, clicando no botão ![Fork[15]][14], na parte superior direita da pagina do Github
 * Clone seu fork:
 
     ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
@@ -105,3 +105,5 @@ Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finaliza
 [11]: https://github.com/pythonclub/pythonclub.github.io/wiki/Sincronizando-seu-fork-com-o-reposit%C3%B3rio-principal
 [12]: http://br-mac.org/2013/09/o-que-e-markdown.html
 [13]: http://pt.wikipedia.org/wiki/Restructuredtext
+[14]: https://github.com/pythonclub/pythonclub.github.io/raw/pelican/content/images/pythonclub_geral/fork_git_hub0_o.png
+[15]: https://github.com/pythonclub/pythonclub.github.io/fork
