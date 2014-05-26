@@ -46,7 +46,7 @@ e baseado em 3 pilares:
 
 - [WerkZeug](http://werkzeug.pocoo.org/) é uma biblioteca para desenvolvimento de apps [WSGI](http://en.wikipedia.org/wiki/Web_Server_Gateway_Interface) que é a especificação universal de como deve ser a interface entre um app Python e um web server. Ela possui a implementação básica deste padrão para interceptar requests e lidar com response, controle de cache, cookies, status HTTP, roteamento de urls e também conta com uma poderosa ferramanta de debug. Além disso o werkzeug possui um conjunto de **utils** que acabam sendo uma mão na roda mesmo em projetos que não são para a web.
 
-- [Jinja2](http://jinja.pocoo.org/) é um template engine escrito em Python, você escreve templates utilizando marcações como **{{ nome_da_variavel }}** ou **{% for item in lista %} Hello!! {% endfor %}** e o Jinja se encarrega de renderizar este template, ou seja, ele substitui os placeholders pelo valor de suas variáveis.
+- [Jinja2](http://jinja.pocoo.org/) é um template engine escrito em Python, você escreve templates utilizando marcações como ``{{ nome_da_variavel }}`` ou ``{% for nome in lista_de_nomes %} Hello {{nome}}!! {% endfor %}`` e o Jinja se encarrega de renderizar este template, ou seja, ele substitui os placeholders pelo valor de suas variáveis.
 O Jinja2 já vem com a implementação da maioria das coisas necessárias na construção de templates html e além disso é muito fácil de ser customizado com template filters, macros etc.
 
 - [Good Intentions](https://trinket.io/python/fdedd0fb94): O Flask é **Pythonico**! além do código ter alta qualidade nos quesitos de legibilidade ele também tenta seguir as premissas do [Zen do Python](https://trinket.io/python/fdedd0fb94) e dentro dessas boas intenções nós temos o fato dele ser um [**micro-framework**](http://flask.pocoo.org/docs/foreword/#what-does-micro-mean) deixando que você tenha liberdade de estruturar seu app da maneira que desejar. Tem os [padrões de projeto e extensões](http://flask.pocoo.org/docs/patterns/) que te dão a certeza de que seu app poderá crescer sem problemas. Tem os sensacionais [Blueprints](http://flask.pocoo.org/docs/blueprints/) para que você reaproveite os módulos que desenvolver. Tem o controverso uso de [Thread Locals](http://flask.pocoo.org/docs/advanced_foreword/#thread-locals-in-flask) para facilitar a vida dos desenvolvedores. E além de tudo disso, não posso deixar de mencionar a comunidade que é bastante ativa e compartilha muitos projetos de extensões open-source como o Flask Admin, Flask-Cache, Flask-Google-Maps, Flask-Mongoengine, Flask-SQLAlchemy, Flask-Login, Flask-Mail etc....
@@ -229,11 +229,11 @@ Neste caso para servir todas essas apps poderiamos usar o [WerkZeug Dispatcher M
 
 Views são funções que respondem por uma determinada url, a função da view é capturar os paramêtros enviados pelo cliente via url e então efetuar o processamento necessário com o objetivo de responser com algum tipo de conteúdo ou mensagem de status que pode ser desde um texto plano, um texto com JSON, um stream de dados, um template html renderizado etc.
 
-Por exemplo, se em nosso site de notícias o cliente requisitar via GET a url **http://localhost:8000/noticias/brasil?categoria=ciencia&quantidade=2** precisamos primeiramente ter este **endpoint** ``/noticias`` mapeado para uma view no nosso sistema de rotas e dentro desta view pegaremos o argumento **brasil** e os parâmetros **categoria** e **quantidade** para utilizarmos para efetuar a busca em nosso banco de dados de notícias e então construir um retorno para exibir no navegador.
+Por exemplo, se em um site de notícias o cliente requisitar via método [GET](http://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol#GET) a seguinte url ``http://localhost:8000/noticias/brasil?categoria=ciencia&quantidade=2`` precisamos primeiramente ter este **endpoint** ``/noticias`` mapeado para uma view no nosso sistema de rotas e dentro desta view pegaremos o argumento **brasil** e os parâmetros **categoria** e **quantidade** para utilizarmos para efetuar a busca em nosso banco de dados de notícias e então construir um retorno para exibir no navegador.
 
 O Flask através do WerkZeug abstrai uma boa parte deste trabalho tornando isto uma tarefa bastante trivial, por baixo dos panos quando usamos o decorator **@app.route** na verdade estamos alimentando uma lista de mapeamento do Werkzeug implementada pelo [werkzeug.routing.Map](http://werkzeug.pocoo.org/docs/routing/#quickstart) e esta lista de mapeamento contém elementos do tipo **Rule** que é justamente a regra que liga uma url com uma função Python em nosso projeto.
 
-> "Have you looked at werkzeug.routing? It's hard to find anything that's simpler, more self-contained, or purer-WSGI than Werkzeug, in general — I'm quite a fan of it!"  —  Alex Martelli
+> **QUOTE:** "Have you looked at werkzeug.routing? It's hard to find anything that's simpler, more self-contained, or purer-WSGI than Werkzeug, in general — I'm quite a fan of it!"  —  [Alex Martelli](http://en.wikipedia.org/wiki/Alex_Martelli)
 
 O Flask oferece 2 formas para o roteamento de views:
 
@@ -248,15 +248,38 @@ def lista_de_noticias(pais):
     return render_template("lista_de_noticias.html", noticias=noticias), 200
 ```
 
+A vantagem de rotear via decorator é que o Flask usará o nome de sua função automaticamente como ``endpoint``, no exemplo acima **lista_de_noticias** seria o endpoint dessa view.
+
+> **FLASKTIONARY:** o termo **endpoint** serve para designar tanto um recurso de uma api via url, por exemplo **api.site.com/users/new**, mas no Flask ele também é utilizado para identificar o nome interno que o router usará para uma url especifica, exemplo: **lista_noticias**, isso serve para possa ser utilizada a função ``url_for`` para resolver urls dinâmicamente. **RELAX:** continuaremos falando sobre isso na parte de templates deste artigo
+
+Você pode inclusive utiliza multiplos decorators em uma mesma função para mapear várias urls, isto é útil para abranger aquela view com ou sem parametros.
+
+exemplo:
+
+```python
+@app.route("/noticias")
+@app.route("/noticias/<pais>")
+@app.route("/noticias/<pais>/<estado>")
+def lista_de_noticias(pais=None, estado=None):
+```
+
+No exemplo acima a mesma view irá responder pelas urls ``/noticias``, ``/noticias/brasil`` e ``/noticias/brasil/sao-paulo``
+
+> **WARNING:** Cuidado com o uso de multiplos decorators, a ordem em que são definidos é importante e caso esteja algum decorator customizado como por exemplo ``@seu_app.requires_login``, se este for o primeiro decorator o Flask irá usar o nome da função wrapper do decorator ao invés do nome da view para o endpoint da url. A indicação é ao criar decorators utilizar sempre o ``functools.wraps`` para resolver este problema.
+
 
 2 Roteamento explicito
 
 ```python
 
 app.add_url_rule("/noticias/<pais>",
-                 endpoint="noticias",
+                 endpoint="lista_noticias",
                  view_func=lista_de_noticias)
 ```
+
+O caso acima é bastante útil quando você precisa automatizar ou centralizar o mapeamento de urls em um único local de seu projeto, é a maneira utilizada também com blueprints, a única desvantagem é que neste caso é sempre preciso informar explicitamente o nome do **endpoint** e a **view_func** a ser mapeada.
+
+
 
 
 
