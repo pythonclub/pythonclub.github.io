@@ -4,6 +4,7 @@ Tags: exemplo
 Category: Geral
 Slug: exemplo-de-publicacao-2-em-markdown-com-tags-opcionais-para-redes-sociais
 Author: Fábio Caritas Barrionuevo da Luz
+About_author: Algo explicando sobre você
 Email:  bnafta@gmail.com
 Github: seu_usuario_do_github
 Bitbucket: seu_usuario_do_bitbucket
