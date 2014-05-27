@@ -36,6 +36,25 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 5. **from flask.ext import magic**: Criando extensões para o Flask
 6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
 
+# Hello Flask
+### Parte 1 - Introdução ao desenvolvimento web com Flask
+
+- O que é Flask
+- Por onde começar
+- Hello World
+- O objeto Flask
+- Views e roteamento de urls
+- O contexto da aplicação
+- Configurações
+- O objeto "request" + recebendo dados via GET e POST
+- Sessões e biscoitos (ou seriam bolachas?)
+- Acessando banco de dados (pequeno exemplo com dataset)
+- Servindo arquivos estáticos
+- Templates com Jinja2
+- Customizando o Jinja com macros, filters e template globals
+
+> **DISCLAIMER:** Este tutorial será bem longo, então já coloca ai nos favoritos pois não vai dar tempo de você terminar hoje :)
+
 
 ### O que é Flask?
 
@@ -191,7 +210,7 @@ app = Flask("wtf")
 
 Tem duas coisas interessantes nessa forma explicita de criar aplicações no Flask.
 
-1. Umas é o fato de que você pode e é inclusive [encorajado a criar suas próprias sub-classes Flask](http://flask.pocoo.org/docs/becomingbig/#subclass) e isso te dá o poder de sobrescrever comportamentos básicos do framework como por exemplo forçar que tudo seja renderizado como JSON (Mas este é um tema que veremos com mais detalhes em outro capítulo).
+1. Uma é o fato de que você pode e é inclusive [encorajado](http://flask.pocoo.org/docs/becomingbig/#subclass) a criar suas próprias sub-classes Flask e isso te dá o poder de sobrescrever comportamentos básicos do framework como por exemplo forçar que tudo seja renderizado como JSON (Mas este é um tema que veremos com mais detalhes em outro capítulo).
 
 2. Você pode ter mais de um app Flask em seu projeto e isto te garante reusabilidade e organização, vou dar um exemplo:
 
@@ -223,11 +242,13 @@ Neste caso para servir todas essas apps poderiamos usar o [WerkZeug Dispatcher M
 
 > **RELAX:** Nos próximos capítulos desta série entraremos em detalhes a respeito do Dispatcher e técnicas de organização e deploy.
 
+Como você pode perceber, ao criar o objeto Flask podemos passar vários argumentos na inicialização, você pode conferir cada um desses argumentos diretamente na [documentação](http://flask.pocoo.org/docs/api/#application-object).
+
 #### As views e o roteamento de urls
 
 ##### Views:
 
-Views são funções que respondem por uma determinada url, a função da view é capturar os paramêtros enviados pelo cliente via url e então efetuar o processamento necessário com o objetivo de responser com algum tipo de conteúdo ou mensagem de status que pode ser desde um texto plano, um texto com JSON, um stream de dados, um template html renderizado etc.
+Views são funções (ou classes) que respondem por uma determinada url, a função da view é capturar os paramêtros enviados pelo cliente via url e então efetuar o processamento necessário com o objetivo de responser com algum tipo de conteúdo ou mensagem de status que pode ser desde um texto plano, um texto com JSON, um stream de dados, um template html renderizado etc.
 
 Por exemplo, se em um site de notícias o cliente requisitar via método [GET](http://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol#GET) a seguinte url ``http://localhost:8000/noticias/brasil?categoria=ciencia&quantidade=2`` precisamos primeiramente ter este **endpoint** ``/noticias`` mapeado para uma view no nosso sistema de rotas e dentro desta view pegaremos o argumento **brasil** e os parâmetros **categoria** e **quantidade** para utilizarmos para efetuar a busca em nosso banco de dados de notícias e então construir um retorno para exibir no navegador.
 
@@ -252,7 +273,7 @@ A vantagem de rotear via decorator é que o Flask usará o nome de sua função 
 
 > **FLASKTIONARY:** o termo **endpoint** serve para designar tanto um recurso de uma api via url, por exemplo **api.site.com/users/new**, mas no Flask ele também é utilizado para identificar o nome interno que o router usará para uma url especifica, exemplo: **lista_noticias**, isso serve para possa ser utilizada a função ``url_for`` para resolver urls dinâmicamente. **RELAX:** continuaremos falando sobre isso na parte de templates deste artigo
 
-Você pode inclusive utiliza multiplos decorators em uma mesma função para mapear várias urls, isto é útil para abranger aquela view com ou sem parametros.
+Você pode inclusive utilizar multiplos decorators em uma mesma função para mapear várias urls, isto é útil para abranger uma mesma view com ou sem parametros.
 
 exemplo:
 
@@ -265,7 +286,7 @@ def lista_de_noticias(pais=None, estado=None):
 
 No exemplo acima a mesma view irá responder pelas urls ``/noticias``, ``/noticias/brasil`` e ``/noticias/brasil/sao-paulo``
 
-> **WARNING:** Cuidado com o uso de multiplos decorators, a ordem em que são definidos é importante e caso esteja algum decorator customizado como por exemplo ``@seu_app.requires_login``, se este for o primeiro decorator o Flask irá usar o nome da função wrapper do decorator ao invés do nome da view para o endpoint da url. A indicação é ao criar decorators utilizar sempre o ``functools.wraps`` para resolver este problema.
+> **WARNING:** Cuidado com o uso de multiplos decorators, a ordem em que são definidos é importante e caso esteja usando algum decorator customizado como por exemplo ``@seu_app.requires_login``, se este for o primeiro decorator o Flask irá usar o nome da função wrapper do decorator ao invés do nome da view para o endpoint da url. A indicação é ao criar decorators utilizar sempre o ``functools.wraps`` para resolver este problema.
 
 
 2 Roteamento explicito
@@ -278,6 +299,137 @@ app.add_url_rule("/noticias/<pais>",
 ```
 
 O caso acima é bastante útil quando você precisa automatizar ou centralizar o mapeamento de urls em um único local de seu projeto, é a maneira utilizada também com blueprints, a única desvantagem é que neste caso é sempre preciso informar explicitamente o nome do **endpoint** e a **view_func** a ser mapeada.
+
+
+#### Regras de URL
+
+As urls são recebidas no formato texto, por exemplo: ``/noticias/1``, porém em alguns casos queremos que o valor passado como argumento seja convertido para um tipo de dados especifico, ou seja, queremos receber o ``/1`` como um inteiro.
+
+Você já sabe que o Flask utiliza o router do WerkZeug que internamente já implementa alguns [conversores](http://werkzeug.pocoo.org/docs/routing/#builtin-converters) para as regras de url.
+
+Os "conversores" padrão são:
+
+- ``/noticias/<categoria>``, recebe o parâmetro "categoria" no formato unicode, exemplo "entretenimento".
+- ``/noticias/<int:noticia_id>``, recebe o parâmetro "noticia_id" no formato inteiro, exemplo: "1"
+- ``/cotacao/<float:dolar>/``, recebe o parâmetro "dolar" como float, exemplo: "3.2"
+- ``/imagem/<path>``, recebe o parâmetro "path" como um caminho, exemplo: "animais/marssupiais/quokka.png"
+
+Também é possivel utilizar **regex**, passar parâmetros para validação ou até mesmo criar seus próprios conversores de url, mas este assunto não veremos neste tutorial :(
+
+#### A barra no final da url
+
+Isto sempre causa certa confusão, portanto é sempre bom pensar um pouco antes de tomar esta decisão, sua url vai obrigar o uso da **trailing backslash** ou não?
+
+No Flask existe uma convenção bastante útil: caso você declare sua url sem a barra no final ``/noticias/<categoria>`` então esta url será acessível apenas sem a barra no final. Agora se você deseja que a url ``/noticias/entretenimento/`` seja válida declare sua regra como ``/noticias/<categoria>/`` desta forma mesmo que o usuário esqueça de colocar a barra na hora de requisitar a url, o Flask irá automaticamente redirecionar o usuário para a url correta com a "/" no final.
+
+> **TIP:** Eu costumo utilizar uma lógica simples para decidir sobre o uso da "/", se a url define um recurso final da minha árvore de recursos, por exemplo, se a url é para uma imagem ``/imagens/foto.jpg`` ou se é para uma postagem de um site ``/noticias/apenda-python.html`` ou até mesmo ``/noticias/aprenda-python``, então eu declaro a url sem a "/" no final. Porém se a url representa uma categoria, uma tag ou uma pasta então coloco a "/" no final pois desta forma segue o conceito de árvore, igual a árvore de arquivos e diretórios. Ex: ``/noticias/entretenimento/`` ou ``/tags/python/``.
+
+#### O retorno <strike style="color: red">de Jedi</strike> da view
+
+
+> **TIP:** Pode ir escrevendo os códigos deste tutorial ai no ``app.py`` para ir testando enquanto lê este artigo.
+
+Views precisam retornar uma tupla formada por 2 elementos, um **body** que pode ser um objeto serializável como por exemplo um texto, e também devem retornar um inteiro representando o código de status HTTP.
+
+Exemplo:
+
+```python
+@app.route("/<name>")
+def index(name):
+    if name.lower() == "bruno":
+        return "Olá {}".format(name), 200
+    else:
+        return "Not Found", 404
+```
+
+Na view acima caso seja requisitada a url ``site.com/Bruno`` o código de status será o "200" que representa "OK". Porém se requisitar informando um nome diferente o código de status será "404" com a mensagem "Not Found". Cada cliente pode implementar um comportamento diferente para o tratamento desses códigos de status, isto é muito importante principalmente quando trabalhamos com APIs.
+
+> **RELAX:** Se você não informar o código de status o Flask irá tentar resolver para você.
+
+```python
+@app.route("/<name>")
+def index(name):
+    return "Olá {}".format(name)
+```
+
+O exemplo acima também é válido, e neste caso o Flask irá informar automaticamente o código 200 ao menos que uma excessão HTTP seja levantada explicitamente ou por motivo de algum erro em seu código.
+
+> **NOTE:** Ao desenvolver uma API REST ou formulários que serão consumidos via Ajax é recomendado informar explicitamente os códigos HTTP e tratar adequadamente as excessões HTTP, pois do lado do cliente o comportamento pode depender desses códigos de status.
+
+Além disso o Flask oferece alguns **helpers** para facilitar o tratamento de excessões http, por exemplo o **404** ou **503** pode ser feito através do helper **abort** e o **301/302** pode ser feito com o uso do helper **redirect**.
+
+```python
+from flask import redirect, abort
+
+@app.route("/<tiny_url>")
+def url_shortener(tiny_url):
+    try:
+        url = banco_de_dados.select(shortened=tiny_url).url
+    except AttributeError:
+        # objeto NoneType não tem o atributo url, ou seja, não existe
+        abort(404)
+    except ConnectionError:
+        # não conseguiu conectar no MySQL # TODO: Use o PostGres :)
+        abort(503)  # ServiceUnavailable
+    else:
+        redirect(url)
+```
+
+O caso acima é a implementação de um encurtador de urls que procura uma url no banco de dados através de seu código ex: ``site.com/x56ty`` e então utiliza 3 helpers para definir o status HTTP adequado, no melhor dos casos o usuário será redirecionado para a url **desencurtada**.
+
+
+#### HTML, JSON, XML etc
+
+
+HTML
+
+Obviamente que você pode retornar conteúdo formatado e não apenas texto puro, isso poderá ser <strike style="color:red">feito direto na view</strike> ou em um <span style="color:green">template</span>.
+
+```python
+@app.route("/html_page/<nome>")
+def html_page(nome):
+    return """
+    <html>
+       <head><title>Ainda não sei usar o Jinja2 :)</title></head>
+       <body>
+          <h1>Olá %s Coisas que você não deve fazer.</h1>
+          <ul>
+            <li> Escrever html direto na view </li>
+            <li> Tentar automatizar a escrita de html via Python</li>
+            <li> deixar de usar o Jinja2 </li>
+          </ul>
+       </body>
+    </html>
+    """ % nome
+```
+
+O exemplo acima apesar de em alguns raros casos ser útil, não é recomendado, o ideal é usar templates para deixar a camada de apresentação desacoplada da lógica do nosso app.
+
+assumindo que o trecho html acima está em um arquivo ``templates/html_page.html`` podemos fazer o seguinte.
+
+```python
+from flask import render_template
+
+@app.route("/html_page/<nome>")
+def html_page(nome):
+    return render_template("html_page.html", nome=nome)
+```
+
+e dentro do arquivo html basta utilizar ``{{nome}}`` no lugar de ``%s``
+
+> **RELAX:** Logo mais falaremos mais a respeito dos templates
+
+JSON
+
+
+
+
+
+
+
+
+
+
 
 
 
