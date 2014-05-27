@@ -39,24 +39,23 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 # Hello Flask
 ### Parte 1 - Introdução ao desenvolvimento web com Flask
 
-- O que é Flask
-- Por onde começar
-- Hello World
-- O objeto Flask
-- Views e roteamento de urls
-- O contexto da aplicação
-- Configurações
-- O objeto "request" + recebendo dados via GET e POST
-- Sessões e biscoitos (ou seriam bolachas?)
-- Acessando banco de dados (pequeno exemplo com dataset)
-- Servindo arquivos estáticos
-- Templates com Jinja2
-- Customizando o Jinja com macros, filters e template globals
+- [O que é Flask](#o_que_e_flask)
+- [Por onde começar](#por_onde_comecar)
+- [Hello World](#hello_world)
+- [O objeto Flask](#o_objeto_flask)
+- [Views e roteamento de urls](#views_e_roteamento_de_urls)
+- [O contexto da aplicação](#o_contexto_da_aplicacao)
+- [O objeto "request" + acessando dados via GET e POST](#o_objeto_request_acessando_dados_via_get_e_post)
+- [Sessões e biscoitos](#sessoes_e_biscoitos)
+- [Acessando banco de dados (pequeno exemplo com dataset)](#acessando_bando_de_dados_pequeno_exemplo_com_dataset)
+- [Servindo arquivos estáticos](#servindo_arquivos_estaticos)
+- [Templates com Jinja2](#template_com_jinja_2)
+- [Customizando o Jinja com macros, filters e template globals](#customizando_o_jinja_com_macros_filters_e_template_globals)
 
 > **DISCLAIMER:** Este tutorial será bem longo, então já coloca ai nos favoritos pois não vai dar tempo de você terminar hoje :)
 
 
-### O que é Flask?
+### <a name="o_que_e_flask" href="#o_que_e_flask">O que é Flask?</a>
 
 ![Flask logo](http://flask.pocoo.org/static/logo.png)
 
@@ -74,7 +73,7 @@ O Jinja2 já vem com a implementação da maioria das coisas necessárias na con
 > **SUMMARY:** o Flask não fica no seu caminho deixando você fluir com o desenvolvimento de seu app, você pode começar pequeno com um app feito em um único arquivo e ir crescendo aos poucos até ter seus módulos bem estruturados de uma maneira que permita a escalabilidade e o trabalho em equipe.
 
 
-### Por onde começar?
+### <a name=por_onde_comecar href=#por_onde_comecar>Por onde começar?</a>
 
 Obviamente que para seguir neste tutorial será necessário utilizar Python, não entrarei em detalhes sobre a instalação do Python neste artigo, mas com certeza aqui no [PythonClub](/) devem ter artigos explicando detalhadamente a instalação do Python e a configuração de uma virtual-env, então vamos aos requirements.
 
@@ -103,12 +102,12 @@ Inicie criando uma pasta para o projeto no local de sua preferencia
 
 Agora crie uma [virtualenv](http://virtualenv.readthedocs.org/en/latest/) para o projeto
 
-Usando virtualenvwrapper **recommended**
+Usando virtualenvwrapper **(recommended)**
 
 
     :::bash
     sudo apt-get install virtualenvwrapper
-    mkvirtualenv wtf
+    mkvirtualenv wtf_env
 
 Ou usando apenas virtualenv
 
@@ -130,7 +129,7 @@ Instale o Flask e o Ipython
     pip install flask
     pip install ipython
 
-### Level 1.1 - Hello world
+### <a name="hello_world" href="#hello_world">Level 1.1 - Hello world</a>
 
 Agora que o ambiente está pronto abra o arquivo ```app.py``` em seu editor favorito e vamos fazer o **Hello World** para começarmos bem o tutorial.
 
@@ -166,7 +165,7 @@ Nosso próximo passo será entender detalhadamente **o que aconteceu** nas 6 lin
 ### Level 1.2 - What The F**** happened here?
 
 
-#### O objeto Flask
+### <a name="o_objeto_flask" href="#o_objeto_flask">O objeto Flask</a>
 
 Conforme mencionado no início deste artigo, o Flask utiliza como base o **WerkZeug** que é uma biblioteca WSGI. Para lidar com os recursos do WerkZeug precisamos de uma aplicação WSGI que é uma instância de um objeto Python que implemente o protocolo WSGI e possa ser servida pelos web servers que implementam este protocolo como o Gunicorn, Uwsgi, Apache mod_wsgi etc.
 
@@ -244,7 +243,7 @@ Neste caso para servir todas essas apps poderiamos usar o [WerkZeug Dispatcher M
 
 Como você pode perceber, ao criar o objeto Flask podemos passar vários argumentos na inicialização, você pode conferir cada um desses argumentos diretamente na [documentação](http://flask.pocoo.org/docs/api/#application-object).
 
-#### As views e o roteamento de urls
+### <a name="views_e_roteamento_de_urls" href="#views_e_roteamento_de_urls">As views e o roteamento de urls</a>
 
 ##### Views:
 
@@ -261,12 +260,18 @@ O Flask oferece 2 formas para o roteamento de views:
 1 Roteamento via decorator
 
 ```python
+from flask import Flask, request, render_template
+
+app = Flask("wtf")
+
 @app.route("/noticias/<pais>")
 def lista_de_noticias(pais):
     cat = request.args.get("categoria")
     qtd = request.args.get("quantidade")
     noticias = BD.query(pais=pais, categoria=cat).limit(qtd)
     return render_template("lista_de_noticias.html", noticias=noticias), 200
+
+app.run(debug=True, use_reloader=True)
 ```
 
 A vantagem de rotear via decorator é que o Flask usará o nome de sua função automaticamente como ``endpoint``, no exemplo acima **lista_de_noticias** seria o endpoint dessa view.
@@ -301,9 +306,12 @@ app.add_url_rule("/noticias/<pais>",
 O caso acima é bastante útil quando você precisa automatizar ou centralizar o mapeamento de urls em um único local de seu projeto, é a maneira utilizada também com blueprints, a única desvantagem é que neste caso é sempre preciso informar explicitamente o nome do **endpoint** e a **view_func** a ser mapeada.
 
 
+> **TIP:** Enquanto estiver desenvolvendo use ``debug=True`` para ativar o Werkzeug debugger e ``use_reloader=True`` para que o Flask dê um restart no servidor de desenvolvimento sempre que detectar alterar no código fonte.
+(quando fizer deploy mude esses valores para False)
+
 #### Regras de URL
 
-As urls são recebidas no formato texto, por exemplo: ``/noticias/1``, porém em alguns casos queremos que o valor passado como argumento seja convertido para um tipo de dados especifico, ou seja, queremos receber o ``/1`` como um inteiro.
+As urls são recebidas no formato texto, por exemplo: ``/noticias/1``, porém em alguns casos queremos que o valor passado como argumento seja convertido para um tipo de dados especifico, ou seja, queremos receber o ``1`` como um inteiro.
 
 Você já sabe que o Flask utiliza o router do WerkZeug que internamente já implementa alguns [conversores](http://werkzeug.pocoo.org/docs/routing/#builtin-converters) para as regras de url.
 
@@ -344,7 +352,7 @@ def index(name):
 
 Na view acima caso seja requisitada a url ``site.com/Bruno`` o código de status será o "200" que representa "OK". Porém se requisitar informando um nome diferente o código de status será "404" com a mensagem "Not Found". Cada cliente pode implementar um comportamento diferente para o tratamento desses códigos de status, isto é muito importante principalmente quando trabalhamos com APIs.
 
-> **RELAX:** Se você não informar o código de status o Flask irá tentar resolver para você.
+> **RELAX:** Se você não informar o código de status o Flask irá tentar resolver para você. Por padrão qualquer retorno no formato string é convertido para um Response com código 200 e o mimetype "text/html"
 
 ```python
 @app.route("/<name>")
@@ -361,7 +369,7 @@ Além disso o Flask oferece alguns **helpers** para facilitar o tratamento de ex
 ```python
 from flask import redirect, abort
 
-@app.route("/<tiny_url>")
+@app.route("/shortener/<tiny_url>")
 def url_shortener(tiny_url):
     try:
         url = banco_de_dados.select(shortened=tiny_url).url
@@ -375,7 +383,7 @@ def url_shortener(tiny_url):
         redirect(url)
 ```
 
-O caso acima é a implementação de um encurtador de urls que procura uma url no banco de dados através de seu código ex: ``site.com/x56ty`` e então utiliza 3 helpers para definir o status HTTP adequado, no melhor dos casos o usuário será redirecionado para a url **desencurtada**.
+O caso acima é a implementação de um encurtador de urls que procura uma url no banco de dados através de seu código ex: ``/shortener/x56ty`` e então utiliza 3 helpers para definir o status HTTP adequado, no melhor dos casos o usuário será redirecionado para a url **desencurtada**.
 
 
 #### HTML, JSON, XML etc
@@ -388,7 +396,7 @@ Obviamente que você pode retornar conteúdo formatado e não apenas texto puro,
 ```python
 @app.route("/html_page/<nome>")
 def html_page(nome):
-    return """
+    return u"""
     <html>
        <head><title>Ainda não sei usar o Jinja2 :)</title></head>
        <body>
@@ -420,6 +428,315 @@ e dentro do arquivo html basta utilizar ``{{nome}}`` no lugar de ``%s``
 > **RELAX:** Logo mais falaremos mais a respeito dos templates
 
 JSON
+
+Ao invés de retornar uma página HTML você poderá precisar retornar JSON, JSONP ou algum outro formato como <strike>XML</strike> arghhhhh.
+
+Você pode simplesmente retornar uma string jsonificada porém tbm é preciso dizer ao cliente que o **content_type** ou **mimetype** em questão é **application/json**, <strike>m$/application:xml</strike> ou qualquer outro formato.
+
+Existem 3 possibilidades:
+
+Criar um objeto Response explicitamente
+
+```python
+import json
+from flask import make_response
+
+def json_api():
+    pessoas = [{"nome": "Bruno Rocha"},
+               {"nome": "Arjen Lucassen"},
+               {"nome": "Anneke van Giersbergen"},
+               {"nome": "Steven Wilson"}]
+    response = make_response(json.dumps(pessoas))
+    response.content_type = "application/json"
+    # ou
+    # response.headers['Content-Type'] = "application/json"
+    return response
+```
+
+Retornar uma tupla de 3 elementos, no formato ``(string, status_code, headers_dict)``
+
+```python
+def json_api():
+    pessoas = [{"nome": "Bruno Rocha"},
+               {"nome": "Arjen Lucassen"},
+               {"nome": "Anneke van Giersbergen"},
+               {"nome": "Steven Wilson"}]
+    return json.dumps(pessoas), 200, {"Content-Type": "application/json"}
+```
+
+
+Os exemplos acima são válidos e poderão ser seguidos para outros tipos de dados, porém como JSON é um tipo de retorno muito comum o Flask já vem com um helper para ajuda-lo a economizar umas linhas de código.
+
+```python
+from flask import jsonify
+
+def json_api():
+    pessoas = [{"nome": "Bruno Rocha"},
+               {"nome": "Arjen Lucassen"},
+               {"nome": "Anneke van Giersbergen"},
+               {"nome": "Steven Wilson"}]
+    return jsonify(pessoas=pessoas, total=len(pessoas))
+```
+
+Com o uso de **jsonify** o Flask já se encarrega do header adequado e ainda valida a segurança no formato do JSON, além disso fica muito mais bonito o código.
+
+
+### <a name="o_contexto_da_aplicacao" href="#o_contexto_da_aplicacao">The application context</a>
+
+> **NOTE:** Esta é uma questão um pouco complexa, eu não vou tentar explicar em detalhes e vou apenas abordar os pontos importantes de forma bem resumida e simplificada, caso tenha interesse em entender mais a fundo pode dar uma lida nos [docs](http://flask.pocoo.org/docs/appcontext/) a respeito.
+
+
+Existem 3 estados em que uma app Flask pode estar:
+
+#### 1 Estado de configuração.
+
+É quando a app é instanciada, e nenhum request ocorreu ainda, é o momento em que você pode seguramente modificar as configurações e carregar módulos, extensões etc.
+
+Este estado ocorre antes do **dispatch**, ou seja, no nosso caso é antes do **app.run()** ser executado, mas no caso de servir seu app com outro app server como gunicorn ou uwsgi este estado é antes do servidor WSGI registrar o objeto **application**.
+
+Exemplo:
+
+```python
+
+app = Flask("wtf")
+
+app.config["SECRET_KEY"] = "schblaums"
+app.config["DEBUG"] = True
+
+from flask.ext.magic import MakeMagic
+MakeMagic(app)
+
+```
+
+As linhas acima "ocorrem" geralmente no estado de configuração e portanto não assumimos que existe um **request** em andamento. Um detalhe importante é o fato de que este estado é válido apenas para o **top level** module, ou seja, dentro do escopo de funções, views, classes etc o estado será outro.
+
+#### 2 Estado de request
+
+É quando seu app já foi iniciado e está **registrado** no servidor WSGI e então acontece uma requisição, neste momento o Flask irá popular o objeto request com os dados desta requisição e você poderá acessar o objeto request.
+
+
+```python
+from flask import request, current_app, jsonify
+
+app = Flask(__name__)
+
+@app.route("/show_config")
+def show_config():
+    querystring_args = request.args.to_dict()
+    post_args = request.form.to_dict()
+    return jsonify(
+        debug=current_app.config.get('DEBUG'),
+        args=querystring_args,
+        vars=post_args
+    )
+```
+
+No exemplo acima acessamos os valores do objeto request, tanto os passados via GET(querystring) tanto quanto os passados via POST (formulário). Além disso acessamos a **current_app** para pegar as configs da app em execução. Isto existe pois no Flask é possível ter mais de um objeto Flask em um único projeto.
+
+Mais de um app em um único projeto:
+
+> **It's weird**
+
+```python
+app = Flask(__name__)
+outra_app = Flask(__name__)
+
+@app.route("/url_na_app")
+@outra_app.route("/url_na_outra_app")
+def view():
+    ....
+
+if X:
+    app.run()
+elif Y:
+    outra_app.run()
+
+```
+
+O exemplo acima é meio non-sense mas é possível, além disso para fazer este tipo de coisa é recomendado usar o dispatcher middleware.
+
+
+#### 3 Estado interativo ou estado de testes
+
+As vezes para efetuar pequenos testes ou até mesmo escrever testes unitários é necessário acessar o objeto **request** ou o **current_app** em um script standalone ou em um terminal interativo.
+
+```python
+>>> from flask import Flask, current_app, request
+>>> app = Flask(__name__)
+>>> print request.form
+...Traceback (most recent call last)
+RuntimeError: working outside of request context
+```
+
+Nesta hora você pensa **WTF** terei que fazer um request cada vez que precisar testar esse código? não, calma, o Flask oferece uma solução.
+
+
+```python
+>>> from flask import Flask, current_app, request
+>>> app = Flask(__name__)
+>>> with app.test_request_context("/teste", "x.com", "aaa=1&bb=2"):
+...     print request.args.to_dict()
+...     print request.path
+
+{'aaa': u'1', 'bb': u'2'}
+u"/teste"
+```
+
+Enfim, usamos o gerenciador de contexto ``app.test_request_context`` para fazer um **mock** de um request real que será usado apenas para fins de testes.
+
+## <a name="o_objeto_request_acessando_dados_via_get_e_post" href="#o_objeto_request_acessando_dados_via_get_e_post">O objeto "request" + acessando dados via GET e POST</a>
+
+O objeto **request** é um **proxy** que internamente garante você acesse a requisição atual ou thread atual. Ele carrega dados referentes a cada requisição HTTP, nele podemos acessar as variáveis enviadas atráves da url ou de um formulário, podemos também verificar o método HTTP entre outros dados importantes que podem ser conferidos na [doc](http://flask.pocoo.org/docs/api/#incoming-request-data).
+
+Os itens mais importantes são: (method, args, form, path, is_json)
+
+
+É muito útil checar qual o método HTTP que foi requisitado, isto é o que possibilita a criação de uma API REST, o exemplo a seguir é auto explicativo:
+
+```python
+from flask import request, jsonify
+
+@app.route("/noticia")
+@app.route("/noticia/<int:noticia_id>")
+def noticia_api(noticia_id=None):
+    if request.method == "GET":
+        if noticia_id:
+            # retorna uma noticia especifica
+            return jsonify(noticia=noticias.filter(id=noticia_id))
+        else:
+            # retorna todas as noticias
+            return jsonify(noticias=noticias.all())
+    elif request.method == "POST":
+        if request.is_json:
+            # se o request veio com o mimetype "json" usa os dados para
+            # inserir novas noticias
+            noticias.bulk_insert(request.json)
+            return "Noticias inseridas com sucesso", 201
+        else:
+            # assumimos que os dados vieram via Ajax/POST/Formulário
+            noticias.create(request.form)
+            return "Noticia criada com sucesso", 201
+    elif request.method == "DELETE" and noticia_id:
+        # apaga uma noticia especifica
+        noticias.delete(id=noticia_id)
+        return "Noticia apagada com sucesso!", 204
+    ...
+```
+
+> **WAIT:** O exemplo acima é apenas uma das formas de se fazer isso, e não é a forma mais recomendada. É preferivel o uso de geradores de API como o Python-EVE ou o Flask-API. Além disso também é possível utilizar class based Method views para melhorar o código, mas veremos isso em um próximo capítulo.
+
+### Valores mais importantes do objeto **request**
+
+- request.method: Informa qual método HTTP foi usado na requisiçao
+- request.headers: headers HTTP da requisição, útil para checar o mimetype e dados de basic auth.
+- request.environ: Variáveis de ambiente do WSGI, navegador, ip do cliente etc
+- request.path, request.url: O path ou a url completa da requisição
+- request.is_xhr: Informa se é ou não uma requisição Ajax
+- request.blueprint: Nome do blueprint que interceptou o request (veremos isso mais adiante)
+
+
+### Acessando dados do request
+
+#### request.args
+
+Um dicionário com os valores passados via GET (na url após o ?).
+
+url requisitada: ``/noticias?categoria=esportes&limit=10``
+
+```python
+>>> request.args
+ImmutableMultiDict([('categoria', u'esportes'), ('limit', u'10')])
+>>> request.args.to_dict()
+{u"categoria": u"esportes", u"limit": u"10"}
+>>> request.args.get("categoria")
+u"esportes"
+```
+
+Não é muito comum mas em alguns casos as chaves podem se repetir, neste caso devemos usar o ``getlist``.
+
+url requisitada: ``/noticias?categoria=esportes&categoria=musica``
+```python
+>>> request.args
+ImmutableMultiDict([('categoria', u'esportes'), ('categoria', u'musica')])
+>>> request.args.to_dict()  # mantém só os primeiros
+{u"categoria": u"esportes"}
+>>> request.args.getlist("categoria")
+[u"esportes", u"musica"]
+```
+
+#### request.form
+
+O request.form funciona da mesma forma que o .args porém ele intercepta apenas os argumentos passados via POST, PUT ou PATCH, ou seja, via formulário ou payload.
+
+exemplo de requisição POST via console
+
+```bash
+curl --data "categoria=esportes&limit=10" http://site.com/noticias
+```
+
+A requisição acima corresponde ao submit de um formulário contento os campos "categoria" e "limit".
+
+```python
+>>> request.form
+ImmutableMultiDict([('categoria', u'esportes'), ('limit', u'10')])
+>>> request.form.to_dict()
+{u"categoria": u"esportes", u"limit": u"10"}
+>>> request.form.get("categoria")
+u"esportes"
+```
+
+repare que é exatamente o mesmo funcionamento do .args
+
+#### request.json
+
+É exatamente a mesma coisa do .args e do .form, porém ele será populado quando o request trouxer o mimetype "application/json", então os dados do JSON no payload serão colocados neste atributo.
+
+Requisição
+
+```bash
+curl -X POST -d {"categoria": "esporte"} http://site.com/noticias --header "Content-Type:application/json"
+```
+
+O restante é igual, basta usar o ``request.is_json`` para checar se a requisição é com JSON payload e então acessar os dados.
+
+#### File uploads
+
+Caso seu formulário ou API permitam o envio de arquivos esses dados serão colocados no ``request.files``. Isto ocorre pois internamente o Flask transforma os dados recebidos em um objeto **FileStorage** para permitir que você manipule os com mais facilidade.
+
+Requisição: (equivale a um formulário com file upload)
+
+```bash
+curl --form "photo=@picture.jpg&item_id=12345" http://site.com/change_photo
+```
+
+para salvar a imagem:
+
+```python
+import os
+from flask import current_app
+from werkzeug import secure_filename
+
+@app.route("/change_photo")
+def perfil():
+    item_id = request.form.get('item_id')
+    photo = request.files.get('photo')
+    if item_id and photo:
+        filename = secure_filename(photo.filename)
+        file_path =os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+        photo.save(file_path)
+        banco_de_dados.get(item_id=item_id).update(photo_path=file_path)
+    return "Imagem atualizada", 201
+```
+
+> **TIP:** Sempre utilize o helper **secure_filename** do Werkzeug pois ele sanitiza a url removendo caracteres indesejados e evitando dor de cabeça com file system.
+
+### <a name="sessoes_e_biscoitos" href="#sessoes_e_biscoitos"> Sessions and Cookies</a>
+
+Sessions
+
+
+
+
 
 
 
