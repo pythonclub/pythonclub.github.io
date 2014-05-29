@@ -51,6 +51,7 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 - [Servindo arquivos estáticos](#servindo_arquivos_estaticos)
 - [Templates com Jinja2](#template_com_jinja_2)
 - [Customizando o Jinja com macros, filters e template globals](#customizando_o_jinja_com_macros_filters_e_template_globals)
+- [Exemplo de app utilizando todos os recursos mencionados](#exemplo)
 
 > **DISCLAIMER:** Este tutorial será bem longo, então já coloca ai nos favoritos pois não vai dar tempo de você terminar hoje :)
 
@@ -731,7 +732,239 @@ def perfil():
 
 ### <a name="sessoes_e_biscoitos" href="#sessoes_e_biscoitos"> Sessions and Cookies</a>
 
-Sessions
+Antes de falar de "Session" precisamos falar de "Cookies", pois um não vive sem o outro! <3
+
+Cookie é um "storage" de dados que é armazenado pelo cliente (browser, etc), os cookies trafegam via HTTP header e você pode ler e escrever cookies.
+
+Existe uma série de [especificações](http://en.wikipedia.org/wiki/HTTP_cookie) a respeito, mas não entrarei nos detalhes, vamos apenas ver como manipula-los no Flask.
+
+#### Escrevendo em um biscoito! (estanho isso né?)
+
+Para escrever dados em um cookie usamos o objeto **Response**, portanto sempre que precisar escrever um cookie será necessário criar explicitamente um objeto **Response** para este fim.
+
+```python
+from flask import abort, make_response
+
+@app.route('/login')
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+    if valid_login(username, password):
+        response = make_response("Hello! Welcome back!")
+        response.set_cookie('username', username)
+        response.set_cookie('user_hash', get_hash(username))
+        ...
+        return response
+    else:
+        abort(403)
+```
+
+No exemplo acima validamos o username e o password e caso o usuário seja válido gravamos algumas informações no cookie.
+
+> **DUMMY CODE ALERT:** O código acima é apenas um exemplo tosco, para controlar acesso recomendo o uso de Flask-Login ou Flask-Security
+
+#### Lendo o biscoito (da sorte?)
+
+Bom, assumindo que temos as informações **username** e **user_hash** gravadas no browser do cliente, e que este enviará este cookie no HEADER a cada requisição que fizer, podemos facilmente ler os dados contidos no cookie através do objeto **request**.
+
+```python
+from flask import request, redirect, url_for
+
+@app.route('/')
+def index():
+    username = request.cookies.get('username')
+    user_hash = request.cookies.get('user_hash')
+    # request.cookies é um dict, portanto use o .get para evitar KeyError
+    if is_logged(username, user_hash):
+        return "Welcome!"
+    else:
+        redirect(url_for('login'))
+```
+
+Neste outro **DUMMY CODE** pegamos os dados que recebemos do cookie e usamos para veriricar se o usuário está logado ou algo do tipo.
+
+#### Sessions
+
+No Flask existe o objeto **session** que é também uma forma de armazenar informação que será persistida entre requests, na **session** você pode armazenar informações de controle de acesso e até mesmo preferencias do usuário.
+
+As sessions dependem dos cookies, pois são indexadas atráves de um **SESSION_ID** que por padrão é sempre gravado em um cookie. Além disso o Flask por padrão guarda tembém os dados da **session** nos cookies, ou seja, os dados ficam lá do lado cliente, porém ele utiliza criptografia nesses dados, é possível visualizar o conteúdo deste cookie mas para alterar é sempre preciso assina-lo com a chave de criptografia correta e é para isso que serve a configuração **SECRET_KEY** lá nos config de seu app Flask.
+
+```python
+from flask import Flask, session, redirect, url_for, escape, request
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT
+
+@app.route('/')
+def index():
+    if 'username' in session:
+        return 'OLá, você está logado como %s' % escape(session['username'])
+    return redirect(url_for('login'))
+
+# O escape() precisa ser usado apenas se você não estiver usando um template.
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session['username'] = request.form['username']
+        return redirect(url_for('index'))
+    return '''
+        <form action="" method="post">
+            <p><input type=text name=username>
+            <p><input type=submit value=Login>
+        </form>
+    '''
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None) # Apaga os dados de login lá da session
+    return redirect(url_for('index'))
+
+
+```
+
+> **TIP:** Você pode armazenar as sessions em outro local diferente dos cookies se desejar, isto é útil quando você precisa manipular as sessions do lado servidor ou quando quer por exemplo saber quantos usuários estão com sessões abertas. Pode ser no memcached, banco SQL, redis ou MongoDB por exemplo. Uma ótima extensão para fazer isso é o [Flask-KVsession](https://github.com/mbr/flask-kvsession) baseado no simplekv.
+
+
+### <a name="acessando_bando_de_dados_pequeno_exemplo_com_dataset" href="#acessando_bando_de_dados_pequeno_exemplo_com_dataset"> Acessando banco de dados (pequeno exemplo com dataset)</a>
+
+Uma das vantagens do Flask é o fato dele não estar limitado a um ORM especifico para lidar com banco de dados, você poderá escolher entre SQlAlchemy, Peewee, Pony, MongoEngine etc. Você pode também fazer tudo na **unha** usando mysql-python ou Pymongo se preferir, enfim, a escolha é sua!
+
+Em outro capítulo desta série mostrarei exemplos com SQLAlchemy e também com o MongoEngine, mas nesta parte introdutória vamos usar o módulo [dataset](https://github.com/pudo/dataset) que é uma camada de abstração para ler e escrever dados nos bancos SQLite, MySQL ou Postgres.
+
+A vantagem do dataset é que ele é incrivelmente simples, não exige especificação de **schema** e é puro Python.
+
+Para começar instale o **dataset** na sua virtualenv.
+
+```bash
+(wtf_env)seuuser@suamaquina/path/to/wtf$ pip install dataset
+```
+
+### Escrevendo no banco de dados
+
+agora na raiz do projeto vamos criar um arquivo novo chamado ``db.py``
+
+```python
+# coding: utf-8
+
+import dataset
+
+db = dataset.connect('sqlite:///noticias.db')
+noticias = db['noticias']
+```
+
+Agora crie um arquivo ``news_app.py`` e vamos inicialmente criar uma view contendo um formulário para **cadastro de novas notícias**.
+
+> **NOTE:** Inicialmente não vamos nos preocupar com segurança, csrf ou login, mas nos próximos capítulos desta sério iremos evoluir este pequeno app.
+
+```
+# coding: utf-8
+
+from flask import Flask, request, url_for
+
+from db import noticias
+
+
+app = Flask("wtf")
+
+# por enquanto vamos usar um template html hardcoded
+# mas calma! em breve falaremos  sobre os templates com Jinja2
+base_html = u"""
+  <html>
+  <head>
+      <title>{title}</title>
+  </head>
+  <body>
+     {body}
+  </body>
+  </html>
+"""
+
+
+@app.route("/noticias/cadastro", methods=["GET", "POST"])
+def cadastro():
+    if request.method == "POST":
+        dados_do_formulario = request.form.to_dict()
+        nova_noticia = noticias.insert(dados_do_formulario)
+        return u"""
+            <h1>Noticia id %s inserida com sucesso!</h1>
+            <a href="%s"> Inserir nova notícia </a>
+        """ % (nova_noticia, url_for('cadastro'))
+    else:  # GET
+        formulario = u"""
+           <form method="post" action="/noticias/cadastro">
+               <label>Titulo:<br />
+                    <input type="text" name="titulo" id="titulo" />
+               </label>
+               <br />
+               <label>Texto:<br />
+                    <textarea name="texto" id="texto"></textarea>
+               </label>
+               <input type="submit" value="Postar" />
+           </form>
+        """
+        return base_html.format(title=u"Inserir nova noticia", body=formulario)
+
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=True)
+```
+
+Salve e execute seu aplicativo ``python news_app.py`` e acesse [http://localhost:5000/noticias/cadastro](http://localhost:5000/noticias/cadastro)
+
+Você verá um formulário com os campos **titulo** e **texto**, insira uma notícia nova e repita o processo algumas vezes. Note que na raiz de seu projeto agora terá um banco de dados SQLite **noticias.db**.
+
+### Lendo do banco de dados
+
+Abra o arquivo ``news_app.py`` e após a linha 39 vamos incluir uma view para listar todas as notícias na home do site.
+
+```python
+@app.route("/")
+def index():
+
+    noticia_template = u"""
+        <a href="/noticia/{noticia[id]}">{noticia[titulo]}</a>
+    """
+
+    # it's a kind of magic :)
+    todas_as_noticias = [
+        noticia_template.format(noticia=noticia)
+        for noticia in noticias.all()
+    ]
+
+    return base_html.format(
+        title=u"Todas as notícias",
+        body=u"<br />".join(todas_as_noticias)
+    )
+```
+
+Agora ao acessar [localhost:5000](http://localhost:5000) Você verá uma lista de links com os títulos das notícias que cadastrou!
+
+Só falta agora uma última view que será a utilizada para exibir a notícia quando você clicar no link.
+
+```python
+@app.route("/noticia/<int:noticia_id>")
+def noticia(noticia_id):
+    noticia = noticias.find_one(id=noticia_id)  # query no banco de dados
+    noticia_html = u"""
+        <h1>{titulo}</h1>
+        <p>{texto}</p>
+    """.format(**noticia)  # remember, Python is full of magic!
+
+    return base_html.format(title=noticia['titulo'], body=noticia_html)
+```
+
+
+Seu app de cadastro e leitura de notícias está pronto!
+
+> **CALMA:** Falta muita coisa ainda, ainda precisa de login, segurança contra csrf, sanitizar o html da notícia, permitir que a notícia seja alterada e etc..
+
+
+
+
+
+
+
 
 
 
