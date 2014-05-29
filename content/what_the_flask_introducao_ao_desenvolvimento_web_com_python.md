@@ -33,11 +33,13 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 2. **Flask patterns**: boas práticas na estrutura de aplicações Flask
 3. **Plug & Use**: extensões essenciais para iniciar seu projeto
 4. **DRY**: Criando aplicativos reusáveis com Blueprints
-5. **from flask.ext import magic**: Criando extensões para o Flask
+5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
 6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
 
 # Hello Flask
 ### Parte 1 - Introdução ao desenvolvimento web com Flask
+
+#### Conhecendo o Flask
 
 - [O que é Flask](#o_que_e_flask)
 - [Por onde começar](#por_onde_comecar)
@@ -47,11 +49,13 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 - [O contexto da aplicação](#o_contexto_da_aplicacao)
 - [O objeto "request" + acessando dados via GET e POST](#o_objeto_request_acessando_dados_via_get_e_post)
 - [Sessões e biscoitos](#sessoes_e_biscoitos)
+
+#### Quick and Dirty Tutorial: Desenvolvendo um aplicativo de notícias
+
 - [Acessando banco de dados (pequeno exemplo com dataset)](#acessando_bando_de_dados_pequeno_exemplo_com_dataset)
 - [Servindo arquivos estáticos](#servindo_arquivos_estaticos)
 - [Templates com Jinja2](#template_com_jinja_2)
-- [Customizando o Jinja com macros, filters e template globals](#customizando_o_jinja_com_macros_filters_e_template_globals)
-- [Exemplo de app utilizando todos os recursos mencionados](#exemplo)
+
 
 > **DISCLAIMER:** Este tutorial será bem longo, então já coloca ai nos favoritos pois não vai dar tempo de você terminar hoje :)
 
