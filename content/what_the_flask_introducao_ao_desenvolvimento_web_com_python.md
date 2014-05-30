@@ -846,7 +846,7 @@ Para começar instale o **dataset** na sua virtualenv.
 
 ### Escrevendo no banco de dados
 
-agora na raiz do projeto vamos criar um arquivo novo chamado ``db.py``
+agora na raiz do projeto vamos criar um arquivo novo chamado ``db.py``.
 
 ```python
 # coding: utf-8
@@ -861,7 +861,7 @@ Agora crie um arquivo ``news_app.py`` e vamos inicialmente criar uma view conten
 
 > **NOTE:** Inicialmente não vamos nos preocupar com segurança, csrf ou login, mas nos próximos capítulos desta sério iremos evoluir este pequeno app.
 
-```
+```python
 # coding: utf-8
 
 from flask import Flask, request, url_for
