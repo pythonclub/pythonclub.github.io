@@ -354,7 +354,7 @@ def index(name):
         return "Not Found", 404
 ```
 
-Na view acima caso seja requisitada a url ``site.com/Bruno`` o código de status será o "200" que representa "OK". Porém se requisitar informando um nome diferente o código de status será "404" com a mensagem "Not Found". Cada cliente pode implementar um comportamento diferente para o tratamento desses códigos de status, isto é muito importante principalmente quando trabalhamos com APIs.
+Na view acima caso seja requisitada a url ``localhost:5000/Bruno`` o código de status será o "200" que representa "OK". Porém se requisitar informando um nome diferente o código de status será "404" com a mensagem "Not Found". Cada cliente pode implementar um comportamento diferente para o tratamento desses códigos de status, isto é muito importante principalmente quando trabalhamos com APIs.
 
 > **RELAX:** Se você não informar o código de status o Flask irá tentar resolver para você. Por padrão qualquer retorno no formato string é convertido para um objeto Response com código de status 200 e no header vai o Content-Type "text/html" automaticamente. Flask is full of magic :)
 
@@ -435,7 +435,7 @@ JSON
 
 Ao invés de retornar uma página HTML você poderá precisar retornar JSON, JSONP ou algum outro formato como <strike>XML</strike> arghhhhh.
 
-Você pode simplesmente retornar uma string jsonificada porém tbm é preciso dizer ao cliente que o **content_type** ou **mimetype** em questão é **application/json**, <strike>m$/application:xml</strike> ou qualquer outro formato.
+Você pode simplesmente retornar uma string jsonificada porém também é preciso dizer ao cliente que o **content_type** ou **mimetype** em questão é **application/json**, <strike>m$/application:xml</strike> ou qualquer outro formato.
 
 Existem 3 possibilidades:
 
@@ -675,7 +675,7 @@ O request.form funciona da mesma forma que o .args porém ele intercepta apenas 
 exemplo de requisição POST via console
 
 ```bash
-curl --data "categoria=esportes&limit=10" http://site.com/noticias
+curl --data "categoria=esportes&limit=10" http://localhost:5000/noticias
 ```
 
 A requisição acima corresponde ao submit de um formulário contento os campos "categoria" e "limit".
@@ -698,7 +698,7 @@ repare que é exatamente o mesmo funcionamento do .args
 Requisição
 
 ```bash
-curl -X POST -d {"categoria": "esporte"} http://site.com/noticias --header "Content-Type:application/json"
+curl -X POST -d {"categoria": "esporte"} http://localhost:5000/noticias --header "Content-Type:application/json"
 ```
 
 O restante é igual, basta usar o ``request.is_json`` para checar se a requisição é com JSON payload e então acessar os dados.
@@ -710,7 +710,7 @@ Caso seu formulário ou API permitam o envio de arquivos esses dados serão colo
 Requisição: (equivale a um formulário com file upload)
 
 ```bash
-curl --form "photo=@picture.jpg&item_id=12345" http://site.com/change_photo
+curl --form "photo=@picture.jpg&item_id=12345" http://localhost:5000/change_photo
 ```
 
 para salvar a imagem:
@@ -961,12 +961,225 @@ def noticia(noticia_id):
 
 Seu app de cadastro e leitura de notícias está pronto!
 
+A versão completa pode ser encontrada [neste link](https://gist.github.com/rochacbruno/5ed42779bbb8d7738d71), salve o arquivo e execute ``python news_app.py`` acesse [localhost:5000](http://localhost:5000) e agora você terá a lista de notícias e poderá clicar em cada uma delas para ler seu conteúdo.
+
 > **CALMA:** Falta muita coisa ainda, ainda precisa de login, segurança contra csrf, sanitizar o html da notícia, permitir que a notícia seja alterada e etc..
 
 
+### <a name="servindo_arquivos_estaticos" href="#servindo_arquivos_estaticos"> Servindo arquivos estáticos</a>
+
+Arquivos estáticos são todos os arquivos que você deseja entregar ao cliente sem a necessidade de processar, ou seja, sem a necessidade de efetuar nenhum tipo de computação dentro do Flask.
+
+Geralmente arquivos JavaScript, CSS, imagens, videos, documentos etc são incluidos nesta categoria. Para evitar o **overhead** de processamento ao servir estes arquivos o **ideal** é sempre delegar esta tarefa ao servidor web que estiver sendo usado, isto é fácil de ser feito no Nginx e também no Apache, para isso esses servidores mapeiam um padrão de url, por exemplo todas as urls contendo:  ``/static/*.[jpg|png|gif|css...]`` e servem estes arquivos diretamente sem passar pelo servidor de palicação (o WSGI).
+
+Porém durante o desenvolvimento você vai precisar servir estes arquivos enquanto testa, para isso o Flask implementa um endpoint especifico que pode ser configurado ao iniciar a aplicação e também oferece um template tag que ajuda a resolver esse caminho dinamicamente nos templates.
+
+> **TIP:** É possivel definir um endpoint dinâmico para os arquivos estáticos e desta forma hospedar em um CDN ou em serviços externos como Amazon S3, Akamai ou Dropbox.
+
+#### Definindo a pasta e o endpoint dos arquivos estáticos
+
+No arquivo ``wtf/news_app.py`` da nossa app de notícias criarmos uma instância a app com ``Flask('wtf')`` sem passar nenhum parâmetro adicional, neste caso o Flask irá assumir o comportamento default que é ter uma pasta de estáticos localizada em ``wtf/static`` e o endpoint de estáticos mapeado para ``/static/`` e na maioria dos casos esta convenção irá atender perfeitamente.
+
+Caso você precise especificar um caminho diferente para os arquivos físicos ou um mapeamento de url diferente poderá informar ao Flask através dos seguintes parâmetros:
+
+```python
+app = Flask("wtf", static_folder='assets', static_url_path="assets_v1")
+```
+
+No exemplo acima agora os arquivos estáticos deverão ficar em uma pasta ``wtf/assets`` e a url para acessa-los será ``localhost:8000/assets_v1/arquivo.ext`` ao invés de ``/static/arquivo.ext``.
 
 
+#### Mão na massa
 
+Crie uma nova pasta ``wtf/static`` e salve o seguinte arquivo dentro dela
+
+Clique com o botão direito do mouse e escolha "salvar imagem..."
+
+![https://jobs.github.com/images/modules/company/generic_logo.gif](https://jobs.github.com/images/modules/company/generic_logo.gif)
+
+Agora modifique o ``news_app.py`` e vamos exibir este logotipo na página inicial, para isso primeiro altere o ``base_html`` incluindo o placeholder ``{{logo_url}}``.
+
+
+```python
+base_html = u"""
+  <html>
+  <head>
+      <title>{title}</title>
+  </head>
+  <body>
+     <img src="{logo_url}" />
+     <hr />
+     {body}
+  </body>
+  </html>
+"""
+```
+
+Agora altere o retorno das views incluindo a variavel **logo_url**, por exemplo na view ``cadastro`` altere para:
+
+```python
+        return base_html.format(
+            title=u"Inserir nova noticia",
+            body=formulario,
+            logo_url=url_for('static', filename='generic_logo.gif')
+        )
+```
+
+Repita o procedimento para as outras 2 views incluindo o trecho ``logo_url=url_for('static', filename='generic_logo.gif')`` no .format.
+
+O helper ``url_for`` criou dinâmicamente uma url completa apontando par ao nosso arquivo estático, e se por acaso mudarmos os valores de static_folder e static_path não teremos que nos preocupar com a mudança das urls em nossos templates html pois o uso do endpoint especial **static** no url_for garante isso.
+
+> **TIP:** Os preguiçosos podem baixar o [arquivo](https://gist.github.com/rochacbruno/71e874ac18177b22a31a).
+
+#### Gravando e servindo arquivos de MEDIA
+
+Geralmente chamamos de arquivos de MEDIA aqueles arquivos que não fazem parte da estrutura do nosso site, enquanto os css e js e também imagens do layout e logotipos são fixos de nossa estrutura. Uma foto de um usuário ou um documento .doc ou .pdf anexado a uma notícia são contéudo dinâmico que precisaremos servir do mesmo modo que servimos os arquivos estáticos.
+
+Resolver isso no Flask é uma tarefa relativamente fácil, vamos começar com os uploads de arquivos.
+
+#### Upload de arquivos
+
+Agora para cada notícia o usuário também poderá incluir uma imagem, vamos implementar o upload desta imagem.
+
+Inicialmente crie uma nova pasta ``wtf/media_files`` e edite as primeiras linhas do ``news_app.py`` incluindo a configuração do local onde os arquivos de media serão armazenados.
+
+
+```python
+# coding: utf-8
+
+import os
+
+from flask import Flask, request, url_for
+
+from db import noticias
+
+app = Flask("wtf")
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+app.config['MEDIA_ROOT'] = os.path.join(PROJECT_ROOT, 'media_files')
+
+```
+
+A config "MEDIA_ROOT" irá guardar o caminho absoluto para a pasta ``../wtf/media_files``
+
+Agora edite a view de cadastro de notícias:
+
+1. inclua ``enctype="multipart/form-data"`` no html do formulário para permitir uploads.
+2. Insira um campo para upload de arquivo
+3. importe o ``current_app`` para poder acessar os configs da app em execução e o `secure_filename`` para garantir um nome válido para o upload
+4. implemente o upload da imagem utilizando o ``request.files`` e salve o caminho da imagem junto com a notícia
+
+
+```python
+...
+
+from werkzeug import secure_filename
+
+from flask import Flask, request, url_for, current_app
+
+...
+
+@app.route("/noticias/cadastro", methods=["GET", "POST"])
+def cadastro():
+    if request.method == "POST":
+        dados_do_formulario = request.form.to_dict()
+        imagem = request.files.get('imagem')
+        if imagem:
+            filename = secure_filename(imagem.filename)
+            path = os.path.join(current_app.config['MEDIA_ROOT'], filename)
+            imagem.save(path)
+            dados_do_formulario['imagem'] = filename
+        nova_noticia = noticias.insert(dados_do_formulario)
+        return u"""
+            <h1>Noticia id %s inserida com sucesso!</h1>
+            <a href="%s"> Inserir nova notícia </a>
+        """ % (nova_noticia, url_for('cadastro'))
+    else:  # GET
+        formulario = u"""
+           <form method="post" action="/noticias/cadastro"
+             enctype="multipart/form-data">
+               <label>Titulo:<br />
+                    <input type="text" name="titulo" id="titulo" />
+               </label>
+               <br />
+               <label>Texto:<br />
+                    <textarea name="texto" id="texto"></textarea>
+               </label>
+               <br />
+               <label> Imagem:<br />
+                  <input type="file" name="imagem" id="imagem" />
+               </label>
+               <input type="submit" value="Postar" />
+           </form>
+        """
+        return base_html.format(
+            title=u"Inserir nova noticia",
+            body=formulario,
+            logo_url=url_for('static', filename='generic_logo.gif')
+        )
+
+```
+
+Com isso pode acessar [localhost:5000/noticias/cadastro](http://localhost:5000/noticias/cadastro) e inserir uma notícia com imagem!
+
+Se preferir faça [download](https://gist.github.com/rochacbruno/00adfb0145797fb95c76) da versão completa do ``news_app.py``
+
+
+#### Servindo os arquivos de media
+
+Agora vamos fazer com que a imagem inserida na notícia seja mostrada na página dela junto com o seu texto. Nós já vimos que o Flask tem um endpoint **static** para servir os arquivos estáticos da pasta padrão, porém no nosso caso os arquivos estão localizados em outra pasta, a **media_files**, teremos que criar uma view para servir estes arquivos.
+
+Comece importando a fuinção ``send_from_directory`` lá no inicio do ``news_app.py``
+
+```python
+from flask import Flask, request, url_for, current_app, send_from_directory
+```
+
+Agora vamos incluir uma nova view após a linha 104:
+
+```python
+@app.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
+```
+
+Esta view será responsável por pegar o arquivo do diretório e fazer stream para o cliente. O próximo passo e construir a url usando o endpoint **media** que é o nome da view.
+
+Altere a view **noticia** incluindo a imagem no html e resolvendo a url para a imagem correspondente com o url_for, caso a notícia não possua imagem usaremos uma imagem padrão.
+
+
+```python
+@app.route("/noticia/<int:noticia_id>")
+def noticia(noticia_id):
+    noticia = noticias.find_one(id=noticia_id)  # query no banco de dados
+    if noticia.get('imagem'):
+        imagem_url = url_for('media', filename=noticia.get('imagem'))
+    else:
+        imagem_url = "http://placehold.it/100x100"
+
+    noticia_html = u"""
+        <h1>{titulo}</h1>
+        <img src="{imagem_url}">
+        <hr />
+        <p>{texto}</p>
+    """.format(
+        imagem_url=imagem_url,
+        **noticia
+    )  # remember, Python is full of magic!
+
+    return base_html.format(
+        title=noticia['titulo'],
+        body=noticia_html,
+        logo_url=url_for('static', filename='generic_logo.gif')
+    )
+
+```
+
+Faça o [download](https://gist.github.com/rochacbruno/27fc63e46966aeca89a0) da versão com exibição de imagens.
+
+Agora acesse as noticias que cadastrou com imagem para visualizar a imagem junto com a notícia. :)
+
+### Templates
 
 
 
