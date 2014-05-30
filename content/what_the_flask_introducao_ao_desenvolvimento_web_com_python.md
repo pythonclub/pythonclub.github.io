@@ -1179,7 +1179,39 @@ Faça o [download](https://gist.github.com/rochacbruno/27fc63e46966aeca89a0) da 
 
 Agora acesse as noticias que cadastrou com imagem para visualizar a imagem junto com a notícia. :)
 
-### Templates
+
+### <a name="template_com_jinja_2" href="#template_com_jinja_2"> Templates com Jinja2</a>
+
+Até agora escrevemos HTML diretamente em strings no ``news_app.py``, porém conforme o app vai crescendo começa a ficar impossível dar manutenção nesses templates hardcoded, sem contar que é mais interessante ter isso em uma camada separada possibilitando a substituição a qualquer momento.
+
+No Flask você até pode escolher utilizar um outro engine de templates como o Mako, Genshi, TAL etc, porém o padrão implementado no **render_template** do Flask é o Jinja2.
+
+O Jinja2 foi inspirado na sintaxe do sistema de templates do Django e é muito fácil de utilizar.
+
+#### definindo a pasta de templates
+
+Assim como no caso dos estáticos o Flask já tem um padrão que é sempre procurar os templates em uma pasta chamada ``templates`` mas você pode alterar este caminho se preferir.
+
+```python
+app = Flask('wtf', templates_folder='outra_pasta_de_templates')
+```
+
+No nosso caso vamos utilizar o padrão e criar uma nova pasta ``wtf/templates`` e dentro desta pasta crie um novo arquivo chamado ``wtf/templates/base.html`` e vamos usa-lo para substituir a variavel ``base_html`` no ``news_app.py``.
+
+Arquivo ``base.html``
+```html
+<html>
+<head>
+    <title>{title}</title>
+</head>
+<body>
+   <img src="{logo_url}" />
+   <hr />
+   {body}
+</body>
+</html>
+
+```
 
 
 
