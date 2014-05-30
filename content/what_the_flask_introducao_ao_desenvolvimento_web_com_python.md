@@ -84,12 +84,13 @@ Obviamente que para seguir neste tutorial será necessário utilizar Python, nã
 
 #### Você vai precisar de:
 
-- Python 2.7 (não usaremos Python 3 pois ainda tem extensões que não migraram)
-- Ipython - Um terminal interativo (REPL) com poderes da super vaca ("Have you mooed today?")
-- virtualenv e virtualenv wrapper - para criação de ambientes isolados
-- Um editor de código ou IDE de sua preferência - (Gedit, Notepad++, sublime, Emacs, VIM etc..)
-- Um browser de verdade - espero que você não esteja usando o I.E :P
-
+- **Python 2.7** (não usaremos Python 3 pois ainda tem extensões que não migraram)
+- **Ipython** - Um terminal interativo (REPL) com poderes da super vaca ("Have you mooed today?")
+- **virtualenv** ou **virtualenv wrapper** - para criação de ambientes isolados
+- Um **editor** de código ou IDE de sua preferência - (Gedit, Notepad++, sublime, Emacs, VIM etc..)
+- Um **browser** de verdade - espero que você não esteja usando o I.E :P
+- **Dataset** - Biblioteca para acesso a bancos de dados
+- **Flask** - Geralmente usado para armazenar vodka ou scotch (wtf?)
 
 #### Ambiente
 
@@ -341,7 +342,7 @@ No Flask existe uma convenção bastante útil: caso você declare sua url sem a
 
 > **TIP:** Pode ir escrevendo os códigos deste tutorial ai no ``app.py`` para ir testando enquanto lê este artigo.
 
-Views precisam retornar um objeto do tipo **Response** ou uma tupla formada por até 3 elementos, um **body** que pode ser um objeto serializável como por exemplo um texto, um inteiro representando o código de status HTTP e um dicionário de headers, sendo que os dois ultimos elementos são opcionais.
+Views precisam retornar um objeto do tipo **Response** ou uma tupla formada por até 3 elementos, um **body** que pode ser um objeto serializável como por exemplo um texto, um inteiro representando o código de **status HTTP** e um dicionário de **headers**, sendo que os dois ultimos elementos são opcionais.
 
 Exemplo:
 
@@ -631,12 +632,12 @@ def noticia_api(noticia_id=None):
 
 ### Valores mais importantes do objeto **request**
 
-- request.method: Informa qual método HTTP foi usado na requisiçao
-- request.headers: headers HTTP da requisição, útil para checar o mimetype e dados de basic auth.
-- request.environ: Variáveis de ambiente do WSGI, navegador, ip do cliente etc
-- request.path, request.url: O path ou a url completa da requisição
-- request.is_xhr: Informa se é ou não uma requisição Ajax
-- request.blueprint: Nome do blueprint que interceptou o request, Blue o que? -- Calma, veremos o que é isso mais adiante
+- request.**method**: Informa qual método HTTP foi usado na requisiçao
+- request.**headers**: headers HTTP da requisição, útil para checar o mimetype e dados de basic auth.
+- request.**environ**: Variáveis de ambiente do WSGI, navegador, ip do cliente etc
+- request.**path**, request.url: O path ou a url completa da requisição
+- request.**is_xhr**: Informa se é ou não uma requisição Ajax
+- request.**blueprint**: Nome do blueprint que interceptou o request, Blue o que? -- Calma, veremos o que é isso mais adiante
 
 
 ### Acessando dados do request
@@ -703,7 +704,7 @@ curl -X POST -d {"categoria": "esporte"} http://localhost:5000/noticias --header
 
 O restante é igual, basta usar o ``request.is_json`` para checar se a requisição é com JSON payload e então acessar os dados.
 
-#### File uploads
+#### request.files / file uploads
 
 Caso seu formulário ou API permitam o envio de arquivos esses dados serão colocados no ``request.files``. Isto ocorre pois internamente o Flask transforma os dados recebidos em um objeto **FileStorage** para permitir que você manipule os com mais facilidade.
 
@@ -742,7 +743,7 @@ Cookie é um "storage" de dados que é armazenado pelo cliente (browser, etc), o
 
 Existe uma série de [especificações](http://en.wikipedia.org/wiki/HTTP_cookie) a respeito, mas não entrarei nos detalhes, vamos apenas ver como manipula-los no Flask.
 
-#### Escrevendo em um biscoito! (estanho isso né?)
+#### Escrevendo em um biscoito! (estranho isso né?)
 
 Para escrever dados em um cookie usamos o objeto **Response**, portanto sempre que precisar escrever um cookie será necessário criar explicitamente um objeto **Response** para este fim.
 
@@ -797,7 +798,7 @@ As sessions dependem dos cookies, pois são indexadas atráves de um **SESSION_I
 from flask import Flask, session, redirect, url_for, escape, request
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT
+app.config['SECRET_KEY'] = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
 
 @app.route('/')
 def index():
@@ -834,7 +835,7 @@ def logout():
 
 Uma das vantagens do Flask é o fato dele não estar limitado a um ORM especifico para lidar com banco de dados, você poderá escolher entre SQlAlchemy, Peewee, Pony, MongoEngine etc. Você pode também fazer tudo na **unha** usando mysql-python ou Pymongo se preferir, enfim, a escolha é sua!
 
-Em outro capítulo desta série mostrarei exemplos com SQLAlchemy e também com o MongoEngine, mas nesta parte introdutória vamos usar o módulo [dataset](https://github.com/pudo/dataset) que é uma camada de abstração para ler e escrever dados nos bancos SQLite, MySQL ou Postgres.
+Em outro capítulo desta série mostrarei exemplos com o MongoEngine, mas nesta parte introdutória vamos usar o módulo [dataset](https://github.com/pudo/dataset) que é uma camada de abstração para ler e escrever dados nos bancos SQLite, MySQL ou Postgres.
 
 A vantagem do dataset é que ele é incrivelmente simples, não exige especificação de **schema** e é puro Python.
 
@@ -843,6 +844,8 @@ Para começar instale o **dataset** na sua virtualenv.
 ```bash
 (wtf_env)seuuser@suamaquina/path/to/wtf$ pip install dataset
 ```
+
+> **NOTE:** O dataset vai instalar várias dependencias, entre elas estão o **alembic** para efetuar migrations automáticas e o **SQLAlchemy** para conexão e mapeamento.
 
 ### Escrevendo no banco de dados
 
