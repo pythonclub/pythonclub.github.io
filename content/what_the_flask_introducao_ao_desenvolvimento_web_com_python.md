@@ -53,7 +53,7 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 #### Quick and Dirty Tutorial: Desenvolvendo um aplicativo de notícias
 
 - [Acessando banco de dados (pequeno exemplo com dataset)](#acessando_bando_de_dados_pequeno_exemplo_com_dataset)
-- [Servindo arquivos estáticos](#servindo_arquivos_estaticos)
+- [Servindo arquivos estáticos e upload de MEDIA](#servindo_arquivos_estaticos)
 - [Templates com Jinja2](#template_com_jinja_2)
 
 
