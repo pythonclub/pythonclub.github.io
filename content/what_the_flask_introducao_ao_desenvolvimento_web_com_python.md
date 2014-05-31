@@ -27,6 +27,8 @@ adquirindo experiência também no desenvolvimento do projeto open source
 [Quokka CMS](http://quokkaproject.org) resolvi compartilhar algumas dicas
 para facilitar a vida de quem pretende começar a desenvolver para web com Python.
 
+> **TL;DR:** A versão final do aplicativo explicado neste artigo está no [github](https://github.com/rochacbruno/wtf)
+
 A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 
 1. [**Hello Flask**](/what_the_flask_introducao_ao_desenvolvimento_web_com_python.html): Introdução ao desenvolvimento web com Flask  - **<-- Você está aqui**
@@ -57,7 +59,7 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 - [Templates com Jinja2](#template_com_jinja_2)
 
 
-> **DISCLAIMER:** Este tutorial será bem longo, então já coloca ai nos favoritos pois não vai dar tempo de você terminar hoje :)
+> **ATENÇÃO:** Este artigo é bem longo, então já coloca ai nos favoritos pois pode ser que não dê tempo de você terminar hoje :)
 
 
 ### <a name="o_que_e_flask" href="#o_que_e_flask">O que é Flask?</a>
@@ -1189,7 +1191,53 @@ Até agora escrevemos HTML diretamente em strings no ``news_app.py``, porém con
 
 No Flask você até pode escolher utilizar um outro engine de templates como o Mako, Genshi, TAL etc, porém o padrão implementado no **render_template** do Flask é o Jinja2.
 
-O Jinja2 foi inspirado na sintaxe do sistema de templates do Django e é muito fácil de utilizar.
+O Jinja2 foi inspirado na sintaxe do sistema de templates do Django e é muito fácil de utilizar. Para este nosso app de notícias você precisará saber apenas alguns conceitos do Jinja2, mas no decorrer desta série exploraremos outros assuntos mais avançados como criação de macros, template loaders e extensões.
+
+#### Base template
+
+Todo site tem um layout comum que se repete em todas as páginas, geralmente onde fica a barra superior, os menus, o logotipo e o rodapé. Para não precisar ficar repetindo essa parte do código no template de todas as páginas é comum criarmos um base template e depois ir estendendo ele nos outros templates.
+
+Exemplo:
+
+base.html
+```html
+<html>
+<body>
+    {% block topo %}
+    <img src="logo.png"><br />
+    <menu><ul><li>HOME</li><li>CADASTRO</li></ul></menu>
+    {% endblock %}
+    <hr />
+    {% block content%}<!-- page content -->{% endblock%}
+</body>
+</html>
+```
+
+Repare que no exemplo acima usamos a tag ``{% block <block_name> %}`` para definir uma area no template que poderá ser sobrescrita pelos templates que estenderem o template base.
+
+#### Estendendo o template base
+
+Agora imagine que vamos criar o template que vai exibir a lista de notícias.
+
+```html
+{% extends "base.html" %}
+{% block content %}
+    <ul>
+       {% for noticia in noticias %}
+           <li>{{noticia['titulo']}}</li>
+       {% endfor %}
+    </ul>
+{% endblock %}
+```
+
+Repare desta vez que não foi necessário reescrever o html básico e nem o bloco do menu, apenas sobrescrevemos o bloco **content** e dentro dele montamos a lista de notícias.
+
+O Jinja2 aceita um subset limitado da linguagem Python, ou seja, você pode usar Python nos templates, mas não pode fazer qualquer coisa. O mais indicado é que você limite-se a usar o básico que são os loops e as expressões condicionais, além é claro dos statements da própria linguagem de templates.
+
+No Jinja os statements do template engine, as tags customizadas e código Python devem ficar entre "{%" e "%}". Já a "impressão" de valores no html é feita entre "{{" e "}}", sendo que esta sintaxe pode até ser customizada para qualquer outra combinação que você preferir.
+
+Uma outra caracteristica interessante é que nos templates chaves de dicionários podem ser acessadas via **.** ou via **[ ]** os dois casos funcionam. exemplo: ``{{ noticia['titulo'] }}`` ou ``{{ noticia.titulo }}``
+
 
 #### definindo a pasta de templates
 
@@ -1201,20 +1249,189 @@ app = Flask('wtf', templates_folder='outra_pasta_de_templates')
 
 No nosso caso vamos utilizar o padrão e criar uma nova pasta ``wtf/templates`` e dentro desta pasta crie um novo arquivo chamado ``wtf/templates/base.html`` e vamos usa-lo para substituir a variavel ``base_html`` no ``news_app.py``.
 
-Arquivo ``base.html``
+Crie orquivo ``templates/base.html`` e apague a variavel ``base_html`` do ``news_app.py``
+
 ```html
 <html>
 <head>
-    <title>{title}</title>
+    <title>{% block title %} {{title or "Notícias"}} {% endblock %}</title>
 </head>
 <body>
-   <img src="{logo_url}" />
+   <img src="{{url_for('static', filename='generic_logo.gif')}}">
+   <nav>
+       <a href="{{url_for('index')}}">HOME</a> | <a href="{{url_for('cadastro')}}">CADASTRO</a>
+   </nav>
    <hr />
-   {body}
+   {% block content %} {% endblock %}
 </body>
 </html>
 
 ```
+
+Desta maneira podemos utilizar o helper **url_for** direto no template para acessar os arquivos estáticos. Repare também que fizemos uma impressão condicional em ``{{ title or "Notícias"}}`` isso é possível pois no Jinja2 qualquer variável não existente é avaliada como **None**, este mesmo trecho poderia ser escrito da seguinte maneira ``{{ title|default("Notícias") }}``
+
+Agora vamos criar um template para a home do site, onde a lista de notícias é exibida.
+
+Crie o arquivo ``templates/index.html``
+
+```html
+{% extends "base.html" %}
+{% block content %}
+<ul>
+    {% for noticia in noticias %}
+    <li>
+        <a href="{{url_for('noticia', noticia_id=noticia.id)}}">
+         {{noticia.titulo}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+```
+
+Neste exemplo utilizamos um loop ``for`` para iterar sobre a lista de noticias que será passada pela view, também usamos o url_for para criar a url que levará para a página de leitura da notícia.
+
+Agora crie agora o template da página da notícia em ``templates/noticia.html``
+
+```html
+{% extends "base.html" %}
+{% block title%}
+    {{noticia.titulo}}
+{% endblock%}
+
+{% block content %}
+    <h1>{{noticia.titulo}}</h1>
+    {% if noticia.imagem %}
+        <img src="{{ url_for('media', filename=noticia.imagem) }}" width="300" />
+    {% endif %}
+    <hr />
+    <p>
+        {{noticia.texto}}
+    </p>
+{% endblock %}
+
+```
+
+Agora falta apenas o template para o formulário de cadastro de nova notícia e basta copiar e colar o html da variavel formulário para um template chamado ``templates/cadstro.html`` e fazer pequenas alterações.
+
+
+```html
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="{{ url_for('cadastro') }}" enctype="multipart/form-data">
+   <label>Titulo:<br />
+        <input type="text" name="titulo" id="titulo" />
+   </label>
+   <br />
+   <label>Texto:<br />
+        <textarea name="texto" id="texto"></textarea>
+   </label>
+   <br />
+   <label> Imagem:<br />
+      <input type="file" name="imagem" id="imagem" />
+   </label>
+   <input type="submit" value="Postar" />
+</form>
+{% endblock %}
+```
+
+Vamos criar também um template para exibir uma mensagem de sucesso ao inserir nova notícia em ``templates/cadastro_sucesso.html``
+
+```html
+{% extends "base.html" %}
+{% block title %}
+    Notícia {{id_nova_noticia}} inserida com sucesso
+{% endblock %}
+
+{% block content %}
+    <h1>Notícia {{id_nova_noticia}} inserida com sucesso!</h1>
+    <a href="{{url_for('noticia', noticia_id=id_nova_noticia)}}"> Ler Notícia </a><br />
+    <a href="{{url_for('cadastro')}}"> Cadastrar nova notícia </a>
+{% endblock %}
+```
+
+Após salvar os 5 arquivos de template base.html, index.html, noticia.html, cadastro.html e cadastro_sucesso.html dentro da pasta templates, altere o ``news_app.py`` para usar a função **render_template** que recebe como parâmetros o nome do template e as variaveis que estarão disponíveis no escopo do template.
+
+```python
+# coding: utf-8
+import os
+from werkzeug import secure_filename
+from flask import (
+    Flask, request, current_app, send_from_directory, render_template
+)
+
+from db import noticias
+
+app = Flask("wtf")
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+app.config['MEDIA_ROOT'] = os.path.join(PROJECT_ROOT, 'media_files')
+
+
+@app.route("/noticias/cadastro", methods=["GET", "POST"])
+def cadastro():
+    if request.method == "POST":
+
+        dados_do_formulario = request.form.to_dict()
+        imagem = request.files.get('imagem')
+
+        if imagem:
+            filename = secure_filename(imagem.filename)
+            path = os.path.join(current_app.config['MEDIA_ROOT'], filename)
+            imagem.save(path)
+            dados_do_formulario['imagem'] = filename
+
+        id_nova_noticia = noticias.insert(dados_do_formulario)
+        return render_template('cadastro_sucesso.html',
+                                id_nova_noticia=id_nova_noticia)
+
+    return render_template('cadastro.html', title=u"Inserir nova noticia")
+
+
+@app.route("/")
+def index():
+    todas_as_noticias = noticias.all()
+    return render_template('index.html',
+                           noticias=todas_as_noticias,
+                           title=u"Todas as notícias")
+
+
+@app.route("/noticia/<int:noticia_id>")
+def noticia(noticia_id):
+    noticia = noticias.find_one(id=noticia_id)
+    return render_template('noticia.html', noticia=noticia)
+
+
+@app.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
+
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=True)
+```
+
+Após salvar os templates e o news_app.py modificado reinicie o serviço flask no terminal usando CTRL+C e executando novamente ``python news_app.py``. Isso é necessário pois o Flask cria o cache de templates no momento da inicialização do aplicativo.
+
+Acesse o app via [localhost:5000](http://localhost:5000) e veja que agora a barra de menu se mantém em todas as páginas.
+
+
+O aplicativo completo pode ser obtido no [repositorio do github](https://github.com/rochacbruno/wtf).
+
+> **END:** Sim chegamos ao fim desta primeira parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 5 partes iremos nos aprofundar em boas práticas, uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
+
+<hr />
+
+> **PUBLICIDADE:** Estou iniciando um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CurdoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
+
+<hr />
+
+> **PUBLICIDADE 2:** Também estou escrevendo um livro de receitas **Flask CookBook** através da plataforma LeanPub, caso tenha interesse por favor preenche o formulário na [página do livro](https://leanpub.com/pythoneflask)
+
+
+Muito obrigado e aguardo seu feedback com dúvidas, sugestões, correções ou bitcoins (LOL) na caixa de comentários abaixo.
+
+Abraço! "Python é vida!"
 
 
 
