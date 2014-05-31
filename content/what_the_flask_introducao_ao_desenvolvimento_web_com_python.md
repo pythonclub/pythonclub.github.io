@@ -1,6 +1,6 @@
 Title: What the Flask? Pt-1 Introdução ao desenvolvimento web com Python
 Slug: what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python
-Date: 2014-05-31 17:21
+Date: 2014-05-31 02:22
 Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
