@@ -17,7 +17,7 @@
     {% if FEED_RSS %}
         <link rel="alternate" href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" title="{{ SITENAME }} RSS Feed"/>
     {% endif %}
-    
+
     <link rel="shortcut icon" href="{{ SITEURL }}/theme/images/favicon.ico" >
 
     {% block head %}
@@ -27,22 +27,23 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pure.css">
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/custom.css">
     {% block head_css %}{% endblock %}
 
-    
+
     {% block head_js %}{% endblock %}
-    
+
     {% include 'analytics.html' %}
 </head>
 
 <body>
     {% block content %}
     {% endblock %}
-    
+
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     {% block bottom_js %}{% endblock %}
-    
+
     <script>
         var $top = $('.go-top');
 
