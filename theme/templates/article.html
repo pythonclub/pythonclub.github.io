@@ -3,6 +3,11 @@
 
 {% block head_css %}
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
+    <style type="text/css">
+    .alinhar {
+      margin-bottom: -4px !important;
+    }
+    </style>
 {% endblock %}
 
 {% block head_js %}
@@ -11,6 +16,14 @@
         $(document).ready(function(){
             $(".content").fitVids();
         });
+        $(window).load(function(){
+          $("iframe").css("margin-bottom", "-6px")
+          $("#twitter-widget-0").css("margin-bottom", "-5px");
+          $("#twitter-widget-0").css("margin-left", "-1px");
+        });
+    </script>
+    <script type="text/javascript" src="https://apis.google.com/js/platform.js">
+      {lang: 'pt-BR'}
     </script>
 {% endblock %}
 
@@ -20,7 +33,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{{ article.title }}" />
     <meta property="og:site_name" content="{{ SITENAME }}" />
-    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
+    <meta property="og:url" content="http://pythonclub.com.br/{{ article.url }}" />
     <meta property="og:description" content="{{ article.summary|striptags }}" />
     <meta property="og:image" content="{{ SITELOGO }}" />
 {% endblock head %}
@@ -126,10 +139,13 @@
                 js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId={{ FACEBOOK_APPID }}&version=v2.0";
                 fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));</script>
-                <div class="fb-share-button" data-href="{{ SITEURL }}/{{ article.url }}" data-type="button_count"></div>
+                <div class="fb-share-button" data-href="http://pythonclub.com.br/{{ article.url }}" data-type="button_count"></div>
+
+                <!-- Google+ sharing -->
+                <div class="g-plus alinhar" data-action="share" data-annotation="bubble" data-href="http://pythonclub.com.br/{{ article.url }}"></div>
 
                 <!-- Twitter sharing -->
-                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt" style="margin-bottom: -4px !important;">Tweetar</a>
                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             </div>
 
