@@ -1,7 +1,7 @@
 Selenium - O que você deveria saber - Parte 3
 #############################################
 
-:date: 2014-05-30 10:49
+:date: 2014-06-02 10:49
 :tags: selenium, python, selenium-serie
 :category: Python
 :slug: selenium-parte-3
@@ -13,7 +13,9 @@ Selenium - O que você deveria saber - Parte 3
 
 Esse é o terceiro post da série sobre Selenium, hoje vamos aprender a executar código javascript e usar diferentes navegadores.
 
-Se você não leu a segunda parte, clique `aqui <http://pythonclub.com.br/selenium-parte-2.html>`_.
+    - Veja a `primeira parte <http://pythonclub.com.br/selenium-parte-1.html>`_.
+    - Veja a `segunda parte <http://pythonclub.com.br/selenium-parte-2.html>`_.
+
 
 Parte 3
 ---------
