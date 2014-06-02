@@ -11,8 +11,8 @@ Selenium - O que você deveria saber - Parte 2
 :linkedin: lucasmagnum
 
 
-Esse é o segundo post da série sobre Selenium, hoje vamos manipular formulários, frames e múltiplas janelas.
-Vamos também descobrir que é possível esperar para tentar descobrir um elemento na página.
+Esse é o segundo post da série sobre Selenium, hoje vamos aprender a manipular formulários, frames e múltiplas janelas.
+Vamos também vai descobrir que é possível esperar para tentar encontrar um elemento na página.
 
 Se você não leu a primeira parte, clique `aqui <http://pythonclub.com.br/selenium-parte-1.html>`_.
 
@@ -27,7 +27,7 @@ Parte 2
 Brincando com formulários
 ==========================
 
-Quem nunca precisou preencher um formulário na web?
+Quantas vezes você já não preencheu um formulário na web?
 
 Hoje vamos aprender como fazer isso, vamos visualizar o exemplo abaixo que procura por um termo no google.
 

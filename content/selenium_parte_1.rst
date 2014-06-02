@@ -37,8 +37,8 @@ Parte 2
 
 Parte 3
 --------
-    - Executando código javascript
-    - Como utilizar diferentes navegadores
+    - `Executando código javascript <http://pythonclub.com.br/selenium-parte-3.html#executando-codigo-javascript>`_
+    - `Como utilizar diferentes navegadores <http://pythonclub.com.br/selenium-parte-3.html#como-utilizar-diferentes-navegadores>`_
 
 Parte 4
 --------
