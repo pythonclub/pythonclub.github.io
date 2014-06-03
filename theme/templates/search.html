@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="pure-g-r" id="layout">
+    {% include 'sidebar.html' %}
+    <div class="pure-u-1">
+        <div class="content">
+            <!-- A wrapper for all the blog posts -->
+            <div class="posts">
+                <h1 class="content-subhead">Resultado da busca</h1>
+                <div id="google-results">
+                    <script>
+                      (function() {
+                        var cx = '013207087308420121210:ehs0cs4sbxy';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                            '//www.google.com/cse/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                      })();
+                    </script>
+                    <gcse:searchresults-only linkTarget="_parent"></gcse:searchresults-only>
+                </div>
+                {% include 'footer.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
