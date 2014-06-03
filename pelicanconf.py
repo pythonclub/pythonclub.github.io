@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 import os
-dir = os.path.dirname(__file__)
+BASE = os.path.dirname(__file__)
 
 AUTHOR = u'PythonClub'
 AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
@@ -37,7 +37,7 @@ MENUITEMS = (
 )
 
 TEMPLATE_PAGES = {
-    os.path.join(dir, 'theme/templates/search.html'): os.path.join(dir, 'output/pages/search.html')
+    os.path.join(BASE, 'theme/templates/search.html'): os.path.join(BASE, 'output/pages/search.html')
 }
 
 # Social widget

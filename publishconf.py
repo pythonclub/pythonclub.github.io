@@ -10,9 +10,15 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
+BASE = os.path.dirname(__file__)
+
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
 
 DELETE_OUTPUT_DIRECTORY = True
+
+TEMPLATE_PAGES = {
+    os.path.join(BASE, 'theme/templates/search.html'): os.path.join(BASE, 'output/pages/search.html')
+}
