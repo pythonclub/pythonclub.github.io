@@ -7,5 +7,5 @@ Ao contribuir com artigos neste repositorio, você concorda em licenciar seu art
 
 ## Regras de contribuição
 
-  . A data/hora contida na tag Markdown "Date:" ou na tag reStructuredText "\:date\:" deve ser posterior a do ultimo artigo publicado, 
+  . A data/hora contida na tag Markdown ```Date:``` ou na tag reStructuredText ```:date:``` deve ser posterior a do ultimo artigo publicado, 
     de modo que não se perca a ordem cronologica das postagems.
