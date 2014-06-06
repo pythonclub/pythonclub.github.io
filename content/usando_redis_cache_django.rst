@@ -16,6 +16,58 @@ Vou explicar como `instalar <#instalacao>`_ e alguns `comandos <#comandos-basico
 Depois como Django trabalha como o `cache`_ e `sessão <#sessao>`_ e logo em seguida vamos aprender a alterar o Django para utilizar o Redis como forma de armazenamento.
 
 
+Redis
+------
+
+Redis é um armazenador de dados no formato "key-value" ou "chave-valor".
+O acrônimo Redis significa "REmote DIctionary Server".
+Os dados são armazenados por padrão são em memória, porém você pode configurá-lo para armazenar em disco.
+
+
+=================
+Instalação
+=================
+
+Acesse o `tutorial oficial <http://redis.io/download>`_ de instalação do Redis, baixe a versão mais nova e siga os passos descritos para finalizar a instalação.
+
+=================
+Comandos básicos
+=================
+
+Quando o Redis é instalado, ele cria um atalho para seu cliente chamado ``redis-cli`` e com ele podemos executar os comandos abaixo:
+
+Primeiro abra o cliente:
+
+.. code-block :: bash
+
+    >> redis-cli
+
+Com o cliente aberto podemos escolher qual ``database`` queremos trabalhar, utilizando o comando ``select``.
+Basta informar qual o índice da base que queremos utilizar.
+
+.. code-block:: bash
+
+  127.0.0.1:6379 > select 1
+
+Nesse caso selecionamos a base de índice 1 para realizar as consultas.
+
+Se quisermos consultar todas as ``keys`` que estão armazenadas, basta utilizarmos o comando ``keys`` com um parâmetro "*".
+
+.. code-block:: bash
+
+  127.0.0.1:6379[1] > keys *
+
+Se nossas ``keys`` fossem nomeadas com o prefixo "cache" ou "session", poderíamos consultá-las assim:
+
+.. code-block :: bash
+
+  127.0.0.1:6379[1] > keys cache:*
+  127.0.0.1:6379[1] > keys session:*
+
+
+Existe também a `lista completa de comandos <http://redis.io/commands>`_.
+
+
 Django
 ------
 
@@ -133,56 +185,6 @@ Vamos utilizar uma sessão baseada no cache, como já foi instalado o ``django-r
 Links úteis:
   - `How to use sessions <https://docs.djangoproject.com/en/dev/topics/http/sessions/>`_
 
-Redis
-------
-
-Redis é um armazenador de dados no formato "key-value" ou "chave-valor".
-O acrônimo Redis significa "REmote DIctionary Server".
-Os dados são armazenados por padrão são em memória.
-
-=================
-Instalação
-=================
-
-Acesse o `tutorial oficial <http://redis.io/download>`_ de instalação do Redis, baixe a versão mais nova e siga os passos descritos para finalizar a instalação.
-
-=================
-Comandos básicos
-=================
-
-Quando o Redis é instalado, ele cria um atalho para seu cliente chamado ``redis-cli`` e com ele podemos executar os comandos abaixo:
-
-Primeiro abra o cliente:
-
-.. code-block :: bash
-
-    >> redis-cli
-
-Com o cliente aberto podemos escolher qual ``database`` queremos trabalhar, utilizando o comando ``select``.
-Basta informar qual o índice da base que queremos utilizar.
-
-.. code-block:: bash
-
-  127.0.0.1:6379 > select 1
-
-Nesse caso selecionamos a base de índice 1 para realizar as consultas.
-
-Se quisermos consultar todas as ``keys`` que estão armazenadas, basta utilizarmos o comando ``keys`` com um parâmetro "*".
-
-.. code-block:: bash
-
-  127.0.0.1:6379[1] > keys *
-
-Se nossas ``keys`` fossem nomeadas com o prefixo "cache" ou "session", poderíamos consultá-las assim:
-
-.. code-block :: bash
-
-  127.0.0.1:6379[1] > keys cache:*
-  127.0.0.1:6379[1] > keys session:*
-
-
-Existe também a `lista completa de comandos <http://redis.io/commands>`_.
-
 
 Como testar
 -----------
@@ -217,6 +219,5 @@ Para visualizar se o registro foi gravado com sucesso, execute os seguintes coma
 
 
 Se tudo ocorreu como planejado, nesse momento temos as sessões e o cache sendo armazenados no Redis.
-
 
 Espero que tenha gostado, até o próximo!
