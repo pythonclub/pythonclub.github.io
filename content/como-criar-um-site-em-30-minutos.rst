@@ -55,17 +55,17 @@ Instalando as bibliotecas do Requirements.
 
 .. code-block:: bash
 
-	$ wget https://raw.githubusercontent.com/rg3915/wttd/master/requirements.txt
-	$ pip install -r requirements.txt
-
-Se não quiser instalar tudo, *instale apenas o* **Django** *e o* **Unipath**:
+	$ pip install django
+	$ pip install unipath
 
 O `Unipath <http://sluggo.scrapping.cc/python/unipath/>`_ é um pacote que trabalha com caminhos relativos de forma orientada à objetos. Segundo `Henrique Bastos <https://github.com/henriquebastos/slides-django-sem-trabalho/blob/master/settings.rst#n%C3%A3o-use-diret%C3%B3rios-hardcoded>`_, ele evita diretórios *hardcoded*, ou seja, não usa caminho absoluto, e sim caminhos relativos. Em *settings.py* veremos o uso deste pacote. Mas como ele mesmo diz, o uso de *os.path* não é problema, mas o *Unipath* ajuda bastante.
 
+Obs: Se quiser você pode instalar uma lista de pacotes de um requirements.
+
 .. code-block:: bash
 
-	$ pip install django
-	$ pip install unipath
+	$ wget https://raw.githubusercontent.com/rg3915/wttd/master/requirements.txt
+	$ pip install -r requirements.txt
 
 Criando o projeto **crm**.
 
