@@ -31,7 +31,7 @@ Escrevi este post para um mini tutorial de SQLite3. Através do **terminal**:
 .. code-block:: sql
 
 	sqlite> CREATE TABLE clientes(
-	   ...> id INTEGER NOT NULL PRIMARY KEY,
+	   ...> id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	   ...> Nome VARCHAR(100) NOT NULL,
 	   ...> CPF VARCHAR(11) NOT NULL,
 	   ...> Email VARCHAR(20) NOT NULL,
