@@ -124,6 +124,20 @@ No SQLite3 os valores para boolean são 0 (falso) e 1 (verdadeiro).
 
 Faça um SELECT novamente para ver o resultado.
 
+14. Deletando registros.
+   
+.. code-block:: sql
+
+	sqlite> DELETE FROM clientes WHERE id=4;
+
+**Cuidado**: se você não usar o ``WHERE`` e escolher um ``id`` você pode deletar todos os registros da tabela.
+
+15. Você pode exibir os dados na forma de coluna.
+
+.. code-block:: bash
+
+	sqlite> .mode column
+
 Mais informações em `SQLite.org <http://www.sqlite.org/cli.html>`_.
 
 Futuramente pretendo postar algo sobre SQLite3 e Python...
