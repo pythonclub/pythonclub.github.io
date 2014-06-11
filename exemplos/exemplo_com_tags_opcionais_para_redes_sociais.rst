@@ -25,6 +25,11 @@ Lorem Ipsum
 Sub-titulo
 ----------
 
+
+**Esta frase está em negrito** 
+
+**E**\sta **p**\alavra **p**\possui **p**\artes **e**\m **n**\egrito
+
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
