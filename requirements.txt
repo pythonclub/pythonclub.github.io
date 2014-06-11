@@ -2,3 +2,4 @@ pelican
 Markdown
 pelican-youtube
 pelican-vimeo
+# rst2pdf

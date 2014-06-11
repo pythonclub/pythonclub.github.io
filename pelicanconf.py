@@ -60,6 +60,7 @@ PLUGINS = [
     'pelican_youtube', # funciona somente com arquivos rst
     'pelican_vimeo', # funciona somente com arquivos rst
     'gzip_cache', # deve ser o ultimo plugin
+    # 'pdf', # funciona somente com arquivos rst
 
 ]
 
@@ -86,3 +87,6 @@ PROFILE_IMAGE_URL = "http://res.cloudinary.com/diu8g9l0s/image/upload/v139956641
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
+
+# Geracao de PDF
+# PDF_GENERATOR = True
