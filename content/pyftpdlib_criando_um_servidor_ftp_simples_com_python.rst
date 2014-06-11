@@ -85,8 +85,8 @@ Abra um terminal e execute:
 
    sudo apt-get install python-pyftpdlib
 
-Obs: O repositorio do ubuntu possui uma versão muito desatualizada (1.2) do pyftpdlib, que atualmente está na versão 1.4
-recomendo usar a opção 2.
+Obs: O repositorio do ubuntu possui uma versão muito desatualizada (1.2) do pyftpdlib, que atualmente está na versão 1.4.
+Recomendo usar a opção 2.
 
 **Opção 2** - Instalar utilizando o *pip*:
 
@@ -112,10 +112,10 @@ Se não possuir o *pip* instalado.
 
 
 
-Modos de execução
----------------------
+Modo standalone
+----------------
 
-Você pode criar rápidamente um servidor FTP anonimo somente leitura, disponibilizando os arquivos do diretorio atual simplesmente executando:
+Com o modo standalone, você pode criar rápidamente um servidor FTP anonimo somente leitura, disponibilizar os arquivos do diretorio atual simplesmente executando:
 
 
 .. code-block:: bash
@@ -135,7 +135,7 @@ Após executar o comando acima, você obterá uma saida similar a esta:
 	[I 14-06-11 13:17:38] use sendfile(2): False
 
 
-Para visualizar localmente, abra o navegador e acesse o endereço *ftp://127.0.0.1:2121*
+Para visualizar localmente, abra o navegador e acesse o endereço ``ftp://127.0.0.1:2121`` ou ``ftp://endereço_ip_ou_hostname_atual_do_seu_servidor:2121``
 
 
 Você vai obter algo como:
@@ -215,11 +215,65 @@ Por exemplo, poderiamos mudar a porta padrão
 	python -m pyftpdlib -p 8080
 
 
-Para podermos disponibilizar o servidor FTP sem que seja necessario o usuario informar a porta
+Se você quiser iniciar o servidor FTP de modo que quem for acessar não necessite informar a porta, ou seja
+ele poderá acessar o servidor em um endereço similar a ``ftp://127.0.0.1`` ou ``ftp://endereço_ip_ou_hostname_atual_do_seu_servidor``,
+é necessario executa-lo como super-usuário, informando a porta 21, que é a padrão do protocolo, conforme exemplificado abaixo.
 
 .. code-block:: bash
 
-	sudo python -m pyftpdlib -p 80
+	sudo python -m pyftpdlib -p 21
+
+Modo customizado por você
+-----------------------------------
+
+
+Em um exemplo um pouco mais complicado, pode-se programar um servidor FTP com autenticação, com multiplos processos, que usa os usuarios e senha já definidos no Linux/Unix.
+
+.. code-block:: python
+
+
+
+	import logging
+	import sys
+
+	from pyftpdlib.handlers import FTPHandler
+	# servidor normal
+	#from pyftpdlib.servers import FTPServer
+	# servidor multiprocesso
+	from pyftpdlib.servers import MultiprocessFTPServer
+	from pyftpdlib.authorizers import UnixAuthorizer
+	from pyftpdlib.filesystems import UnixFilesystem
+
+
+
+	def main():
+	    # configuracao de log
+	    logger = logging.getLogger()
+	    ch = logging.StreamHandler(sys.stdout)
+	    logger.setLevel(logging.DEBUG)
+	    ch.setLevel(logging.DEBUG)
+	    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	    ch.setFormatter(formatter)
+	    logger.addHandler(ch)
+	    # fim configuracao de log
+
+	    # usando os usuarios UNIX
+	    authorizer = UnixAuthorizer(rejected_users=["root"], require_valid_shell=True)
+	    handler = FTPHandler
+	    handler.authorizer = authorizer
+	    handler.abstracted_fs = UnixFilesystem
+	    handler.log_prefix = "%(username)s@%(remote_ip)s"
+	    #logger.basicConfig(filename='/var/log/pyftpd.log', level=logging.INFO)
+	    # utilizando o servidor multiprocesso
+	    server = MultiprocessFTPServer(('', 21), handler)
+	    server.serve_forever()
+
+	if __name__ == "__main__":
+	    main()
+
+
+
+
 
 
 .. _Abhay Bhushan: http://en.wikipedia.org/wiki/Abhay_Bhushan
