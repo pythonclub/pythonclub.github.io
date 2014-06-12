@@ -162,7 +162,17 @@ Faça um SELECT novamente para ver o resultado.
 	INSERT INTO "clientes" VALUES(3,'Benedito','22222222222','benedito@email.com','1187654321','SP');
 	INSERT INTO "clientes" VALUES(4,'Zacarias','33333333333','zacarias@email.com','1199999999','RJ');
 	COMMIT;
-	
+
+Pronto, se você corromper seu banco de dados, você pode recuperá-lo:
+
+.. code-block:: bash
+
+	$ mv Clientes.db Clientes.db.old
+	$ sqlite3 Clientes_recuperado.db < clientes.sql 
+	$ sqlite3 Clientes_recuperado.db 'SELECT * FROM clientes;'
+
+Faça um SELECT novamente para ver o resultado do novo banco de dados.
+
 Mais informações em `SQLite.org <http://www.sqlite.org/cli.html>`_.
 
 Futuramente pretendo postar algo sobre SQLite3 e Python...
