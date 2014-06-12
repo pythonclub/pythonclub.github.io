@@ -142,10 +142,7 @@ Faça um SELECT novamente para ver o resultado.
     
 .. code-block:: bash
 
-	$ sqlite3 Clientes.db 
-	sqlite> .output clientes.sql
-	sqlite> .dump clientes
-	sqlite> .quit
+	$ sqlite3 Clientes.db .dump > clientes.sql
 	$ cat clientes.sql 
 	PRAGMA foreign_keys=OFF;
 	BEGIN TRANSACTION;
