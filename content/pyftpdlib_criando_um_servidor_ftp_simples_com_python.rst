@@ -33,9 +33,11 @@ Posteriormente o protocolo FTP foi modificado para trabalhar sobre o TCP.
 O protocolo FTP está em constante evolução, sendo que a versão mais recente para IPv4 é o `RFC959`_, com melhorias
 de segurança adicionada pelo `RFC2228`_ e pela adição na `RFC2428`_ de extensões para suporte a IPv6.
 
+**FTP** tambem é o nome que comumente referencia software o "servidor ftp" e o software "cliente ftp".
 
-Como funciona?
------------------
+
+Como funciona ?
+---------------
 
 O protocolo FTP possui dois modos de funcionamento. O **modo Ativo** e o **modo Passivo**.
 
@@ -49,10 +51,41 @@ Neste modo, o cliente usa a *conexão de controle* para enviar o comando *PASV* 
 enviado pelo servidor.
 
 
+Comandos FTP
+-------------
+
+O `RFC959`_ bem como as posteriores modificações, adicionam alguns comandos que devem ser implementados pelos servidores e clientes FTP.
+
+A lista com alguns desse comandos pode ser vista no link: http://en.wikipedia.org/wiki/List_of_FTP_commands
+
+Servidor FTP
+------------
+
+
+Existem vários softwares que implementam um servidor FTP.
+
+Os mais conhecidos e utilizados são: vsftpd (Very Secure FTP Daemon) e ProFTPd para Linux, e o FileZilla Server para Windows. 
+
+Uma lista mais completa pode ser encontrada no Wikipedia, neste link: http://en.wikipedia.org/wiki/List_of_FTP_server_software
+
+
+Cliente FTP
+-----------
+
+Existem varios clientes para o protocolo FTP.
+
+O Windows Explorer, gerenciador de arquivos padrão em ambiente Windows, possui suporte complete ao protocolo FTP.
+
+O navegador web Mozilla Firefox, bem como os navegadores Google Chrome, Internet Explorer, possem capacidade de acessar servidores ftp, mas somente em modo de leitura.
+
+
+O complemento FireFTP para o navegador web Mozilla Firefox, adiciona ao Firefox suporte completo ao protocolo FTP.
+
+
 pyftpdlib - O que é?
 ---------------------
 
-pyftpdlib_ é uma biblioteca Python que implementa um servidor FTP, fornecendo uma interface de alto nivel para facilmente escrever servidores FTP muito eficientes, escaláveis e assíncronos. 
+pyftpdlib_ é uma biblioteca Python que implementa um Servidor FTP, fornecendo uma interface de alto nivel para facilmente escrever servidores FTP muito eficientes, escaláveis e assíncronos. 
 
 É a implementação do `RFC959`_ servidor de FTP mais completo disponível para a linguagem de programação Python e é usado em projetos como o Google Chromium e Bazaar e incluída por padrão nos repositórios de pacotes do Debian, Ubuntu, Fedora e FreeBSD.
 
