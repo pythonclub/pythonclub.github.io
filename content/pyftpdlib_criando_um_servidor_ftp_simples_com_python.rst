@@ -33,11 +33,9 @@ Posteriormente o protocolo FTP foi modificado para trabalhar sobre o TCP.
 O protocolo FTP está em constante evolução, sendo que a versão mais recente para IPv4 é o `RFC959`_, com melhorias
 de segurança adicionada pelo `RFC2228`_ e pela adição na `RFC2428`_ de extensões para suporte a IPv6.
 
-**FTP** tambem é o nome que comumente referencia software o "servidor ftp" e o software "cliente ftp".
 
-
-Como funciona ?
----------------
+Como funciona?
+-----------------
 
 O protocolo FTP possui dois modos de funcionamento. O **modo Ativo** e o **modo Passivo**.
 
@@ -51,24 +49,10 @@ Neste modo, o cliente usa a *conexão de controle* para enviar o comando *PASV* 
 enviado pelo servidor.
 
 
-Servidor FTP
-------------
-
-
-Existem vários softwares que implementam um servidor FTP.
-
-Os mais conhecidos e utilizados são: vsftpd (Very Secure FTP Daemon) e ProFTPd para Linux, e o FileZilla Server para Windows. 
-
-Uma lista mais completa pode ser encontrada no Wikipedia, neste link: http://en.wikipedia.org/wiki/List_of_FTP_server_software
-
-
-Cliente FTP
-
-
 pyftpdlib - O que é?
 ---------------------
 
-pyftpdlib_ é uma biblioteca Python que implementa um Servidor FTP, fornecendo uma interface de alto nivel para facilmente escrever servidores FTP muito eficientes, escaláveis e assíncronos. 
+pyftpdlib_ é uma biblioteca Python que implementa um servidor FTP, fornecendo uma interface de alto nivel para facilmente escrever servidores FTP muito eficientes, escaláveis e assíncronos. 
 
 É a implementação do `RFC959`_ servidor de FTP mais completo disponível para a linguagem de programação Python e é usado em projetos como o Google Chromium e Bazaar e incluída por padrão nos repositórios de pacotes do Debian, Ubuntu, Fedora e FreeBSD.
 
@@ -101,8 +85,8 @@ Abra um terminal e execute:
 
    sudo apt-get install python-pyftpdlib
 
-Obs: O repositorio do ubuntu possui uma versão muito desatualizada (1.2) do pyftpdlib, que atualmente está na versão 1.4.
-Recomendo usar a opção 2.
+Obs: O repositorio do ubuntu possui uma versão muito desatualizada (1.2) do pyftpdlib, que atualmente está na versão 1.4
+recomendo usar a opção 2.
 
 **Opção 2** - Instalar utilizando o *pip*:
 
@@ -128,10 +112,10 @@ Se não possuir o *pip* instalado.
 
 
 
-Modo standalone
-----------------
+Modos de execução
+---------------------
 
-Com o modo standalone, você pode criar rápidamente um servidor FTP anonimo somente leitura, disponibilizar os arquivos do diretorio atual simplesmente executando:
+Você pode criar rápidamente um servidor FTP anonimo somente leitura, disponibilizando os arquivos do diretorio atual simplesmente executando:
 
 
 .. code-block:: bash
@@ -151,7 +135,7 @@ Após executar o comando acima, você obterá uma saida similar a esta:
 	[I 14-06-11 13:17:38] use sendfile(2): False
 
 
-Para visualizar localmente, abra o navegador e acesse o endereço ``ftp://127.0.0.1:2121`` ou ``ftp://endereço_ip_ou_hostname_atual_do_seu_servidor:2121``
+Para visualizar localmente, abra o navegador e acesse o endereço *ftp://127.0.0.1:2121*
 
 
 Você vai obter algo como:
@@ -231,65 +215,11 @@ Por exemplo, poderiamos mudar a porta padrão
 	python -m pyftpdlib -p 8080
 
 
-Se você quiser iniciar o servidor FTP de modo que quem for acessar não necessite informar a porta, ou seja
-ele poderá acessar o servidor em um endereço similar a ``ftp://127.0.0.1`` ou ``ftp://endereço_ip_ou_hostname_atual_do_seu_servidor``,
-é necessario executa-lo como super-usuário, informando a porta 21, que é a padrão do protocolo, conforme exemplificado abaixo.
+Para podermos disponibilizar o servidor FTP sem que seja necessario o usuario informar a porta
 
 .. code-block:: bash
 
-	sudo python -m pyftpdlib -p 21
-
-Modo customizado por você
------------------------------------
-
-
-Em um exemplo um pouco mais complicado, pode-se programar um servidor FTP com autenticação, com multiplos processos, que usa os usuarios e senha já definidos no Linux/Unix.
-
-.. code-block:: python
-
-
-
-	import logging
-	import sys
-
-	from pyftpdlib.handlers import FTPHandler
-	# servidor normal
-	#from pyftpdlib.servers import FTPServer
-	# servidor multiprocesso
-	from pyftpdlib.servers import MultiprocessFTPServer
-	from pyftpdlib.authorizers import UnixAuthorizer
-	from pyftpdlib.filesystems import UnixFilesystem
-
-
-
-	def main():
-	    # configuracao de log
-	    logger = logging.getLogger()
-	    ch = logging.StreamHandler(sys.stdout)
-	    logger.setLevel(logging.DEBUG)
-	    ch.setLevel(logging.DEBUG)
-	    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-	    ch.setFormatter(formatter)
-	    logger.addHandler(ch)
-	    # fim configuracao de log
-
-	    # usando os usuarios UNIX
-	    authorizer = UnixAuthorizer(rejected_users=["root"], require_valid_shell=True)
-	    handler = FTPHandler
-	    handler.authorizer = authorizer
-	    handler.abstracted_fs = UnixFilesystem
-	    handler.log_prefix = "%(username)s@%(remote_ip)s"
-	    #logger.basicConfig(filename='/var/log/pyftpd.log', level=logging.INFO)
-	    # utilizando o servidor multiprocesso
-	    server = MultiprocessFTPServer(('', 21), handler)
-	    server.serve_forever()
-
-	if __name__ == "__main__":
-	    main()
-
-
-
-
+	sudo python -m pyftpdlib -p 80
 
 
 .. _Abhay Bhushan: http://en.wikipedia.org/wiki/Abhay_Bhushan
