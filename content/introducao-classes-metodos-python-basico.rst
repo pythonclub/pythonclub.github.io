@@ -1,7 +1,7 @@
 Introdução a Classes e Métodos em Python (básico)
 #################################################
 
-:date: 2014-06-08 23:59
+:date: 2014-06-12 23:59
 :tags: python, classes, métodos
 :category: Python
 :slug: introducao-classes-metodos-python-basico
