@@ -12,6 +12,8 @@ Introdução a Classes e Métodos em Python (básico)
 
 Eu não sou a melhor pessoa do mundo para explicar este assunto, mas eu escrevi este post para introduzir um tópico sobre *manipulação de banco de dados em SQLite3 com Python*, porém mais informações sobre classes e métodos podem ser encontradas nos links abaixo. Veja os exemplos em `https://github.com/rg3915/pythonDesktopApp <https://github.com/rg3915/pythonDesktopApp/tree/master/pythonBasico>`_.
 
+PS: *Considere a sintaxe para Python 3*.
+
 Segundo a documentação do `Python <https://docs.python.org/2/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto** é uma variável cujo tipo é uma classe, ou seja, um **objeto é uma instância** de uma classe.
 
 Na sua sintaxe mais elementar definimos uma classe conforme abaixo:
@@ -25,7 +27,7 @@ E um método (função) como:
 
 .. code-block:: python
 
-	def Metodo(args):
+	def metodo(args):
 		pass
 
 onde ``args`` são argumentos opcionais (parâmetros de entrada).
@@ -33,7 +35,7 @@ A função ``Metodo`` pode retornar um valor de saída:
 
 .. code-block:: python
 
-	def Metodo(args):
+	def metodo(args):
 		return pass
 
 Juntando os dois temos:
@@ -43,10 +45,12 @@ Juntando os dois temos:
 	class NomeDaClasse(object):
 		atributo1 = None
 
-		def Metodo(args):
+		def metodo(args):
 			pass	
 
 ``pass`` significa que você pode escrever o seu código no lugar. E ``atributo1`` é um atributo com valor inicial ``None`` (nada). Poderia ser ``atributo1 = 0``, por exemplo.
+
+Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
 
 Exemplo 1 - Calculadora simples
 -------------------------------
@@ -92,13 +96,13 @@ Podemos rodar o Python no modo `modo interativo <https://docs.python.org/2/tutor
 
 .. code-block:: python
 
-	$ python
+	$ python3
 	>>> from calculadora import Calculadora
 	>>> c = Calculadora(128,2)
-	>>> print 'Soma:', c.soma()
-	>>> print 'Subtração:', c.subtrai()
-	>>> print 'Multiplicação:', c.multiplica()
-	>>> print 'Divisão:', c.divide()
+	>>> print('Soma:', c.soma())
+	>>> print('Subtração:', c.subtrai())
+	>>> print('Multiplicação:', c.multiplica())
+	>>> print('Divisão:', c.divide())
 
 ``c = Calculadora(128,2)`` é uma instância da classe com dois valores iniciais.
 
@@ -109,7 +113,7 @@ O resultado é:
 	>>> Soma: 130
 	>>> Subtração: 126
 	>>> Multiplicação: 256
-	>>> Divisão: 64
+	>>> Divisão: 64.0
 
 Podemos redefinir os valores iniciais da seguinte forma:
 
@@ -124,6 +128,10 @@ Resultado:
 .. code-block:: python
 
 	>>> 54
+
+Importante: apesar de não fazer parte do escopo deste artigo, mas vejam este video `Operadores aritméticos e divisão no Python 2 e Python 3 <https://www.youtube.com/watch?v=_HZOAWOrXrQ>`_, explicando sobre a diferença no resultado da divisão nas duas versões do Python.
+
+Vejam também este artigo sobre ponto flutuante: `Floating Point Arithmetic Issues and Limitations <https://docs.python.org/3.1/tutorial/floatingpoint.html>`_.
 
 Exemplo 2 - Calculadora
 -----------------------
@@ -151,13 +159,13 @@ Usando o **terminal no modo interativo** façamos:
 
 .. code-block:: python
 
-	$ python
+	$ python3
 	>>> from calculadora2 import Calculadora
 	>>> c = Calculadora()
-	>>> print 'Soma:', c.soma(2,3)
-	>>> print 'Subtração:', c.subtrai(2,10)
-	>>> print 'Multiplicação:', c.multiplica(3,3)
-	>>> print 'Divisão:', c.divide(128,2)
+	>>> print('Soma:', c.soma(2,3))
+	>>> print('Subtração:', c.subtrai(2,10))
+	>>> print('Multiplicação:', c.multiplica(3,3))
+	>>> print('Divisão:', c.divide(128,2))
 
 A vantagem de colocar os parâmetros em cada método, é que podemos calcular qualquer valor sem ter que instanciar uma nova classe para cada valor diferente.
 
@@ -201,19 +209,19 @@ Veremos o código na íntegra e depois os comentários.
 	    u1.save()
 	    u2 = User('Fabio', 20)
 	    u2.save()
-	    print User.all()
+	    print(User.all())
 
 Você pode suprimir o final do código (a partir do ``if``) e importar a classe no terminal no `modo interativo <https://docs.python.org/2/tutorial/interpreter.html#interactive-mode>`_ veja este `video <https://www.youtube.com/watch?v=M1BAlDufqao>`_:
 
 .. code-block:: python
 
-	$ python
+	$ python3
 	>>> from user import User
 	>>> u1 = User('Regis', 35)
 	>>> u1.save()
 	>>> u2 = User('Fabio',20)
 	>>> u2.save()
-	>>> print User.all()
+	>>> print(User.all())
 
 Agora os comentários:
 
@@ -298,7 +306,7 @@ Demonstração do uso da classe.
 	if __name__ == '__main__':
 		u1 = User('Regis', 35)
 		u2 = User('Fabio',20)
-		print User.all()
+		print(User.all())
 
 Note que nesse ``print`` a lista está vazia.
 
@@ -306,7 +314,7 @@ Note que nesse ``print`` a lista está vazia.
 
 		u1.save()
 		u2.save()
-		print User.all()
+		print(User.all())
 
 Após chamar o ``save`` para as duas instâncias elas são guardadas e o método ``User.all()`` retorna essa lista.
 
@@ -325,3 +333,7 @@ Mais informações em
 `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_
 
 `João Reis <http://homepages.dcc.ufmg.br/~joaoreis/Site%20de%20tutoriais/aprendendopython/poo.html#init>`_
+
+`Operadores aritméticos e divisão no Python 2 e Python 3 <https://www.youtube.com/watch?v=_HZOAWOrXrQ>`_
+
+`Floating Point Arithmetic Issues and Limitations <https://docs.python.org/3.1/tutorial/floatingpoint.html>`_
