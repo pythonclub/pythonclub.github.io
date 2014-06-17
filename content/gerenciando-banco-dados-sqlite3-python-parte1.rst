@@ -23,19 +23,19 @@ Para os exemplos considere a tabela ``clientes`` e seus campos:
 +===========+=================+===========+
 | id        | inteiro         | sim       |
 +-----------+-----------------+-----------+
-| nome      | texto      	  | sim       |
+| nome      | texto           | sim       |
 +-----------+-----------------+-----------+
 | idade     | inteiro         | não       |
 +-----------+-----------------+-----------+
-| cpf       | texto (11)	  | sim       |
+| cpf       | texto (11)      | sim       |
 +-----------+-----------------+-----------+
-| email     | texto			  | sim       |
+| email     | texto           | sim       |
 +-----------+-----------------+-----------+
-| fone      | texto 		  | não       |
+| fone      | texto           | não       |
 +-----------+-----------------+-----------+
-| cidade    | texto 		  | não       |
+| cidade    | texto           | não       |
 +-----------+-----------------+-----------+
-| uf        | texto (2)	      | sim       |
+| uf        | texto (2)       | sim       |
 +-----------+-----------------+-----------+
 | criado_em | data            | sim       |
 +-----------+-----------------+-----------+
@@ -48,7 +48,37 @@ Veja os exemplos em `github <https://github.com/rg3915/pythonDesktopApp/tree/mas
 
 Como mencionado antes, esta parte será **básica e objetiva**. A intenção é realizar o CRUD da forma mais simples e objetiva possível.
 
-PS: *Considere a sintaxe para Python 3*.
+	PS: *Considere a sintaxe para Python 3*.
+
+`Conectando e desconectando do banco`_
+
+`Criando um banco de dados`_
+
+`Criando uma tabela`_
+
+`Create - Inserindo um registro com comando SQL`_
+
+`Inserindo n registros com uma tupla de dados`_
+
+`Inserindo um registro com parâmetros de entrada definido pelo usuário`_
+
+`Read - Lendo os dados`_
+
+`Update - Alterando os dados`_
+
+`Delete - Deletando os dados`_
+
+`Adicionando uma nova coluna`_
+
+`Lendo as informações do banco de dados`_
+
+`Fazendo backup do banco de dados (exportando dados)`_
+
+`Recuperando o banco de dados (importando dados)`_
+
+`Exemplos`_
+
+`Referências`_
 
 Conectando e desconectando do banco
 -----------------------------------
@@ -143,7 +173,9 @@ Para executar digite no terminal:
 	$ sqlite3 clientes.db '.tables'
 	$ sqlite3 clientes.db 'PRAGMA table_info(clientes)'
 
-Digitando ``sqlite3 clientes.db '.tables'`` você verá que a tabela foi criada. E o comando ``sqlite3 clientes.db 'PRAGMA table_info(clientes)'`` retorna os campos da tabela.
+Digitando ``sqlite3 clientes.db '.tables'`` você verá que a tabela foi criada.
+
+E o comando ``sqlite3 clientes.db 'PRAGMA table_info(clientes)'`` retorna os campos da tabela.
 
 **Nota**: A única diferença, caso você use *Python 2* é no print, onde você deve tirar os parênteses. E no início do arquivo é recomendável que se defina a codificação ``utf-8``, que no caso do Python 3 já é padrão.
 
@@ -158,10 +190,10 @@ Digitando ``sqlite3 clientes.db '.tables'`` você verá que a tabela foi criada.
 
 Agora vamos fazer o CRUD. Começando com a letra
 
-**C**reate
 
-Inserindo um registro com comando SQL
--------------------------------------
+
+Create - Inserindo um registro com comando SQL
+----------------------------------------------
 
 A única novidade aqui é o método **commit()**. É ele que grava de fato as alterações na tabela. *Lembrando que uma tabela é alterada com as instruções SQL ``INSERT, UPDATE`` e ``DELETE``.*
 
@@ -315,10 +347,8 @@ Veja a interação do programa:
 
 
 
-**R**ead
-
-Lendo os dados
---------------
+Read - Lendo os dados
+---------------------
 
 Aqui nós usamos o famoso ``SELECT``. O método ``fetchall()`` retorna o resultado do ``SELECT``.
 
@@ -361,10 +391,8 @@ Eis o resultado:
 	
 
 
-**U**pdate
-
-Alterando os dados
-------------------
+Update - Alterando os dados
+---------------------------
 
 Observe o uso das variáveis ``id_cliente`` onde definimos o ``id`` a ser alterado, ``novo_fone`` e ``novo_criado_em`` usados como parâmetro para alterar os dados. Neste caso, salvamos as alterações com o método ``commit()``.
 
@@ -400,10 +428,8 @@ Para executar digite no terminal:
 	$ python3 07_update_data.py
 
 
-**D**elete
-
-Deletando os dados
-------------------
+Delete - Deletando os dados
+---------------------------
 
 Vamos excluir um registro pelo seu ``id``.
 
@@ -620,7 +646,12 @@ Referências
 -----------
 
 `sqlite3 Embedded Relational Database <http://pymotw.com/2/sqlite3/index.html>`_
+
 `Lets Talk to a SQLite Database with Python <http://codecr.am/blog/post/3/>`_
+
 `Advanced SQLite Usage in Python <http://www.pythoncentral.io/advanced-sqlite-usage-in-python/>`_
+
 `Python A Simple Step by Step SQLite Tutorial <http://www.blog.pythonlibrary.org/2012/07/18/python-a-simple-step-by-step-sqlite-tutorial/>`_
-`Python docs, SQLite, Connection Objects <https://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.iterdump>`_
+
+`Python docs, SQLite, Connection Objects <https://docs.python.org/2/library/sqlite3.html#sqlite3.
+Connection.iterdump>`_
