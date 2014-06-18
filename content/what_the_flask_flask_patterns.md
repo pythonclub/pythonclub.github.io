@@ -25,7 +25,7 @@ What The Flask - 2/6
 </figure>
 
 1. [**Hello Flask**](/what_the_flask_introducao_ao_desenvolvimento_web_com_python.html): Introdução ao desenvolvimento web com Flask
-2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): boas práticas na estrutura de aplicações Flask - **<-- Você está aqui**
+2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando de aplicações Flask - **<-- Você está aqui**
 3. **Plug & Use**: extensões essenciais para iniciar seu projeto
 4. **DRY**: Criando aplicativos reusáveis com Blueprints
 5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
@@ -42,9 +42,11 @@ What The Flask - 2/6
 - [O problema do Ovo e da Galinha](#circular_imports)
 - [Azul da cor do mar ♫](#blueprints)
 - [A fantástica fábrica de web apps](#app_factory)
-- [Multiple apps - app e api]
-- []
+- [Você pode ter mais de um app](#multiple_apps)
+- [Configurações para todo lado](#config)
+- [Logando e debugando](#log)
+- [Testing](#testing)
 
-### Scratch area
+## <a href="#one_file_is_bad_if_you_are_big" name="one_file_is_bad_if_you_are_big">One file to rule them all?</a>
 
-nome da app, pasta de template
+O exemplo mais básico de um projeto Flask é um one-file application, e normalmente você pode começar dessa maneira mas se eu projeto começar a crescer
