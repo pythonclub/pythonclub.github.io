@@ -45,7 +45,7 @@ What The Flask - 2/6
 - [A fantástica fábrica de web apps](#app_factory)
 - [Você pode ter mais de um app](#multiple_apps)
 - [Configurações para todo lado](#config)
-- [Logando e debugando](#log)
+- [A app Flask quase perfeita](#flask_app_quase_perfeita)
 
 ## <a href="#one_file_is_bad_if_you_are_big" name="one_file_is_bad_if_you_are_big">One file to rule them all?</a>
 
@@ -539,5 +539,350 @@ No Flask isso é fácil pois já existe uma convenção de que configurações f
 
 Por padrão o Flask já oferece todas as ferramentas necessárias para gerenciar questões de configurações, tudo o que **no outro framework** :) acabamos precisando de módulos de terceiros para fazer as coisas de maneira **decoupled**, no Flask já esta built-in. Então vamos conhecer as abordagens de configuração.
 
+#### O objeto "config"
+
+Independente da abordagem de configuração que você escolher, no final as variáveis vão para no mesmo atributo que é o **app.config**, este atributo é uma subclasse de **dict** e se comporta exatamente como um dicionário, sendo assim podemos alterar seus valores livremente. (mas lembre-se que isso deve ocorrer quando a app estiver em estado de configuração).
+
+```python
+app = Flask(__name__)
+app.config['DEBUG'] = True
+app.config['DATABASE'] = "mysql://user:password@localhost/database"
+
+>>> print(app.config)
+{"DEBUG": True, "DATABASE": "mysql://user:password@localhost/database", ...}
+```
+
+Por padrão no momento em que o objeto **app** for instanciado o Flask já irá colocar uma série de valores default no **app.config**, este valores podem ser conferidos no seguinte [link](http://flask.pocoo.org/docs/config/#builtin-configuration-values).
+
+Existem alguns valores de configuração que podem ser setados de diferentes formas, o "DEBUG" é um deles, e pode ser feito de uma dessas 3 formas.
+
+```python
+app.config['DEBUG'] = True
+app.debug = True
+app.run(debug=True)
+```
+
+Como o objeto **config** é um dicionário a maneira mais fácil e prática de atualiza-lo é usando o método update presente nos dicionários Python.
+
+
+```python
+my_app_config = {
+    "DEBUG": True,
+    "DATABASE": "mysql://user:password@localhost/database",
+    ...
+}
+
+app = Flask(__name__)
+
+app.config.update(**my_app_config)
+
+```
+
+Usar o método **update** em conjunto com a funcionalidade de descompactação de dicionários ``**`` do Python é a maneira mais fácil de atualizar as configurações e isto pode ser feito de forma condicional tendo o seu dicionário de config em um arquivo separado ou até mesmo em um arquivo JSON de fácil manutenção.
+
+#### Configurando "like a boss", ou melhor "like a Flasker" :)
+
+Como já falei no ínicio deste tópico, é muito comum você precisar que as configurações variem de acordo com o ambiente ou servidor em que está rodando, para isso o Flask fornece mais 3 abordagems de configurações bastante úteis.
+
+
+#### Usando um arquivo de configurações *.cfg
+
+Esta é a maneira mais comum, você coloca suas variáveis em um arquivos referentes a cada ambiente, por exemplo na raiz de seu projeto você pode ter os seguintes arquivos **development.cfg**, **test.cfg** e **production.cfg**.
+
+> O tipo de arquivo **cfg** é um arquivo Python normal e aceita a sintaxe normal do Python, porém utiliza a extensão **cfg** para que possa ser diferenciado do estante do seu código e isto é muito útil pois certamente você não vai querer mandar esses arquivos sensiveis para o github por exemplo, basta colocar ```*.cfg``` no .gitignore e esses arquivos ficarão fora do controle de versões.
+
+###### production.cfg
+```python
+DEBUG = False
+DATABASE = "mysql://user:password@mysqlserver.company.com/database"
+```
+
+###### development.cfg
+```python
+DEBUG = True
+DATABASE = "mysql://user:password@localhost/development_database"
+```
+
+E agora no app
+
+```python
+from flask import Flask
+
+def create_app(mode):
+    app = Flask(__name__)
+    app.config.from_pyfile("%s.cfg" % mode)
+    return app
+```
+
+E então em seu **run.py**
+
+```python
+import sys
+from app import create_app
+mode = sys.argv[1] if len(sys.argv) > 1 else 'development'
+app = create_app(mode=mode)
+app.run()
+```
+
+No exemplo acima usamos o **sys.argv** para capturar os argumentos passados para o **run.py** mas em outro capítulo veremos como usar o **click** ou o **Flask-Script** para fazer isso de maneira mais elegante.
+
+Bom, agora para executar o seu app em ambiente de desenvolvimento você usará:
+
+```bash
+python run.py development
+```
+
+e em produção você irá utilizar
+
+```bash
+python run.py production
+```
+
+> **NOTE:** Em produção geralmente não usaremos o **run.py**, ao invés disso teremos uma arquivo **WSGI** para ser inicializado com **Gunicorn** ou **Uwsgi**, veremos isso na última parte desta série.
+
+
+#### Usando variável de ambiente (recommended)
+
+Seguinte a idéia do tópico anterior: configurar a partir de um arquivo **cfg**, vamos agora melhorar essa abordagem fazendo com que o arquivo seja decidido com o uso de uma variável de ambiente. Esta é a maneira mais recomendada para gerir as configurações.
+
+Vamos alterar apenas o arquivo **app.py** e o **run.py**
+
+app.py
+
+```python
+from flask import Flask
+
+def create_app(config_env_var='FLASK_CONFIG'):
+    app = Flask(__name__)
+    app.config.from_envvar(config_env_var, silent=False)
+    return app
+```
+
+run.py
+
+```python
+import sys
+from app import create_app
+config_env_var = sys.argv[1] if len(sys.argv) > 1 else 'FLASK_CONFIG'
+app = create_app(config_env_var)
+app.run()
+```
+
+Está bem parecido com a versão anterior, porém agora quem decide qual configuração será carregada será uma variável de embiente, usamos o **silent=False** para que ocorra um erro nos informando caso a variável **FLASK_CONFIG** não exista no ambiente, por isso no nosso processo de **deploy** teremos que garantir a existencia dessa variável, assim como teremos que garantir que ela exista em nosso ambiente de desenvolvimento.
+
+A vantagem dessa abordagem é que você pode setar esse valor no arquivo "~/.bashrc" tanto na máquina servidor quanto na de desenvolvimento e então não se preocupar mais em ficar mudando o **modo** de configuração. Além disso lenbre-se que o arquivo pode estar localizado em qualquer diretório.
+
+Na máquina de desenvolvimento
+```bash
+export FLASK_CONFIG=/path/to/development.cfg
+export FLASK_CONFIG_TEST=/path/to/test.cfg
+```
+
+Na máquina de produção
+```bash
+export FLASK_CONFIG=/server/configurations/production.cfg
+```
+
+Agora é só executar o **run.py** e caso precise alterar, para teste por exemplo use ``python run.py FLASK_CONFIG_TEST``
+
+> **NOTE:** Se você é usuário <strike>Windows</strike> deverá usar **set** no lugar de **export**.  Exemplo:   ```set FLASK_CONFIG=/path/to/development.cfg``` ou se preferir acessar este [link](http://www.ubuntu.com/download/desktop) e resolver este problema de uma maneira mais elegante :)
+
+
+#### Usando um arquivo de configurações *.json
+
+Da mesma forma como usamos o **cfg** também é possivel utilizar **json**, exemplo:
+
+##### production.json
+
+```json
+{
+  "DEBUG": true,
+  "DATABASE": "mysql://user:password@localhost/database",
+    ...
+}
+```
+
+
+##### app.py
+```python
+
+app = Flask(__name__)
+app.config.from_json('production.json')
+```
+
+> **NOTE:** A sintaxe no JSON é um pouco diferente de um dict Python, use **true** e **false** ao invés de **True** e **False**
+
+#### Usando objetos para configurações default
+
+Como já citado no ínicio deste capítulo, **SEMPRE TENHA VALORES DEFAULT**, a maneira recomendada para isso é usar objetos, porém  o uso e objetos devem ser apenas para valores DEFAULT. valores que variam de acordo com o ambiente devem usar as outras abordagens **from_pyfile**, **from_envvar** ou **from_json**. Isto por que geramente **objetos** devem fazer parte de seu codebase e serem distribuidos em sistemas de controle de versão, já os arquivos **json** ou **cfg** podem estar no .gitignore.
+
+> **NOTE:** usando **from_object** o Flask itá utilizar apenas as constantes, ou seja, identificadores definidos em maiusculo.
+
+##### usando um arquivo Python
+
+default_settings.py
+```python
+SECRET_KEY = "mskcjdnfksdbflsjhgnaslkgnsfkjg"
+...
+```
+
+app.py
+
+```python
+from flask import Flask
+
+DEBUG = False
+USE_CACHE = False
+
+
+def create_app(config_env_var='FLASK_CONFIG', extra_config=None):
+    app = Flask(__name__)
+    app.config.from_object(__name__)  # pega as constantes do próprio arquivo
+    app.config.from_object('default_settings')  # pega o módulo, pode usar o caminho completo
+    app.config.from_envvar(config_env_var, silent=False)  # pega o caminho do arquivo de uma env-var
+    if extra_config:
+        app.config.update(**extra_config)   # usa um dict Python
+    return app
+```
+
+Repare que podemos mesclar todas as abordagens de configuração, sendo que de acordo com a ordem que forem carregadas os valores serão sobrescritos.
+
+
+##### Agora com um pouco de classe
+
+Uma forma bem interessante de fazer a mesma coisa é utilizar classes Python ao invés de apenas arquivos, pois dessa forma podemos ter herança e polimorfismo. veja este exemplo:
+
+default_settings.py
+```python
+
+class BaseConfig(object):
+    DEBUG = False
+
+
+class ProductionConfig(BaseConfig):
+    SECRET_KEY = "djfnsdjkfnsjdf"
+    MEDIA_ROOT = "/path/to/media_files/in/server"
+
+
+class DevelopmentConfig(ProductionConfig):
+    MEDIA_ROOT = "/home/me/projects/wtf/media_files"
+
+```
+
+Agora na hora de configurar podemos variar entre Development e Production
+
+```python
+
+def create_app(mode='Production'):
+    app = Flask(__name__)
+    app.config.from_object("default_settings.%sConfig" % mode)
+    ...
+    return app
+```
+
+O método de configuração **from_object** aceita como parametro um arquivo Python ou diretamente o nome de uma classe ou objeto dentro deste arquivo.
+
+> **LEMBRE-SE:** Você deve usar o **from_object** apenas para carregar valores default, valores especificos como senhas, strings de conexão etc devem ser colocados em arquivos fora de seu controle de versṍes.
+
+#### Instance folders
+
+Uma outra abordagem interessante é o uso de "diretórios de instancia" é bastante útil para gerenciar não apenas configurações mas também serve para termos outros recursos como arquivos de bancos de dados, arquivos de media/upload, caches etc em pastas separadas de acordo com o ambiente em que a app está sendo executada.
+
+Por padrão a pasta de instancia é chamada **instance** e fica na raiz do projeto, mas você pode alterar este caminho utilizando o parâmetro **intance_path**. O ideal é que esta pasta fique fora de seu controle de versões, ou que seja gerenciada em um repositório privado separado de seu codebase principal.
+
+Imagine a seguinte estrutura
+
+```bash
+/seuprojeto
+    /app.py
+    /run.py
+    /...
+    /production_instance
+        /config.cfg
+        /database.sqlite
+        /nginx.conf
+    /development_instance
+        /config.cfg
+        /database.sqlite
+        /nginx.conf
+```
+
+Agora na hora de criar o app iremos alternar entre essas duas pastas de instancia
+
+```python
+
+def create_app(mode='production'):
+    app = Flask(__name__,
+                instance_path='%s_instance' % mode,
+                instance_relative_config=True)
+    app.config.from_pyfile('config.cfg')
+    ...
+    return app
+```
+
+Dessa forma o **instance_path** será alternado de acordo com o **mode** e o parâmetro **instance_relative_config** fará com que o **config.cfg** seja procurado dentro da pasta da isntancia.
+
+> **NOTE:** o **instance_path** pode ser qualquer outro caminho, não precisa estar na raiz do seu projeto você pode usar **/server/configs/qualquer_pasta**
+
+As pastas de instancia não servem apenas para configuração, mas em outro capítulo veremos como usa-las para arquivos de media e bancos de dados, confgurações de webservers etc.
+
+
+#### Config namespaces
+
+Uma outra utilizade que o objeto **config** possui é o **get_namespace** e ele serve para agrupar variáveis de configuração que pertencem a um dominio especifico, por exemplo bancos de dados.
+
+config.cfg
+```python
+MONGO_HOST = "localhost"
+MONGO_PORT = 27017
+MONGO_DB = "myapp_db"
+MONGO_PASSWORD = "schbalums123"
+
+REDIS_HOST = "sdjfksdf.redis.aws.com"
+REDIS_PASSWORD = "foo_bar_123"
+
+```
+
+Agora imagine que queremos pegar todas as configurações referents ao MONGO e ao REDIS em dicionários separados:
+
+```python
+app = Flask(__name__)
+app.config.from_pyfile('config.cfg')
+
+>>> print(app.config.get_namespace('MONGO_')
+{
+    "host": "localhost",
+    "port": 27017,
+    "db": "myapp_db"
+}
+
+>>> print(app.config.get_namespace('REDIS_', lowercase=False))
+{
+    "HOST": "sdjfksdf.redis.aws.com",
+    "PASSWORD": "foo_bar_123"
+}
+```
+
+O **get_namespace** irá pegar todas as váriaveis definidas no namespace especificado, por padrão retorna as chaves em minusculo, mas caso queira manter em maiusculo basta usar **lowercase=False**
+
+Esta ferramenta é útil para efetuar conexões a banco de dados, exemplo:
+
+```python
+
+from pymongo import MongoClient
+
+db = MongoClient.connect(**app.config.get_namespace('MONGO_'))
+db.foo.find(...)
+```
+
+## <a href="#flask_app_quase_perfeita" name="flask_app_quase_perfeita">A app Flask quase perfeita</a>
+
+Ainda temos muito a discutir aqui na série What The Flask, mas só com o que vimos até aqui já é possível estruturar a app quase perfeita, **quase**, pois ainda falta falar mais sobre blueprints, instance folders, testing, debugging, extensões, e deploy com fabric, gunicorn e nginx.
+
+Vamos juntar tudo o que vimos até agora em nossa app de notícias.
+
+
+
+> esta versão está no [github]
 
 
