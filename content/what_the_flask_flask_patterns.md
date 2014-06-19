@@ -46,7 +46,6 @@ What The Flask - 2/6
 - [Você pode ter mais de um app](#multiple_apps)
 - [Configurações para todo lado](#config)
 - [Logando e debugando](#log)
-- [Testing](#testing)
 
 ## <a href="#one_file_is_bad_if_you_are_big" name="one_file_is_bad_if_you_are_big">One file to rule them all?</a>
 
@@ -378,6 +377,14 @@ para:
 
 Agora precisamos usar **noticias.noticia**, onde **noticias** é o nome do blueprint e **noticia** o endpoint da view.
 
+Blueprints também podem ser **montados** em uma url base diferente:
+
+```python
+app.register_blueprint(objeto_do_blueprint, url_prefix='/portal')
+```
+
+Dessa forma todas as rotas criadas dentro do Blueprint serão automaticamente mapeadas para a base **/portal**, ou seja, ao invés de **/noticias/cadastro** ficaria **/portal/noticias/portal**.
+
 > Esta versão com blueprint está disponível no [github](https://github.com/rochacbruno/wtf/tree/blueprint) e o diff entre as versões está nessa [url](https://github.com/rochacbruno/wtf/commit/315c7af699bb215b53299c43af017becb7c1a8c2). <3 Github.
 
 O ideal mesmo em termos de organização é que o Blueprint tenha sua própria pasta de templates e arquivos estáticos.
@@ -386,4 +393,151 @@ Também existem abordagens onde os blueprints são registrando dinâmicamente de
 
 Uma outra coisa ideal de se fazer é ao invés de criar o blueprint em um único arquivo separa-lo em módulos para **models**, **views** etc.
 
+Para que servem mesmo os Blueprints?
+
+- Construir grandes projetos baseados em uma coleção de diferentes Blueprints
+- Registrar um blueprint em uma url base diferente ou em um subdominio diferente
+- Registrar um mesmo blueprint multiplas vezes no projeto usando urls e configurações diferentes
+- Prover templates, arquivos estáticos, template filters, macros, template globals e outros recursos (um blueprint não é obrigado a implementar views)
+- Servir de base para a criação de extensões para o Jinja e Flask
+
 > **RELAX:** Veremos essas abordagens mais avançadas de uso dos blueprints em um próximo capítulo desta série.
+
+## <a href="#app_factory" name="app_factory">A fantástica fábrica de web apps</a>
+
+<figure style="float:left;margin-right:10px;">
+<img src="/images/rochacbruno/fabrica.jpg" alt="fabrica" width="230">
+</figure>
+
+Arquivos separados cada um com sua responsabilidade, Blueprints para criar módulos reutilizaveis e configurações organizadas. Mas ainda não está perfeito.
+
+Nós já vimos como é possível modularizar o projeto com o uso dos Blueprints e eu citei que podemos registrar os Blueprints em urls ou subdominios diferentes.
+
+Mas existem dois casos em que Blueprints sozinhos não resolvem todos os problemas. Um deles é nos **testes**, ao escrever testes unitários precisaremos de um objeto **app** com configurações especificas para testes, você querer por exemplo que no momento dos testes o app conecte-se em um banco de dados de testes.
+
+Além disso em projetos grandes é comum juntar mais de uma app em um único projeto, imagine que na sua empresa tem 2 times, um que trabalha com desenvolvimento de **api** e outro que trabalha no desenvolvimento do **site**. E ainda pode ter outro time trabalhando no desenvolvimento de um **blog**. Mas no final todos esses apps deve ser servidor debaixo de um mesmo webserver e de um mesmo dominio.
+
+Outro caso comum é o uso de soluções prontas, uma boa opção é usar o Flask-API para montar a **/api** de seu projeto ou o QuokkaCMS para o **/blog** e ai você já teria no mínimo 2 apps diferentes em um mesmo projeto.
+
+### Chega de teoria!
+
+No Flask é recomendado o uso de **Application Factories** que é simplesmente o uso de funções para criar instancia da **app** Flask ao invés de cria-la diretamente no **top level** do seu arquivo de app. Com isso é possível reutilizar essa função com diferentes parâmetros. vamos ver um exemplo.
+
+No arquivo ``news_app.py`` ao invés disso:
+
+```python
+# coding: utf-8
+from flask import Flask
+
+from blueprints.noticias import noticias_blueprint
+app = Flask("wtf")
+app.config.from_object('settings')
+app.register_blueprint(noticias_blueprint)
+```
+
+teremos isso:
+
+```python
+
+# coding: utf-8
+from flask import Flask
+from blueprints.noticias import noticias_blueprint
+
+def create_app(config_filename=None):
+    app = Flask("wtf")
+    if config_filename:
+        app.config.from_pyfile(config_filename)
+
+    app.register_blueprint(noticias_blueprint)
+
+    return app
+```
+
+e no ``run.py`` mudaremos de:
+
+```python
+from news_app import app
+app.run(debug=True, use_reloader=True)
+```
+
+para:
+
+```python
+from news_app import create_app
+app = create_app(config_filename='/server/wtf/settings.py')
+app.run(debug=True, use_reloader=True)
+```
+
+> Para melhorar ainda mais podemos criar uma função manipuladora para registrar os blueprints ``register_blueprints(app)`` que pode carregar os blueprints diretamente de uma pasta ou de uma variavel no settings, mas como eu já disse isso vai ficar para um próximo capitulo.
+
+Ok, ao invés de criarmos o ``app`` direto no top level criamos ele dentro de uma função, qual a vantagem?
+
+### 1. Testes
+
+Você poderá criar uma suite de testes facilmente e manipular as configurações desta instancia.
+
+##### /wtf/tests/test_app.py
+```python
+
+import unittest
+from news_app import create_app
+from flask import request
+
+
+class BasicTestCase(unittest.TestCase):
+    def setUp(self):
+        self.app = create_app(config_filename="/path/to/test_settings.py")
+
+    def test_request_args(self):
+        with self.app.test_request_context('/?name=BrunoRocha'):
+             self.assertEqual(request.args.get('name'), 'BrunoRocha')
+```
+
+### <a href="#multiple_apps" name="multiple_apps">2. Instanciar multiplos apps em um mesmo projeto </a>
+
+##### /wtf/multiple_run.py
+
+```python
+from werkzeug.wsgi import DispatcherMiddleware
+
+from news_app import create_app as create_news_app
+from quokka.core import create_app as create_quokka_app
+from flask.ext.api import create_app as create_api
+
+app = create_news_app(config_filename='/server/wtf/settings.py')
+blog_app = create_quokka_app(config='quokka.mysettings')
+api_v1 = create_api(serializers=['xml', 'json'], settings='api_settings_v1')
+
+app.wsgi_app = DispatcherMiddleware(
+    app.wsgi_app,  # servido em /
+    {
+        '/blog': blog_app,
+        '/api/v1': api_v1
+    }
+)
+
+app.run(debug=True, use_reloader=True)
+
+```
+
+> Esta versão com application factory está no [github](https://github.com/rochacbruno/wtf/tree/application_factory)
+
+Além desses dois exemplos também existe a possibilidade de utilizar o **shell** do Flask para criar instancias da **app** interativamente.
+
+> Mostrarei como utilizar o **shell** e criar comandos de console usando o Click e o Flask-Script em um outro capítulo :)
+
+
+## <a href="#config" name="config">Configurações para todo lado</a>
+
+#### Regra N.1: Configurações não pertencem a sua base de código!
+
+Ao desenvolver projetos para web, principalmente grandes projetos é muito comum termos diferentes **ambientes** e isto nos obriga a ter diferentes conjuntos de configurações, como no exemplo do tópico anterior, podemos ter o ambiente de **desenvolvimento**, o ambiente de **testes**, o ambiente de **homologação** e o ambiente de **produção**.
+
+Gerenciar estes múltiplos ambientes requer acima de tudo muita disciplina, a Regra N.1 deverá ser seguida a risca, ou seja, **NUNCA** faça configurações no modo **HARD CODED**, sempre utilize variáveis de settings para coisas que se alteram entre diferentes ambientes e sempre tenha um valor **default** para todos os casos.
+
+No Flask isso é fácil pois já existe uma convenção de que configurações ficam em **app.config** ou **current_app.config** dependendo do estado da app. A única coisa que precisamos nos preocupar é em escrever corretamente os arquivos de configuração de forma que sejam de fácil manutenção e que sejam carregados de forma dinâmica de acordo com o ambiente em que a app está sendo executada.
+
+Por padrão o Flask já oferece todas as ferramentas necessárias para gerenciar questões de configurações, tudo o que **no outro framework** :) acabamos precisando de módulos de terceiros para fazer as coisas de maneira **decoupled**, no Flask já esta built-in. Então vamos conhecer as abordagens de configuração.
+
+
+
