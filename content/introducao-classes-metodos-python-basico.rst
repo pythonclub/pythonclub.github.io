@@ -31,7 +31,7 @@ E um método (função) como:
 		pass
 
 onde ``args`` são argumentos opcionais (parâmetros de entrada).
-A função ``Metodo`` pode retornar um valor de saída:
+A função ``metodo`` pode retornar um valor de saída:
 
 .. code-block:: python
 
@@ -50,12 +50,12 @@ Juntando os dois temos:
 
 ``pass`` significa que você pode escrever o seu código no lugar. E ``atributo1`` é um atributo com valor inicial ``None`` (nada). Poderia ser ``atributo1 = 0``, por exemplo.
 
-Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
+Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* (isso tambem é conhecido como "CamelCase") e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
 
 Exemplo 1 - Calculadora simples
 -------------------------------
 
-Existem pelo menos duas formas diferentes de trabalhar com os parâmetros de entrada. Neste exemplo, definiremos o **parâmetro apenas uma vez** com um método especial do Python chamado ``__init__``. Segundo `João Reis <http://homepages.dcc.ufmg.br/~joaoreis/Site%20de%20tutoriais/aprendendopython/poo.html#init>`_, este método é chamado quando um objeto de uma classe é instânciado. Este método é útil para fazer qualquer inicialização que você queira com seu objeto.
+Existem pelo menos duas formas diferentes de trabalhar com os parâmetros de entrada. Neste exemplo, definiremos o **parâmetro apenas uma vez** com um método especial do Python chamado ``__init__``. Segundo `João Reis <http://homepages.dcc.ufmg.br/~joaoreis/Site%20de%20tutoriais/aprendendopython/poo.html#init>`_, este método é chamado quando um objeto de uma classe é instânciado. Este método é útil para fazer qualquer inicialização que você queira com seu objeto, ou seja, ele é o método **"Inicializador"** da instancia.
 
 .. code-block:: python
 
@@ -90,9 +90,11 @@ Poderíamos definir
 
 para não confundir, mas usualmente usamos o mesmo nome tanto no parâmetro quanto no novo campo.
 
+
+
 Como dito antes, definimos os valores iniciais apenas uma vez e depois apenas usamos os métodos para calcular os valores.
 
-Podemos rodar o Python no modo `modo interativo <https://docs.python.org/2/tutorial/interpreter.html#interactive-mode>`_ pelo terminal e importar a classe (veja este `video <https://www.youtube.com/watch?v=M1BAlDufqao>`_).
+Podemos rodar o Python no modo `modo interativo <https://docs.python.org/3/tutorial/interpreter.html#interactive-mode>`_ pelo terminal e importar a classe (veja este `video <https://www.youtube.com/watch?v=M1BAlDufqao>`_).
 
 .. code-block:: python
 
