@@ -36,7 +36,7 @@ A função ``metodo`` pode retornar um valor de saída:
 .. code-block:: python
 
 	def metodo(args):
-		return pass
+		return args
 
 Juntando os dois temos:
 
