@@ -24,7 +24,7 @@ What The Flask - 2/6
 <figcaption>Professional Flask Developer</figcaption>
 </figure>
 
-1. [**Hello Flask**](/what_the_flask_introducao_ao_desenvolvimento_web_com_python.html): Introdução ao desenvolvimento web com Flask
+1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python): Introdução ao desenvolvimento web com Flask
 2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando aplicações Flask - **<-- Você está aqui**
 3. **Plug & Use**: extensões essenciais para iniciar seu projeto
 4. **DRY**: Criando aplicativos reusáveis com Blueprints
