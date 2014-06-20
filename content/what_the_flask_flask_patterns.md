@@ -1060,11 +1060,13 @@ def media(filename):
 
 Para melhorar ainda mais esta versão, o caminho do instance_path poderia estar em uma variável de ambiente. Mas do jeito que está está quase perfeito. Agora e possivel executar com ``python run.py`` ou ``python run.py production`` para alternar entre os ambientes. As pastas ``development_instance`` e ``production_instance`` podem ficar de fora do seu controle versão, bastando adiciona-las no .gitignore.
 
-> Esta versão está no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect)
+> A versão final do app está no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect)
 
 Nesta versão é possivel executar os tests com ``nosetests tests/`` na raiz do projeto! **escreva mais testes!**
 
 Também temos o **multiple_run** que utiliza o DispatcherMiddleware para juntar dois apps, experimente executar ``python multiple_run.py`` e você verá que o app de noticias será servido no "/" mas se acessar "/another" estará acessando a outra app contida no arquivo "wtf/another_app.py".
+
+Nos próximos capítulos iremos evoluir este app para o uso de algumas extensões essenciais, uncluiremos controle de login, cache, interface de administração, suporte a html e markdown nas noticias e outras coisas.
 
 > **END:** Sim chegamos ao fim desta segunda parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 4 partes iremos nos aprofundar no uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
 
