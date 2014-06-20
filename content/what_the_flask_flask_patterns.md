@@ -1,6 +1,6 @@
 Title: What the Flask? Pt-2 Flask Patterns - boas práticas na estrutura de aplicações Flask
 Slug: what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask
-Date: 2014-06-20 02:22
+Date: 2014-06-19 22:30
 Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
@@ -57,7 +57,7 @@ Você pode até ter motivos para querer um projeto de um arquivo só, pelo fato 
 
 ### HANDS ON
 
-Vamos começar a explorar o nosso app de exemplo que está no github, O app principal (com excessão do db) está em um único [arquivo](https://github.com/rochacbruno/wtf/blob/master/news_app.py)
+Vamos começar a explorar o nosso app de exemplo que está no github, O app principal (com excessão do db) está em um único [arquivo](https://github.com/rochacbruno/wtf/blob/pt-1/news_app.py)
 
 ``Algumas linhas foram suprimidas para melhorar a legibilidade``
 
@@ -261,7 +261,7 @@ Voltando ao blueprint podemos dizer que, "Se o objeto faz roteamento como um app
 
 Blueprints são ao mesmo tempo simples e poderosos então vamos ver como funciona na prática.
 
-> **ZEN DO BLUEPRINT:** Every single **contact-us** page should be in a separate Blueprint. If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea. Blueprints are one honking great idea -- let's do more of those!
+> **ZEN DO BLUEPRINT:** If the Blueprint is hard to explain, it's a bad idea. If the Blueprint is easy to explain, it may be a good idea. Blueprints are one honking great idea -- let's do more of those!
 
 Vamos agora resolver o nosso antigo problema de singular imports utilizando blueprint, termos que alterar um pouco a estrutura de nosso app que agora será.
 
@@ -472,7 +472,7 @@ app.run(debug=True, use_reloader=True)
 
 > Para melhorar ainda mais podemos criar uma função manipuladora para registrar os blueprints ``register_blueprints(app)`` que pode carregar os blueprints diretamente de uma pasta ou de uma variavel no settings, mas como eu já disse isso vai ficar para um próximo capitulo.
 
-Ok, ao invés de criarmos o ``app`` direto no top level criamos ele dentro de uma função, qual a vantagem?
+Ok, ao invés de criarmos o ``app`` direto no top level criamos ele dentro de uma função, veja as vantagens dessa abordagem:
 
 ### 1. Testes
 
@@ -582,16 +582,16 @@ app.config.update(**my_app_config)
 
 Usar o método **update** em conjunto com a funcionalidade de descompactação de dicionários ``**`` do Python é a maneira mais fácil de atualizar as configurações e isto pode ser feito de forma condicional tendo o seu dicionário de config em um arquivo separado ou até mesmo em um arquivo JSON de fácil manutenção.
 
-#### Configurando "like a boss", ou melhor "like a Flasker" :)
+### Configurando "like a boss", ou melhor "like a Flasker" :)
 
 Como já falei no ínicio deste tópico, é muito comum você precisar que as configurações variem de acordo com o ambiente ou servidor em que está rodando, para isso o Flask fornece mais 3 abordagems de configurações bastante úteis.
 
 
 #### Usando um arquivo de configurações *.cfg
 
-Esta é a maneira mais comum, você coloca suas variáveis em um arquivos referentes a cada ambiente, por exemplo na raiz de seu projeto você pode ter os seguintes arquivos **development.cfg**, **test.cfg** e **production.cfg**.
+Esta é a maneira mais comum, você coloca suas variáveis em arquivos separados para cada ambiente, por exemplo na raiz de seu projeto você pode ter os seguintes arquivos **development.cfg**, **test.cfg** e **production.cfg**.
 
-> O tipo de arquivo **cfg** é um arquivo Python normal e aceita a sintaxe normal do Python, porém utiliza a extensão **cfg** para que possa ser diferenciado do estante do seu código e isto é muito útil pois certamente você não vai querer mandar esses arquivos sensiveis para o github por exemplo, basta colocar ```*.cfg``` no .gitignore e esses arquivos ficarão fora do controle de versões.
+> O tipo de arquivo **cfg** é um arquivo Python normal e aceita a sintaxe normal do Python, porém utiliza a extensão **cfg** para que possa ser diferenciado do restante do seu código e isto é muito útil pois certamente você não vai querer mandar esses arquivos sensiveis para o github por exemplo, basta colocar ```*.cfg``` no .gitignore e esses arquivos ficarão fora do controle de versões.
 
 ###### production.cfg
 ```python
@@ -826,7 +826,7 @@ def create_app(mode='production'):
     return app
 ```
 
-Dessa forma o **instance_path** será alternado de acordo com o **mode** e o parâmetro **instance_relative_config** fará com que o **config.cfg** seja procurado dentro da pasta da isntancia.
+Dessa forma o **instance_path** será alternado de acordo com o **mode** e o parâmetro **instance_relative_config** fará com que o **config.cfg** seja procurado dentro da pasta de instancia que estiver rodando no momento.
 
 > **NOTE:** o **instance_path** pode ser qualquer outro caminho, não precisa estar na raiz do seu projeto você pode usar **/server/configs/qualquer_pasta**. O instance_path tem que ser um caminho absoluto.
 
@@ -897,7 +897,7 @@ Vamos juntar tudo o que vimos até agora em nossa app de notícias.
 
 ### O pacote Python e os imports relativos
 
-Preferencialmente, e para permitir o uso de import relativo é ideal que nossa app esteja contida em um pacote Python, isso significa que todos os nossos arquivos, exceto os arquivos de execução "run.py" e arquivos de deploy "requirements.txt", "setup.py" e os tests devem ficar contidos em uma pasta que tenha um ``__init__.py``. No nosso caso para fazer isso e simples, basta incluir um nível a mais de diretório, vamos aproveitar e implementar a ideia de **instance folder** para conter o banco de dados e as configurações alterando nossa estrutura atual para:
+Preferencialmente, e para permitir o uso de import relativo é ideal que nossa app esteja contida em um pacote Python, isso significa que todos os nossos arquivos, exceto os arquivos de execução "run.py", os arquivos de deploy "requirements.txt" e "setup.py" e os tests devem ficar contidos em uma pasta que tenha um ``__init__.py``. No nosso caso para fazer isso é bem simples, basta incluir um nível a mais de diretório, vamos aproveitar e implementar a ideia de **instance folder** para conter o banco de dados, a paste de uploads e as configurações alterando nossa estrutura atual para:
 
 ```bash
 wtf/
