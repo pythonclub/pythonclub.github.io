@@ -47,6 +47,8 @@ What The Flask - 2/6
 - [Configurações para todo lado](#config)
 - [A app Flask quase perfeita](#flask_app_quase_perfeita)
 
+> **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
+
 ## <a href="#one_file_is_bad_if_you_are_big" name="one_file_is_bad_if_you_are_big">One file to rule them all?</a>
 
 O exemplo mais básico de um projeto Flask é um one-file application, e normalmente você pode começar dessa maneira mas se eu projeto começar a crescer ele vai se tornar de difícil manutenção, imagine que uma equipe de 10 programadores irá trabalhar no mesmo projeto, é comum que ao usar um sistema de controle de versão como o git você acompanhe o histórico de evolução de cada um dos arquivos e constantemente faça "merges" entre os desenvolvedores, estando tudo em único arquivo este processo pode resultar em um número muito grande de conflitos para resolver. Além disso no [Zen do Python](http://legacy.python.org/dev/peps/pep-0020/) tem a famosa frase **"Sparse is better than dense."**.
@@ -810,10 +812,14 @@ Imagine a seguinte estrutura
 Agora na hora de criar o app iremos alternar entre essas duas pastas de instancia
 
 ```python
+from os import path
 
 def create_app(mode='production'):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
     app = Flask(__name__,
-                instance_path='%s_instance' % mode,
+                instance_path=instance_path,
                 instance_relative_config=True)
     app.config.from_pyfile('config.cfg')
     ...
@@ -822,7 +828,7 @@ def create_app(mode='production'):
 
 Dessa forma o **instance_path** será alternado de acordo com o **mode** e o parâmetro **instance_relative_config** fará com que o **config.cfg** seja procurado dentro da pasta da isntancia.
 
-> **NOTE:** o **instance_path** pode ser qualquer outro caminho, não precisa estar na raiz do seu projeto você pode usar **/server/configs/qualquer_pasta**
+> **NOTE:** o **instance_path** pode ser qualquer outro caminho, não precisa estar na raiz do seu projeto você pode usar **/server/configs/qualquer_pasta**. O instance_path tem que ser um caminho absoluto.
 
 As pastas de instancia não servem apenas para configuração, mas em outro capítulo veremos como usa-las para arquivos de media e bancos de dados, confgurações de webservers etc.
 
@@ -875,14 +881,203 @@ db = MongoClient.connect(**app.config.get_namespace('MONGO_'))
 db.foo.find(...)
 ```
 
+> **ATENÇÃO:** O método **get_namespace** está disponível somente a partir da versão 1.0 do Flask, por enquanto você deverá usar o seguinte comando para instalar esta versão:
+
+```bash
+pip install https://github.com/mitsuhiko/flask/tarball/master
+```
+
+Pois a versão que está no PyPI ainda é a 0.10.1
+
 ## <a href="#flask_app_quase_perfeita" name="flask_app_quase_perfeita">A app Flask quase perfeita</a>
 
 Ainda temos muito a discutir aqui na série What The Flask, mas só com o que vimos até aqui já é possível estruturar a app quase perfeita, **quase**, pois ainda falta falar mais sobre blueprints, instance folders, testing, debugging, extensões, e deploy com fabric, gunicorn e nginx.
 
 Vamos juntar tudo o que vimos até agora em nossa app de notícias.
 
+### O pacote Python e os imports relativos
+
+Preferencialmente, e para permitir o uso de import relativo é ideal que nossa app esteja contida em um pacote Python, isso significa que todos os nossos arquivos, exceto os arquivos de execução "run.py" e arquivos de deploy "requirements.txt", "setup.py" e os tests devem ficar contidos em uma pasta que tenha um ``__init__.py``. No nosso caso para fazer isso e simples, basta incluir um nível a mais de diretório, vamos aproveitar e implementar a ideia de **instance folder** para conter o banco de dados e as configurações alterando nossa estrutura atual para:
+
+```bash
+wtf/
+├── multiple_run.py
+├── requirements.txt
+├── run.py
+├── tests/
+│   └── test_basic.py
+└── wtf/
+    ├── __init__.py
+    ├── db.py
+    ├── another_app.py
+    ├── news_app.py
+    ├── default_settings.py
+    ├── blueprints/
+    │   ├── __init__.py
+    │   └── noticias.py
+    ├── development_instance/
+    │   ├── config.cfg
+    │   ├── media_files/
+    │   └── noticias.db
+    ├── production_instance/
+    │   ├── media_files/
+    │   └── noticias.db
+    │   └── config.cfg
+    ├── static
+    │   └── generic_logo.gif
+    └── templates
+        ├── base.html
+        ├── cadastro.html
+        ├── cadastro_sucesso.html
+        ├── index.html
+        └── noticia.html
+```
+
+Algumas mudanças serão necessárias, primeiro teremos que alterar todos os imports para usar relative imports, dessa forma fora do módulo **wtf** ao invés de ``from news_app import create_app`` usaremos o caminho completo ``from wtf.news_app import create_app`` e dentro do módulo **wtf** podemos fazer imports relativos, ao invés de ``from blueprints import noticias`` usaremos ``from .blueprints.noticias import noticias_blueprint``, repare no uso do **.**, dentro do blueprint ao invés de ``from db import noticias`` usaremos ``from ..db import noticias`` repare que dessa vez usamos **..**, indicando que o objeto está a dois niveis acima relativo ao módulo atual.
+
+##### run.py
+```python
+import sys
+from wtf.news_app import create_app
+mode = sys.argv[1] if len(sys.argv) > 1 else 'development'
+app = create_app(mode=mode)
+app.run(**app.config.get_namespace('RUN_'))
+```
+
+##### wtf/development_instance/config.cfg
+```python
+RUN_DEBUG = True
+RUN_USE_RELOADER = True
+RUN_HOST='localhost'
+RUN_PORT=5000
+DATABASE_NAME = 'noticias.db'
+MEDIA_FOLDER = 'media_files'
+```
+
+##### wtf/news_app.py
+
+```python
+from os import path
+from flask import Flask
+from .blueprints.noticias import noticias_blueprint
 
 
-> esta versão está no [github]
+def create_app(mode):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
 
+    app = Flask("wtf",
+                instance_path=instance_path,
+                instance_relative_config=True)
+
+    app.config.from_object('wtf.default_settings')
+    app.config.from_pyfile('config.cfg')
+
+    app.config['MEDIA_ROOT'] = path.join(
+        app.config.get('PROJECT_ROOT'),
+        app.instance_path,
+        app.config.get('MEDIA_FOLDER')
+    )
+
+    app.register_blueprint(noticias_blueprint)
+
+    return app
+```
+
+##### wtf/db.py
+
+```python
+from os import path
+from flask import current_app
+import dataset
+
+def get_table(tablename):
+    database_name = current_app.config['DATABASE_NAME']
+    database_path = path.join(current_app.instance_path, database_name)
+    db = dataset.connect('sqlite:///{0}'.format(database_path))
+    return db[tablename]
+```
+
+Agora nossa versão do **db** é uma função que retorna a tabela de acordo com o banco especifico dentro da nossa **instance_path**
+
+##### wtf/blueprints/noticias.py
+```python
+# coding: utf-8
+import os
+from werkzeug import secure_filename
+from flask import (
+    Blueprint, request, current_app, send_from_directory, render_template
+)
+from ..db import get_table
+
+noticias_blueprint = Blueprint('noticias', __name__)
+
+
+@noticias_blueprint.route("/noticias/cadastro", methods=["GET", "POST"])
+def cadastro():
+    noticias = get_table('noticias')
+    if request.method == "POST":
+
+        dados_do_formulario = request.form.to_dict()
+        imagem = request.files.get('imagem')
+
+        if imagem:
+            filename = secure_filename(imagem.filename)
+            path = os.path.join(current_app.config['MEDIA_ROOT'], filename)
+            imagem.save(path)
+            dados_do_formulario['imagem'] = filename
+
+        id_nova_noticia = noticias.insert(dados_do_formulario)
+        return render_template('cadastro_sucesso.html',
+                               id_nova_noticia=id_nova_noticia)
+
+    return render_template('cadastro.html', title=u"Inserir nova noticia")
+
+
+@noticias_blueprint.route("/")
+def index():
+    noticias = get_table('noticias')
+    todas_as_noticias = noticias.all()
+    return render_template('index.html',
+                           noticias=todas_as_noticias,
+                           title=u"Todas as notícias")
+
+
+@noticias_blueprint.route("/noticia/<int:noticia_id>")
+def noticia(noticia_id):
+    noticias = get_table('noticias')
+    noticia = noticias.find_one(id=noticia_id)
+    return render_template('noticia.html', noticia=noticia)
+
+
+@noticias_blueprint.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
+```
+
+> **NOTE:** Não se esqueça de executar ``pip install -r requirements.txt --upgrade`` para atualizar o Flask
+
+Para melhorar ainda mais esta versão, o caminho do instance_path poderia estar em uma variável de ambiente. Mas do jeito que está está quase perfeito. Agora e possivel executar com ``python run.py`` ou ``python run.py production`` para alternar entre os ambientes. As pastas ``development_instance`` e ``production_instance`` podem ficar de fora do seu controle versão, bastando adiciona-las no .gitignore.
+
+> Esta versão está no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect)
+
+Nesta versão é possivel executar os tests com ``nosetests tests/`` na raiz do projeto! **escreva mais testes!**
+
+Também temos o **multiple_run** que utiliza o DispatcherMiddleware para juntar dois apps, experimente executar ``python multiple_run.py`` e você verá que o app de noticias será servido no "/" mas se acessar "/another" estará acessando a outra app contida no arquivo "wtf/another_app.py".
+
+> **END:** Sim chegamos ao fim desta segunda parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 4 partes iremos nos aprofundar no uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
+
+<hr />
+
+> **PUBLICIDADE:** Estou iniciando um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
+
+<hr />
+
+> **PUBLICIDADE 2:** Também estou escrevendo um livro de receitas **Flask CookBook** através da plataforma LeanPub, caso tenha interesse por favor preenche o formulário na [página do livro](https://leanpub.com/pythoneflask)
+
+
+Muito obrigado e aguardo seu feedback com dúvidas, sugestões, correções etc na caixa de comentários abaixo.
+
+Abraço! "Python é vida!"
 
