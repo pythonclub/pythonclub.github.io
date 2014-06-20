@@ -160,7 +160,25 @@
             <div class="hr"></div>
             <a href="#" class="go-top">Topo</a>
             {% if DISQUS_SITENAME %}
-                {% include 'disqus.html' %}
+                <div class="comments">
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        /* * * CONFIGURATION VARIABLES: THIS CODE IS ONLY AN EXAMPLE * * */
+                        var disqus_shortname = '{{ DISQUS_SITENAME }}'; // Required - Replace example with your forum shortname
+                        /* * *var disqus_identifier = 'a unique identifier for each page where Disqus is present'; * * */
+                        var disqus_title = '{{ article.title }}';
+                        var disqus_url = 'http://pythonclub.com.br/{{ article.url }}';
+                    
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </div>
             {% endif %}
             {% include 'footer.html' %}
         </div>
