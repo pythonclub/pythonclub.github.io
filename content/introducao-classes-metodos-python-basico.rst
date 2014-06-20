@@ -213,7 +213,7 @@ Veremos o código na íntegra e depois os comentários.
 	    u2.save()
 	    print(User.all())
 
-Você pode suprimir o final do código (a partir do ``if``) e importar a classe no terminal no `modo interativo <https://docs.python.org/2/tutorial/interpreter.html#interactive-mode>`_ veja este `video <https://www.youtube.com/watch?v=M1BAlDufqao>`_:
+Podemos rodar o Python no modo `modo interativo <https://docs.python.org/3/tutorial/interpreter.html#interactive-mode>`_ pelo terminal e importar a classe (veja este `video <https://www.youtube.com/watch?v=M1BAlDufqao>`_).
 
 .. code-block:: python
 
