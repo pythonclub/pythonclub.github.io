@@ -47,7 +47,7 @@ What The Flask - 2/6
 - [Configurações para todo lado](#config)
 - [A app Flask quase perfeita](#flask_app_quase_perfeita)
 
-> **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
+> **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
 
 ## <a href="#one_file_is_bad_if_you_are_big" name="one_file_is_bad_if_you_are_big">One file to rule them all?</a>
 
