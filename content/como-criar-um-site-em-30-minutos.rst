@@ -7,7 +7,7 @@ Como criar um site com formulário e lista em 30 minutos?
 :slug: criar-site-com-form-lista-30-min
 :author: Regis da Silva
 :email: regis.santos.100@gmail.com
-:summary: Como criar um site com formulário e lista em 30 minutos?
+:summary: Como criar um site com formulário e lista em 30 minutos? Ou menos...
 :github: rg3915
 
 Se você já leu as `principais dúvidas de quem quer aprender Django <http://pythonclub.com.br/principais-duvidas-de-quem-quer-aprender-django.html>`_ agora você já está pronto para criar um site com:
@@ -57,6 +57,14 @@ Instalando as bibliotecas do Requirements.
 
 	$ pip install django
 	$ pip install unipath
+
+Na verdade o prompt do terminal vai ficar assim:
+
+.. code-block:: bash
+
+	(env_crm)usuario@maq:~/env_crm$
+
+Mas vou suprimir tudo isso, mas pelo mesmo você sabe que o virtualenv está ativado.
 
 O `Unipath <http://sluggo.scrapping.cc/python/unipath/>`_ é um pacote que trabalha com caminhos relativos de forma orientada à objetos. Segundo `Henrique Bastos <https://github.com/henriquebastos/slides-django-sem-trabalho/blob/master/settings.rst#n%C3%A3o-use-diret%C3%B3rios-hardcoded>`_, ele evita diretórios *hardcoded*, ou seja, não usa caminho absoluto, e sim caminhos relativos. Em *settings.py* veremos o uso deste pacote. Mas como ele mesmo diz, o uso de *os.path* não é problema, mas o *Unipath* ajuda bastante.
 
