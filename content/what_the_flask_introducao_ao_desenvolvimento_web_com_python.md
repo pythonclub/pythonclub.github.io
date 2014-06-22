@@ -864,7 +864,7 @@ noticias = db['noticias']
 
 Agora crie um arquivo ``news_app.py`` e vamos inicialmente criar uma view contendo um formulário para **cadastro de novas notícias**.
 
-> **NOTE:** Inicialmente não vamos nos preocupar com segurança, csrf ou login, mas nos próximos capítulos desta sério iremos evoluir este pequeno app.
+> **NOTE:** Inicialmente não vamos nos preocupar com segurança, csrf ou login, mas nos próximos capítulos desta série iremos evoluir este pequeno app.
 
 ```python
 # coding: utf-8
