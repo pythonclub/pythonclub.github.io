@@ -95,7 +95,7 @@ Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finaliza
 [1]: https://pages.github.com/
 [2]: http://docs.getpelican.com/en/3.3.0/
 [3]: http://localhost:8000/
-[4]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+[4]: https://guides.github.com/features/mastering-markdown/
 [5]: http://docutils.sourceforge.net/docs/user/rst/quickref.html
 [6]: https://github.com/pythonclub/pythonclub.github.io/tree/pelican/exemplos
 [7]: https://docs.google.com/spreadsheets/d/1sddA5pa5LcssPvibBYOHUujyfRpmL1zKw_-MSn784Tg/edit#gid=0
@@ -107,3 +107,4 @@ Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finaliza
 [13]: http://pt.wikipedia.org/wiki/Restructuredtext
 [14]: https://github.com/pythonclub/pythonclub.github.io/raw/pelican/content/images/pythonclub_geral/fork_git_hub0_o.png
 [15]: https://github.com/pythonclub/pythonclub.github.io/fork
+[16]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
