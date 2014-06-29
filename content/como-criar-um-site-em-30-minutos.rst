@@ -175,7 +175,7 @@ Agora vamos editar *crm/cadastro/models.py*.
 			verbose_name_plural = (u'nomes')
 	
 		def __unicode__(self):
-			return self.name
+			return self.nome
 
 Vamos criar o banco de dados através do comando **syncdb**.
 
