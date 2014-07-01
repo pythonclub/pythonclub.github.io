@@ -119,7 +119,7 @@ code {
     display: none;
     width: 30px;
   }
-  .publish-github a {
+  .publish-github {
     display: none;
   }
 }
