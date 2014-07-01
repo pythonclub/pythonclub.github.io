@@ -3,7 +3,6 @@
   padding: 0px !important;
   width: auto;
 }
-
 .gsc-search-box * {
   box-sizing: initial;
 }
@@ -27,7 +26,6 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
-
 code {
   margin: 0;
   border: 1px solid #ddd;
@@ -36,8 +34,6 @@ code {
   padding: 0;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
 }
-
-
 .doeaoautor {
   text-align: center;
   background: rgba(244, 255, 246, 0.97);
@@ -47,7 +43,6 @@ code {
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
 }
-
 .licence {
   text-align: center;
   background: rgba(244, 255, 246, 0.97);
@@ -57,18 +52,15 @@ code {
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
 }
-
 .section {
   width: 100%;
   padding-top: 15px;
 }
-
 .brand-main a img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
 .section span a {
   font-size: 15px;
   margin-left: 15px;
@@ -80,7 +72,6 @@ code {
   border-bottom: 1px solid #3d3d3d;
   padding-bottom: 1px;
 }
-
 .section img {
   width: 50%;
   max-width: 250px;
@@ -90,7 +81,6 @@ code {
   padding-top: 5px;
   padding-bottom: 35px;
 }
-
 .google-search {
   width: 80%;
 }
@@ -99,20 +89,16 @@ code {
   .brand-main a img {
     display: inline;
   }
-
   .section {
     margin-top: -25px;
     margin-bottom: 25px;
   }
-
   .tagline {
     margin-bottom: -20px;
   }
-
   .section img {
     display: none;
   }
-
   .google-search {
     width: 100%;
   }
@@ -122,17 +108,18 @@ code {
   .brand-main a img {
     display: inline;
   }
-
   .section {
     margin-top: -25px;
     margin-bottom: 25px;
   }
-
   .tagline {
     margin-bottom: -10px;
   }
-
   .section img {
+    display: none;
+    width: 30px;
+  }
+  .publish-github a {
     display: none;
   }
 }
