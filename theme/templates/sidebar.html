@@ -1,31 +1,40 @@
 <div class="sidebar pure-u">
-    <div class="cover-img" style="background-image: url('{{ COVER_IMG_URL }}')">
-        <div class="cover-body">
-            <header class="header">
-                <hgroup>
-                    <h1 class="brand-main"><a href="/"><img src="{{ SITELOGO }}" alt="{{ SITENAME }}" /></a></h1>
-                    <p class="tagline">{{ TAGLINE }}</p>
-                {% for title, link in MENUITEMS %}
-                    <p class="links"><a href="{{ SITEURL }}/{{ link }}">{{ title }}</a></p>
-                {% endfor %}
-                    <p class="social">
-                {% for title, link in SOCIAL %}
-                        <a href="{{ link }}">
-                            <i class="fa fa-{{ title }} fa-3x"></i>
-                        </a>
-                {% endfor %}
-                    <p>
-                 <p class="tagline">
-                     Esta comunidade é signatária do 
-                     <a target="_blank" href="http://smallactsmanifesto.org" title="Small Acts Manifesto">
-                            <img src="http://smallactsmanifesto.org/static/images/smallacts-badge-80x15.png" 
-                                 style="border: none;" 
-                                 alt="Small Acts Manifesto" 
-                             />
-                     </a>
-                 </p>
-                </hgroup>
-            </header>
-        </div>
+  <div class="cover-img" style="background-image: url('{{ COVER_IMG_URL }}')">
+    <div class="cover-body">
+      <header class="header">
+        <hgroup>
+          <h1 class="brand-main"><a href="/"><img src="{{ SITELOGO }}" alt="{{ SITENAME }}" /></a></h1>
+          <p class="tagline">{{ TAGLINE }}</p>
+          {% for title, link in MENUITEMS %}
+          <p class="links"><a href="{{ SITEURL }}/{{ link }}">{{ title }}</a></p>
+          {% endfor %}
+          <p class="social">
+            {% for title, link in SOCIAL %}
+            <a href="{{ link }}">
+              <i class="fa fa-{{ title }} fa-3x"></i>
+            </a>
+            {% endfor %}
+          </p>
+          <div class="section">
+            <span><a href="http://2014.pythonbrasil.org.br/">#Python2014, vamos?!</a></span>
+            <div class="section-body">
+              <a href="http://2014.pythonbrasil.org.br/" >
+                <img src="https://pybr.s3.amazonaws.com/static/images/badges/badge-pt-br.2ab99f7699bf.png"
+                width="250" height="276" alt="Eu vou na PythonBrasil[10]"/>
+              </a>
+            </div>
+          </div>
+          <p class="tagline">
+             Esta comunidade é signatária do
+             <a target="_blank" href="http://smallactsmanifesto.org" title="Small Acts Manifesto">
+              <img src="http://smallactsmanifesto.org/static/images/smallacts-badge-80x15.png"
+              style="border: none;"
+              alt="Small Acts Manifesto"
+              />
+            </a>
+          </p>
+        </hgroup>
+      </header>
     </div>
+  </div>
 </div>
