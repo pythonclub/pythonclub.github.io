@@ -1,7 +1,7 @@
 Selenium - O que você deveria saber - Parte 4
 #############################################
 
-:date: 2014-06-24 11:55
+:date: 2014-07-17 11:55
 :tags: selenium, python, selenium-serie
 :category: Python
 :slug: selenium-parte-4
@@ -18,7 +18,7 @@ Esse é o quarto post da série sobre Selenium, hoje você irá aprender a fazer
     - Veja a `terceira parte <http://pythonclub.com.br/selenium-parte-3.html>`_.
 
 
-Esse post será o mais logno, então prepare-se!
+Esse post será o mais longo, então prepare-se!
 
 
 Parte 4
@@ -68,6 +68,55 @@ Essas condições pré-determinadas são chamadas ``expected conditions``, abaix
     Retorna o alerta ou False.
 
 *Todas as funções estão no arquivo: selenium/webdriver/support/expected_conditions.py*
+
+Você pode utilizar essas funções em conjunto com o que foi aprendido na `Parte 2 <http://pythonclub.com.br/selenium-parte-2.html#e-se-eu-quiser-esperar>`_
+
+Exemplos de uso:
+
+.. code-block:: python
+
+  # Importar classe para inicializar o browser
+  >> from selenium import webdriver
+  # Importar a classe WebDriverWait
+  >> from selenium.webdriver.support.ui import WebDriverWait
+  # Importar a classe que contém as funções e aplicar um alias
+  >> from selenium.webdriver.support import expected_conditions as EC
+  # Importar classe para ajudar a localizar os elementos
+  >> from selenium.webdriver.common.by import By
+
+  >> firefox = webdriver.Firefox()
+  # Instanciar a classe que irá esperar até 5 segundos
+  >> wait = WebDriverWait(firefox, 5)
+
+  # Aguardar até que a página tenha o título "PythonClub"
+  >> wait.until(EC.title_is("PythonClub"))
+
+  # Aguardar página contenha o título "PythonClub"
+  >> wait.until(EC.title_contains("PythonClub"))
+
+  # Aguardar até que o elemento "id_elemento" esteja presente no DOM
+  >> elemento = wait.until(EC.presence_of_element_located((By.ID, 'id_elemento')))
+
+  # Aguardar até que o elemento "id_elemento" esteja visível
+  >> elemento = wait.until(EC.visibility_of_element_located((By.ID, 'id_elemento'))))
+
+  # Aguardar até que o elemento "id_elemento" contenha o texto "Python"
+  >> wait.until(EC.text_to_be_present_in_element((By.ID, 'id_elemento'), 'Python'))
+
+  # Aguardar até que o elemento "id_elemento" contenha o valor "Python"
+  >> wait.until(EC.text_to_be_present_in_element_value((By.ID, 'id_elemento'), 'Python')))
+
+  # Aguardar até que o elemento "id_elemento" possa ser clicado
+  >> elemento = wait.until(EC.element_to_be_clickable((By.ID, 'id_elemento')))
+
+  # Aguardar até que um alerta esteja presente na página
+  >> wait.until(EC.alert_is_present)
+
+
+Após os 5 segundos, se a condição retornar ``False`` será gerado uma exception ``TimeoutException``.
+
+
+Use a abuse das ``conditions``!
 
 
 ===============================================
