@@ -30,6 +30,7 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
     ```
 
     **Utilidades**
+    
     > - **Pip**: Gerenciador de pacotes Python.
     > - **Nginx**: Usado como proxy e como server de arquivos estáticos.
     > - **Supervisor**: Gerenciar o processo de start/stop da nossa aplicação.
@@ -54,9 +55,7 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
 
     **Como funciona?**
 
-
-    O ***Virtualenvwrapper*** irá criar os projetos dentro do `~/www` e os ambientes dentro do `~/env`, basta configurar algumas variáveis no seu `~/.bashrc`.
-
+    O ***Virtualenvwrapper*** irá criar os projetos dentro do ```~/www``` e os ambientes dentro do ```~/env```, basta configurar algumas variáveis no seu ```~/.bashrc```.
 
     ```bash
     # ~/.bashrc
@@ -67,7 +66,8 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
 
     ```
 
-    Atualize o seu `~/.bashrc` e crie um projeto.
+
+    Atualize o seu ```~/.bashrc``` e crie um projeto.
 
 
     ```bash
@@ -78,9 +78,12 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
 
     **O que fazer agora?**
 
+
     Vamos configurar o Nginx e o Supervisor para ele trabalhar na nossa estrutura de arquivos.
 
-    Edite o arquivo `/etc/nginx/nginx.conf`,
+
+    Edite o arquivo ```/etc/nginx/nginx.conf```,
+
 
     ```
     ##
@@ -93,7 +96,9 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
     include /home/myusr/www/*/nginx.conf;
     ```
 
+
     e edite o `/etc/supervisor/supervisord.conf`,
+    
 
     ```
     [include]
@@ -102,6 +107,7 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
     # encontra a configuracao dos seus projetos
     files = /home/myusr/www/*/supervisor.conf
     ```
+
 
     Agora eles estão prontos para buscar as configurações dentro da nossa pasta de projetos, cada projeto vai ter uma configuração unica, e quando quiser removê-lo vai fazer isso de forma simples, excluindo a pasta do projeto.
 
@@ -234,11 +240,14 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
 
 
     Ufa!, é um arquivo bem simples só precisamos informar o que queremos executar e com qual usuário ele fará isso, agora vamos iniciar nosso projeto.
+    
+
 
     ```bash
     sudo service nginx restart
     sudo /etc/init.d/supervisor start myproject
     ```
+
 
 ### Pronto!
 Pronto agora você tem um ambiente bem estruturado rodando sua aplicação, um detalhe é que eu me limitei a instalar o ***Gunicorn*** dentro do ambiente virtual, caso um dia queira um outro **web server** que não seja o ***WSGI*** com outros projetos, é só instalar outro **server** no ambiente virtual do projeto, criar um **script** para iniciar o projeto, e voilá!
