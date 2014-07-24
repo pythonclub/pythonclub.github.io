@@ -43,7 +43,7 @@ Parte 3
 Parte 4
 --------
     - `Expected conditions <http://pythonclub.com.br/selenium-parte-4.html#expected-conditions>`
-    - ActionsChains - Operações avançadas com o mouse
+    - ActionsChains - Operações avançadas
     - EventListener - Ouvindo seu código
 
 
