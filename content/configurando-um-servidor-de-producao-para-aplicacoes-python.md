@@ -41,7 +41,9 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
     ```bash
     pip install virtualenvwrapper
     ```
+    
     Nosso filesystem será organizado da seguinte forma:
+
 
     ```bash
     # -- /home/myusr
@@ -52,7 +54,9 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
 
     **Como funciona?**
 
+
     O ***Virtualenvwrapper*** irá criar os projetos dentro do `~/www` e os ambientes dentro do `~/env`, basta configurar algumas variáveis no seu `~/.bashrc`.
+
 
     ```bash
     # ~/.bashrc
@@ -64,6 +68,7 @@ Abaixo algumas das ferramentas que serão utilizadas para preparar o nosso ambie
     ```
 
     Atualize o seu `~/.bashrc` e crie um projeto.
+
 
     ```bash
     mkproject myproject
@@ -109,6 +114,7 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
 
     Vamos ativar nosso ambiente virtual e instalar o ***Gunicorn***
 
+
     ```bash
     workon myproject
     pip install gunicorn
@@ -117,6 +123,7 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
     **Qual próximo passo então?**
 
     Vamos criar nossos arquivos de configuração, e logs do nosso projeto.
+
 
     ```bash
     cd ~/www/myproject
@@ -147,6 +154,7 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
 
     Vamos começar pelo `start.sh`, ele vai ser responsável por iniciar a sua aplicação ***WSGI*** usando o servidor ***Gunicorn***.
 
+
     ```bash
     #!/bin/bash
     # Diretorio e arquivo de log
@@ -167,9 +175,12 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
     exec gunicorn -w $NUM_WORKERS --bind=$ADDRESS --user=$USER --log-level=debug --log-file=$LOGFILE 2>>$LOGFILE myproject.wsgi:application
     ```
 
+
     Na linha 6, *ADDRESS*, diz que o nosso projeto vai rodar localhost com a porta 8000, esse mesmo ip:porta será usado na configuração do `nginx.conf`, as linhas abaixo fazem o processo de ativar o ambiente virtual e navegar para pasta do fonte do projeto, para que o ***Gunicorn*** possa encontrar o arquivo `wsgi.py`, esse é o arquivo que configura o ambiente de produção no ***Django***.
 
+
     Agora vamos configurar o `nginx.conf`, para que ele possa escutar o nosso dominio na porta 80 e redirecionar a requisição para a nossa aplicação no *127.0.0.1:8000*.
+
 
     ```
     upstream myproject.com.br {
@@ -203,11 +214,13 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
     }
     ```
 
+
     Criamos um *upstream* que representa a nossa aplicação, e configuramos o *server* para escutar nosso dominio na porta 80 e redirecionar tudo com *location /* para nosso *upstream*, no *location /static/* e *localtion /media/* criamos um alias para nossa pasta de arquivos, assim o ***Nginx*** passa a servir os arquivos estáticos e de midia.
 
     **Falta pouco!**
 
     Precisamos só de configurar o ***Supervisor*** para iniciar nosso projeto automaticamente, veja o `supervisor.conf` de exemplo.
+
 
     ```
     [program:myproject]
@@ -218,6 +231,7 @@ Agora que temos todos as ferramentas necessárias instaladas e nosso ambiente co
     autostart=true
     autorestart=true
     ```
+
 
     Ufa!, é um arquivo bem simples só precisamos informar o que queremos executar e com qual usuário ele fará isso, agora vamos iniciar nosso projeto.
 
