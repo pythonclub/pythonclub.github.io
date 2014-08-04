@@ -46,9 +46,10 @@ SOCIAL = (
     ('rss', 'feeds/all.atom.xml'),
 )
 
-STATIC_PATHS = ['images', 'extras/CNAME']
+STATIC_PATHS = ['images', 'extras/CNAME', 'extras/robots.txt']
 EXTRA_PATH_METADATA = {
-    'extras/CNAME': {'path': 'CNAME'}
+    'extras/CNAME': {'path': 'CNAME'},
+    'extras/robots.txt': {'path': 'robots.txt'}
 }
 
 # Plugins
