@@ -69,12 +69,12 @@ PLUGINS = [
 SITEMAP = {
     'format': 'xml',
     'priorities': {
-        'articles': 0.5,
+        'articles': 0.8,
         'indexes': 0.5,
-        'pages': 0.5
+        'pages': 0.3
     },
     'changefreqs': {
-        'articles': 'monthly',
+        'articles': 'daily',
         'indexes': 'daily',
         'pages': 'monthly'
     }
