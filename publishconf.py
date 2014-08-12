@@ -16,8 +16,8 @@ RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
-AUTHOR_FEED_RSS = 'feeds/authors/%s.rss.xml'
-AUTHOR_FEED_ATOM = 'feeds/authors/%s.atom.xml'
+AUTHOR_FEED_RSS = 'feeds/%s.rss.xml'
+AUTHOR_FEED_ATOM = 'feeds/%s.atom.xml'
 
 
 DELETE_OUTPUT_DIRECTORY = True
