@@ -123,7 +123,7 @@ Vamos criar nossos arquivos de configuração, e logs do nosso projeto.
 cd ~/www/myproject
 mkdir static media logs project
 touch nginx.conf supervisor.conf start.sh
-touch logs/access.log logs/error.log logs/gunicorn.log logs/suprevisor.log
+touch logs/access.log logs/error.log logs/gunicorn.log logs/supervisor.log
 ```
 
 No momento nosso filesystem se parece com esse:
