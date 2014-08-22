@@ -53,7 +53,7 @@ EXTRA_PATH_METADATA = {
 }
 
 # Plugins
-PLUGIN_PATH = 'plugins'
+PLUGIN_PATHS = ['plugins']
 
 PLUGINS = [
     'gravatar',
