@@ -1,4 +1,4 @@
-pelican==3.3.0
+pelican==3.4.0
 Markdown
 pelican-youtube
 pelican-vimeo
