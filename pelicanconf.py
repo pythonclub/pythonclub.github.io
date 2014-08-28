@@ -54,7 +54,7 @@ EXTRA_PATH_METADATA = {
 
 # Plugins
 PLUGIN_PATHS = [
-    'plugins'
+    'pelican-plugins'
 ]
 
 PLUGINS = [
