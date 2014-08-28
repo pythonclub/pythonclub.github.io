@@ -1,6 +1,6 @@
 Title: Criando sites estáticos com Pelican Framework
-Slug: criando-sites-estáticos-com-pelican
-Date: 2014-08-21 21:30
+Slug: criando-sites-estaticos-com-pelican
+Date: 2014-08-28 00:30
 Tags: tutorial,pelican,blog,framework
 Author: Arthur Alves
 Email:  arthur.4lves@gmail.com
@@ -192,3 +192,4 @@ Ou então trocar a variável $LANG, que deu certo com algumas pessoas no [github
 Pois é, funciona. Mas prefira instalar a versão mais nova, já com o patch.  
 
 Bem pessoal, é simples, mas espero que ajude o pessoal a ficar mais íntimo do Pelican e ajudar com o [pythonclub](http://pythonclub.com.br/).
+
