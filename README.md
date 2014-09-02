@@ -79,6 +79,7 @@ Para finalizar o servidor use:
 
 ``./develop_server.sh stop``
 
+<<<<<<< HEAD
 Futuras Publicações
 -------------------
 
@@ -90,6 +91,8 @@ Você pode ver a lista contendo os nomes dos artigos nesta planilha no [Google D
 
 Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finalizar o seu artigo, envie o pull request e atualize a planilha marcando que sua publicação já foi entregue.
 
+=======
+>>>>>>> bcb35e4ada433a7ec377dcbf1d71d465ba68628c
 
 [0]: http://pythonclub.com.br/
 [1]: https://pages.github.com/
