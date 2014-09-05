@@ -163,7 +163,7 @@ Acesse o endereço *127.0.0.1:8000* e verifique se você consegue ver a mensagem
 Ao executar o *deploy* da sua aplicação, o Openshift irá procurar pelo WSGI *entry-point* em alguns arquivos.
 Um desses arquivos é o **wsgi.py** na raiz do repositório.
 O WSGI *entry-point* nada mais é do que o *callable* do servidor WSGI.
-No nosso caso usamos uma variavel mas poderia ser um método ou uma função, o importante é que ele tenha o nome de **application**.
+No nosso caso usamos uma variável mas poderia ser um método ou uma função, o importante é que ele tenha o nome de **application**.
 
 Execute o comando abaixo para criar o WSGI *entry-point*:
 
