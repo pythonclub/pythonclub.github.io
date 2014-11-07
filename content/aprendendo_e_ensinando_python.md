@@ -39,7 +39,7 @@ a semana e aos sábados e domingos eu produzia uma nova aula com novos desafios
 e exercícios para quem estava acompanhando. Algo muito legal (ou nem tanto) que
 eu fiz na época foi pedir para o pessoal me mandar os scripts que faziam, assim
 eu podia corrigir e ajudar ainda mais. Talvez essa ideia não tenha sido tão boa
-pois, não tenho os números agora, mas na época das publicações eu chagava a
+pois, não tenho os números agora, mas na época das publicações eu chegava a
 receber mais de 100 e-mails por semana com scripts de pessoas de todas as
 partes do Brasil (Alguns de fora). Imagina o trabalhão que dava para conseguir
 acompanhar a todos!
