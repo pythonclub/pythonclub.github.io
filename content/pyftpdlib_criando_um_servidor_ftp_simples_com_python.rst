@@ -74,9 +74,9 @@ Cliente FTP
 
 Existem varios clientes para o protocolo FTP.
 
-O Windows Explorer, gerenciador de arquivos padrão em ambiente Windows, possui suporte complete ao protocolo FTP.
+O Windows Explorer, gerenciador de arquivos padrão em ambiente Windows, possui suporte completo ao protocolo FTP.
 
-O navegador web Mozilla Firefox, bem como os navegadores Google Chrome, Internet Explorer, possem capacidade de acessar servidores ftp, mas somente em modo de leitura.
+O navegador web Mozilla Firefox, bem como os navegadores Google Chrome, Internet Explorer, possuem capacidade de acessar servidores ftp, mas somente em modo de leitura.
 
 
 O complemento FireFTP para o navegador web Mozilla Firefox, adiciona ao Firefox suporte completo ao protocolo FTP.
@@ -109,7 +109,7 @@ Instalando no Ubuntu 14.04 64bits
 Para instalar é relativamente simples.
 Você possui duas opções de como instalar.
 
-**Opção 1** - Instalar diretametente à partir do repositorio do Ubuntu. :
+**Opção 1** - Instalar diretametente à partir do repositório do Ubuntu. :
 
 Abra um terminal e execute:
 
@@ -118,7 +118,7 @@ Abra um terminal e execute:
 
    sudo apt-get install python-pyftpdlib
 
-Obs: O repositorio do ubuntu possui uma versão muito desatualizada (1.2) do pyftpdlib, que atualmente está na versão 1.4.
+Obs: O repositório do ubuntu possui uma versão muito desatualizada (1.2) do pyftpdlib, que atualmente está na versão 1.4.
 Recomendo usar a opção 2.
 
 **Opção 2** - Instalar utilizando o *pip*:
@@ -250,7 +250,7 @@ Por exemplo, poderiamos mudar a porta padrão
 
 Se você quiser iniciar o servidor FTP de modo que quem for acessar não necessite informar a porta, ou seja
 ele poderá acessar o servidor em um endereço similar a ``ftp://127.0.0.1`` ou ``ftp://endereço_ip_ou_hostname_atual_do_seu_servidor``,
-é necessario executa-lo como super-usuário, informando a porta 21, que é a padrão do protocolo, conforme exemplificado abaixo.
+é necessario executá-lo como super-usuário, informando a porta 21, que é a padrão do protocolo, conforme exemplificado abaixo.
 
 .. code-block:: bash
 
