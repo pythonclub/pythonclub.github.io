@@ -44,7 +44,7 @@ Para os exemplos considere a tabela ``clientes`` e seus campos:
 
 Obs: O campo ``bloqueado`` nós vamos inserir depois com o comando ``ALTER TABLE``.
 
-Veja os exemplos em `github <https://github.com/rg3915/pythonDesktopApp/tree/master/pythonSQLite>`_.
+Veja os exemplos em `github <https://github.com/rg3915/python-sqlite>`_.
 
 Como mencionado antes, esta parte será **básica e objetiva**. A intenção é realizar o CRUD da forma mais simples e objetiva possível.
 
@@ -640,7 +640,7 @@ Leia a continuação deste artigo em *Gerenciando banco de dados SQLite3 com Pyt
 Exemplos
 --------
 
-Veja os exemplos em `github <https://github.com/rg3915/pythonDesktopApp/tree/master/pythonSQLite>`_.
+Veja os exemplos em `github <https://github.com/rg3915/python-sqlite>`_.
 
 Referências
 -----------
