@@ -1,6 +1,6 @@
 Title: Solução (quase) definitiva para permissões em projetos Django
 Date: 2014-11-22 11:30
-Tags: Django, django-global-permissions
+Tags: Django, django-global-permissions, permissões
 Category: Django
 Slug: solucao-quase-definitiva-para-permissoes-em-projetos-django
 Author: Eduardo Matos
