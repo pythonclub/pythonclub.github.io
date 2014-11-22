@@ -11,7 +11,7 @@ De todas as tarefas que o Django se propõe a resolver, é possível que o módu
 
 ## O que está faltando?
 
-Atualmente o Django suporta, de forma nativa, somente permissões baseadas em modelos. Então é possível atribuir ou remover a permissão criar/alterar/deletar um dado modelo. Essas permissões são criadas criadas automaticamente através da inspeção dos modelos usados na aplicação, bastando estar persente na tupla `INSTALLED_APPS`.
+Atualmente o Django suporta, de forma nativa, somente permissões baseadas em modelos. Então é possível atribuir ou remover a permissão criar/alterar/deletar um dado modelo. Essas permissões são criadas criadas automaticamente através da inspeção dos modelos usados na aplicação, bastando estar presente na tupla `INSTALLED_APPS`.
 
 O problema reside no fato de que, em geral, não nos interessa atribuir permissões a modelos, e sim criar permissões genéricas, como poder acessar uma página ou poder visualizar um item no menu por exemplo. Como este tipo de permissão não está atrelada a um modelo, em tese não é possível utilizá-la.
 
