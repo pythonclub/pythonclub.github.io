@@ -57,6 +57,35 @@ No exemplo acima, se o usuário tiver a permissão `pode_acessar_pagina_config` 
 
 Também é possível verificar se um usuário tem mais de uma permissão sem a necessidade de um `if` com vários `and`, através do método [`has_perms`](https://docs.djangoproject.com/en/dev/ref/contrib/auth/#django.contrib.auth.models.User.has_perms). 
 
+Caso você prefira class based views (assim como eu), as alterações são pequenas em relação ao exemplo acima. Por padrão todas as class based views tem uma propriedade chamada `request`, que podemos usar acessar o usuário logado e fazer as verificações de permissão.
+
+```python
+from django.view.generic import TemplateView
+from django.core.exceptions import PermissionDenied
+
+class ConfigView(TemplateView):
+    template_name = 'config.html'
+
+    def render_to_responde(self):
+        if not self.request.user.has_perm('global_permissions.pode_acessar_pagina_config'):
+            raise PermissionDenied
+
+        # continuar com o restante do processamento...
+```
+
+Ainda é possível deixar o código mais simples através do pacote [django-braces](https://github.com/brack3t/django-braces). Com ele temos acesso ao [`PermissionRequiredMixin`](http://django-braces.readthedocs.org/en/latest/access.html#permissionrequiredmixin), que automaticamente faz a verificação de permissão para nós.
+
+```python
+from django.view.generic import TemplateView
+from brace.views import PermissionRequiredMixin
+
+class ConfigView(PermissionRequiredMixin, TemplateView):
+    template_name = 'config.html'
+    permission_required = 'global_permissions.pode_acessar_pagina_config'
+```
+
+Para mais informações sobre o django-braces, acesse sua [documentação oficial](http://django-braces.readthedocs.org/en/latest/index.html).
+
 ## Limitando o acesso nos templates
 
 Limitar o acesso nos templates é tão simples quanto implementar nas views, mas diferentemente do primeiro, os templates já recebem automaticamente um objeto de permissões do usuário logado (desde que você utilize o *context processor* `django.contrib.auth.context_processors.auth`). Supondo que queiramos saber se o usuário pode visualizar um dado item do menu, podemos fazer da seguinte forma:
