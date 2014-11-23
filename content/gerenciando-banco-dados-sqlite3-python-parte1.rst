@@ -12,7 +12,7 @@ Gerenciando banco de dados SQLite3 com Python - Parte 1
 
 Eu separei este post em duas partes: a **Parte 1** é bem elementar e objetiva, visando apresentar o básico sobre a realização do CRUD num banco de dados SQLite3 em Python usando o terminal.
 
-A **Parte 2**, num nível intermediário, usa classes e métodos mais elaborados para gerenciar o CRUD, e algumas coisinhas a mais.
+A `parte 2 <http://pythonclub.com.br/gerenciando-banco-dados-sqlite3-python-parte2.html>`_ , num nível intermediário, usa classes e métodos mais elaborados para gerenciar o CRUD, e algumas coisinhas a mais.
 
 Nota: Para entender o uso de classes e métodos leia o post `Introdução a Classes e Métodos em Python <http://pythonclub.com.br/introducao-classes-metodos-python-basico.html>`_. E para entender os comandos SQL e a manipulação de registros no SQLite3 leia `Guia rápido de comandos SQLite3 <http://pythonclub.com.br/guia-rapido-comandos-sqlite3.html>`_.
 
@@ -635,7 +635,7 @@ Para executar digite no terminal:
 Com o último comando você verá que os dados estão lá. São e salvo!!!
 
 
-Leia a continuação deste artigo em *Gerenciando banco de dados SQLite3 com Python - Parte 2*.
+Leia a continuação deste artigo em `Gerenciando banco de dados SQLite3 com Python - Parte 2 <http://pythonclub.com.br/gerenciando-banco-dados-sqlite3-python-parte2.html>`_.
 
 Exemplos
 --------
