@@ -1,7 +1,7 @@
 Gerenciando banco de dados SQLite3 com Python - Parte 2
 =======================================================
 
-:date: 2014-10-05 23:59
+:date: 2014-11-23 23:59
 :tags: Python, Banco de dados
 :category: Python, Banco de dados
 :slug: gerenciando-banco-dados-sqlite3-python-parte2
@@ -231,12 +231,12 @@ A função ``gen_city()`` escolhe uma cidade numa lista com o comando `random.ch
 .. code-block:: python
 
     def gen_city():
-    list_city = [
-        [u'São Paulo', 'SP'],
-        [u'Rio de Janeiro', 'RJ'],
-        [u'Porto Alegre', 'RS'],
-        [u'Campo Grande', 'MS']]
-    return random.choice(list_city)
+        list_city = [
+            [u'São Paulo', 'SP'],
+            [u'Rio de Janeiro', 'RJ'],
+            [u'Porto Alegre', 'RS'],
+            [u'Campo Grande', 'MS']]
+        return random.choice(list_city)
 
 
 Conectando e desconectando do banco
@@ -594,7 +594,7 @@ Agora vamos importar os dados de `clientes.csv <https://github.com/rg3915/python
             print("Aviso: O email deve ser único.")
             return False
 
-**Obs**: Veja em `gen_csv.py <https://github.com/rg3915/python-sqlite/blob/master/intermediario/gen_csv.py>`_ como podemos gerar dados randômicos para criar um novo `clientes.csv <https://github.com/rg3915/python-sqlite/blob/master/intermediario/csv/clientes.csv>`_s.
+**Obs**: Veja em `gen_csv.py <https://github.com/rg3915/python-sqlite/blob/master/intermediario/gen_csv.py>`_ como podemos gerar dados randômicos para criar um novo `clientes.csv <https://github.com/rg3915/python-sqlite/blob/master/intermediario/csv/clientes.csv>`_.
 
 Inserindo um registro com parâmetros de entrada definido pelo usuário
 ---------------------------------------------------------------------
