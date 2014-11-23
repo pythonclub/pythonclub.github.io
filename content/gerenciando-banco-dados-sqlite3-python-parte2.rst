@@ -852,7 +852,7 @@ Novamente você pode usar qualquer instrução SQL porque o ``commit_db()`` já 
 
 .. code-block:: python
 
-    c.ler_arquivo('sql/`clientes_maior60.sql <https://raw.githubusercontent.com/rg3915/python-sqlite/master/intermediario/sql/clientes_maior60.sql>`_')
+    c.ler_arquivo('sql/clientes_maior60.sql')
 
 
 Update - Alterando os dados
