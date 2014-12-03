@@ -42,7 +42,7 @@ Todos os pacotes que nós temos na biblioteca padrão do Python/Django podem ser
 
 ## SQLAlchemy
 
-O SQLAlchemy existe antes do Django, [sim, antes do Django](https://github.com/zzzeek/sqlalchemy/commit/ec052c6a1f1fb0236bd367c510d82f076cb67bc9)) e desde 2005 temos um time focado no desenvolvimento da ORM, ao contrário do Django que dispṍe tempo cuidando do framework web + ORM (Eu acredito que eu não preciso falar com um desenvolvedor focado render mais do que um desenvolvedor não focado).
+O SQLAlchemy existe antes do Django, [sim, antes do Django](https://github.com/zzzeek/sqlalchemy/commit/ec052c6a1f1fb0236bd367c510d82f076cb67bc9) e desde 2005 temos um time focado no desenvolvimento da ORM, ao contrário do Django que dispṍe tempo cuidando do framework web + ORM (Eu acredito que eu não preciso falar com um desenvolvedor focado render mais do que um desenvolvedor não focado).
 
 Estrutura de um modelo:
 
