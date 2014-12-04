@@ -1,5 +1,3 @@
-# Bottle, framework full-stack sem Django
-
 Title: Desenvolvendo com Bottle - Parte 1
 Slug: desenvolvendo-com-bottle-parte-1
 Date: 2014-12-03 19:40
@@ -12,6 +10,7 @@ Twitter: erichideki
 Linkedin: erichideki
 Category: begginers, bottle, tutorial
 
+# Bottle, framework full-stack sem Django
 -------
 
 #Esse artigo foi originalmente traduzido de:
