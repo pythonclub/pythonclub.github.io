@@ -9,9 +9,6 @@ Site: http://ericstk.wordpress.com
 Twitter: erichideki
 Category: begginers, bottle, tutorial
 
-Desenvolvendo com Bottle - Parte 1
--------
-
 # Texto originalmente escrito em:
 
 [https://realpython.com/blog/python/developing-with-bottle-part-1/]
@@ -108,8 +105,8 @@ Mude ```abc``` para seu nome. Dê refresh no navegador.
 
 1. O decorator ```@route``` diz que a aplicação deve interpretar o caminho depois do ```/``` como variável ```qualquer```.
 2. Isto é passado para a função sendo como um argumento```(def alguma_coisa(qualquer='')```.
-3. Nós então passamos isto para a função do template sendo um argumento(```author=qualquer```)
-4. O template então renderiza a variável author com ```{{ author }}```
+3. Nós então passamos isto para a função do template sendo um argumento(```autor=qualquer```)
+4. O template então renderiza a variável autor com ```{{ autor }}```
 
 #Shell script
 

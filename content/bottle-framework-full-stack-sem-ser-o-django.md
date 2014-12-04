@@ -9,16 +9,13 @@ Site: http://ericstk.wordpress.com
 Twitter: erichideki
 Category: begginers, bottle, tutorial
 
-# Bottle, framework full-stack sem Django
--------
-
 #Esse artigo foi originalmente traduzido de:
 
 [http://www.avelino.xxx/2014/12/bottle-full-stack-without-django]
 
 Este artigo é baseado em uma palestra que apresentei aqui no Brasil, seguem os [slides](https://speakerdeck.com/avelino/bottle-o-full-stack-sem-django)!
 
-![Bottle micro framework web](/images/bottle.png)
+![Bottle micro framework web](/images/erichideki/bottle.png)
 
 Bottle é um micro framework web compatível com WSGI, depende apenas da biblioteca padrão do Python, sendo compatível com Python 2.6, 2.7, 3.2, 3.3 e 3.4, [sendo um arquivo único](https://github.com/defnull/bottle/blob/master/bottle.py). Ele foi criado pelo Marcel Hellkamp ([@defnull](https://github.com/defnull)) e mantido pela [comunidade](https://github.com/orgs/bottlepy/people) que mantém esse framework.
 
