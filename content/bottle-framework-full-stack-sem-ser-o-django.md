@@ -1,4 +1,4 @@
-# Bottle, framework full-stack sem ser o Django
+# Bottle, framework full-stack sem Django
 
 Title: Desenvolvendo com Bottle - Parte 1
 Slug: desenvolvendo-com-bottle-parte-1
@@ -30,9 +30,9 @@ Pragmatismo é o que contém a prática, considerações realistas, com objetivo
 
 Isto é bom para um framework web que tem baterias inclusas? Depente, se você usa tudo o que o framework oferece, sim, mas nem todos os designs de aplicações são iguais.
 
-Muitos projetos não usam 80% do que Django oferece, nesses casos em que não usam mais que 50%, o custo que pagamos ao oferecer o Django a alguém é alto, já que temos definido a arquitetura, i.e. perde-se a performance porque o Django tem diversos módulos que não serão usados e obrigatoriamente subirá alguns módulos que não iremos usar. Quando nós usamos um micro framework, fazemos toda a arquitetura da aplicação, então não temos previamente preparado a arquitetura para desenvolver o necessário, dedicando o tempo do time para definir a arquitetura da aplicação.
+Muitos projetos não usam 80% do que Django oferece, nesses casos em que não usam mais que 50%, o custo que pagamos ao oferecer o Django a alguém é alto, já que temos definido a arquitetura, ou seja, perde-se a performance porque o Django tem diversos módulos que não serão usados e obrigatoriamente subirá alguns módulos que não iremos usar. Quando nós usamos um micro framework, fazemos toda a arquitetura da aplicação, então não temos previamente preparado a arquitetura para desenvolver o necessário, dedicando o tempo do time para definir a arquitetura da aplicação.
 
-Todos os pacotes que nós temos na biblioteca padrão do Python/Django podem ser substituídas em um micro framework!
+Todos os pacotes que nós temos na biblioteca padrão do Python/Django podem ser substituídas usando um micro framework!
 
 * ORM - [SQLAlchemy](http://www.sqlalchemy.org/) to [bottle-sqlalchemy](https://github.com/iurisilvio/bottle-sqlalchemy)
 * Forms - [WTForms](https://wtforms.readthedocs.org/en/latest/)
@@ -144,7 +144,7 @@ def downgrade():
 
 ## Conclusão
 
-Exatamente o que você vê, tudo o que o Django contém está fora do conjunto do Django. Eu não escreveria esse artigo para falar mal do Django, e sim mostrar que existem outras soluções para desenvolvimento full stack. Muitas pessoas usam o Django mas não entendem o ambiente com Python, hoje o Django traz muitas coisas preparadas que fazem alguns desenvolvedores serem preguiçosos e não adquirir experiência em arquitetura de software.
+Exatamente o que você vê, tudo o que o Django contém temos fora do conjunto do Django. Eu não escreveria esse artigo para falar mal do Django, e sim mostrar que existem outras soluções para desenvolvimento full stack. Muitas pessoas usam o Django mas não entendem o ambiente Python, hoje o Django traz muitas coisas preparadas que fazem alguns desenvolvedores serem preguiçosos e não adquirir experiência em arquitetura de software.
 
 Venha ajudar o Bottle, somos uma comunidade em crescimento, para contribuir com o código do Bottle, olhe essa issue que nós abrimos. Em caso de dúvidas, nós temos uma lista de e-mail e um canal IRC.
 
