@@ -1,5 +1,5 @@
-Title: Desenvolvendo com Bottle - Parte 1
-Slug: desenvolvendo-com-bottle-parte-1
+Title: Bottle Framework full stack sem Django
+Slug: bottle-framework-full-stack-sem-django
 Date: 2014-12-03 19:40
 Tags: bottle,python
 Author: Eric Hideki
