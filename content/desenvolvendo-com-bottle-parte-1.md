@@ -7,15 +7,12 @@ Email:  eric8197@gmail.com
 Github: erichideki
 Site: http://ericstk.wordpress.com
 Twitter: erichideki
-Linkedin: erichideki
 Category: begginers, bottle, tutorial
 
-
-
 Desenvolvendo com Bottle - Parte 1
------------
+-------
 
-### Texto originalmente escrito em: 
+# Texto originalmente escrito em:
 
 [https://realpython.com/blog/python/developing-with-bottle-part-1/]
 
@@ -81,15 +78,15 @@ Agora estamos preparados para escrever nossa aplicação com Bottle. Crie seu ar
 import os
 from bottle import route, run, template
 
-index_html = '''My first web app! By {{ author }}'''
+index_html = '''Minha primeira aplicação! Por {{ autor }}'''
 
-@route('/:anything')
-def something(anything=''):
-    return template(index_html, author=anything)
+@route('/:qualquer')
+def alguma_coisa(qualquer=''):
+    return template(index_html, autor=qualquer)
 
 @route('/')
 def index():
-    return template(index_html, author='your name here')
+    return template(index_html, autor='Seu nome aqui:')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
@@ -134,15 +131,15 @@ cat >app.py <<EOF
 import os
 from bottle import route, run, template
 
-index_html = '''My first web app! By {{=<% %>=}}{{ author }}<%={{ }}=%>'''
+index_html = '''Minha primeira aplicação wweb! Por {{=<% %>=}}{{ autor }}<%={{ }}=%>'''
 
-@route('/:anything')
-def something(anything=''):
-   return template(index_html, author=anything)
+@route('/:qualquer')
+def alguma_coisa(qualquer=''):
+   return template(index_html, autor=qualquer)
 
 @route('/')
 def index():
-   return template(index_html, author='your name here')
+   return template(index_html, autor='Seu nome aqui:')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
@@ -168,7 +165,7 @@ A partir desse ponto, é tão fácil adicionando uma nova ```@route```-decorated
 
 Criar o HTML é simples: Nessa aplicação, nós apenas adicionamos HTML na mesma linha e arquivo.Isto é fácil de modificar(usando, por exemplo, ```open('index.html').read())``` para ler o template de um arquivo.
 
-Referências para a [documentação] do Bottle para mais informações
+Referências para a [documentação] do Bottle para mais informações.
 
 [https://realpython.com/blog/python/developing-with-bottle-part-1/]:https://realpython.com/blog/python/developing-with-bottle-part-1/
 [bottle]:http://bottlepy.org/docs/stable/
