@@ -16,7 +16,7 @@ O Cloudinary é um serviço de gerenciamento de imagens e arquivos na nuvem, mui
 
 ### O que é preciso?
 
-Para iniciarmos é preciso se __cadastrar__ no site. O cadstro pode ser feito com uma conta gratuita limitada.
+Para iniciarmos é preciso se __cadastrar__ no site. O cadastro pode ser feito com uma conta gratuita limitada.
 
 [Cadastro Gratuito](https://cloudinary.com/users/register/free)
 
@@ -29,7 +29,7 @@ Ao finalizar o cadastro, uma tela como a exibida abaixo estará disponível. Ate
 
 ### Configurando o ambiente
 
-A instação do pacote pode ser feita via __pip__:
+A instalação do pacote pode ser feita via __pip__:
     
 	pip install cloudinary
 
@@ -54,7 +54,7 @@ Primeiramente no INSTALLED_APPS incluiremos a linha __'cloudinary'__ e a linha c
 
 Ainda no settings adicione ao seu arquivo os parâmetros de configuração do Cloudinary:
 
-<small>_Obs.: estes parâmetros são os mesmo da imagem inicial. E os abaixo apresentados são apenas ficticios_</small>
+<small>_Obs.: estes parâmetros são os mesmo da imagem inicial. E os abaixo apresentados são apenas ficticios._</small>
 
 	CLOUDINARY = {
 		'cloud_name' : seu_app_cloud,
@@ -72,7 +72,7 @@ Faremos a importação do Cloudinary e em seguida definiremos nossa classe __'Im
 	class Imagens(models.Model):
 	  imagem = CloudinaryField('imagem')
 
-<small>_Obs.: execute o syncdb. No caso de utilização do South, acresencete o seguinte código:_</small>
+<small>_Obs.: execute o syncdb. No caso de utilização do South, acrescente o seguinte código:_</small>
 	
 	from south.modelsinspector import add_introspection_rules
 	add_introspection_rules([], ["^cloudinary\.models\.CloudinaryField"])
