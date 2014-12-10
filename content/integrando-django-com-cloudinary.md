@@ -7,7 +7,7 @@ Author: Dyesten Paulon
 Email: dyesten.pt@gmail.com
 Github: dyesten
 Facebook: dyesten.paulon
-Category: Cloudinary
+
 
 
 ### O que é?
