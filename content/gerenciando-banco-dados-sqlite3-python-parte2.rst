@@ -14,8 +14,10 @@ Esta é a continuação do artigo `Gerenciando banco de dados SQLite3 com Python
 
 	PS: *Considere a sintaxe para Python 3*. Mas o programa roda em python2 também.
 
-.. image:: images/regisdasilva/YouTube_logo_2013.svg.png
-    :alt: YouTube_logo_2013.svg.png
+	Tem video no YouTube.
+
+.. image:: images/regisdasilva/youtube_logo.png
+    :alt: youtube_logo.png
     :target: https://www.youtube.com/watch?v=Qe3N7jiGZAc&list=PLsGCdfxkV9upVUtH0zsJ2f4WhQvJrZsVb
 
 Vou repetir a tabela ``clientes`` apenas por comodidade:
