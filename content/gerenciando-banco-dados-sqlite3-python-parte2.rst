@@ -12,13 +12,12 @@ Gerenciando banco de dados SQLite3 com Python - Parte 2
 
 Esta é a continuação do artigo `Gerenciando banco de dados SQLite3 com Python - Parte 1 <http://pythonclub.com.br/gerenciando-banco-dados-sqlite3-python-parte1.html>`_. Na 1ª parte nós vimos como realizar o CRUD num banco de dados SQLite3 usando o Python, mas cada tarefa foi feita num arquivo ``.py`` separado. A intenção agora é utilizar um **único arquivo** e, usando classes e métodos realizar as mesmas tarefas, só que de uma forma mais sofisticada.
 
-	PS: *Considere a sintaxe para Python 3*. Mas o programa roda em python2 também.
-
-**Tem video no YouTube.**
+	Também fiz uma série de videos, assista a primeira aula abaixo ou acesse todas as aulas no `YouTube <https://www.youtube.com/watch?v=Qe3N7jiGZAc&list=PLsGCdfxkV9upVUtH0zsJ2f4WhQvJrZsVb>`_.
 
 .. image:: images/regisdasilva/youtube_logo.png
     :alt: youtube_logo.png
     :target: https://www.youtube.com/watch?v=Qe3N7jiGZAc&list=PLsGCdfxkV9upVUtH0zsJ2f4WhQvJrZsVb
+
 
 .. youtube:: Qe3N7jiGZAc
 
@@ -50,7 +49,7 @@ Vou repetir a tabela ``clientes`` apenas por comodidade:
 
 Obs: O campo ``bloqueado`` nós vamos inserir depois com o comando ``ALTER TABLE``.
 
-.. Assista os videos no `youtube <http://>`_ .
+    PS: *Considere a sintaxe para Python 3*. Mas o programa roda em python2 também.
 
 Veja os exemplos em `github <https://github.com/rg3915/python-sqlite>`_.
 
@@ -1222,7 +1221,7 @@ Chamando tudo no **modo interativo**
 Exemplos
 --------
 
-.. Assista os videos no `youtube <http://>`_ .
+Assista os videos no `youtube <https://www.youtube.com/watch?v=Qe3N7jiGZAc&list=PLsGCdfxkV9upVUtH0zsJ2f4WhQvJrZsVb>`_.
 
 Veja os exemplos no `github <https://github.com/rg3915/python-sqlite>`_.
 
