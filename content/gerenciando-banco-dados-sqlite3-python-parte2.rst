@@ -14,11 +14,13 @@ Esta é a continuação do artigo `Gerenciando banco de dados SQLite3 com Python
 
 	PS: *Considere a sintaxe para Python 3*. Mas o programa roda em python2 também.
 
-	Tem video no YouTube.
+**Tem video no YouTube.**
 
 .. image:: images/regisdasilva/youtube_logo.png
     :alt: youtube_logo.png
     :target: https://www.youtube.com/watch?v=Qe3N7jiGZAc&list=PLsGCdfxkV9upVUtH0zsJ2f4WhQvJrZsVb
+
+.. youtube:: Qe3N7jiGZAc
 
 Vou repetir a tabela ``clientes`` apenas por comodidade:
 
@@ -1080,8 +1082,8 @@ Agora, no mesmo arquivo `manager_db.py <https://github.com/rg3915/python-sqlite/
 
 Veja na figura a seguir como as tabelas se relacionam.
 
-.. image:: images/regisdasilva/tabelas.jpg
-    :alt: tabelas.jpg
+.. image:: images/regisdasilva/tabelas.png
+    :alt: tabelas.png
 
 Agora os códigos:
 
