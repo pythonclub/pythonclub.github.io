@@ -83,6 +83,16 @@ code {
   width: 80%;
 }
 
+.articles-random {
+  font-size: 0.8em;
+}
+
+.article-link {
+  margin-top: 0px;
+  line-height: 1em;
+}
+
+
 @media (max-width: 767px) {
   .brand-main a img {
     display: inline;
@@ -97,6 +107,12 @@ code {
   .google-search {
     width: 100%;
   }
+
+  .articles-random, .articles-link {
+    display: none;
+  }
+
+
 }
 
 @media (max-width: 480px) {

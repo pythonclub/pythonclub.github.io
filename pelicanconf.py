@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 import os
+
+
 BASE = os.path.dirname(__file__)
 
 AUTHOR = u'PythonClub'
@@ -54,18 +56,23 @@ EXTRA_PATH_METADATA = {
 
 # Plugins
 PLUGIN_PATHS = [
-    'pelican-plugins'
+    'pelican-plugins',
+    'custom-plugins'
 ]
 
 PLUGINS = [
     'gravatar',
     'sitemap',
-    'pelican_youtube', # funciona somente com arquivos rst
-    'pelican_vimeo', # funciona somente com arquivos rst
-    'gzip_cache', # deve ser o ultimo plugin
+    'pelican_youtube',  # funciona somente com arquivos rst
+    'pelican_vimeo',  # funciona somente com arquivos rst
+    'random_articles',
+    'gzip_cache'  # deve ser o ultimo plugin
     # 'pdf', # funciona somente com arquivos rst
 
 ]
+
+RANDOM_ARTICLES = 10
+SKIP_ARTICLES = 10
 
 
 SITEMAP = {
