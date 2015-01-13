@@ -65,14 +65,13 @@ PLUGINS = [
     'sitemap',
     'pelican_youtube',  # funciona somente com arquivos rst
     'pelican_vimeo',  # funciona somente com arquivos rst
-    'random_articles',
+    'json_articles',
     'gzip_cache'  # deve ser o ultimo plugin
     # 'pdf', # funciona somente com arquivos rst
 
 ]
 
 RANDOM_ARTICLES = 10
-SKIP_ARTICLES = 10
 
 
 SITEMAP = {
