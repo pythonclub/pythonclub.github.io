@@ -8,6 +8,17 @@
           {% for title, link in MENUITEMS %}
           <p class="links"><a href="{{ SITEURL }}/{{ link }}">{{ title }}</a></p>
           {% endfor %}
+
+          <div class="section articles-random">
+            <h1 class="tagline">Não deixe de ver!</h1>
+
+              {% for article in random_articles %}
+                  <p  class="article-link tagline">
+                    <a href="{{ SITEURL }}/{{ article.url}}">{{ article.title }}</a>
+                  </p>
+              {% endfor %}
+          </div>
+
           <p class="social">
             {% for title, link in SOCIAL %}
             <a href="{{ link }}">
@@ -15,15 +26,6 @@
             </a>
             {% endfor %}
           </p>
-          <div class="section">
-            <span><a href="http://2014.pythonbrasil.org.br/">#Python2014, vamos?!</a></span>
-            <div class="section-body">
-              <a href="http://2014.pythonbrasil.org.br/" >
-                <img src="https://pybr.s3.amazonaws.com/static/images/badges/badge-pt-br.2ab99f7699bf.png"
-                width="250" height="276" alt="Eu vou na PythonBrasil[10]"/>
-              </a>
-            </div>
-          </div>
           <p class="tagline">
              Esta comunidade é signatária do
              <a target="_blank" href="http://smallactsmanifesto.org" title="Small Acts Manifesto">
