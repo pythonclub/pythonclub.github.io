@@ -11,12 +11,7 @@
 
           <div class="section articles-random">
             <h1 class="tagline">Não deixe de ver!</h1>
-
-              {% for article in random_articles %}
-                  <p  class="article-link tagline">
-                    <a href="{{ SITEURL }}/{{ article.url}}">{{ article.title }}</a>
-                  </p>
-              {% endfor %}
+            <div id="random-articles"></div>
           </div>
 
           <p class="social">
