@@ -96,9 +96,6 @@ code {
   .tagline {
     margin-bottom: -20px;
   }
-  .section img {
-    display: none;
-  }
   .google-search {
     width: 100%;
   }
@@ -114,10 +111,6 @@ code {
   }
   .tagline {
     margin-bottom: -10px;
-  }
-  .section img {
-    display: none;
-    width: 30px;
   }
   .publish-github {
     display: none;
