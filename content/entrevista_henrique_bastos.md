@@ -24,11 +24,10 @@ A primeira vez que ouvi o [HenriqueBastos](https://twitter.com/henriquebastos) f
 
 [Episodio 12 - Django - O framework web para perfeccionistas](http://www.grokpodcast.com/2010/12/01/episodio-12-django-o-framework-web-para-perfeccionistas/)
 
-Depois passei fiz uma maratona lendo todos os seus posts no blog[henriquebastos.net](http://henriquebastos.net/). Mas precisava de algo mais,conhecer mais de perto o Henrique e seus conhecimentos foi entao que ingressei
-no curso [Welcome To The Django](http://welcometothedjango.com.br/), que RECOMENDO FORTEMENTE que o façam, mesmo se trabalha com outro framework, porque as boas praticas de desenvolvimento ensinadas no curso sao para a vida
-toda.
+Li todos os posts no blog [henriquebastos.net](http://henriquebastos.net/). Mas precisava de algo mais,conhecer mais de perto o Henrique e seus conhecimentos foi entao que ingressei
+no curso [Welcome To The Django](http://welcometothedjango.com.br/), o qual RECOMENDO FORTEMENTE, mesmo para quem usa outro framework ou linguagem, as boas práticas de desenvolvimento ensinadas no curso são para a vida toda.
 
-Atualmente acompanho as palestras no youtube, a ultima delas que me fez repensar varias coisas na vida foi [LifeStyle Business e o Ecossistema Python](http://www.youtube.com/watch?v=mHRinieklio) e pelo podcast [Curto Circuito](http://www.curtocircuito.cc/).
+Atualmente acompanho o Henrique Bastos pelo youtube e no podcast [Curto Circuito](http://www.curtocircuito.cc/).
 
 Seguem as respostas do Henrique.
 
@@ -38,19 +37,17 @@ _1. Em que momentos na vida agradeceu por ter escolhido Python e quais os motivo
 
 Essa pergunta e cabulosa e tem muitas sutilezas nas entrelinhas.
 
-Minha resposta curta e: nenhum.
+Minha resposta curta é: NENHUM.
 
-Nao me entenda mal. Eu gosto muitissimo da linguagem Python e de todo o seu ecossistema. Mas observe que eu so "escolhi Python" porque gosto, porque percebo afinidades que me atraem. Esses valores subjetivos sao dificeis de
-demonstrar, mas por sorte temos uma pequena referencia no Zen do Python, por exemplo. De todo modo, eu programo mais em Python do que em outras linguagens, mas estou sempre aprendendo algo novo.
+Não me entenda mal. Eu gosto muitíssimo da linguagem Python e de todo o seu ecossistema. Mas observe que eu só "escolhi Python" porquê gosto, porquê percebo afinidades que me atraem. Esses valores subjetivos são difíceis de demonstrar, mas por sorte temos uma pequena referência no Zen do Python, por exemplo. De todo modo, eu programo mais em Python do que em outras linguagens, mas estou sempre aprendendo algo novo.
 
-Se ha algo pelo que agradecer, fica meu agradecimento para todas as pessoas que colaboraram direta ou indiretamente para que Python exista. E do meu lado, fica a satisfaçao de "me ouvir" continuamente e insistir na busca pelo que
-gosto.
+Se há algo pelo que agradecer, fica meu agradecimento para todas as pessoas que colaboraram direta ou indiretamente para que Python exista. E do meu lado, fica a satisfação de "me ouvir" continuamente e insistir na busca pelo que gosto.
 
 _2. Qual conselho compartilha com jovens desenvolvedores?_
 
-Seja cetico, principalmente com as suas certezas. Mas seja passional com as suas preferencias, sem esquecer que sao apenas _suas_ _preferencias_..
+Seja cético, principalmente com as suas certezas. Mas seja passional com as suas preferências, sem esquecer que são apenas _suas_ _preferências_.
 
-_3. Qual pergunta que nao fiz gostaria de responder e qual e a resposta?_
+_3. Qual pergunta que não fiz você gostaria de responder e qual e a resposta?_
 
 Que dia e hoje?
 
