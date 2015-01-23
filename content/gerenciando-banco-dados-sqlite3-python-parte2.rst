@@ -119,7 +119,7 @@ Faça um clone deste repositório
 
 .. code-block:: bash
 
-	$ git clone git@github.com:rg3915/python-sqlite.git
+	$ git clone https://github.com/rg3915/python-sqlite.git
 
 Crie o virtualenv com o nome **python-sqlite**
 
