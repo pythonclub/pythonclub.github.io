@@ -1,6 +1,6 @@
 Title: Entrevista com Henrique Bastos
 Slug: entrevista-henrique-bastos
-Date: 2015-01-20 10:30
+Date: 2015-01-23 23:45
 Tags: python,entrevistas
 Author: Matheus Ap Godoy Ribeiro
 Email:  matheusgodoy@me.com
@@ -39,7 +39,7 @@ Essa pergunta e cabulosa e tem muitas sutilezas nas entrelinhas.
 
 Minha resposta curta é: NENHUM.
 
-Não me entenda mal. Eu gosto muitíssimo da linguagem Python e de todo o seu ecossistema. Mas observe que eu só "escolhi Python" porquê gosto, porquê percebo afinidades que me atraem. Esses valores subjetivos são difíceis de demonstrar, mas por sorte temos uma pequena referência no Zen do Python, por exemplo. De todo modo, eu programo mais em Python do que em outras linguagens, mas estou sempre aprendendo algo novo.
+Não me entenda mal. Eu gosto muitíssimo da linguagem Python e de todo o seu ecossistema. Mas observe que eu só "escolhi Python" porquê gosto, porquê percebo afinidades que me atraem. Esses valores subjetivos são difíceis de demonstrar, mas por sorte temos uma pequena referência no [Zen do Python](http://ideiaemconflito.blogspot.com.br/2012/05/o-zen-de-python.html), por exemplo. De todo modo, eu programo mais em Python do que em outras linguagens, mas estou sempre aprendendo algo novo.
 
 Se há algo pelo que agradecer, fica meu agradecimento para todas as pessoas que colaboraram direta ou indiretamente para que Python exista. E do meu lado, fica a satisfação de "me ouvir" continuamente e insistir na busca pelo que gosto.
 
