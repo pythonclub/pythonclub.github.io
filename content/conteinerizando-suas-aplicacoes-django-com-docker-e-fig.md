@@ -98,6 +98,7 @@ $ fig up
 ```
 O fig se encarregará de criar todos os conteineres, linkalos, e startar sua aplicação na porta 8000, acesse seu [localhost:8000](http://localhost:8000/) e você verá sua aplicação em execução.
 
+
 Para rodar os comandos do django, você pode fazer da seguinte forma.
 
 ```bash
