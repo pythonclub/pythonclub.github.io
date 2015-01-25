@@ -7,6 +7,7 @@ Email:  drgarcia1986@gmail.com
 Github: drgarcia1986
 Site: http://www.codeforcloud.info
 Twitter: drgarcia1986
+Linkedin: drgarcia1986
 Category: load-testing
 
 
