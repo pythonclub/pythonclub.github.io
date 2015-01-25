@@ -9,7 +9,7 @@ BASE = os.path.dirname(__file__)
 AUTHOR = u'PythonClub'
 AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
 SITENAME = u'PythonClub'
-SITEURL = 'http://pythonclub.com.br'
+SITEURL = 'http://localhost:8000'
 SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1400201393/pythonclub/logo_275x130.png'
 
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
