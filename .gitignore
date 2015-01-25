@@ -8,3 +8,6 @@ output/
 
 # OS
 Thumbs.db
+
+# Arquivos temporarios do Gedit
+*~
