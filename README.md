@@ -13,7 +13,7 @@ Como Contribuir
 
     ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
 
-* Instale os requirements ``pip install -r requirements.txt``
+* Instale os requirements ``pip install -r requirements.txt`` - se você não tiver o pip instalado, instale-o: https://pip.pypa.io/en/latest/installing.html#install-pip
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
   no formato **[Markdown][4]** ou **[reStructuredText][5]**, fique a vontade
   para usar o que você sentir mais afinidade, veja alguns **[exemplos][6]**.
