@@ -28,21 +28,24 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pure.css">
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/custom.css">
+
     {% block head_css %}{% endblock %}
 
 
     {% block head_js %}{% endblock %}
 
     {% include 'analytics.html' %}
+    <!-- transifex -->
     <script type="text/javascript">
-      window.liveSettings = {
+    window.liveSettings = {
         api_key: "f8fd260a9bdc4e9195c80e31416bb254",
         picker: "bottom-right",
         detectlang: true,
         autocollect: true
-      };
+    };
     </script>
     <script type="text/javascript" src="//cdn.transifex.com/live.js"></script>
+    <!-- end transifex -->
     <meta name="google-site-verification" content="XQc_QtnTecI9nxAfplXGtECCpZQDwbDRcn7pyDVa1LE" />
 </head>
 
@@ -52,6 +55,8 @@
 
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ SITEURL }}/theme/js/dynamic_random_articles.js"></script>
+
     {% block bottom_js %}{% endblock %}
 
     <script>
@@ -77,6 +82,11 @@
         $('body').on('click', 'a[href="#"]', function(event) {
             event.preventDefault();
         });
+
+        $(function(){
+            show_random_articles($('#random-articles'), {{ json_articles }}, {{ RANDOM_ARTICLES }});
+        });
+
     </script>
 </body>
 </html>

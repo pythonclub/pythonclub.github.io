@@ -73,8 +73,6 @@ code {
   padding-bottom: 1px;
 }
 .section img {
-  width: 50%;
-  max-width: 250px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -84,6 +82,16 @@ code {
 .google-search {
   width: 80%;
 }
+
+.articles-random {
+  font-size: 0.8em;
+}
+
+.article-link {
+  margin-top: 0px;
+  line-height: 1em;
+}
+
 
 @media (max-width: 767px) {
   .brand-main a img {
@@ -96,12 +104,15 @@ code {
   .tagline {
     margin-bottom: -20px;
   }
-  .section img {
-    display: none;
-  }
   .google-search {
     width: 100%;
   }
+
+  .articles-random, .articles-link {
+    display: none;
+  }
+
+
 }
 
 @media (max-width: 480px) {
@@ -114,10 +125,6 @@ code {
   }
   .tagline {
     margin-bottom: -10px;
-  }
-  .section img {
-    display: none;
-    width: 30px;
   }
   .publish-github {
     display: none;

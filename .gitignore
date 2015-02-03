@@ -8,3 +8,9 @@ output/
 
 # OS
 Thumbs.db
+
+# Arquivos temporarios do Gedit
+*~
+
+# Cache files
+cache/*
