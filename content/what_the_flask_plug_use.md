@@ -1,6 +1,6 @@
 Title: What the Flask? Pt-3 Plug & Use - extensões essenciais para iniciar seu projeto
 Slug: what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto
-Date: 2015-01-02 00:00
+Date: 2015-02-09 00:00
 Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
@@ -17,43 +17,104 @@ Category: Flask
 What The Flask - 3/6
 -----------
 
-> **CONTEXT PLEASE:** Esta é a segunda parte da série **What The Flask**, 6 artigos para se tornar um **Flasker** (não, não é um cowboy que carrega sua garrafinha de whisky para todo lado). A primeira parte está aqui no [PythonClub](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python) e o app está no [github](https://github.com/rochacbruno/wtf/tree/pt-1).
+> Finalmente!!! A terceira parte da série **What The Flask**, mas ainda não acabou, serão 6 artigos para se tornar um **Flasker**, neste capítulo falaremos sobre como instalar e configurar as principais extensões do Flask para torna-lo uma solução full-stack com bootstrap no front-end, ORM para banco de dados,admin parecido com o Django Admin, Cache, Sistema de filas (celery/huey), Controle de Acesso, Envio de email, API REST e Login Social.
 
-<figure style="float:left;margin-right:30px;">
-<img src="/images/rochacbruno/cowboy_flask.jpg" alt="a flasker" style="width:90%">
-<figcaption>Professional Flask Developer</figcaption>
+<figure style="float:left;margin-right:30px;width:35%">
+<img src="/images/rochacbruno/lego_snake.jpg" alt="snake" >
+<figcaption>Extending Flask</figcaption>
 </figure>
 
 1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python): Introdução ao desenvolvimento web com Flask
-2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando aplicações Flask - **<-- Você está aqui**
-3. **Plug & Use**: extensões essenciais para iniciar seu projeto
+2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando aplicações Flask
+3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto): extensões essenciais para iniciar seu projeto. **<-- Você está aqui**
 4. **DRY**: Criando aplicativos reusáveis com Blueprints
 5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
 6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
 
 <br>
-> **Você sabia?** Flask quer dizer "Frasco/Frasqueira", ou seja, aquela garrafinha ali da foto acima que geralmente os cowboys, os Irlandeses, o John Wayne, os bebados profissionais e os hipsters gostam de utilizar para tomar desde vodka, whisky, vinho e até suco de caju (no caso dos [hipsters](http://www.cafepress.com/+hipster+flasks)). Bom você pode estar se perguntando: Por que colocar esse nome em um framework? Antes do Flask já existia o Bottle "garrafa" que surgiu com a idéia revolucionária de ser um framework de um [arquivo só](https://github.com/defnull/bottle/blob/master/bottle.py). Como o criador do Flask é meio contrário a esta idéia de colocar um monte de código Python em um único arquivo ele decidiu ironizar e fazer uma piada de 1 de abril e então criou um framework chamado [Denied](http://denied.immersedcode.org/) que era uma piada ironizando o Bottle e outros micro frameworks, mas as pessoas levaram a sério e gostaram do [estilo do denied!](http://denied.immersedcode.org/screencast.mp4) A partir disso ele decidiu pegar as boas idéias tanto do Bottle como do Denied e criar algo sério e então surgiu o Flask. O nome vem da idéia de que **Bottle**/Garrafa é para tomar de goladas, mas **Flask**/Frasco você toma **uma gota por vez**, desta forma você aprecia melhor a bebida e até hoje o slogan do Flask é " Development one drop at time".
+> **Micro framework?** Bom, o Flask foi criado com a premissa de ser um micro-framework, o que significa que ele não tem a intenção de entregar de bandeja para você todas as coisas que você precisa em único pacotinho e nem comandos mágicos que você roda e instantaneamente tem todo o seu projeto pronto. A idéia do Flask é ser pequeno e te dar o controle de tudo o que acontece no seu aplicativo, mas ao mesmo tempo o Flask se preocupa em ser facilmente extensivel, para isso os desenvolvedores pensaram em padrões que permitem que as extensões sejam instaladas de modo que não haja conflitos (lembra dos BluePrints do capítulo anterior?), além dos BluePrints tem também os patterns para desenvolvimento de extensions que ajuda a tornar a nossa vida mais fácil, nesta parte dessa série vamos instalar e configurar algumas das principais extensões do Flask (todas testadas por mim em projetos reais).
 
-# Flask Patterns
-### Parte 2 - Boas práticas na estrutura de aplicações Flask
 
-> **NOTE:** As dicas deste artigo são baseadas nesta parte da [documentação oficial do flask](http://flask.pocoo.org/docs/patterns/) com algumas adaptações levando em consideração a experiência que já tive na organização de apps Flask. Isso não quer dizer que esse é o único jeito de desenvolver em Flask, nem que é o melhor, lembre-se, o Flask é micro e te dá a liberdade para organizar as coisas como você bem entender, mas como eu já quebrei a cabeça resolvendo um monte de pequenos problemas vou compartilhar a receita que tem dado certo para mim.
+# CMS de notícias
 
-- [One file to rule them all?](#one_file_is_bad_if_you_are_big)
-- [O problema do Ovo e da Galinha](#circular_imports)
-- [Azul da cor do mar ♫](#blueprints)
-- [A fantástica fábrica de web apps](#app_factory)
-- [Você pode ter mais de um app](#multiple_apps)
-- [Configurações para todo lado](#config)
-- [A app Flask quase perfeita](#flask_app_quase_perfeita)
+Nesta série estamos desenvolvendo um mini CMS para publicação de notícias, o código está disponível no [github](http://github.com/rochacbruno/wtf) e para cada fase da evolução do projeto tem uma branch diferente. Esse aplicativo de notícias tem os seguintes requisitos:
 
-> **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
+- Controle de acesso para que apenas editores autorizados publiquem notícias
+- Interface administrativa para notícias, categorias, tags, media e usuários
+- Front end usando o Bootstrap
+- Cache das notícias para minimizar o acesso ao banco de dados
+- Banco de dados MongoDB
+- Sistema de comentários nas noticias com a possibilidade de login social (Oauth)
+- Envio de email para o autor a cada novo comentário (sistema de envio assincrono em uma fila Celery)
+- Publicação de notícia em HTML, Feed Atom
+- API REST para consulta e publicação de notícias (para app mobile)
 
-## <a href="#one_file_is_bad_if_you_are_big" name="one_file_is_bad_if_you_are_big">One file to rule them all?</a>
 
-O exemplo mais básico de um projeto Flask é um one-file application, e normalmente você pode começar dessa maneira mas se eu projeto começar a crescer ele vai se tornar de difícil manutenção, imagine que uma equipe de 10 programadores irá trabalhar no mesmo projeto, é comum que ao usar um sistema de controle de versão como o git você acompanhe o histórico de evolução de cada um dos arquivos e constantemente faça "merges" entre os desenvolvedores, estando tudo em único arquivo este processo pode resultar em um número muito grande de conflitos para resolver. Além disso no [Zen do Python](http://legacy.python.org/dev/peps/pep-0020/) tem a famosa frase **"Sparse is better than dense."**.
 
-Você pode até ter motivos para querer um projeto de um arquivo só, pelo fato de ser **cool**, pelo fato de se exibir para os amigos dizendo que em Python isso é possível :), ou para economizar em espaço em disco, mas a verdade é que sempre será uma boa idéia separar a estrutura de seu projeto em vários pacotes, módulos e scripts, separados e com responsabilidades bem específicas.
+# Quais extensões usaremos?
+
+> **NOTE:** Existem várias extensões para Flask, algumas são aprovadas pelos desenvolvedores e entram para a lista disponível no site oficial, algumas entram para a listagem do metaflask (projeto em desenvolvimento), e uma grande parte está apenas no github. Como existem várias extensões que fazem a mesma coisa, as vezes é dificil escolher qual delas utilizar, eu irei mostrar aqui apenas as que eu utilizo e que já tenho experiência, mas isso não quer dizer que sejam as melhores, sinta-se a vontade para tentar com outras e incluir sua sugestão nos comentários.
+
+- [Twitter Bootstrap](#bootstrap) - Para deixar as coisas bonitinhas
+- [MongoEngine](#mongoengine) - Para armazenar os dados em um banco que é fácil fácil!
+- [Flask-Admin](#flask_admin) - Um admin tão poderoso quanto o Django Admin
+- [Flask Security](#flask_security) - Controle de acesso
+- [Flask Cache](#flask_cache) - Para não estressar o Mongo
+- [Flask Email](#flask_email) - Para avisar os autores que tem novo comentário
+- [Flask Queue](#flask_queue) - Pare enviar o email assincronamente e não bloquear o request
+- [Flask Classy](#flask_classy) - Um jeito fácil de criar API REST e Views 
+- [Flask Oauth e OauthLib](#flask_oauth) - Login com o Feicibuque e tuinter
+
+> **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf/tree/extended), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
+
+## <a href="#bootstrap" name="bootstrap">Deixando as coisas bonitinhas com o Bootstrap!</a>
+
+Atualmente a versão do nosso CMS está funcional porém bem feinha, não trabalhamos no design das páginas pois obviamente este não é o nosso objetivo, mas mesmo assim podemos deixar as coisas mais bonitinhas.
+
+<figure style="border:1px solid black;">
+<img src="/images/rochacbruno/wtf_index.png" alt="wtf_index" >
+<figcaption>Atual Layout do nosso CMS</figcaption>
+</figure>
+
+Com a ajuda do Bootstrap e apenas uns ajustes básicos no front end podemos transformar o layout em algo muito mais apresentável.
+
+A primeira coisa a ser feita é baixar o [Bootstrap](http://getbootstrap.com/) clique em [download bootstrap](https://github.com/twbs/bootstrap/releases/download/v3.3.2/bootstrap-3.3.2-dist.zip) e salve o arquivo .zip em uma pasta de sua prefencia, depois vamos descompactar e incluir os arquicos dentro da pasta **static** do nosso projeto. Você pode fazer isso através da GUI mas eu mostrarei abeixo como fazer via console no linux.
+
+```bash
+cd wtf/static
+wget https://github.com/twbs/bootstrap/releases/download/v3.3.2/bootstrap-3.3.2-dist.zip
+```
+
+Depois do download você agora terá 2 arquivos na pasta **static**
+
+```bash
+cd wtf/static
+ls
+bootstrap-3.3.2-dist.zip  generic_logo.gif
+```
+
+Vamos agora descompactar o arquivo e renomear a pasta para bootstrap
+
+```bash
+cd wtf/static
+unzip bootstrap-3.3.2-dist.zip
+mv bootstrap-3.3.2-dist bootstrap
+rm bootstrap-3.3.2-dist.zip
+```
+
+Agora a estrutura ficou a seguinte:
+
+```bash
+cd wtf/static/bootstrap
+ls
+css fonts js
+```
+
+Ai estão todos os arquivos que precisamos, agora basta linkarmos o JS e o CSS em nossa página de layout para vermos a transformação!
+
+
+
+
 
 ### HANDS ON
 
@@ -905,7 +966,7 @@ wtf/
 ├── requirements.txt
 ├── run.py
 ├── tests/
-│   └── test_basic.py
+│   └── test_basic.py
 └── wtf/
     ├── __init__.py
     ├── db.py
@@ -913,18 +974,18 @@ wtf/
     ├── news_app.py
     ├── default_settings.py
     ├── blueprints/
-    │   ├── __init__.py
-    │   └── noticias.py
+    │   ├── __init__.py
+    │   └── noticias.py
     ├── development_instance/
-    │   ├── config.cfg
-    │   ├── media_files/
-    │   └── noticias.db
+    │   ├── config.cfg
+    │   ├── media_files/
+    │   └── noticias.db
     ├── production_instance/
-    │   ├── media_files/
-    │   └── noticias.db
-    │   └── config.cfg
+    │   ├── media_files/
+    │   └── noticias.db
+    │   └── config.cfg
     ├── static
-    │   └── generic_logo.gif
+    │   └── generic_logo.gif
     └── templates
         ├── base.html
         ├── cadastro.html
