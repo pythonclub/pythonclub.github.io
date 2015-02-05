@@ -20,7 +20,27 @@ Então eu resolvi escrever esta série de 3 posts sobre PostgreSQL. Onde os outr
 
 Sumário:
 
+`Instalação`_
 
+`Criando um banco de dados`_
+
+`Usando o banco de dados`_
+
+`Criando as tabelas`_
+
+`Inserindo dados`_
+
+`Lendo os dados`_
+
+`Atualizando`_
+
+`Deletando`_
+
+`Herança`_
+
+`Modificando tabelas`_
+
+`Backup`_
 
     Ah, talvez isso aqui também seja útil `postgresql cheat sheet <http://www.postgresonline.com/downloads/special_feature/postgresql90_cheatsheet_A4.pdf>`_.
 
