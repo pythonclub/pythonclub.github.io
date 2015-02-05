@@ -406,7 +406,7 @@ Então façamos:
 
 .. code-block:: bash
 
-	  $ sudo su - postgres
+    $ sudo su - postgres
     $ createdb vendas
     $ psql vendas
 
@@ -522,7 +522,7 @@ Agora vejamos somente os registros de *person*.
 
 .. code-block:: sql
 
-    vendas=# SELECT name FROM ONLY person;
+    SELECT name FROM ONLY person;
 
        name   
     ----------
@@ -534,7 +534,7 @@ E somente os registros de *seller*.
 
 .. code-block:: sql
 
-    vendas=# SELECT name FROM seller;
+    SELECT name FROM seller;
 
       name   
     ---------
