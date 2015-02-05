@@ -2,7 +2,7 @@ Tutorial PostgreSql
 ===================
 
 :date: 2015-02-05 12:00
-:tags: Python, Banco de dados, Postresql
+:tags: python, postresql, banco de dados
 :category: Python, Banco de dados
 :slug: tutorial-postgresql
 :author: Regis da Silva
@@ -53,7 +53,7 @@ Bom, vamos lá. No seu **terminal** digite esta sequência:
 
 .. code-block:: bash
 
-    dpkg -l | grep -i postgres
+    $ dpkg -l | grep -i postgres
 
 Este comando é só pra ver se não tem alguma coisa já instalado.
 
@@ -61,7 +61,7 @@ Agora instale...
 
 .. code-block:: bash
 
-    sudo apt-get install -y python3-dev python3-setuptools postgresql-9.3 postgresql-contrib-9.3 pgadmin3 libpq-dev binutils g++
+    $ sudo apt-get install -y python3-dev python3-setuptools postgresql-9.3 postgresql-contrib-9.3 pgadmin3 libpq-dev binutils g++
 
 `pgadmin3 <http://www.pgadmin.org/>`_ é a versão com interface visual... no `youtube <https://www.youtube.com/results?search_query=pgadmin>`_  tem vários tutoriais legais. É bem fácil de mexer.
 
