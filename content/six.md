@@ -1,6 +1,6 @@
 Title: Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3
 Date: 2014-05-04 22:21
-Tags: python, six, compatibility, python3
+Tags: python, six, compatibility
 Category: Python
 Slug: sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3
 Author: Artur Felipe de Sousa
