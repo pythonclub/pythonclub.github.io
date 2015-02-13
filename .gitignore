@@ -14,3 +14,6 @@ Thumbs.db
 
 # Cache files
 cache/*
+
+# Pycharm
+.idea
