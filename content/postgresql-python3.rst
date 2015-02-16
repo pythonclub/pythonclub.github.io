@@ -1,10 +1,11 @@
-PostgreSql + Python3
+PostgreSql e Python3
 ====================
 
-:date: 2015-02-05 13:00
+:status: draft
+:date: 2015-02-17 13:00
 :tags: python, postresql, banco de dados
 :category: Python, Banco de dados
-:slug: postgresql-python3
+:slug: postgresql-e-python3
 :author: Regis da Silva
 :email: regis.santos.100@gmail.com
 :github: rg3915
@@ -116,7 +117,7 @@ Leia também
 
 *Tutorial PostgreSql*
 
-*PostgreSql + Django*
+*PostgreSql e Django*
 
 http://initd.org/psycopg/docs/
 

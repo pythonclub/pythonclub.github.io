@@ -1,7 +1,7 @@
 Tutorial PostgreSql
 ===================
 
-:date: 2015-02-05 12:00
+:date: 2015-02-15 12:00
 :tags: python, postresql, banco de dados
 :category: Python, Banco de dados
 :slug: tutorial-postgresql
@@ -14,9 +14,9 @@ Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-
 
 Então eu resolvi escrever esta série de 3 posts sobre PostgreSQL. Onde os outros 2 são:
 
-*PostgreSql + Python3*
+*PostgreSql e Python3*
 
-*PostgreSql + Django*
+*PostgreSql e Django*
 
 Sumário:
 

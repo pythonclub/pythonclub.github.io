@@ -1,16 +1,17 @@
-PostgreSql + Django
+PostgreSql e Django
 ===================
 
-:date: 2015-02-05 18:00
+:status: draft
+:date: 2015-02-18 18:00
 :tags: python, postresql, banco de dados
 :category: Python, Banco de dados
-:slug: postgresql-django
+:slug: postgresql-e-django
 :author: Regis da Silva
 :email: regis.santos.100@gmail.com
 :github: rg3915
 :summary: Esta é a parte 3 (de 3) da série de posts sobre PostgreSql...
 
-Se você já leu o *Tutorial Postgresql* e *Postgresql + Python3*, este post é uma continuação. Aqui nós veremos usar PostgreSql no `Django <http://pythonclub.com.br/tutorial-django-17.html>`_.
+Se você já leu o *Tutorial Postgresql* e *Postgresql e Python3*, este post é uma continuação. Aqui nós veremos usar PostgreSql no `Django <http://pythonclub.com.br/tutorial-django-17.html>`_.
 
 Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-scoops-of-django-1-6>`_ sabe que o `PyDanny <http://www.pydanny.com/>`_ recomenda fortemente o uso do `PostgreSQL <http://www.postgresql.org/>`_ em seus projetos.
 
