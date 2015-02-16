@@ -1,6 +1,6 @@
 title: Debugging em python (sem IDE)
 Slug: debugging-em-python-sem-ide
-Date: 2015-02-11 11:30
+Date: 2015-02-15 22:30
 Tags: python,pdb,ipython,ipdb,debugging
 Author: Diego Garcia
 Email:  drgarcia1986@gmail.com
