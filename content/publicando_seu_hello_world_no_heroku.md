@@ -13,7 +13,7 @@ Category: heroku
 
 
 <figure style="float:left;">
-<img style="border-radius: 50%;" src="/images/drgarcia1986/heroku.png">
+<img src="/images/drgarcia1986/heroku.png">
 </figure>
 </br>
 
