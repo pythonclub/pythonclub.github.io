@@ -46,12 +46,13 @@ Executa o comando `print` do python, por exemplo:
 'foo var'
 ```
 > Vale ressaltar que no exemplo acima, não é necessário utilizar o comando `p`, basta digitar o nome da variável e pressionar `enter`, o efeito seria o mesmo.
+
 ### c (continue)
 Avança o debug até o próximo **breakpoint** ou até ocorrer uma **exception**.
 
 ### l (list)
 Lista algumas linhas do código que estão em volta da linha atual.
-Por padrão serão apresentadas 11 linhas (5 a cima e 5 a baixo).
+Por padrão serão apresentadas 11 linhas (5 acima e 5 abaixo).
 
 ### s (step into)
 Ao realizar a navegação através do comando `n` o debug **não** irá _entrar_ em métodos que possívelmente forem invocados.
@@ -76,7 +77,7 @@ Cria um breakpoint em uma determinada linha ou método, por exemplo.
 (Pdb) b 21
 Breakpoint 1 at /script.py:21
 ``` 
-No comando a cima, setamos um breakpoint na linha 21 de nosso script.
+No comando acima, setamos um breakpoint na linha 21 de nosso script.
 ```python
 > /script.py(1)<module>()
 (Pdb) b foo
@@ -100,7 +101,7 @@ the_bar = "barz"
 ```
 
 ### ENTER
-Se você precionar o `ENTER` sem nenhum comando no pdb, ele irá repetir o último comando executado. 
+Se você pressionar o `ENTER` sem nenhum comando no pdb, ele irá repetir o último comando executado. 
 
 ## Debug na prática
 Vamos utilizar um script python simples e didático como exemplo.
@@ -134,14 +135,14 @@ if "__main__" == __name__:
 	print "The End"
 ```
 Esse script possui uma classe chamada `NumberList` que armazena uma lista de numeros e retorna a soma deles. 
-Além destas classe, esse script também realiza algumas operações como instaciar essa classe e realizar alguns testes de asserção.
+Além destas classe, esse script também realiza algumas operações como instanciar essa classe e realizar alguns testes de asserção.
 Salve esse script em um arquivo chamado `numbers.py` para ser utilizado em nossos exemplos.
 
 ## Modos de uso do pdb
 
 Na prática o pdb se assemelha bastante ao prompt interativo do python, com a diferença dos caracteres identificadores.
 Enquanto que no prompt interativo do python o identificador é o `>>>`, no pdb o identificador é `(Pdb)`.
-Existem algumas maneiras de usar o pdb, depende da forma como você pretende realizer o debbug. 
+Existem algumas maneiras de usar o pdb, depende da forma como você pretende realizer o debug. 
 
 ### pdb.py
 Uma delas é através da chamada do script `pdb.py` passando como paramêtro o script para ser feito do debug, por exemplo:
@@ -149,7 +150,7 @@ Uma delas é através da chamada do script `pdb.py` passando como paramêtro o s
 ```bash
 python -m pdb numbers.py
 ```
-Isso fará com o pdb seja iniciado na primeira linha do script `numbers.py`, no caso, a declaração da classe `NumberList()`.
+Isso fará com que o pdb seja iniciado na primeira linha do script `numbers.py`, no caso, a declaração da classe `NumberList()`.
 Caso você execute o comando `n`, a próxima linha será o `if "__main__" == __name__:` e assim por diante.
 Utilizando desta maneira, você pode verificar linha a linha do script ou _setar_ um breakpoint assim que entrar no debug, por exemplo, se você quer criar um breakpoint na execução do método `sum()` de uma instância da classe `NumberList()`, basta executar o comando `b numbers.sum`.
 
@@ -185,9 +186,6 @@ Breakpoint 1 at /home/user/numbers.py:13
 Outra forma é utilizando o método `set_trace()` do pacote `pdb`.
 Com o `pdb.set_trace()` você pode definir onde será o seu breakpoint via código, por exemplo, faremos uma alteração em nosso script para setar um breakpoint no método `NumberList().sum()`.
 ```python
-import pdb
-
-
 class NumberList(object):
     def __init__(self):
         self.numbers = list()
@@ -198,6 +196,7 @@ class NumberList(object):
         self.numbers.append(number)
 
     def sum(self):
+		import pdb
         pdb.set_trace()
 
         result = 0
