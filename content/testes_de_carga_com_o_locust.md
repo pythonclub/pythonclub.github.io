@@ -298,7 +298,7 @@ if __name__ == '__main__':
 ```
 A aplicação representada no código acima consiste em uma página inicial (``/``), uma página de login (``/login``), uma página de logout (``/logout``) e uma página home do usuário (``/home``) que só está acessivel para usuários logados. Obviamente esse é só um exemplo didático. 
 
-Se criarmos um script Locust para testar essa aplicação e nele não realizaros o login do usuário, teriamos uma série de falhas para consumir o método remoto ``/home``.
+Se criarmos um script Locust para testar essa aplicação e nele não realizarmos o login do usuário, teriamos uma série de falhas para consumir o método remoto ``/home``.
 
 ![locust](/images/drgarcia1986/locust_session_fail.png)
 
