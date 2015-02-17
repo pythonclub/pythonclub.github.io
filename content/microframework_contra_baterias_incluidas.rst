@@ -4,7 +4,7 @@ Microframework contra "Baterias Incluídas"
 :date: 2015-02-17 12:35
 :tags: django, flask, python
 :category: python
-:slug: microframework_contra_baterias_incluidas
+:slug: microframework-contra-baterias-incluidas
 :author: Eduardo Klosowski
 :email: eduardo_klosowski@yahoo.com
 :github: eduardoklosowski
