@@ -1,7 +1,6 @@
 PostgreSql e Python3
 ====================
 
-:status: draft
 :date: 2015-02-17 13:00
 :tags: python, postresql, banco de dados
 :category: Python, Banco de dados
