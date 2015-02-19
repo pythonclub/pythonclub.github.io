@@ -10,11 +10,14 @@ Tutorial PostgreSql
 :github: rg3915
 :summary: Esta é a parte 1 (de 3) da série de posts sobre PostgreSql...
 
-Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-scoops-of-django-1-6>`_ sabe que o `PyDanny <http://www.pydanny.com/>`_ recomenda fortemente o uso do `PostgreSQL <http://www.postgresql.org/>`_ em seus projetos.
+Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-scoops-of-django-1-6>`_ sabe que o `PyDanny <http://www.pydanny.com/>`_ recomenda fortemente o uso do mesmo SGBD tanto em **produção** como em **testes**. Então esqueça `sqlite <http://pythonclub.com.br/guia-rapido-comandos-sqlite3.html>`_ para testes, use `MySql <http://www.mysql.com/>`_ ou `Oracle <http://www.oracle.com/br/products/database/overview/index.html>`_ ou `PostgreSQL <http://www.postgresql.org/>`_ tanto em produção como em testes, e é sobre este último que vamos falar agora.
+
+.. figure:: /images/regisdasilva/postgresql.png
+    :alt: postgresql.png
 
 Então eu resolvi escrever esta série de 3 posts sobre PostgreSQL. Onde os outros 2 são:
 
-*PostgreSql e Python3*
+`PostgreSql e Python3 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
 
 *PostgreSql e Django*
 
@@ -656,9 +659,9 @@ Leia `24.1. SQL Dump <http://www.postgresql.org/docs/9.1/static/backup-dump.html
 
 Leia também
 
-*PostgreSql + Python3*
+`PostgreSql e Python3 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
 
-*PostgreSql + Django*
+*PostgreSql e Django*
 
 
 Mais alguns links:
