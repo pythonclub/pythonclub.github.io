@@ -659,9 +659,9 @@ Leia `24.1. SQL Dump <http://www.postgresql.org/docs/9.1/static/backup-dump.html
 
 Leia também
 
-`PostgreSql + Python3 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
+`PostgreSql e Python3 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
 
-*PostgreSql + Django*
+*PostgreSql e Django*
 
 
 Mais alguns links:
