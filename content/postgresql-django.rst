@@ -1,8 +1,7 @@
 PostgreSql e Django
 ===================
 
-:status: draft
-:date: 2015-02-18 18:00
+:date: 2015-02-19 14:10
 :tags: python, postresql, banco de dados
 :category: Python, Banco de dados
 :slug: postgresql-e-django
@@ -195,7 +194,7 @@ Leia mais em
 
 *Tutorial PostgreSql*
 
-*PostgreSql + Python3*
+*PostgreSql e Python3*
 
 `Tutorial Django 1.7 <http://pythonclub.com.br/tutorial-django-17.html>`_ 
 
