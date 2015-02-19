@@ -10,7 +10,10 @@ PostgreSql e Python3
 :github: rg3915
 :summary: Esta é a parte 2 (de 3) da série de posts sobre PostgreSql...
 
-Se você já leu o *Tutorial Postgresql* este post é uma continuação. Aqui nós veremos como manipular um banco de dados PostgreSql no Python3.
+Se você já leu o `Tutorial Postgresql <http://pythonclub.com.br/tutorial-postgresql.html>`_  este post é uma continuação. Aqui nós veremos como manipular um banco de dados PostgreSql no Python3.
+
+.. figure:: /images/regisdasilva/postgresql_python.png
+    :alt: postgresql_python.png
 
 Além da instalação mostrada no primeiro post precisaremos de
 
@@ -114,7 +117,7 @@ Fecha a comunicação com o banco
 
 Leia também
 
-*Tutorial PostgreSql*
+`Tutorial Postgresql <http://pythonclub.com.br/tutorial-postgresql.html>`_
 
 *PostgreSql e Django*
 
