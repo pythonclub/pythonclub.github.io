@@ -1,5 +1,5 @@
-PostgreSql e Django
-===================
+PostgreSql e Django - parte 3
+=============================
 
 :date: 2015-02-19 14:10
 :tags: python, postresql, banco de dados
@@ -10,9 +10,12 @@ PostgreSql e Django
 :github: rg3915
 :summary: Esta é a parte 3 (de 3) da série de posts sobre PostgreSql...
 
-Se você já leu o *Tutorial Postgresql* e *Postgresql e Python3*, este post é uma continuação. Aqui nós veremos usar PostgreSql no `Django <http://pythonclub.com.br/tutorial-django-17.html>`_.
+Se você já leu o `Tutorial Postgresql - parte 1 <http://pythonclub.com.br/tutorial-postgresql.html>`_ e `PostgreSql e Python3 - parte 2 <http://pythonclub.com.br/postgresql-e-python3.html>`_ , este post é uma continuação. Aqui nós veremos como usar `PostgreSQL <http://www.postgresql.org/>`_ no `Django <http://pythonclub.com.br/tutorial-django-17.html>`_.
 
-Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-scoops-of-django-1-6>`_ sabe que o `PyDanny <http://www.pydanny.com/>`_ recomenda fortemente o uso do `PostgreSQL <http://www.postgresql.org/>`_ em seus projetos.
+Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-scoops-of-django-1-6>`_ sabe que o `PyDanny <http://www.pydanny.com/>`_ recomenda fortemente o uso do mesmo SGBD tanto em **produção** como em **testes**. Então esqueça `sqlite <http://pythonclub.com.br/guia-rapido-comandos-sqlite3.html>`_ para testes, use `MySql <http://www.mysql.com/>`_ ou `Oracle <http://www.oracle.com/br/products/database/overview/index.html>`_ ou `PostgreSQL <http://www.postgresql.org/>`_ tanto em produção como em testes, e é sobre este último que vamos falar agora.
+
+.. figure:: /images/regisdasilva/postgresql_django.png
+    :alt: postgresql_django.png
 
 Então vejamos aqui como configurar o Postgresql para ser usado no `Django <http://pythonclub.com.br/tutorial-django-17.html>`_.
 
@@ -94,7 +97,8 @@ Criando o projeto
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.path.join(BASE_DIR, 'mydb'),
+            'NAME': 'mydb',
+            # 'NAME': os.path.join(BASE_DIR, 'mydb'),
             'USER': 'myuser',
             'PASSWORD': 'mypassword',
             'HOST': '127.0.0.1',
@@ -158,13 +162,14 @@ Em *INSTALLED_APPS* insira a app *core*.
 
     python manage.py makemigrations core
     python manage.py migrate
+    python manage.py createsuperuser
 
 Um pouco de shell
 ^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
-    python manage.py shell
+    $ python manage.py shell
     Python 3.4.0 (default, Apr 11 2014, 13:05:18) 
     [GCC 4.8.2] on linux
     Type "help", "copyright", "credits" or "license" for more information.
@@ -192,9 +197,9 @@ Serve para manipular a app pelo **terminal**.
 
 Leia mais em
 
-*Tutorial PostgreSql*
+`Tutorial Postgresql - parte 1 <http://pythonclub.com.br/tutorial-postgresql.html>`_
 
-*PostgreSql e Python3*
+`PostgreSql e Python3 - parte 2 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
 
 `Tutorial Django 1.7 <http://pythonclub.com.br/tutorial-django-17.html>`_ 
 
