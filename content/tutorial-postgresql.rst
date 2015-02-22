@@ -1,5 +1,5 @@
-Tutorial PostgreSql
-===================
+Tutorial PostgreSql - parte 1
+=============================
 
 :date: 2015-02-15 12:00
 :tags: python, postresql, banco de dados
@@ -17,9 +17,9 @@ Para quem já leu `Two Scoops of Django <http://twoscoopspress.com/products/two-
 
 Então eu resolvi escrever esta série de 3 posts sobre PostgreSQL. Onde os outros 2 são:
 
-`PostgreSql e Python3 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
+`PostgreSql e Python3 - parte 2 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
 
-*PostgreSql e Django*
+`PostgreSql e Django - parte 3 <http://pythonclub.com.br/postgresql-e-django.html>`_ 
 
 Sumário:
 
@@ -519,6 +519,19 @@ A diferença é que com menos código criamos as duas tabelas e não precisamos 
 
 Portanto não conseguimos deletar a tabela *person* sozinha, precisaríamos deletar as duas tabelas de uma vez.
 
+**Vantagem:**
+
+* a associação é do tipo *one-to-one*
+* o esquema é extensível
+* evita duplicação de tabelas com campos semelhantes
+* a relação de dependência é do tipo pai e filho
+* podemos consultar o modelo pai e o modelo filho
+ 
+**Desvantagem:**
+
+* adiciona sobrecarga substancial, uma vez que cada consulta em uma tabela filho requer um *join* com todas as tabelas pai.
+
+
 Vamos inserir alguns dados.
 
 .. code-block:: sql
@@ -659,9 +672,9 @@ Leia `24.1. SQL Dump <http://www.postgresql.org/docs/9.1/static/backup-dump.html
 
 Leia também
 
-`PostgreSql e Python3 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
+`PostgreSql e Python3 - parte 2 <http://pythonclub.com.br/postgresql-e-python3.html>`_ 
 
-*PostgreSql e Django*
+`PostgreSql e Django - parte 3 <http://pythonclub.com.br/postgresql-e-django.html>`_ 
 
 
 Mais alguns links:
