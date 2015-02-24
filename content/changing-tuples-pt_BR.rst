@@ -27,10 +27,12 @@ Em 1997 participei de um curso de verão sobre Java no MIT. A professora, Lynn A
 Eis um exemplo inspirado no livro *Alice Através do Espelho e O Que Ela Encontrou Por Lá*, de Lewis Carroll.
 
 .. image:: {filename}images/ramalho/Tweedledum-Tweedledee_500x390.png
-
+   :alt: imagem Alice Através do Espelho e O Que Ela Encontrou Por Lá
+   
 Tweedledum e Tweedledee são gêmeos. Do livro: “Alice soube no mesmo instante qual era qual porque um deles tinha 'DUM' bordado na gola e o outro, 'DEE'”.
 
 .. image:: {filename}images/ramalho/diagrams/dum-dee.png
+   :alt: exemplo 1 
 
 Vamos representá-los como tuplas contendo a data de nascimento e uma lista de suas habilidades:
 
@@ -63,6 +65,7 @@ Agora, depois dos eventos testemunhados por Alice, Tweedledum decidiu ser um rap
 Então, ``t_doom`` e ``dum`` são iguais - mas Alice acharia tolice dizer isso, porque ``t_doom`` e ``dum`` referem-se à mesma pessoa: ``t_doom is dum``.
 
 .. image:: {filename}images/ramalho/diagrams/dum-t_doom-dee.png
+   :alt: exemplo 2
 
 Os nomes ``t_doom`` e ``dum`` são apelidos. O termo em inglês "alias" significa exatamente apelido. Gosto que os documentos oficiais do Python muitas vezes referem-se a variáveis como “nomes“. Variáveis são nomes que damos a objetos. Nomes alternativos são apelidos. Isso ajuda a tirar da nossa mente a ideia de que variáveis são como caixas. Qualquer um que pense em variáveis como caixas não consegue explicar o que vem a seguir.
 
@@ -84,6 +87,7 @@ A analogia da etiqueta é muito melhor porque apelidos são explicados mais faci
 Abaixo está uma ilustração alternativa dos objetos que representam Tweedledum. Esta figura enfatiza o fato de a tupla armazenar referências a objetos, e não os objetos em si.
 
 .. image:: {filename}images/ramalho/diagrams/dum-skills-references.png
+   :alt: exemplo 3
 
 O que é imutável é o conteúdo físico de uma tupla, que armazena apenas referências a objetos. O valor da lista referenciado por ``dum[1]`` mudou, mas a identidade da lista referenciada pela tupla permanece a mesma. Uma tupla não tem meios de prevenir mudanças nos valores de seus itens, que são objetos independentes e podem ser encontrados através de referências fora da tupla, como o nome ``skills`` que nós usamos anteriormente. Listas e outros objetos imutáveis dentro de tuplas podem ser alterados, mas suas identidades serão sempre as mesmas.
 
