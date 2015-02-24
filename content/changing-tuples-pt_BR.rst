@@ -1,7 +1,24 @@
 Tuplas mutantes em Python
 =========================
 
-Por Luciano Ramalho, autor de `Fluent Python`_
+:status: draft
+:date: 2015-02-24 03:00
+:tags: python,tuplas
+:category: python-por-dentro
+:slug: tuplas-mutantes-em-python
+:author: Luciano Ramalho
+:email:  luciano@ramalho.org
+:about_author: Luciano Ramalho é sócio e professor nas Oficinas Turing. Foi diretor técnico do Brasil Online, primeiro portal da Abril S/A na Web. Liderou times para os portais IDG Now, BOL, UOL, AOL Brasil e outros, usando Python desde 1998. Como instrutor, atendeu clientes como Citibank, CPqD, Serpro, Presidência da República, Globo.com e Itaú. Palestrante em eventos internacionais como FISL, PyCon US e OSCON. Ajudou a criar a Associação Python Brasil e foi seu presidente. É membro da Python Software Foundation e fundador do Garoa Hacker Clube, o primeiro hackerspace do Brasil.
+:github: ramalho
+:site: https://adm.python.pro.br/
+:twitter: ramalhoorg
+:linkedin: lucianoramalho
+
+
+Por Luciano Ramalho, autor do livro `Fluent Python`_
+
+    See also the original article in English: http://radar.oreilly.com/2014/10/python-tuples-immutable-but-potentially-changing.html
+
 
 Tuplas em Python têm uma característica surpreendente: elas são imutáveis, mas seus valores podem mudar. Isso pode acontecer quando uma ``tuple`` contém uma referência para qualquer objeto mutável, como uma ``list``. Se você precisar explicar isso a um colega iniciando com Python, um bom começo é destruir o senso comum sobre variáveis serem como caixas em que armazenamos dados.
 
@@ -9,13 +26,15 @@ Em 1997 participei de um curso de verão sobre Java no MIT. A professora, Lynn A
 
 Eis um exemplo inspirado no livro *Alice Através do Espelho e O Que Ela Encontrou Por Lá*, de Lewis Carroll.
 
-.. image:: Tweedledum-Tweedledee_500x390.png
+.. image:: images/ramalho/Tweedledum-Tweedledee_500x390.png
 
 Tweedledum e Tweedledee são gêmeos. Do livro: “Alice soube no mesmo instante qual era qual porque um deles tinha 'DUM' bordado na gola e o outro, 'DEE'”.
 
-.. image:: diagrams/dum-dee.png
+.. image:: images/ramalho/diagrams/dum-dee.png
 
-Vamos representá-los como tuplas contendo a data de nascimento e uma lista de suas habilidades::
+Vamos representá-los como tuplas contendo a data de nascimento e uma lista de suas habilidades:
+
+.. code-block:: python
 
     >>> dum = ('1861-10-23', ['poesia', 'fingir-luta'])
     >>> dee = ('1861-10-23', ['poesia', 'fingir-luta'])
@@ -26,9 +45,12 @@ Vamos representá-los como tuplas contendo a data de nascimento e uma lista de s
     >>> id(dum), id(dee)
     (4313018120, 4312991048)
 
+
 É claro que ``dum`` e ``dee`` referem-se a objetos que são iguais, mas que não são o mesmo objeto. Eles têm identidades diferentes.
 
-Agora, depois dos eventos testemunhados por Alice, Tweedledum decidiu ser um rapper, adotando o nome artístico T-Doom. Podemos expressar isso em Python dessa forma::
+Agora, depois dos eventos testemunhados por Alice, Tweedledum decidiu ser um rapper, adotando o nome artístico T-Doom. Podemos expressar isso em Python dessa forma:
+
+.. code-block:: python
 
     >>> t_doom = dum
     >>> t_doom
@@ -40,11 +62,13 @@ Agora, depois dos eventos testemunhados por Alice, Tweedledum decidiu ser um rap
 
 Então, ``t_doom`` e ``dum`` são iguais - mas Alice acharia tolice dizer isso, porque ``t_doom`` e ``dum`` referem-se à mesma pessoa: ``t_doom is dum``.
 
-.. image:: diagrams/dum-t_doom-dee.png
+.. image:: images/ramalho/diagrams/dum-t_doom-dee.png
 
 Os nomes ``t_doom`` e ``dum`` são apelidos. O termo em inglês "alias" significa exatamente apelido. Gosto que os documentos oficiais do Python muitas vezes referem-se a variáveis como “nomes“. Variáveis são nomes que damos a objetos. Nomes alternativos são apelidos. Isso ajuda a tirar da nossa mente a ideia de que variáveis são como caixas. Qualquer um que pense em variáveis como caixas não consegue explicar o que vem a seguir.
 
-Depois de muito praticar, T-Doom agora é um rapper experiente. Codificando, foi isso o que aconteceu::
+Depois de muito praticar, T-Doom agora é um rapper experiente. Codificando, foi isso o que aconteceu:
+
+.. code-block:: python
 
     >>> skills = t_doom[1]
     >>> skills.append('rap')
@@ -59,7 +83,7 @@ A analogia da etiqueta é muito melhor porque apelidos são explicados mais faci
 
 Abaixo está uma ilustração alternativa dos objetos que representam Tweedledum. Esta figura enfatiza o fato de a tupla armazenar referências a objetos, e não os objetos em si.
 
-.. image:: diagrams/dum-skills-references.png
+.. image:: images/ramalho/diagrams/dum-skills-references.png
 
 O que é imutável é o conteúdo físico de uma tupla, que armazena apenas referências a objetos. O valor da lista referenciado por ``dum[1]`` mudou, mas a identidade da lista referenciada pela tupla permanece a mesma. Uma tupla não tem meios de prevenir mudanças nos valores de seus itens, que são objetos independentes e podem ser encontrados através de referências fora da tupla, como o nome ``skills`` que nós usamos anteriormente. Listas e outros objetos imutáveis dentro de tuplas podem ser alterados, mas suas identidades serão sempre as mesmas.
 
@@ -67,7 +91,9 @@ Isso enfatiza a diferença entre os conceitos de identidade e valor, descritos e
 
     Cada objeto tem uma identidade, um tipo e um valor. A identidade de um objeto nunca muda, uma vez que tenha sido criado; você pode pensar como se fosse o endereço do objeto na memória. O operador ``is`` compara a identidade de dois objetos; a função ``id()`` retorna um inteiro representando a sua identidade.
 
-Após ``dum`` tornar-se um rapper, os irmãos gêmeos não são mais iguais::
+Após ``dum`` tornar-se um rapper, os irmãos gêmeos não são mais iguais:
+
+.. code-block:: python
 
     >>> dum == dee
     False
@@ -86,7 +112,9 @@ Voltando ao MIT, a Profa. Stein falava sobre atribuição de uma forma muito cui
 
 Em uma atribuição como ``y = x * 10``, o lado direito é computado primeiro. Isto cria um novo objeto ou retorna um já existente. Somente após o objeto ser computado ou retornado, o nome é atribuído a ele.
 
-Eis uma prova disso. Primeiro criamos uma classe ``Gizmo``, e uma instância dela::
+Eis uma prova disso. Primeiro criamos uma classe ``Gizmo``, e uma instância dela:
+
+.. code-block:: python
 
     >>> class Gizmo:
     ...     def __init__(self):
@@ -97,7 +125,9 @@ Eis uma prova disso. Primeiro criamos uma classe ``Gizmo``, e uma instância del
 
 Observe que o método ``__init__`` mostra a identidade do objeto tão logo criado. Isso será importante na próxima demonstração.
 
-Agora vamos instanciar outro ``Gizmo`` e imediatamente tentar executar uma operação com ele antes de atribuir um nome ao resultado::
+Agora vamos instanciar outro ``Gizmo`` e imediatamente tentar executar uma operação com ele antes de atribuir um nome ao resultado:
+
+.. code-block:: python
 
     >>> y = Gizmo() * 10
     Gizmo id: 4328764360
