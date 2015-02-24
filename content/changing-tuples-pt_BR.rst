@@ -1,8 +1,8 @@
 Tuplas mutantes em Python
 =========================
 
-:status: draft
-:date: 2015-02-24 03:00
+
+:date: 2015-02-24 10:17
 :tags: python,tuplas
 :category: python-por-dentro
 :slug: tuplas-mutantes-em-python
