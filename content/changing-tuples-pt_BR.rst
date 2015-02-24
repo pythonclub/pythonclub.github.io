@@ -8,14 +8,14 @@ Tuplas mutantes em Python
 :slug: tuplas-mutantes-em-python
 :author: Luciano Ramalho
 :email:  luciano@ramalho.org
-:about_author: Luciano Ramalho é sócio e professor nas Oficinas Turing. Foi diretor técnico do Brasil Online, primeiro portal da Abril S/A na Web. Liderou times para os portais IDG Now, BOL, UOL, AOL Brasil e outros, usando Python desde 1998. Como instrutor, atendeu clientes como Citibank, CPqD, Serpro, Presidência da República, Globo.com e Itaú. Palestrante em eventos internacionais como FISL, PyCon US e OSCON. Ajudou a criar a Associação Python Brasil e foi seu presidente. É membro da Python Software Foundation e fundador do Garoa Hacker Clube, o primeiro hackerspace do Brasil.
+:about_author: Ramalho é autor do livro Fluent Python (O'Reilly, 2014) e sócio/professor em Python.pro.br, oferecendo cursos in-company e também online. Foi diretor técnico do Brasil Online, primeiro portal da Abril na Web, lançado uma semana antes do UOL. Depois liderou times para os sites IDG Now, BOL, UOL, AOL Brasil e outros, usando Python desde 1998. Palestrante em eventos internacionais como PyCon US, OSCON e FISL, ajudou a criar a Associação Python Brasil e foi seu presidente. É membro da Python Software Foundation e fundador do Garoa Hacker Clube, o primeiro hackerspace do Brasil.
 :github: ramalho
 :site: https://adm.python.pro.br/
 :twitter: ramalhoorg
 :linkedin: lucianoramalho
 
 
-Por Luciano Ramalho, autor do livro `Fluent Python`_
+Por Luciano Ramalho, autor do livro `Fluent Python`_ (O'Reilly, 2014)
 
     See also the original article in English: http://radar.oreilly.com/2014/10/python-tuples-immutable-but-potentially-changing.html
 
