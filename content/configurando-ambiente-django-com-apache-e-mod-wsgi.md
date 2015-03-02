@@ -28,7 +28,7 @@ Agora, chega de conversa e vamos ao que interessa.
 
 ### Como fazer?
 
-Existem várias maneiras de se fazer o Django trabalhar com apache, uma delas é a combinação [Apache](http://httpd.apache.org/docs/) + [mod_wsgi](http://code.google.com/p/modwsgi/) e será dessa forma que faremos. Com mod_wsgi podemos implementar qualquer aplicação Python que suporte a interface **Python WSGI**.
+Existem várias maneiras de se fazer o Django trabalhar com apache, uma delas é a combinação Apache + [mod_wsgi](http://code.google.com/p/modwsgi/) e será dessa forma que faremos. Com mod_wsgi podemos implementar qualquer aplicação Python que suporte a interface **Python WSGI**.
 
 ##### Instalando alguns pacotes necessários
 
@@ -265,6 +265,5 @@ Espero que tenha ficado claro. Qualquer dúvida ou problema deixe nos comentári
 ##### Referências:
 
 - modwsgiwiki - [https://code.google.com/p/modwsgi/wiki/](https://code.google.com/p/modwsgi/wiki/)
-- Django Portuguese Readthedock [https://django-portuguese.readthedocs.org](https://django-portuguese.readthedocs.org)
 - Blogalizado - [http://www.blogalizado.com.br/deploy-de-aplicacao-django-no-apache-com-mod_wsgi/](http://www.blogalizado.com.br/deploy-de-aplicacao-django-no-apache-com-mod_wsgi/)
 - Documentação oficial do django - [https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/](https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/)
