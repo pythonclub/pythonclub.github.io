@@ -32,17 +32,23 @@ Existem várias maneiras de se fazer o Django trabalhar com apache, uma delas é
 
 ##### Instalando alguns pacotes necessários
 
+Antes de mais nada, atualize a lista de pacotes
+
+```bash
+$ sudo apt-get update
+```
+
 *Apache + mod_wsgi*
 
 ```bash
-$ apt-get install apache2 libapache2-mod-wsgi
+$ sudo apt-get install apache2 libapache2-mod-wsgi
 ```
 
 *Python setup tools + pip*
 
 ```bash
-$ apt-get install python-setuptools
-$ apt-get install python-pip
+$ sudo apt-get install python-setuptools
+$ sudo apt-get install python-pip
 ```
 
 ### Vamos testar o WSGI?
@@ -52,13 +58,13 @@ Vamos fazer um teste com uma aplicação simples em python.
 Começe criando um diretório na raiz do apache *(DocumentRoot)*
 
 ```bash
-$ mkdir /var/www/wsgi_test
+$ sudo mkdir /var/www/wsgi_test
 ```
 
 Em seguida vamos criar nossa app de teste ...
 
 ```bash
-$ vim /var/www/app.wsgi
+$ sudo vim /var/www/app.wsgi
 ```
 
 ... e escrever nossa app python compatível com WSGI
@@ -76,7 +82,7 @@ def application(environ, start_response):
 Vamos criar agora um host para usar como nosso domínio da aplicação teste
 
 ```bash
-$ vim /etc/hosts
+$ sudo vim /etc/hosts
 ```
 
 Adicione esta linha ao seu arquivo hosts
@@ -88,7 +94,7 @@ Adicione esta linha ao seu arquivo hosts
 E vamos configurar nosso VirtualHost no Apache.
 
 ```bash
-$ vim /etc/apache2/sites-available/wsgi_test
+$ sudo vim /etc/apache2/sites-available/wsgi_test
 ```
 
 ```apache
@@ -106,7 +112,7 @@ $ vim /etc/apache2/sites-available/wsgi_test
 Ative-o
 
 ```bash
-$ a2ensite wsgi_test
+$ sudo a2ensite wsgi_test
 ```
 
 *Obs: esse comando cria um link simbólico do wsgi_test para a pasta sites-enabled. Você pode fazer isso manualmente.*
@@ -114,7 +120,7 @@ $ a2ensite wsgi_test
 Reinicie o apache:
 
 ```bash
-$ service apache2 reload
+$ sudo service apache2 reload
 ```
 
 Feito isso abra o <strike>internet explorer</strike> seu navegador preferido e acesse [http://wsgi_test](http://wsgi_test). Se você está vendo a mensagem *"Hello World"* pode comemorar, o wsgi está funcionando com o apache.
@@ -125,7 +131,7 @@ Até o momento entendemos como funciona a configuração do apache para receber 
 
 ##### Criando o ambiente
 
-É sempre bom trabalharmos com ambientes virtuais em nossas aplicações python, para isso temos o [virtualenv](https://virtualenv.pypa.io/en/latest/). Eu, particularmente, prefiro usar o [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.org/en/latest/), que separa os ambientes virtuais das aplicações. Caso você não conheça, indico o post do [Arruda](https://virtualenvwrapper.readthedocs.org/en/latest/) que foi o que me guiou quando comecei a usar. [Usando VirtualEnvWrapper](http://www.arruda.blog.br/programacao/python/usando-virtualenvwrapper/)
+É sempre bom trabalharmos com ambientes virtuais em nossas aplicações python, para isso temos o [virtualenv](https://virtualenv.pypa.io/en/latest/). Eu, particularmente, prefiro usar o [VirtualenvWrapper](https://virtualenvwrapper.readthedocs.org/en/latest/), que separa os ambientes virtuais das aplicações. Caso você não conheça, indico o post do [Arruda](https://github.com/arruda/) que foi o que me guiou quando comecei a usar. [Usando VirtualEnvWrapper](http://www.arruda.blog.br/programacao/python/usando-virtualenvwrapper/)
 
 No meu caso usei o virtualenvwrapper e meu filesystem é o seguinte:
 
@@ -187,7 +193,7 @@ Você encontra esse template aqui -> [django-boilerplate](https://github.com/gui
 Primeiramente, vamos criar um domínio fictício para responder com o nosso projeto ao ser acessado.
 
 ```bash
-$ vim /etc/hosts
+$ sudo vim /etc/hosts
 
 127.0.0.1   djangowsgi.com
 ```
@@ -195,7 +201,7 @@ $ vim /etc/hosts
 Agora vamos configurar o apache:
 
 ```bash
-$ vim /etc/apache2/sites-available/djangowsgi
+$ sudo vim /etc/apache2/sites-available/djangowsgi
 ```
 
 ```apache
@@ -232,7 +238,7 @@ WSGIProcessGroup djangowsgi.com
 Reinicie novamente o apache:
 
 ```bash
-$ service apache2 reload
+$ sudo service apache2 reload
 ```
 
 Explicarei agora um pouco do que foi usado nessa configuração
