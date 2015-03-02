@@ -14,7 +14,7 @@ Facebook: guilherme.louro.3
 
 Muitas vezes encontramos dificuldade em colocar nossas aplicações para funcionar em um servidor devido ao pouco conhecimento em infraestrutura, principalmente aqueles que vieram do php, onde, subir um site e já o ver funcionando no ambiente final se trata apenas de subir os arquivos para a pasta **www** e pronto, certo? Não, não é bem por aí ...
 
-Normalmente quando configuramos a hospedagem de um domínio através de um software de gestão de alojamento web *([cpanel](http://cpanel.net) é  o mais conhecido)* automaticamente o sistema configura o VirtualHost específico para o seu domínio cadastrado, ja direcionando a path para a sua pasta *www* ou **public_html**. Mas como isso é feito? Não entrarei em detalhes de como o cpanel funciona, mas irei demonstrar aqui como configuramos um servidor com apache para receber nossa aplicação.
+Normalmente quando configuramos a hospedagem de um domínio através de um software de gestão de alojamento web *([cpanel](http://cpanel.net) é  o mais conhecido)* automaticamente o sistema configura o VirtualHost específico para o seu domínio cadastrado, ja direcionando a path para a sua pasta *www* ou **public_html**. Mas como isso é feito? Não entrarei em detalhes de como o cpanel funciona, mas irei demonstrar aqui como configuramos um servidor com [apache](http://httpd.apache.org/docs/) para receber nossa aplicação.
 
 ### Mas por que o Apache?
 
@@ -28,7 +28,7 @@ Agora, chega de conversa e vamos ao que interessa.
 
 ### Como fazer?
 
-Existem várias maneiras de se fazer o Django trabalhar com apache, uma delas é a combinação Apache + mod_wsgi e será dessa forma que faremos. Com mod_wsgi podemos implementar qualquer aplicação Python que suporte a interface **Python WSGI**.
+Existem várias maneiras de se fazer o Django trabalhar com apache, uma delas é a combinação [Apache](http://httpd.apache.org/docs/) + [mod_wsgi](http://code.google.com/p/modwsgi/) e será dessa forma que faremos. Com mod_wsgi podemos implementar qualquer aplicação Python que suporte a interface **Python WSGI**.
 
 ##### Instalando alguns pacotes necessários
 
