@@ -14,10 +14,12 @@ Django - 3 anos em 10 minutos
 Em março de 2012 foi lançada a versão 1.4 e por aqui que nossa jornada começa, o objetivo não é entrar em detalhes em todas as features que foram implementadas e sim um `overview` sobre as que considero mais importantes para nosso dia a dia.
 
 
-Versão 1.4 (Há 3 anos)
-----------------------
+Versão `1.4 <https://docs.djangoproject.com/en/1.4/releases/1.4/>`_ (Há 3 anos)
+--------------------------------------------------------------------------------
 
 Lançada em Março de 2012, suporta Python 2.5 >= 2.7.
+
+Foi a primeira versão LTS (long-term support), ou seja, ela recebeu correções e atualizações de segurança por pelo menos 3 anos após à data de lançamento.
 
 É a primeira versão a permitir o uso de `custom project template <https://docs.djangoproject.com/en/1.4/ref/django-admin/#django-admin-startproject>`_ e tornar o arquivo `manage.py` *o* que conhecemos hoje.
 
@@ -31,8 +33,8 @@ Algumas outras coisas legais foram:
     * `reverse_lazy <https://docs.djangoproject.com/en/1.4/topics/http/urls/#reverse-lazy>`_ que permite fazer `reverse` antes das configurações de URL serem carregadas.
 
 
-Versão 1.5 (Há 2 anos)
-----------------------
+Versão `1.5 <https://docs.djangoproject.com/en/1.5/releases/1.5/>`_ (Há 2 anos)
+--------------------------------------------------------------------------------
 
 Lançada em Fevereiro de 2013, suporta Python 2.6.5 >= 2.7 (Python 3 - Experimental).
 
@@ -46,8 +48,8 @@ Algumas outras coisas legais foram:
     * `novos tutoriais <https://docs.djangoproject.com/en/1.5/releases/1.5/#new-tutorials>`_ foram inseridos para ajudar iniciantes e existe também uma seção `Tutoriais Avançados`
 
 
-Versão 1.6 (Há 1 ano e meio)
-----------------------------
+Versão `1.6 <https://docs.djangoproject.com/en/1.6/releases/1.6/>`_ (Há 1 ano e meio)
+--------------------------------------------------------------------------------------
 
 Lançada em Novembro de 2013, suporta Python 2.6.5 >= 3.3. (Python 3!!!!)
 
@@ -63,8 +65,8 @@ Algumas outras coisas legais foram:
     * `check <https://docs.djangoproject.com/en/1.6/ref/django-admin/#django-admin-check>`_ comando para validar se suas configurações estão compatíveis com a versão do django.
 
 
-Versão 1.7 (Há 8 meses)
------------------------
+Versão `1.7 <https://docs.djangoproject.com/en/1.7/releases/1.7/>`_ (Há 8 meses)
+---------------------------------------------------------------------------------
 
 Lançada em Setembro de 2014, suporta Python 2.7 >= 3.4.
 
@@ -72,19 +74,42 @@ Um novo conceito de `migrações <https://docs.djangoproject.com/en/1.7/topics/m
 
 Para criar uma aplicação não é necessário mais conter o arquivo `models.py`.
 
-O `conceito de aplicação <https://docs.djangoproject.com/en/1.7/ref/applications/>` foi atualizado e existem vários novas maneiras de se customizar seus dados :)
+O `conceito de aplicação <https://docs.djangoproject.com/en/1.7/ref/applications/>`_ foi atualizado e existem vários novas maneiras de se customizar seus dados :)
 
 O comando `check` foi evoluído e agora realiza uma varredura quase completa no seu código para identificar possíveis problemas.
 
 
-Versão 1.8
-----------
+Versão `1.8 <https://docs.djangoproject.com/en/1.8/releases/1.8/>`_
+--------------------------------------------------------------------
 
 Lançada em Abril de 2015, a versão 1.8 introduz várias features legais!
 
-Possibilidade de utilizar `várias engines <https://docs.djangoproject.com/en/1.8/topics/templates/>`_ de templates.
+É a segunda versão LTS (long-term support), ou seja, vai receber correções e atualizações de segurança por pelo menos 3 anos após à data de lançamento.
+
+Agora há a possibilidade de utilizar `várias linguagens(engines) <https://docs.djangoproject.com/en/1.8/topics/templates/>`_ de templates, ou seja, você pode usar simuntaneamente (não no mesmo arquivo) a `Django Template Language <https://docs.djangoproject.com/en/1.8/ref/templates/language/>`_ ou `Jinja2 <http://jinja.pocoo.org/>`_. Há uma API padronizada para quem quiser adicionar suporte para outras linguagens de template no futuro. Há um `guia de migração <https://docs.djangoproject.com/en/1.8/ref/templates/upgrading/>`_ .
 
 Novos campos foram introduzidos como `UUIDField <https://docs.djangoproject.com/en/1.8/ref/models/fields/#django.db.models.UUIDField>`_ e `DurationField <https://docs.djangoproject.com/en/1.8/ref/models/fields/#django.db.models.DurationField>`_ e  ainda tem mais!
 
+O `Model._meta API <https://docs.djangoproject.com/en/1.8/releases/1.8/#model-meta-api>`_ foi totalmente refatorado e padronizado. O `Model._meta` API foi incluida no Django 0.96 e serve para obter informações sobre campos do Model, contudo, essa api era considerada de uso privado, e não tinha qualquer documentação ou comentários. Agora com tudo padronizado, abre uma gama de novas opções para criar apps plugaveis que fazem coisas com Models arbitrarios.
 
-Acompanhe as `releases <https://docs.djangoproject.com/en/1.8/releases/>`_.
+Algumas outras coisas legais foram:
+
+    * O comando de gerenciamento `inspectdb <https://docs.djangoproject.com/en/1.8/howto/legacy-databases/#integrating-django-with-a-legacy-database>`_ agora suporta fazer engenharia reversa tambem de Database Views (nas versões anteriores, o inspectdb inspecionava somente tabelas, mas não conseguia "ver" as views).
+    * Adição/Melhoria de `Query Expressions, Conditional Expressions, and Database Functions <https://docs.djangoproject.com/en/1.8/releases/1.8/#query-expressions-conditional-expressions-and-database-functions>`_ . Isso adiciona muito mais flexibilidade para fazer pesquisas mais complexas no banco de dados.
+
+
+
+Há várias outras ótimas melhorias que omiti, veja o `release note <https://docs.djangoproject.com/en/1.8/releases/>`_ completo.
+
+O Futuro
+----------
+
+Versão 1.9 (Com lançamento previsto para Outubro de 2016)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O Django 1.8 mal foi lançado, e já há algumas novidades que talvez venham no Django 1.9.
+
+Muito provavelmete, o Django 1.9 vai adicionar os tão esperados `Campos Compostos <https://github.com/django/deps/pull/12>`_ . Isso vai permitir fazer coisas mais complexas, como ter um campo Dinheiro, que "sabe" como fazer conversões de moeda (ex. Real para Dolar).
+
+Veja o `Roadmap <https://code.djangoproject.com/wiki/Version1.9Roadmap>`_ do que vem por ai no Django 1.9
+
