@@ -111,5 +111,8 @@ O Django 1.8 mal foi lançado, e já há algumas novidades que talvez venham no 
 
 Muito provavelmete, o Django 1.9 vai adicionar os tão esperados `Campos Compostos <https://github.com/django/deps/pull/12>`_ . Isso vai permitir fazer coisas mais complexas, como ter um campo Dinheiro, que "sabe" como fazer conversões de moeda (ex. Real para Dolar).
 
+Tambem existe uma expectativa que o tema `django-flat-admin <https://pypi.python.org/pypi/django-flat-theme>`_ para o `Admin <https://docs.djangoproject.com/en/1.8/ref/contrib/admin/>`_ seja integrado no Django 1.9, virando o tema padrão. O `django-flat-admin <https://pypi.python.org/pypi/django-flat-theme>`_ somente modifica o CSS, nenhuma tag HTML é alterada em relação ao HTML original do Admin, então ele é relativemente compativel (desde que você não tenha incluido customizações no CSS do Admin). Os core developers do Django estão tratando desse assunto `neste tópico <https://groups.google.com/forum/#!msg/django-developers/HJAikaEBqJ4/pxj1SuwbJm0J>`_
+
+
 Veja o `Roadmap <https://code.djangoproject.com/wiki/Version1.9Roadmap>`_ do que vem por ai no Django 1.9
 
