@@ -88,11 +88,11 @@
             show_random_articles($('#random-articles'), {{ json_articles }}, {{ RANDOM_ARTICLES }});
         });
         
-        {% block spot_im %}
-             <div id="spot-im-root"></div>
-             <script type="text/javascript">!function(t,o,p){function e(){var t=o.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==o.location.protocol?"https":"http")+":"+p,o.body.appendChild(t)}t.spotId="3de816246c80a51757bb01c5b8c95cda",t.spotName="",t.allowDesktop=!0,t.allowMobile=!1,t.containerId="spot-im-root",e()}(window.SPOTIM={},document,"//www.spot.im/embed/scripts/launcher.js");</script>
-        {% endblock %}
-
     </script>
+        {% block spot_im %}
+            <div id="spot-im-root"></div>
+            <script type="text/javascript">!function(t,o,p){function e(){var t=o.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==o.location.protocol?"https":"http")+":"+p,o.body.appendChild(t)}t.spotId="3de816246c80a51757bb01c5b8c95cda",t.spotName="",t.allowDesktop=!0,t.allowMobile=!1,t.containerId="spot-im-root",e()}(window.SPOTIM={},document,"//www.spot.im/embed/scripts/launcher.js");</script>
+        {% endblock %}    
+    
 </body>
 </html>
