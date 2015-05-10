@@ -17,6 +17,7 @@ Resolvi falar sobre Django, pois é um framework que utilizamos na empresa para 
 O objetivo é ensinar algumas técnicas simples e que auxiliam a diminuir o número de consultas que realizamos
 no banco de dados.
 
+Os slides podem acessados `aqui <https://docs.google.com/presentation/d/1SV27J8rFfORxE_JrU5NPahfqDJk6y87MuQUeKVTA0Gw/edit?usp=sharing>`_.
 
 Então, vamos lá!
 
