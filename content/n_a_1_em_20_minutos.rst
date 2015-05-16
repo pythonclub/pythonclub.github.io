@@ -85,7 +85,7 @@ Os elementos são:
 Agora que conhecemos os 5 elementos principais, vamos falar sobre **QuerySet**, é com ele
 que vamos conseguir construir queries mais eficientes.
 
-QuerySet são Lazy
+QuerySets são Lazy
 -----------------
 Algo que é importante notar sobre o comportamento das QuerySets, são que elas são Lazy.
 
@@ -163,7 +163,7 @@ Temos um loop e a cada iteração invocamos um atributo do models que é uma cha
         print cadastro.user
 
 Esse é um código simples e que geralmente não vemos problemas nenhum, mas iremos nos supreender
-quantas queries são realizadas no banco de dados.
+com quantas queries são realizadas no banco de dados.
 
 .. code-block:: python
 
@@ -178,11 +178,11 @@ quantas queries são realizadas no banco de dados.
     >> print len(connection.queries)
     501
 
-Foram realizadas **501** consultas iterar sobre 500 cadastros (1 consulta para retornar todos os cadastros e 1 consulta para cada vez que acessamos o atributo ``user``).
+Foram realizadas **501** consultas para iterar sobre 500 cadastros (1 consulta para retornar todos os cadastros e 1 consulta para cada vez que acessamos o atributo ``user``).
 Isso ocorre, porque estamos acessando um atributo que é um relacionamento para outra tabela,
-cada vez que o Django acessa esse atributo ele precisa fazer uma nova consulta no banco de dados.
+cada vez que o Django acessa esse atributo uma nova consulta precisa ser realizada no banco de dados.
 
-Isso é válido tanto para campos OneToOne e ForeignKey.
+Isso é válido tanto para OneToOne e ForeignKey.
 
 Como podemos resolver isso? Utilizando o método do QuerySet chamado ``select_related``.
 
@@ -213,7 +213,7 @@ Primeiro, vamos entender o que é um relacionamento reverso.
 Relacionamento reverso
 ----------------------
 
-Por padrão o Django adiciona um relacionamento reverso quando sua tabela quando ela é referenciada por uma chave estrangeira.
+Por padrão o Django adiciona um relacionamento reverso quando sua tabela é referenciada por uma chave estrangeira.
 
 Se não passar o parâmetro related_name, irá seguir o padrão <nome_tabela>_set
 
