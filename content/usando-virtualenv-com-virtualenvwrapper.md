@@ -9,7 +9,7 @@ Site: http://dvl.rocks/
 Twitter: xdvl
 Category: Python
 
-O uso do `virtualenv` é um item quase que obrigatório em qualquer ambiente de desenvolvimento Python, é usado para manter pacotes (biblioteca Python) de diferentes projetos independenetes e isolados dos pacotes do sistema.
+O uso do `virtualenv` é um item quase que obrigatório em qualquer ambiente de desenvolvimento Python, é usado para manter pacotes (biblioteca Python) de diferentes projetos independentes e isolados dos pacotes do sistema.
 
 O que vejo poucas pessoas usando é o `virtualenvwrapper` que visa a resolver vários problemas criados pelo `virtualenv` como a necessidade de se usar sempre `source bin/activate` e os arquivos do `virtualenv` sendo colocados lado-a-lado com os arquivos do seu projeto.
 
