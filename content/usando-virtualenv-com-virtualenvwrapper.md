@@ -9,7 +9,7 @@ Site: http://dvl.rocks/
 Twitter: xdvl
 Category: Python
 
-O uso do `virtualenv` é um item quase que obrigatório em qualquer ambiente de desenvolvimento Python, é usado para isolar os pacotes do projeto dos pacotes do sistema.
+O uso do `virtualenv` é um item quase que obrigatório em qualquer ambiente de desenvolvimento Python, é usado para manter pacotes (biblioteca Python) de diferentes projetos independenetes e isolados dos pacotes do sistema.
 
 O que vejo poucas pessoas usando é o `virtualenvwrapper` que visa a resolver vários problemas criados pelo `virtualenv` como a necessidade de se usar sempre `source bin/activate` e os arquivos do `virtualenv` sendo colocados lado-a-lado com os arquivos do seu projeto.
 
@@ -31,7 +31,7 @@ Para criar um novo ambiente use:
 
      mkvirtualenv meu_projeto
      
- Para criar um novo ambiente com Python 3:
+Para criar um novo ambiente com Python 3:
  
      mkvirtualenv meu_projeto2 --python=`which python3`
      
@@ -50,11 +50,12 @@ E para remover um ambiente:
 E para ativar/trocar de ambiente:
 
     workon meu_projeto2
-    
-    
+
 Para desativar é igual, sem qualquer novidade:
 
     deactivate
+    
+Para lista completa de comandos visite a [documentação oficial do virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/command_ref.html)
     
 ## Dicas
 
