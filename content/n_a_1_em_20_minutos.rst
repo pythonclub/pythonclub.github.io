@@ -86,7 +86,7 @@ Agora que conhecemos os 5 elementos principais, vamos falar sobre **QuerySet**, 
 que vamos conseguir construir queries mais eficientes.
 
 QuerySets são Lazy
------------------
+------------------
 Algo que é importante notar sobre o comportamento das QuerySets, são que elas são Lazy.
 
 Mas o que é isso?
