@@ -45,10 +45,31 @@ Juntando os dois temos:
 	class NomeDaClasse(object):
 		atributo1 = None
 
-		def metodo(args):
+		def metodo(self, args):
 			pass	
 
-``pass`` significa que você pode escrever o seu código no lugar. E ``atributo1`` é um atributo com valor inicial ``None`` (nada). Poderia ser ``atributo1 = 0``, por exemplo.
+
+
+A primeira pergunta que você vai ter é o porque do ``self`` em ``metodo``. A resposta curta é, todo metodo criado dentro de uma classe deve definir como primeiro parametro o ``self``. Para a resposta longa, por favor, leia a excelente explicação que o Pedro Werneck fez: http://www.pedrowerneck.com/o-porque-do-self-explicito-em-python-pt-br.html
+
+A segunda pergunta é: para que serve o ``pass``?
+
+A resposta é que, em Python, ao contrario de várias outras liguagens de programação, os blocos de código **NÃO** são definidos com os caracteres ``{`` e ``}``, mas sim com indentação e o caractere ``:``. Devido a esse fato, python necessitava de algo para explicitar quando se quer definir um bloco vazio. O ``pass`` foi criado exatamente para explicitar essa situação.
+
+Um exemplo de uma função vazia feita em linguagem C e a mesma função vazia feita em Python:
+
+.. code-block:: C
+
+    void metodo(int num){
+        
+    }
+
+.. code-block:: python
+
+    def metodo(num):
+        pass
+
+Voltando a explicação sobre a classe: O ``atributo1`` é um atributo com valor inicial ``None`` (nada). Poderia ser ``atributo1 = 0``, por exemplo.
 
 Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* (isso tambem é conhecido como "CamelCase") e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
 
