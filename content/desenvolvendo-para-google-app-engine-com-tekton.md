@@ -1,13 +1,13 @@
 Title: Criação de aplicações no Google App Engine com o Tekton
 Slug: desenvolvendo-para-google-app-engine-com-tekton
 Date: 24-05-2015
-Tags: tekton, python, google app engine
+Tags: tekton, python, google app engine, tutorial
 Author: Guido Luz Percú
 Email:  guidopercu@gmail.com
 Github: GuidoBR
 Site: http://www.guidopercu.com.br/
 Twitter: oumguido
-Category: google app engine, tutorial
+Category: google app engine
 
 ## Google App Engine (GAE)
 É a plataforma de Cloud Computing do Google, com ela você pode desenvolver e hospedar aplicações usando Python (2.7) que escalam facilmente, [pagando muito pouco por isso].
