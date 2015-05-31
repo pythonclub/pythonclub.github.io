@@ -19,13 +19,14 @@ As desvantagens (em relação a outras plataformas de nuvem, como o Heroku por e
 ## Tekton
 É um framework para desenvolvimento Web especialmente pensado para uso no Google App Engine. Nele podemos aproveitar o melhor do Django (scaffold, código HTML e validação de formulários a partir de modelos, apps isoladas) sem perder as vantagens que o GAE nos oferece.  
 
- ## Como iniciar
- O primeiro passo é baixar  o [SDK do Google App Engine], com isso pronto podemos começar a conhecer o Tekton:
+## Como iniciar
+O primeiro passo é baixar  o [SDK do Google App Engine], com isso pronto podemos começar a conhecer o Tekton.
 
+Em seguida, vamos baixar a aplicação template.
 ```
 $ wget https://github.com/renzon/tekton/archive/master.zip
-$ unzip master
-$ mv master projeto_appengine && cd projeto_appengine     
+$ unzip master && rm master.zip
+$ mv tekton-master projeto_appengine && cd projeto_appengine     
 ```
 Nesse ponto podemos explorar e conhecer a estrutura de diretórios.
 ```
