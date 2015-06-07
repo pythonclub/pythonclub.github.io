@@ -1,5 +1,5 @@
-title: A armadilha dos argumentos com valores default
-Slug: a-armadilha-dos-argumentos-com-valores-default
+title: A armadilha dos argumentos com valores padrão
+Slug: a-armadilha-dos-argumentos-com-valores-padrao
 Date: 2015-06-07 11:00
 Tags: python,mutable,function,class,anti-pattern
 Author: Diego Garcia
@@ -15,7 +15,7 @@ Category: anti-patterns
 <img src="/images/drgarcia1986/is_a_trap.png">
 </figure>
 </br>
-Algo muito comum em várias linguagens de programação é a possibilidade de definir valores default para argumentos de funções e métodos, tornado a utilização desses opcional.
+Algo muito comum em várias linguagens de programação é a possibilidade de definir _valores default_ (valores padrão) para argumentos de funções e métodos, tornando a utilização desses opcional.
 Isso é ótimo, principalmente para manter retrocompatibilidade, porém, o python possui uma pequena armadilha que caso passe despercebida, pode causar sérios problemas, muitas vezes difíceis de serem detectados.
 Essa armadilha ocorre quando usamos valores de tipos `mutáveis` como valor default de argumentos.
 
