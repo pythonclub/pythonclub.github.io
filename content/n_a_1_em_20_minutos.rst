@@ -75,7 +75,7 @@ Os elementos são:
       Responsável por interagir diretamente com a Query.
 
 **Query**
-    * Cria uma estrutura de dados complexa com todos selementos presentes em uma consulta.
+    * Cria uma estrutura de dados complexa com todos os elementos presentes em uma consulta.
       Gera uma representação SQL de um QuerySet.
 
 **SQLCompiler**
@@ -312,7 +312,7 @@ Um problema para inserir dados é quando precisamos iterar sobre um conjunto gra
         'Lucas', 'Teste 01', 'Teste 02', 'Nome 3', # 1000 nomes no total
     ]
 
-    # Inserimos um cadastro para cada nome que existe na nossa varivavel `nomes`
+    # Inserimos um cadastro para cada nome que existe na nossa variável `nomes`
     >> for nome in nomes:
         Cadastro.objects.create(nome=nome)
 
