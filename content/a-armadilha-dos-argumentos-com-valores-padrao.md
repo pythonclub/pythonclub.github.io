@@ -170,6 +170,16 @@ def my_function(my_list=None):
     print(my_list)
 ```
 
+Ou, para deixar o código ainda mais elegante, podemos simplificar a condicional com um simples `or`:
+
+```python
+def my_function(my_list=None):
+    my_list = my_list or []
+    my_list.append(1)
+    print(my_list)
+```
+> Obrigado [Bruno Rocha](http://pythonclub.com.br/author/bruno-cezar-rocha.html) pela sugestão.
+
 Pronto, sem surpresas e sem armadilhas :).
 
 ```python
