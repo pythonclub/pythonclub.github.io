@@ -12,7 +12,7 @@ Category: Python
 
 O objetivo aqui é instalar o PyCharm no Ubuntu e distribuições "irmãs" (como o Mint); estou instalando a versão **Community Edition**, que acredito que é a que muita gente que começa com essa poderosa IDE vai instalar pra dar os primeiros passos, experimentar.
 
-(aliás, bom avisar antes de começar: fiz o guia baseado no Ubuntu 14.04 e no Linux Mint 17.1; mas já fiz o mesmo procedimento em versões anteriores tanto do PyCharm quanto do Ubuntu, e com a versão "completa" do PyCharm, e funcionou bem.)  
+(aliás, bom avisar antes de começar: fiz o guia baseado no Ubuntu 14.04 e no Linux Mint 17.1; mas já fiz o mesmo procedimento em versões anteriores tanto do PyCharm quanto do Ubuntu, e com a versão "Professional" do PyCharm, e funcionou bem.)  
 
 
 ## Parte 1 - instalar o Java
