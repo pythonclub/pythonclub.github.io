@@ -9,10 +9,6 @@ Bitbucket: ehriq
 Twitter: ehriq
 Category: Python
 
-Instalando o PyCharm no Ubuntu (e irmãos)
------------
-
-# Instalando o PyCharm no Ubuntu (e irmãos) 
 
 O objetivo aqui é instalar o PyCharm no Ubuntu e distribuições "irmãs" (como o Mint); estou instalando a versão **Community Edition**, que acredito que é a que muita gente que começa com essa poderosa IDE vai instalar pra dar os primeiros passos, experimentar.
 
