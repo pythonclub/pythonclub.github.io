@@ -51,17 +51,28 @@ Git Hub: https://github.com/rg3915/django1.7
 O que você precisa?
 -------------------
 
-* `VirtualEnv <https://virtualenv.pypa.io/en/latest/>`_ 
+* Instale primeiro o `pip <http://pip.readthedocs.org/en/latest/>`_ 
+
+Primeira opção
 
 .. code-block:: shell
 
-    $ sudo apt-get install -y virtualenv
+    $ wget https://bootstrap.pypa.io/get-pip.py
+    $ sudo python get-pip.py
 
-* `pip <http://pip.readthedocs.org/en/latest/>`_ 
+Segunda opção
 
 .. code-block:: shell
 
     $ sudo apt-get install -y python-pip
+
+* `VirtualEnv <https://virtualenv.pypa.io/en/latest/>`_ 
+
+.. code-block:: shell
+
+    $ sudo pip install virtualenv
+    $ # ou
+    $ sudo apt-get install -y virtualenv
 
 Criando o ambiente
 ------------------
