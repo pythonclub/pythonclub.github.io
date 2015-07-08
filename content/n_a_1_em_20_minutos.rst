@@ -15,7 +15,7 @@ Essa semana fiz uma palestra em um BEV no `Luizalabs <http://luizalabs.com/>`_.
 Resolvi falar sobre Django, pois é um framework que utilizamos na empresa para diversos projetos.
 
 O objetivo é ensinar algumas técnicas simples e que auxiliam a diminuir o número de consultas que realizamos
-no banco de dados.
+no banco de dados.de
 
 Os slides podem acessados `aqui <https://docs.google.com/presentation/d/1SV27J8rFfORxE_JrU5NPahfqDJk6y87MuQUeKVTA0Gw/edit?usp=sharing>`_.
 
@@ -412,7 +412,7 @@ Porém, pode-se fazer dessa maneira:
 
     >> from django.db import connection
 
-    >> Cadastro.objects.delete()
+    >> Cadastro.objects.all().delete()
 
     >> print len(connection.queries)
     1
