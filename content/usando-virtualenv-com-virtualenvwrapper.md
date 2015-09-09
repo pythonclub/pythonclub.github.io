@@ -1,6 +1,6 @@
 Title: Usando virtualenv com virtualenvwrapper
 Slug: usando-virtualenv-com-virtualenvwrapper
-Date: 2015-05-14 00:11
+Date: 2015-09-09 17:49
 Tags: python,desenvolvimento
 Author: André Luiz
 Email:  contato@xdvl.info
