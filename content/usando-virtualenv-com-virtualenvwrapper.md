@@ -17,7 +17,7 @@ O que vejo poucas pessoas usando é o `virtualenvwrapper` que visa a resolver v�
 
 Primeiro vamos a instalação dos pacotes necessários (essa possivelmente deverá ser a ultima vez que você instala algo globalmente no seu sistema):
 
-    $ sudo pip install virtualenv virtualenvwrapper
+    $ sudo pip install -H virtualenv virtualenvwrapper
     
 E adicione a seguinte linha ao final do seu arquivo `.bashrc` (ou equivalente):
 
