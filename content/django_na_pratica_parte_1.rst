@@ -22,6 +22,11 @@ Requisitos
 
 * Python 3.X
 * Virtualenv
+* pip
+
+
+Se precisar de ajuda para instalar o pip, você pode utilizar esse `tutorial <http://stackoverflow.com/questions/6587507/how-to-install-pip-with-python-3>`_.
+
 
 ----------------
 Convenções
@@ -31,7 +36,6 @@ Convenções
 
     $ indica que comando deve ser executado no terminal do Linux
     >>> indica que comando deve ser executado pelo interpretador Python em modo interativo
-
 
 
 ===========
