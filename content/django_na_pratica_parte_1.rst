@@ -23,6 +23,16 @@ Requisitos
 * Python 3.X
 * Virtualenv
 
+----------------
+Convenções
+----------------
+
+.. code-block:: bash
+
+    $ indica que comando deve ser executado no terminal do Linux
+    >>> indica que comando deve ser executado pelo interpretador Python em modo interativo
+
+
 
 ===========
 Instalação
@@ -32,7 +42,7 @@ Ative seu virtualenv e instale o Django na versão 1.8:
 
 .. code-block:: bash
 
-    pip install django==1.8
+    $ pip install django==1.8
 
 
 Se tiver alguma duvida, você pode olhar na `documentação <https://docs.djangoproject.com/en/1.8/intro/install/>`_ como instalar o framework.
@@ -60,7 +70,7 @@ Existem várias opções, para visualizar todas basta executar:
 
 .. code-block:: bash
 
-    >> django-admin.py help
+    $ django-admin.py help
 
 
 Alguns parâmetros importantes são ``--pythonpath`` e ``--settings``.
@@ -77,13 +87,13 @@ Crie um arquivo chamado ``helloworld.py``:
 
 .. code-block:: bash
 
-    >> touch helloworld.py
+    $ touch helloworld.py
 
 Criamos nosso arquivo e agora vamos rodar o `ambiente de desenvolvimento <https://docs.djangoproject.com/en/1.8/ref/django-admin/#runserver-port-or-address-port>`_ do Django :D
 
 .. code-block:: bash
 
-    >> django-admin.py runserver --pythonpath=. --settings=helloworld
+    $ django-admin.py runserver --pythonpath=. --settings=helloworld
 
 
 Dessa forma, estamos dizendo ao Django que nossos arquivos estão no diretório atual e que nossas configurações estão no arquivo ``heloworld`` (não devemos informar a extensão do arquivo no parâmetro).
@@ -109,7 +119,7 @@ Executando novamente nosso ambiente, teremos o seguinte erro:
 
 .. code-block:: bash
 
-    >> django-admin.py runserver --pythonpath=. --settings=helloworld
+    $ django-admin.py runserver --pythonpath=. --settings=helloworld
 
     CommandError: You must set settings.ALLOWED_HOSTS if DEBUG is False.
 
@@ -126,7 +136,7 @@ Com isso já é possível subir o ambiente de desenvolvimento.
 
 .. code-block:: bash
 
-    >> django-admin.py runserver --pythonpath=. --settings=helloworld
+    $ django-admin.py runserver --pythonpath=. --settings=helloworld
 
     Performing system checks...
 
