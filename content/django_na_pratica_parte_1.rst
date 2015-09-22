@@ -117,7 +117,8 @@ Abra o arquivo ``helloworld.py`` e insira uma SECRET_KEY qualquer:
     SECRET_KEY='helloworld'
 
 
-** Para ambiente de teste não existe nenhum problema em deixar nossa SECRET_KEY com esse valor, porém para o ambiente de produção é necessário que seja um valor randômico. **
+Para ambiente de teste não existe nenhum problema em deixar nossa SECRET_KEY com esse valor, porém para o ambiente de produção é necessário que seja um valor randômico. A SECRET_KEY é utilizada em diversas partes da sua aplicação e você NÂO DEVE deixá-la pública para ambientes de produção.
+Mais informações `aqui <https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key>`_.
 
 Executando novamente nosso ambiente, teremos o seguinte erro:
 
