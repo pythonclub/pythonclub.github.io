@@ -47,13 +47,26 @@ Quando você instala a [maquina virtual Python](https://www.python.org/downloads
 Mas e se eu quiser adicionar foguetes e lasers no meu brinquedo novo? Vou ter que esperar o proximo ano?
 A resposta é NÃO. Para isso, nós temos o [**pip**](https://pip.pypa.io)
 
-# <a name="mas-que-raios-e-pip" href="#mas-que-raios-e-pip">Mas que raios é *pip*?</a>
 
-O **pip** é o gerenciador de pacotes oficial de Python. Ele permite, entre várias outras coisas, pesquisar, baixar, instalar, atualizar e desinstalar qualquer uma das mais de **66.625** bibliotecas Python disponiveis no [**PyPI**](https://pypi.python.org/pypi) (servidor oficial de pacotes python) ou fazer o mesmo para qualquer biblioteca python diponivel no Github, Gitlab, Bitbucket entre outros.
+# Indice:
+
+1. [Mas que raios é *pip*?](#mas-que-raios-e-pip)
+2. [Instalando o *pip*.](#instalando-o-pip)
+	- [Instalando o pip utilizando o módulo *ensurepip*.](#instalando-utilizando-ensurepip)
+	- [Instalando o pip utilizando o *get_pip*.py.](#instalando-o-pip-utilizando-o-get-pip)
+	- [Instalando o pip utilizando o gerenciador de pacotes da distribuição.](#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao)
+3. [Utilizando o *pip*.](#utilizando-o-pip)
+	- [ ](# )
+
+
+
+# 1 <a name="mas-que-raios-e-pip" href="#mas-que-raios-e-pip">Mas que raios é *pip*?</a>
+
+O **pip** é o gerenciador de pacotes oficial de Python. Ele permite, entre várias outras coisas, pesquisar, baixar, instalar, atualizar e desinstalar qualquer uma das mais de **66.625** bibliotecas Python disponiveis no [**PyPI**](https://pypi.python.org/pypi) (servidor oficial de pacotes python) ou fazer o mesmo para qualquer biblioteca python diponivel no Github, Gitlab, Bitbucket entre outros, que possua na raiz um arquivo chamado `setup.py`.
 
 Para quem vem de outras linguagens de programação, no que tange o gerenciamento de dependencias, o **pip** é algo *similar* ao [Maven](https://maven.apache.org/) e [Gradle](https://gradle.org/) de Java, ou [Composer](https://getcomposer.org/) de PHP, ou [npm](https://www.npmjs.com/) de NodeJS, ou [gem](https://rubygems.org/pages/download) de Ruby .
 
-# <a name="instalando-o-pip" href="#instalando-o-pip">Instalando o pip</a>
+# 2 <a name="instalando-o-pip" href="#instalando-o-pip">Instalando o pip</a>
 
 Basicamente, há tres formas de instalar o **pip**:
 
@@ -61,7 +74,7 @@ Basicamente, há tres formas de instalar o **pip**:
 2 - utilizar o instalador *get-pip.py*
 3 - utilizar o gerenciador de pacotes da distribuição(no caso de você estiver utilizando Linux)
 
-### 1 - <a name="instalando-utilizando-ensurepip" href="#instalando-utilizando-ensurepip">Instalando o **pip** utilizando o módulo *ensurepip*</a>
+### a - <a name="instalando-utilizando-ensurepip" href="#instalando-utilizando-ensurepip">Instalando o **pip** utilizando o módulo *ensurepip*</a>
 
 A instalação é simples. Basicamente abra o terminal e execute o comando abaixo:
 
@@ -74,7 +87,7 @@ sudo -H python3.4 -m ensurepip --upgrade
 
 
 
-### 2 - <a name="instalando-o-pip-utilizando-o-get-pip" href="#instalando-o-pip-utilizando-o-get-pip">Instalando o **pip** utilizando o *get_pip*.py</a>
+### b - <a name="instalando-o-pip-utilizando-o-get-pip" href="#instalando-o-pip-utilizando-o-get-pip">Instalando o **pip** utilizando o *get_pip*.py</a>
 
 Abra o link https://bootstrap.pypa.io/get-pip.py e salve na pasta Home de seu usuario, abra o terminal no Linux/Mac ou CMD no Windows e execute o comando abaixo:
 
@@ -110,7 +123,7 @@ wget -Hr https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python
 
 Para saber mais sobre virtualenv e virtualenvwrapper consulte: TODO: COLOCAR LINK DO ARTIGO virtualenv e virtualenvwrapper do Andre AQUI
 
-### 3 - <a name="instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao" href="#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao">Instalando o **pip** utilizando o gerenciador de pacotes da distribuição</a>
+### c - <a name="instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao" href="#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao">Instalando o **pip** utilizando o gerenciador de pacotes da distribuição</a>
 
 > Esse é o método que eu menos recomendo, porque a grande maioria das distribuições Linux possui uma versão muito antiga do *pip* no repositório, geralmente a versão 1.5.3, o que é muito ruim porque o *pip* (na data em que escrevi esse artivo) está na versão 7.1.2
 
@@ -132,9 +145,9 @@ ou para instalar pip para Python3:
 sudo apt-get install python3-pip
 ```
 
-# <a name="utilizando-o-pip" href="#utilizando-o-pip">Utilizando o pip</a>
+# 3 <a name="utilizando-o-pip" href="#utilizando-o-pip">Utilizando o pip</a>
 
-Como toda ferramenta de linha de comando, você pode ver todos os parametros de linha de comando utilizando o parametro `--help` para mostrar o texto de ajuda.
+Como toda ferramenta de linha de comando, você pode ver todos os parametros de linha de comando utilizando o parametro `--help` ou para mostrar o texto de ajuda.
 
 ```bash
 pip3.4 --help
@@ -177,8 +190,9 @@ General Options:
                               Don't periodically check PyPI to determine whether a new version of pip is available for download. Implied with --no-index.
 ```
 
+Cada um dos comandos descritos na sessão `Commands` tambem pode possuir alguns parametros adicionais.
 
-Você pode ver a ajuda expandida, executando:
+Você pode ver esses parametros adicionais, acessando a ajuda expandida, simplesmente executando:
 
 ```
 pip3.4 comando-que-voce-quer-ajuda --help
@@ -226,7 +240,7 @@ Por padrão, o pip tentará obter a versão mais recente disponivel para o pacot
 pip3.4 install virtualenv==12.1.1
 ```
 
-Novamente, vou utilizar o virtualenv como exemplo. O virtualenv possui disponivel, em ordem da mais recente para a mais antiga as versões `13.1.2`, `13.1.1`, `13.1.0`, `13.0.3`, `13.0.2`, `13.0.1`, `13.0.0`, `12.1.1`, `12.1.0`
+Novamente, vou utilizar o virtualenv como exemplo. O virtualenv possui disponivel, em ordem da mais recente para a mais antiga, as versões `13.1.2`, `13.1.1`, `13.1.0`, `13.0.3`, `13.0.2`, `13.0.1`, `13.0.0`, `12.1.1`, `12.1.0`
 Agora, vamos supor que você queira que o pip baixe a ultima versão disponivel abaixo da versão `13.1.2`, ou seja a versão `13.1.1`.
 
 ```bash
