@@ -1,6 +1,6 @@
 Title: Instalando e configurando o PIP - O gerenciador de pacotes Python
 Slug: instalando-e-configurando-o-pip-o-gerenciador-de-pacotes-python
-Date: 2015-09-20 02:22
+Date: 2015-10-05 02:22
 Tags: python,pip,pacote,biblioteca,pypi
 Author: Fábio C. Barrionuevo da Luz
 Email:  bnafta@gmail.com
@@ -52,9 +52,9 @@ A resposta é NÃO. Para isso, nós temos o [**pip**](https://pip.pypa.io)
 
 1. [Mas que raios é *pip*?](#mas-que-raios-e-pip)
 2. [Instalando o *pip*.](#instalando-o-pip)
-	- [Instalando o pip utilizando o módulo *ensurepip*.](#instalando-utilizando-ensurepip)
-	- [Instalando o pip utilizando o *get_pip*.py.](#instalando-o-pip-utilizando-o-get-pip)
-	- [Instalando o pip utilizando o gerenciador de pacotes da distribuição.](#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao)
+	2.1 [Instalando o pip utilizando o módulo *ensurepip*.](#instalando-utilizando-ensurepip)
+	2.2 [Instalando o pip utilizando o *get_pip*.py.](#instalando-o-pip-utilizando-o-get-pip)
+	2.3 [Instalando o pip utilizando o gerenciador de pacotes da distribuição.](#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao)
 3. [Utilizando o *pip*.](#utilizando-o-pip)
 	- [ ](# )
 
@@ -70,15 +70,15 @@ Para quem vem de outras linguagens de programação, no que tange o gerenciament
 
 Basicamente, há tres formas de instalar o **pip**:
 
-1 - utilizar o módulo *ensurepip*
-2 - utilizar o instalador *get-pip.py*
-3 - utilizar o gerenciador de pacotes da distribuição(no caso de você estiver utilizando Linux)
+2.1 - utilizar o módulo *ensurepip*
+2.2 - utilizar o instalador *get-pip.py*
+2.3 - utilizar o gerenciador de pacotes da distribuição(no caso de você estiver utilizando Linux)
 
-### a - <a name="instalando-utilizando-ensurepip" href="#instalando-utilizando-ensurepip">Instalando o **pip** utilizando o módulo *ensurepip*</a>
+### 2.1 <a name="instalando-utilizando-ensurepip" href="#instalando-utilizando-ensurepip">Instalando o **pip** utilizando o módulo *ensurepip*</a>
 
 A instalação é simples. Basicamente abra o terminal e execute o comando abaixo:
 
-```
+```bash
 sudo -H python3.4 -m ensurepip --upgrade
 ```
 
@@ -87,9 +87,9 @@ sudo -H python3.4 -m ensurepip --upgrade
 
 
 
-### b - <a name="instalando-o-pip-utilizando-o-get-pip" href="#instalando-o-pip-utilizando-o-get-pip">Instalando o **pip** utilizando o *get_pip*.py</a>
+### 2.2 <a name="instalando-o-pip-utilizando-o-get-pip" href="#instalando-o-pip-utilizando-o-get-pip">Instalando o **pip** utilizando o *get_pip*.py</a>
 
-Abra o link https://bootstrap.pypa.io/get-pip.py e salve na pasta Home de seu usuario, abra o terminal no Linux/Mac ou CMD no Windows e execute o comando abaixo:
+Abra o link [https://bootstrap.pypa.io/get-pip.py](https://bootstrap.pypa.io/get-pip.py) e salve na pasta Home de seu usuario, abra o terminal no Linux/Mac ou CMD no Windows e execute o comando abaixo:
 
 No Windows:
 
@@ -98,6 +98,7 @@ python3.4 get_pip.py --upgrade
 ```
 
 No Linux e no Mac:
+
 ```bash
 sudo -H python3.4 get_pip.py --upgrade
 ```
@@ -105,7 +106,7 @@ sudo -H python3.4 get_pip.py --upgrade
 No Linux ou Mac, você pode executar o download e instalação em uma unica linha:
 
 ```bash
-wget -Hr https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python3.4 /tmp/get-pip.py --upgrade;
+wget -H https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python3.4 /tmp/get-pip.py --upgrade;
 ```
 
 
@@ -118,16 +119,24 @@ Os únicos pacotes python que eu sempre a nivel de sistema operacional são o pr
 Eu os instalo, em um unico comando:
 
 ```bash
-wget -Hr https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python3.4 /tmp/get-pip.py virtualenv virtualenvwrapper --upgrade;
+wget -H https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python3.4 /tmp/get-pip.py virtualenv virtualenvwrapper --upgrade;
 ```
 
-Para saber mais sobre virtualenv e virtualenvwrapper consulte: TODO: COLOCAR LINK DO ARTIGO virtualenv e virtualenvwrapper do Andre AQUI
+> **Problemas conhecidos:** Infelizmente, `get-pip.py` sobreescreve o comando `pip`, vinculando-o a ultima versão do Python que você utilizou para executar o `get-pip.py`, ou seja, se você utilizou Python3.4 para executar `get-pip.py`, o comando `pip` vai instalar pacotes no Python3.4, se logo após, você executar `get-pip.py` utilizando Python2.7, `pip` vai instalar pacotes no Python2.7 e não mais no Python3.4.
 
-### c - <a name="instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao" href="#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao">Instalando o **pip** utilizando o gerenciador de pacotes da distribuição</a>
+> Esse problema já foi reportado nos issues [#2936](https://github.com/pypa/pip/issues/2936) e [#2973](https://github.com/pypa/pip/issues/2973).
 
-> Esse é o método que eu menos recomendo, porque a grande maioria das distribuições Linux possui uma versão muito antiga do *pip* no repositório, geralmente a versão 1.5.3, o que é muito ruim porque o *pip* (na data em que escrevi esse artivo) está na versão 7.1.2
 
-No Ubuntu e no Debian e derivados, você pode instalar o *pip* utilizando o apt-get. Abra o terminal e faça:
+Exemplo:
+<script type="text/javascript" src="https://asciinema.org/a/27354.js" id="asciicast-27354" async></script>
+
+
+### 2.3 <a name="instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao" href="#instalando-o-pip-utilizando-o-gerenciador-de-pacotes-da-distribuicao">Instalando o **pip** utilizando o gerenciador de pacotes da distribuição</a>
+
+> Esse é o método que eu menos recomendo, porque a grande maioria das distribuições Linux possui uma versão muito antiga do *pip* no repositório, geralmente a versão 1.5.3, o que é muito ruim porque, alem dessa versão do *pip* ser muito antiga (na data em que escrevi esse artivo a ultima versão disponivel era a 7.1.2), a versão 1.5.3 tem vários bugs chatos.
+
+
+No Ubuntu, no Debian e derivados, você pode instalar o *pip* utilizando o apt-get. Abra o terminal e faça:
 
 Primeiramente, atualize as informações sobre pacotes:
 
@@ -147,7 +156,23 @@ sudo apt-get install python3-pip
 
 # 3 <a name="utilizando-o-pip" href="#utilizando-o-pip">Utilizando o pip</a>
 
-Como toda ferramenta de linha de comando, você pode ver todos os parametros de linha de comando utilizando o parametro `--help` ou para mostrar o texto de ajuda.
+*pip* é uma ferramenta de linha de comando e um módulo python, então existem duas formas de utilizar o *pip*:
+
+1. Utilizando o comando `pipX.Y` onde `X` e `Y` são equivalentes a versão do interpretador Python que você está utilizando, por exemplo o *pip* para `Python2.7` é `pip2.7`, e o para `Python3.4` é `pip3.4`.
+
+```bash
+pip3.4 --help
+```
+
+2. Utilizando o pip diretamente pelo módulo Python.
+
+```bash
+python3.4 -m pip --help
+```
+
+    > Eu recomendo utilizar essa forma, porque evita confusão na hora de instalar pacotes, como descrito acima, em "Problemas conhecidos."
+
+Como toda ferramenta de linha de comando, você pode ver todos os parametros de linha de comando e mostrar o texto de ajuda utilizando o parametro `--help`.
 
 ```bash
 pip3.4 --help
@@ -194,13 +219,13 @@ Cada um dos comandos descritos na sessão `Commands` tambem pode possuir alguns 
 
 Você pode ver esses parametros adicionais, acessando a ajuda expandida, simplesmente executando:
 
-```
+```bash
 pip3.4 comando-que-voce-quer-ajuda --help
 ```
 
 Exemplo:
 
-```
+```bash
 pip3.4 install --help
 ```
 
@@ -278,6 +303,46 @@ pip3.4 uninstall virtualenv --yes
 
 
 # Perguntas Frequentes:
+
+```bash
+fabio@luzfcb:~$ wget -H https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python3.4 /tmp/get-pip.py virtualenv virtualenvwrapper --upgrade
+
+--2015-10-05 16:58:32--  https://bootstrap.pypa.io/get-pip.py
+Resolvendo bootstrap.pypa.io (bootstrap.pypa.io)... 23.235.46.175
+Conectando-se a bootstrap.pypa.io (bootstrap.pypa.io)|23.235.46.175|:443... conectado.
+A requisição HTTP foi enviada, aguardando resposta... 200 OK
+Tamanho: 1412744 (1,3M) [text/x-python]
+Salvando em: “/tmp/get-pip.py”
+
+100%[================================>] 1.412.744    438KB/s   em 3,2s   
+
+2015-10-05 16:58:37 (438 KB/s) - “/tmp/get-pip.py” salvo [1412744/1412744]
+
+FINALIZADO --2015-10-05 16:58:37--
+Tempo total decorrido: 5,0s
+Baixados: 1 arquivos, 1,3M em 3,2s (438 KB/s)
+[sudo] password for fabio: 
+Sinto muito, tente novamente.
+[sudo] password for fabio: 
+Collecting pip
+  Using cached pip-7.1.2-py2.py3-none-any.whl
+Collecting setuptools
+  Downloading setuptools-18.3.2-py2.py3-none-any.whl (462kB)
+    100% |████████████████████████████████| 462kB 124kB/s 
+Collecting virtualenv
+  Downloading virtualenv-13.1.2-py2.py3-none-any.whl (1.7MB)
+    100% |████████████████████████████████| 1.7MB 204kB/s 
+Collecting virtualenvwrapper
+  Downloading virtualenvwrapper-4.7.1-py2.py3-none-any.whl
+Collecting wheel
+  Downloading wheel-0.26.0-py2.py3-none-any.whl (63kB)
+    100% |████████████████████████████████| 65kB 648kB/s 
+Collecting virtualenv-clone (from virtualenvwrapper)
+  Downloading virtualenv-clone-0.2.6.tar.gz
+setuptools must be installed to install from a source distribution
+
+```
+
 
 # E o que vem depois?
 
