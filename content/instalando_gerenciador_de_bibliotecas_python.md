@@ -159,20 +159,17 @@ sudo apt-get install python3-pip
 *pip* é uma ferramenta de linha de comando e um módulo python, então existem duas formas de utilizar o *pip*:
 
 1. Utilizando o comando `pipX.Y` onde `X` e `Y` são equivalentes a versão do interpretador Python que você está utilizando, por exemplo o *pip* para `Python2.7` é `pip2.7`, e o para `Python3.4` é `pip3.4`.
-
 ```bash
 pip3.4 --help
 ```
-
 2. Utilizando o pip diretamente pelo módulo Python.
-
 ```bash
 python3.4 -m pip --help
 ```
 
-    > Eu recomendo utilizar essa forma, porque evita confusão na hora de instalar pacotes, como descrito acima, em "Problemas conhecidos."
+> Eu recomendo utilizar essa forma, porque evita confusão na hora de instalar pacotes, como descrito acima, em "Problemas conhecidos."
 
-Como toda ferramenta de linha de comando, você pode ver todos os parametros de linha de comando e mostrar o texto de ajuda utilizando o parametro `--help`.
+Como toda ferramenta de linha de comando, você pode ver todos os parametros suportados e mostrar o texto de ajuda utilizando o parametro `--help`.
 
 ```bash
 pip3.4 --help
