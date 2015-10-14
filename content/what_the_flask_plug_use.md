@@ -77,13 +77,228 @@ Atualmente a versão do nosso CMS está funcional porém bem feinha, não trabal
 
 Com a ajuda do Bootstrap e apenas uns ajustes básicos no front end podemos transformar o layout em algo muito mais apresentável.
 
+Usaremos a extensão Flask-Bootstrap que traz alguns templates de base e utilidades para uso do Bootstrap no Flask.
+
+Comece editando o arquivo de requirements adicionando **Flask-Bootstrap**
+
+Arquivo **requirements.txt**
+```
+https://github.com/mitsuhiko/flask/tarball/master
+dataset
+nose
+Flask-Bootstrap
+```
 
 
+Agora instale as dependencias em sua virtualenv.
+
+```bash
+pip install -r requirements.txt --upgrade
+```
 
 
+Agora com o Flask-Bootstrap instalado basta iniciarmos a extensão durante a criação de nosso app. 
+
+Editando o arquivo **news_app.py** incluiremos:
+
+```python
+...
+from flask_bootstrap import Bootstrap
+
+def create_app(mode):
+    ...
+    ...
+    Bootstrap(app)
+    return app
+``` 
+
+Sendo que o arquivo completo ficaria:
+
+```python
+# coding: utf-8
+from os import path
+from flask import Flask
+from .blueprints.noticias import noticias_blueprint
+from flask_bootstrap import Bootstrap
 
 
+def create_app(mode):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
 
+    app = Flask("wtf",
+                instance_path=instance_path,
+                instance_relative_config=True)
+
+    app.config.from_object('wtf.default_settings')
+    app.config.from_pyfile('config.cfg')
+
+    app.config['MEDIA_ROOT'] = path.join(
+        app.config.get('PROJECT_ROOT'),
+        app.instance_path,
+        app.config.get('MEDIA_FOLDER')
+    )
+
+    app.register_blueprint(noticias_blueprint)
+
+    Bootstrap(app)
+    return app
+```
+
+
+As extensões Flask seguem dois padrões de inicialização: Imediato e Lazy, é recomendado que toda extensão siga este protocolo.
+
+Inicialização imediata:
+
+```python
+from flask_nome_da_extensao import Extensao
+app = Flask(__name__)
+Extensao(app)
+```
+
+Da forma acima sempre importamos uma classe com o nome da extensao e então passamos o nosso **app** como parametro na inicialiação da extensão. Assim durante o init da extensão ela poderá injetar templates, modificar rotas e adicionar configs no app que foi passado como parametro.
+
+Inicialização Lazy:
+
+```python
+from flask_nome_da_extensao import Extensao
+app = Flask(__name__)
+extensao = Extensao()  # note que não é passado nada como parametro!
+
+
+# em qualquer momento no seu código
+Extensao.init_app(app)  
+```
+
+Geralmente o primeiro modo **inicio imediato** é o mais utilizado, o carregamento Lazy é útil em situações mais complexas como por exemplo se o seu sistema estiver esperando a conexão com um banco de dados.
+
+> NOTE: Toda extensão do Flask deve começar com o nome **flask_** para ser considerada uma extensão dentro dos padrões.
+
+No nosso caso utilizamos **Bootstrap(app)** e agora o bootstrap já está disponível para ser utilizado em nossos templates!
+
+### Customizando os templates com o BootStrap.
+
+Precisaremos efetuar algumas mudanças nos templates para que eles utilizem os estilos do Bootstrap 3.x
+
+> Não entrarei em detalhes a respeito da estensão Flask-Bootstrap pois temos mais uma série de extensões para instalar, mas você pode consultar a [documentação oficial](https://pythonhosted.org/Flask-Bootstrap/basic-usage.html) para saber mais a respeito dos blocos de template e utilidades disponíveis.
+
+### Comece alterando o template **base.html** para:
+
+```html
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/utils.html" as utils %}
+{% block title %} {{title or "Notícias"}} {% endblock %}
+{% block navbar -%}
+    <nav class="navbar navbar-default">
+       <a class="navbar-brand" href="#"><img src="{{url_for('static', filename='generic_logo.gif')}}" style="height:30px;"></a>
+       <ul class="nav navbar-nav">
+         <li><a href="{{url_for('noticias.index')}}">HOME</a> </li>
+         <li><a href="{{url_for('noticias.cadastro')}}">CADASTRO</a></li>
+       </ul>
+    </nav>
+{%- endblock navbar %}
+
+{% block content %}
+ <div class="container">
+  {%- with messages = get_flashed_messages(with_categories=True) %}
+  {%- if messages %}
+    <div class="row">
+      <div class="col-md-12">
+        {{utils.flashed_messages(messages)}}
+      </div>
+    </div>
+  {%- endif %}
+  {%- endwith %}
+    <div class="jumbotron">
+      {% block news %}
+      {% endblock %}
+    </div>
+{%- endblock content%}
+```
+
+Algumas coisas continuaram iguais ao template antigo, porém agora estamos utilizando blocos definidos pelo Flask-Bootstrap e também adicionamos um espaço para as flash-messages.
+
+### Altere o template index.html
+
+```html
+{% extends "base.html" %}
+{% block news %}
+<h1>Todas as notícias</h1>
+<ul>
+    {% for noticia in noticias %}
+    <li>
+        <a href="{{url_for('noticias.noticia', noticia_id=noticia.id)}}">
+         {{noticia.titulo}}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+```
+
+apenas mudamos o nome do bloco utilizado de **content** para **news** e adicionamos um título.
+
+### Altere o template noticia.html
+
+```html
+{% extends "base.html" %}
+{% block title%}
+    {{noticia.titulo}}
+{% endblock%}
+
+{% block news %}
+    <h1>{{noticia.titulo}}</h1>
+    {% if noticia.imagem %}
+        <img src="{{ url_for('noticias.media', filename=noticia.imagem) }}" width="300" />
+    {% endif %}
+    <hr />
+    <p>
+        {{noticia.texto|safe}}
+    </p>
+{% endblock %}
+```
+
+Novamente mudamos o bloco principal de **content** para **news**
+
+### Altere os templates cadastro.html e cadastro_sucesso.html
+
+Altere o bloco utilizado de **content** para **news** e o restante deixe como está por enquanto.
+
+```html
+{% extends "base.html" %}
+{% block news %}
+<form method="post" action="{{ url_for('noticias.cadastro') }}" enctype="multipart/form-data">
+   <label>Titulo:<br />
+        <input type="text" name="titulo" id="titulo" />
+   </label>
+   <br />
+   <label>Texto:<br />
+        <textarea name="texto" id="texto"></textarea>
+   </label>
+   <br />
+   <label> Imagem:<br />
+      <input type="file" name="imagem" id="imagem" />
+   </label>
+   <input type="submit" value="Postar" />
+</form>
+{% endblock %}
+```
+
+### Resultado Final!
+
+Antes do bootstrap
+
+<figure style="border:1px solid black;">
+<img src="/images/rochacbruno/wtf_index.png" alt="wtf_index" >
+</figure>
+
+e depois:
+
+<figure>
+<img src="/images/rochacbruno/bootstrap.png" alt="wtf_index_bootstrap" >
+</figure>
 
 > A versão final do app está no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect)
 
