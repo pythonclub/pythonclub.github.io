@@ -13,7 +13,7 @@ Category: heroku
 
 
 <figure style="float:left;">
-<img style="border-radius: 50%;" src="/images/drgarcia1986/heroku.png">
+<img src="/images/drgarcia1986/heroku.png">
 </figure>
 </br>
 
@@ -37,7 +37,7 @@ O Heroku utiliza o Git para realizar o deploy dos app. Você verá mais adianta 
 Bem, você vai criar sua aplicação em python não? Além da boa organização e isolamento para seu ambiente proporcionado pelo **virtualenv**, manter seu app em um virtualenv proporciona algumas praticidades.
 
 ### Instalando o Toolbet
-O **Toolbet** é uma poderosa ferramente de linha de comando do heroku. É através dela que iremos criar nosso app no heroku.
+O **Toolbet** é uma poderosa ferramenta de linha de comando do heroku. É através dela que iremos criar nosso app no heroku.
 No ubuntu (ou outras distribuições baseadas no debian) para instalar não poderia ser diferente, basta usar o todo poderoso `apt-get`.
 ```bash
 user@machine:~/$ sudo apt-get install heroku 
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
 
 ```
-Um detalhe importante fica por conta da variável `port`. No heroku não é possível subir o app na porta 5000 (porta default do Flask), mas o heroku seta a variável de ambiente `PORT` em seu ambiente, definindo em qual porta a aplicação deve rodar. Da maneira como está implementado nosso app, iremos conseguir podar tanto no heroku como localmente (através da porta 5000).
+Um detalhe importante fica por conta da variável `port`. No heroku não é possível subir o app na porta 5000 (porta default do Flask), mas o heroku seta a variável de ambiente `PORT` em seu ambiente, definindo em qual porta a aplicação deve rodar. Da maneira como está implementado nosso app, iremos conseguir rodar tanto no heroku como localmente (através da porta 5000).
 
 O heroku precisa conhecer as dependências de nosso app para que, no momento do deploy ele construa o ambiente de forma correta. Seguindo o padrão, o heroku procura pelas dependências através do arquivo `requirements.txt`. Como já isolamos nosso app em um virtualenv, basta utilizar o `pip freeze` para listar os packages instalados e direcionar a saida desse comando para o arquivo _requirements.txt_
 ```bash
