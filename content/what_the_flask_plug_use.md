@@ -61,7 +61,7 @@ Nesta série estamos desenvolvendo um mini CMS para publicação de notícias, o
 - [Flask Cache](#flask_cache) - Para não estressar o Mongo
 - [Flask Email](#flask_email) - Para avisar os autores que tem novo comentário
 - [Flask Queue](#flask_queue) - Pare enviar o email assincronamente e não bloquear o request
-- [Flask Classy](#flask_classy) - Um jeito fácil de criar API REST e Views 
+- [Flask Classy](#flask_classy) - Um jeito fácil de criar API REST e Views
 - [Flask Oauth e OauthLib](#flask_oauth) - Login com o Feicibuque e tuinter
 
 > **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf/tree/extended), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
@@ -97,7 +97,7 @@ pip install -r requirements.txt --upgrade
 ```
 
 
-Agora com o Flask-Bootstrap instalado basta iniciarmos a extensão durante a criação de nosso app. 
+Agora com o Flask-Bootstrap instalado basta iniciarmos a extensão durante a criação de nosso app.
 
 Editando o arquivo **news_app.py** incluiremos:
 
@@ -110,7 +110,7 @@ def create_app(mode):
     ...
     Bootstrap(app)
     return app
-``` 
+```
 
 Sendo que o arquivo completo ficaria:
 
@@ -168,7 +168,7 @@ extensao = Extensao()  # note que não é passado nada como parametro!
 
 
 # em qualquer momento no seu código
-Extensao.init_app(app)  
+Extensao.init_app(app)
 ```
 
 Geralmente o primeiro modo **inicio imediato** é o mais utilizado, o carregamento Lazy é útil em situações mais complexas como por exemplo se o seu sistema estiver esperando a conexão com um banco de dados.
@@ -300,7 +300,111 @@ e depois:
 <img src="/images/rochacbruno/bootstrap.png" alt="wtf_index_bootstrap" >
 </figure>
 
-> A versão final do app está no [github](https://github.com/rochacbruno/wtf/tree/almost_perfect)
+
+
+> O diff com as mudanças que foram feitas pode ser acessado neste [link](https://github.com/rochacbruno/wtf/commit/5645de0fb208fc9ee34e502d901c057c9a3f2445)
+
+
+Agora que o app já está com uma cara mais bonita, vamos passar para o próximo requisito: Banco de Dados.
+
+Até agora usamos o **dataset** que é uma mão na roda! integrando facilmente o nosso projeto com bancos como MySQL, Postgres ou SQLite.
+
+Porém nosso site de notícias precisa utilizar **MongoDB** e para isso vamos recorrer ao **Flask-MongoEngine**
+
+## <a href="#mongoengine" name="mongoengine"> Utilizando MongoDB com Flask</a>
+
+Vamos migrar do Dataset + SQlite para MongoDB e obviamente você irá precisar do MongoDb Server rodando, você pode preferir instalar o Mongo localmente se estiver em uma máquina Linux/Debian: ``sudo apt-get install mongodb`` ou siga instruções no site oficial do Mongo de acordo com seu sistema operacional.
+
+Uma opção melhor é utilizar o **docker** para executar o MongoDB, desta forma você não precisa instalar o servidor de banco de dados em seu computador, precisa apenas do Docker e da imagem oficial do Mongo.
+
+Vou mostrar os preocedimentos para instalação e execução no Linux/Debian, mas você pode tranquilamente utilizar outro S.O bastando seguir as instruções encontradas no site do docker.
+
+#### Instalando o docker
+
+No linux a maneira mais fácil de instalar o Docker é rodando o seguinte comando
+
+```
+wget -qO- https://get.docker.com/ | sh
+```
+
+Se você precisar de ajuda ou estiver usando um sistema operacional alternativo pode seguir as [instruções do site oficial](http://docs.docker.com/linux/started/)
+
+
+#### Executando um container MongoDB
+
+No DockerHub está disponível a imagem oficial do Mongo, basta executar o comando abaixo para ter o Mongo rodando em um container.
+
+```
+docker run -d -v $PWD/mongodata:/data/db -p 27017:27017 mongo
+```
+
+A parte do ``$PWD/mongodata:/data/db`` pode ser substituida pelo caminho de sua preferencia, este é o local onde o Mongo irá salvar os dados.
+
+> Se preferir executar no modo efemero (perdendo todos os dados ao reiniciar) execute: ``docker run -d -p 27017:27017 mongo``
+
+
+#### Instalando o MongoDB localmente (não recomendado, use o docker!)
+
+Você pode preferir não usar o Docker e instalar o Mongo localmente, [baixe o mongo](https://www.mongodb.org/downloads) descompacte, abra um console separado e execute: ``./bin/mongod --dbpath /tmp/`` lembrando de trocar o ``/tmp`` por um diretório onde queira salvar seus dados.
+
+Se preferir utilize os pacotes oficiais do seu sistema operacional para instalar o Mongo.
+
+> IMPORTANTE: Para continuar você precisa ter uma instância do MongoDB rodando localmente, no Docker ou até mesmo em um servidor remoto se preferir.
+
+## Flask-Mongoengine
+
+Adicione a extensão Flask-Mongoengine ao seu arquivo requirements.txt
+
+```
+https://github.com/mitsuhiko/flask/tarball/master
+flask-mongoengine
+nose
+Flask-Bootstrap
+```
+
+Agora execute ``pip install -r requirements.txt --upgrade`` estando na virtualenv de seu projeto.
+
+### Substituindo o Dataset pelo MongoEngine
+
+Agora vamos substituir o **dataset** pelo **MongoEngine**, por padrão o MongoEngine tentará conectar no **localhost** na porta **27017** e utilizar o banco de dados **test**. Mas no nosso caso é essencial informarmos exatamente as configurações desejadas.
+
+No arquivo de configuração em ``development_instance/config.cfg`` adicione as seguintes linhas:
+
+```python
+MONGODB_DB = "noticias"
+MONGODB_HOST = "localhost"  # substitua se utilizar um server remoto
+MONGODB_PORT = 27017
+```
+
+Agora vamos ao arquivo ``db.py`` vamos definir a conexão com o banco de dados Mongo, apague todo o conteúdo do arquivo e substitua por:
+
+**db.py**
+
+```python
+# coding: utf-8
+from flask_mongoengine import MongoEngine
+db = MongoEngine()
+```
+
+Crie um novo arquivo chamado **models.py**
+
+```python
+# coding: utf-8
+from .db import db
+
+
+class Noticia(db.Document):
+    titulo = db.StringField()
+    texto = db.StringField()
+    imagem = db.StringField()
+
+```
+
+
+
+
+
+> A versão final do app está no [github](https://github.com/rochacbruno/wtf/tree/extended)
 
 Nesta versão é possivel executar os tests com ``nosetests tests/`` na raiz do projeto! **escreva mais testes!**
 
