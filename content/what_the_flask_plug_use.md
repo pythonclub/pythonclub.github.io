@@ -400,7 +400,140 @@ class Noticia(db.Document):
 
 ```
 
+Nosso próximo passo é alterar as views para que o armazenamento seja feito no MongoDB ao invés do SQLite.
 
+No MongoEngine algumas operações serão um pouco diferente, alguns exemplos:
+
+**Criar um novo registro de Noticia**
+
+```python
+Noticia.objects.create(titulo='Hello', texto='World', imagem='caminho/imagem.png')
+```
+
+**Buscar todas as Noticias**
+
+```python
+Noticia.objects.all()
+```
+
+**Buscar uma noticia pelo id**
+```python
+Noticia.objects.get(id='xyz')
+```
+
+
+Altere ``blueprints/noticias.py`` para:
+
+```python
+# coding: utf-8
+import os
+from werkzeug import secure_filename
+from flask import (
+    Blueprint, request, current_app, send_from_directory, render_template
+)
+from ..models import Noticia
+
+noticias_blueprint = Blueprint('noticias', __name__)
+
+
+@noticias_blueprint.route("/noticias/cadastro", methods=["GET", "POST"])
+def cadastro():
+    if request.method == "POST":
+        dados_do_formulario = request.form.to_dict()
+        imagem = request.files.get('imagem')
+        if imagem:
+            filename = secure_filename(imagem.filename)
+            path = os.path.join(current_app.config['MEDIA_ROOT'], filename)
+            imagem.save(path)
+            dados_do_formulario['imagem'] = filename
+        nova_noticia = Noticia.objects.create(**dados_do_formulario)
+        return render_template('cadastro_sucesso.html',
+                               id_nova_noticia=nova_noticia.id)
+    return render_template('cadastro.html', title=u"Inserir nova noticia")
+
+
+@noticias_blueprint.route("/")
+def index():
+    todas_as_noticias = Noticia.objects.all()
+    return render_template('index.html',
+                           noticias=todas_as_noticias,
+                           title=u"Todas as notícias")
+
+
+@noticias_blueprint.route("/noticia/<noticia_id>")
+def noticia(noticia_id):
+    noticia = Noticia.objects.get(id=noticia_id)
+    return render_template('noticia.html', noticia=noticia)
+
+
+@noticias_blueprint.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(current_app.config.get('MEDIA_ROOT'), filename)
+```
+
+Lembre-se que nós ainda não conectamos ao Mongo Server apenas definimos como será a conexão, então precisaremos agora usar o método lazy de inicialização de extensões chamando o ``init_app()`` do MongoEngine.
+
+No arquivo ``news_app.py`` adicione as seguintes linhas.
+
+```python
+...
+from db import db
+
+def create_app(mode):
+    ...
+    db.init_app(app)
+    return app
+```
+
+Sendo que o arquivo final será:
+
+```python
+# coding: utf-8
+from os import path
+from flask import Flask
+from .blueprints.noticias import noticias_blueprint
+from flask_bootstrap import Bootstrap
+from db import db
+
+
+def create_app(mode):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
+
+    app = Flask("wtf",
+                instance_path=instance_path,
+                instance_relative_config=True)
+
+    app.config.from_object('wtf.default_settings')
+    app.config.from_pyfile('config.cfg')
+
+    app.config['MEDIA_ROOT'] = path.join(
+        app.config.get('PROJECT_ROOT'),
+        app.instance_path,
+        app.config.get('MEDIA_FOLDER')
+    )
+
+    app.register_blueprint(noticias_blueprint)
+
+    Bootstrap(app)
+    db.init_app(app)
+    return app
+```
+
+Execute o programa
+
+```python
+python run.py
+```
+
+E veja se consegue inserir algumas noticias acessando [http://localhost:5000](http://localhost:5000)
+
+Para explorar os dados do MongoDB visualmente você pode utilizar o RoboMongo.
+
+<figure>
+<img src="/images/rochacbruno/robomongo.png" alt="wtf_robomongo" >
+</figure>
 
 
 
