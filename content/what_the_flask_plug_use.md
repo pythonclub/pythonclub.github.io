@@ -1,6 +1,6 @@
 Title: What the Flask? Pt-3 Plug & Use - extensões essenciais para iniciar seu projeto
 Slug: what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto
-Date: 2015-02-09 00:00
+Date: 2015-10-23 00:00
 Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
@@ -40,29 +40,20 @@ What The Flask - 3/6
 
 Nesta série estamos desenvolvendo um mini CMS para publicação de notícias, o código está disponível no [github](http://github.com/rochacbruno/wtf) e para cada fase da evolução do projeto tem uma branch diferente. Esse aplicativo de notícias tem os seguintes requisitos:
 
+- Banco de dados MongoDB
 - Controle de acesso para que apenas editores autorizados publiquem notícias
 - Interface administrativa para notícias, categorias, tags, media e usuários
 - Front end usando o Bootstrap
 - Cache das notícias para minimizar o acesso ao banco de dados
 - Banco de dados MongoDB
-- Sistema de comentários nas noticias com a possibilidade de login social (Oauth)
-- Envio de email para o autor a cada novo comentário (sistema de envio assincrono em uma fila Celery)
-- Publicação de notícia em HTML, Feed Atom
-- API REST para consulta e publicação de notícias (para app mobile)
-
-# Quais extensões usaremos?
 
 > **NOTE:** Existem várias extensões para Flask, algumas são aprovadas pelos desenvolvedores e entram para a lista disponível no site oficial, algumas entram para a listagem do metaflask (projeto em desenvolvimento), e uma grande parte está apenas no github. Como existem várias extensões que fazem a mesma coisa, as vezes é dificil escolher qual delas utilizar, eu irei mostrar aqui apenas as que eu utilizo e que já tenho experiência, mas isso não quer dizer que sejam as melhores, sinta-se a vontade para tentar com outras e incluir sua sugestão nos comentários.
 
 - [Flask Bootstrap](#bootstrap) - Para deixar as coisas bonitinhas
 - [Flask MongoEngine](#mongoengine) - Para armazenar os dados em um banco que é fácil fácil!
-- [Flask-Admin](#flask_admin) - Um admin tão poderoso quanto o Django Admin
 - [Flask Security](#flask_security) - Controle de acesso
+- [Flask-Admin](#flask_admin) - Um admin tão poderoso quanto o Django Admin
 - [Flask Cache](#flask_cache) - Para não estressar o Mongo
-- [Flask Email](#flask_email) - Para avisar os autores que tem novo comentário
-- [Flask Queue](#flask_queue) - Pare enviar o email assincronamente e não bloquear o request
-- [Flask Classy](#flask_classy) - Um jeito fácil de criar API REST e Views
-- [Flask Oauth e OauthLib](#flask_oauth) - Login com o Feicibuque e tuinter
 
 > **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf/tree/extended), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
 
@@ -201,15 +192,6 @@ Precisaremos efetuar algumas mudanças nos templates para que eles utilizem os e
 
 {% block content %}
  <div class="container">
-  {%- with messages = get_flashed_messages(with_categories=True) %}
-  {%- if messages %}
-    <div class="row">
-      <div class="col-md-12">
-        {{utils.flashed_messages(messages)}}
-      </div>
-    </div>
-  {%- endif %}
-  {%- endwith %}
     <div class="jumbotron">
       {% block news %}
       {% endblock %}
@@ -217,7 +199,7 @@ Precisaremos efetuar algumas mudanças nos templates para que eles utilizem os e
 {%- endblock content%}
 ```
 
-Algumas coisas continuaram iguais ao template antigo, porém agora estamos utilizando blocos definidos pelo Flask-Bootstrap e também adicionamos um espaço para as flash-messages.
+Algumas coisas continuaram iguais ao template antigo, porém agora estamos utilizando blocos **navbar** e **content** definidos pelo Flask-Bootstrap e criamos um novo bloco **news** que usaremos para mostras as nossas notícias.
 
 ### Altere o template index.html
 
@@ -338,9 +320,9 @@ No DockerHub está disponível a imagem oficial do Mongo, basta executar o coman
 docker run -d -v $PWD/mongodata:/data/db -p 27017:27017 mongo
 ```
 
-A parte do ``$PWD/mongodata:/data/db`` pode ser substituida pelo caminho de sua preferencia, este é o local onde o Mongo irá salvar os dados.
+A parte do ``$PWD/mongodata:`` pode ser substituida pelo caminho de sua preferencia, este é o local onde o Mongo irá salvar os dados.
 
-> Se preferir executar no modo efemero (perdendo todos os dados ao reiniciar) execute: ``docker run -d -p 27017:27017 mongo``
+> Se preferir executar no modo efemero (perdendo todos os dados ao reiniciar o container) execute apenas ``docker run -d -p 27017:27017 mongo``
 
 
 #### Instalando o MongoDB localmente (não recomendado, use o docker!)
@@ -386,7 +368,10 @@ from flask_mongoengine import MongoEngine
 db = MongoEngine()
 ```
 
-Crie um novo arquivo chamado **models.py**
+Crie um novo arquivo chamado **models.py**, é nesse arquivo que definiremos o esquema de dados nas nossas notícias. Note que o Mongo é um banco schemaless, poderiamos apenas criar um objeto **Noticia(db.DynamicDocument)** usando herança do DynamicDocument e isso tiraria a necessidade da definição do schema, porém, na maioria dos casos definir um schema básico ajuda a construir formulários e validar os dados.
+
+
+**models.py**
 
 ```python
 # coding: utf-8
@@ -535,17 +520,319 @@ Para explorar os dados do MongoDB visualmente você pode utilizar o RoboMongo.
 <img src="/images/rochacbruno/robomongo.png" alt="wtf_robomongo" >
 </figure>
 
+> O Diff das alterações que fizemos relativas ao Flask-MongoEngine podem ser comparadas nos seguintes commits [88effa01b5ffd11f3fd7d5530f90591e421dd109](https://github.com/rochacbruno/wtf/commit/88effa01b5ffd11f3fd7d5530f90591e421dd109) e [189f4d4d2c8af845ccc0b181e4f6a1831578fbfa](https://github.com/rochacbruno/wtf/commit/189f4d4d2c8af845ccc0b181e4f6a1831578fbfa)
 
+## <a href="#flask_security" name="flask_security">Controle de acesso com o Flask Security</a>
+
+Nosso CMS de notícias está inseguro, ou seja, qualquer um que acessar a url [http://localhost:5000/noticias/cadastro](http://localhost:5000/noticias/cadastro) vai conseguir adicionar uma nova notícia sem precisar efetuar login.
+
+Para resolver este tipo de problema existe a extensão Flask-Login que oferece métodos auxiliares para autenticar usuários e também a Flask-Security é um pacote feito em cima do Flask-Login (controle de autenticação), Flask-Principal (Controle de Permissões) e Flask-Mail (envio de email).
+
+A vantagem de usar o Flask-Security é que ele já se integra com o MongoEngine e oferece templates prontos para login, alterar senha, envio de email de confirmação etc...
+
+Começaremos adicionando a dependencia ao arquivo de requirements.
+
+**requirements.txt**
+
+```
+https://github.com/mitsuhiko/flask/tarball/master
+flask-mongoengine
+nose
+Flask-Bootstrap
+Flask-Security
+```
+
+E então instalamos com ``pip install -r requirements.txt --upgrade``
+
+### Secret Key
+
+Para encriptar os passwords dos usuários o Flask-Login irá utilizar a chave secret key do settings de seu projeto. É muito importante que esta chave seja segura e gerada de maneira randomica (utilize uuid4 ou outro método de geração de chaves).
+
+Para testes e desenvolvimento você pode utilizar texto puro. **mas em produção escolha uma chave segura!**
+
+Adicione ao ``development_instance/config.cfg``
+
+```python
+SECRET_KEY = 'super-secret'
+```
+
+> Importante se esta chave for perdida todas as senhas armazenadas serão invalidadas.
+
+### Definindo o schema dos usuários e grupos
+
+O Flask-Security permite o controle de acesso utilizando RBAC (Role Based Access Control), ou seja, usuários pertencem a grupos e os acessos são concedidos aos grupos.
+
+Para isso precisamos armazenar (no nosso caso no MongoDB) os usuários e seus grupos.
+
+Crie um novo arquivo **security_models.py** e criaremos duas classes **User** e **Role**
+
+```python
+# coding: utf-8
+from .db import db
+from flask_security import UserMixin, RoleMixin
+from flask_security.utils import encrypt_password
+
+
+class Role(db.Document, RoleMixin):
+
+    name = db.StringField(max_length=80, unique=True)
+    description = db.StringField(max_length=255)
+
+    @classmethod
+    def createrole(cls, name, description=None):
+        return cls.objects.create(
+            name=name,
+            description=description
+        )
+
+
+class User(db.Document, UserMixin):
+    name = db.StringField(max_length=255)
+    email = db.EmailField(max_length=255, unique=True)
+    password = db.StringField(max_length=255)
+    active = db.BooleanField(default=True)
+    confirmed_at = db.DateTimeField()
+    roles = db.ListField(
+        db.ReferenceField(Role, reverse_delete_rule=db.DENY), default=[]
+    )
+    last_login_at = db.DateTimeField()
+    current_login_at = db.DateTimeField()
+    last_login_ip = db.StringField(max_length=255)
+    current_login_ip = db.StringField(max_length=255)
+    login_count = db.IntField()
+    username = db.StringField(max_length=50, required=False, unique=True)
+    remember_token = db.StringField(max_length=255)
+    authentication_token = db.StringField(max_length=255)
+
+    @classmethod
+    def createuser(cls, name, email, password,
+                   active=True, roles=None, username=None,
+                   *args, **kwargs):
+        return cls.objects.create(
+            name=name,
+            email=email,
+            password=encrypt_password(password),
+            active=active,
+            roles=roles,
+            username=username,
+            *args,
+            **kwargs
+        )
+```
+
+O arquivo acima define os models com todas as propriedades necessárias para que o Flask-Security funcione com o MongoEngine, não entrerei em detalhes de cada campo pois usaremos somente o básico neste tutorial, acesse a documentação do Flask-Security se desejar saber mais a respeitod e cada atributo.
+
+### Inicializando o Flask Security em seu projeto
+
+Da mesma forma que fizemos com as outras extensões iremos fazer como security, alterando o arquivo **news_app.py** e inicializando a extensão utilizando o método default.
+
+Importaremos o **Security** e o **MongoEngineUserDatastore** e inicializaremos a extensão passando nossos models de User e Role.
+
+```python
+...
+from flask_security import Security, MongoEngineUserDatastore
+from .db import db
+from .security_models import User, Role
+
+def create_app(mode):
+   ...
+   Security(app=app, datastore=MongoEngineUserDatastore(db, User, Role))
+   return app
+```
+
+**news_app.py**
+
+```python
+# coding: utf-8
+from os import path
+from flask import Flask
+from flask_bootstrap import Bootstrap
+from flask_security import Security, MongoEngineUserDatastore
+
+from .blueprints.noticias import noticias_blueprint
+from .db import db
+from .security_models import User, Role
+
+
+def create_app(mode):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
+
+    app = Flask("wtf",
+                instance_path=instance_path,
+                instance_relative_config=True)
+
+    app.config.from_object('wtf.default_settings')
+    app.config.from_pyfile('config.cfg')
+
+    app.config['MEDIA_ROOT'] = path.join(
+        app.config.get('PROJECT_ROOT'),
+        app.instance_path,
+        app.config.get('MEDIA_FOLDER')
+    )
+
+    app.register_blueprint(noticias_blueprint)
+
+    Bootstrap(app)
+    db.init_app(app)
+    Security(app=app, datastore=MongoEngineUserDatastore(db, User, Role))
+    return app
+```
+
+Pronto, agora temos nossa base de usuários e grupos definida e o Security irá iniciar em nosso app todo o restante necessário para o controle de login (session, cookies, formulários etc..)
+
+#### Exigindo login para cadastro de notícia
+
+Altere a view de cadastro em ``blueprints/noticias.py`` e utilize o decorator ``login_required`` que é disponibilizado pelo Flask-Security, sendo que o inicio do arquivo ficará assim:
+
+```python
+# coding: utf-8
+import os
+from werkzeug import secure_filename
+from flask import (
+    Blueprint, request, current_app, send_from_directory, render_template
+)
+from ..models import Noticia
+from flask_security import login_required  # decorator
+
+noticias_blueprint = Blueprint('noticias', __name__)
+
+
+@noticias_blueprint.route("/noticias/cadastro", methods=["GET", "POST"])
+@login_required  # aqui o login será verificado
+def cadastro():
+    ...
+```
+
+Execute ``python run.py`` acesse [http://localhost:5000/noticias/cadastro](http://localhost:5000/noticias/cadastro) e verifique que o login será exigido para continuar.
+
+> NOTE: Se por acaso ocorrer um erro **TypeError: 'bool' object is not callable** execute o seguinte comando ``pip install Flask-Login==0.2.11`` e adicione  ``Flask-Login==0.2.11`` no arquivo requirements.txt. Este erro ocorre por causa de um recente bug na nova versão do Flask-Login.
+
+Se tudo ocorrer como esperado agora você será encaminhado para a página de login.
+
+<figure>
+<img src="/images/rochacbruno/login.png" alt="login" >
+</figure>
+
+O único problema é que você ainda não possui um usuário para efetuar o login. Em nosso model de User definimos um método **create_user** que pode ser utilizado diretamente em um terminal iPython. Porém o Flask-Security facilita bastante fornecendo também um formulário de registro de usuários.
+
+Adicione as seguintes configurações no arquivo ``development_instance/config.cfg`` para habilitar o formulário de registro de usuários.
+
+```python
+SECURITY_REGISTERABLE = True
+
+# as opções abaixo devem ser removidas em ambiente de produção
+SECURITY_SEND_REGISTER_EMAIL = False
+SECURITY_LOGIN_WITHOUT_CONFIRMATION = True
+SECURITY_CHANGEABLE = True
+```
+
+Agora acesse [http://localhost:5000/register](http://localhost:5000/register) e você poderá registar um novo usuário e depois efetuar login.
+
+<figure>
+<img src="/images/rochacbruno/register.png" alt="register" >
+</figure>
+
+> NOTE: É recomendado que a opção de registro de usuário seja desabilidata em ambiente de produção, que seja utilizado outros meios como o Flask-Admin que veremos adiante para registrar novos usuários ou que seja habilitado o Captcha para os formulários de registro e login e também o envio de email de confirmação de cadastro.
+
+Todas as opções de configuração do Flsk-Security estão disponíveis em [https://pythonhosted.org/Flask-Security/configuration.html](https://pythonhosted.org/Flask-Security/configuration.html)
+
+Agora será interessante mostrar opções de Login, Logout, Alterar senha na barra de navegação. Para isso altere o template ``base.html`` adicionando o bloco de access control.
+
+```html
+{%- extends "bootstrap/base.html" %}
+{% import "bootstrap/utils.html" as utils %}
+{% block title %} {{title or "Notícias"}} {% endblock %}
+{% block navbar -%}
+    <nav class="navbar navbar-default">
+       <a class="navbar-brand" href="#"><img src="{{url_for('static', filename='generic_logo.gif')}}" style="height:30px;"></a>
+       <ul class="nav navbar-nav">
+         <li><a href="{{url_for('noticias.index')}}">HOME</a> </li>
+         <li><a href="{{url_for('noticias.cadastro')}}">CADASTRO</a></li>
+         {% block access_control %}
+            <li class="divider-vertical"></li>
+            {% if current_user.is_authenticated() %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 {{current_user.email}}  <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a href="{{url_for_security('change_password')}}"><i class="icon-user"></i> Change password</a></li>
+                  <li><a href="{{url_for_security('logout')}}"><i class="icon-off"></i> Logout</a></li>
+              </ul>
+            </li>
+            {% else %}
+              <li><a href="{{url_for_security('login')}}"><i class="icon-off"></i> Login</a></li>
+            {% endif %}
+        {% endblock %}
+       </ul>
+    </nav>
+{%- endblock navbar %}
+{% block content %}
+ <div class="container">
+  {%- with messages = get_flashed_messages(with_categories=True) %}
+  {%- if messages %}
+    <div class="row">
+      <div class="col-md-12">
+        {{utils.flashed_messages(messages)}}
+      </div>
+    </div>
+  {%- endif %}
+  {%- endwith %}
+    <div class="jumbotron">
+      {% block news %}
+      {% endblock %}
+    </div>
+{%- endblock content%}
+```
+
+O resultado final será:
+
+<figure>
+<img src="/images/rochacbruno/access.png" alt="access" >
+</figure>
+
+As opções de customização e instruções de como alterar os formulários e templates do Flask-Security encontram-se na [documentação oficial](https://pythonhosted.org/Flask-Security/).
+
+> O diff com todas as alterações feitas com o Flask-Security pode ser consultado neste [link](https://github.com/rochacbruno/wtf/commit/3766bfabb6d9c359731ff3a143101209af0d207f)
+
+## <a href="#flask_admin" name="flask_admin">Flask Admin - Um admin tão poderoso quanto o Django Admin!</a>
+
+Todos sabemos que uma das grandes vantagens de um framework full-stack como Django ou Web2py é a presença de um Admin para o banco de dados. Mesmo sendo Micro-Framework o Flask conta com a extensão Flask-Admin que o transforma em uma solução tão completa quanto o Django-Admin.
+
+Para começar vamos colocar os requisitos no arquivo de requirements!!
+
+**requirements.txt
+```
+https://github.com/mitsuhiko/flask/tarball/master
+flask-mongoengine
+nose
+Flask-Bootstrap
+Flask-Security
+Flask-Login==0.2.11
+Flask-Admin
+```
+
+Instalar com ``pip install -r requirements.txt --upgrade``
+
+### Admin para o seu banco de dados MongoDB!!!
+
+
+
+
+Extensões recomendadas que não foram abordadas neste artigo
+
+- [Flask Email] Para avisar os autores que tem novo comentário
+- [Flask Queue] Pare enviar o email assincronamente e não bloquear o request
+- [Flask Classy] Um jeito fácil de criar API REST e Views
+- [Flask Oauth e OauthLib] Login com o Feicibuque e tuinter
 
 > A versão final do app está no [github](https://github.com/rochacbruno/wtf/tree/extended)
 
-Nesta versão é possivel executar os tests com ``nosetests tests/`` na raiz do projeto! **escreva mais testes!**
+<hr>
 
-Também temos o **multiple_run** que utiliza o DispatcherMiddleware para juntar dois apps, experimente executar ``python multiple_run.py`` e você verá que o app de noticias será servido no "/" mas se acessar "/another" estará acessando a outra app contida no arquivo "wtf/another_app.py".
-
-Nos próximos capítulos iremos evoluir este app para o uso de algumas extensões essenciais, uncluiremos controle de login, cache, interface de administração, suporte a html e markdown nas noticias e outras coisas.
-
-> **END:** Sim chegamos ao fim desta segunda parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 4 partes iremos nos aprofundar no uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
+> **END:** Sim chegamos ao fim desta terceira parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 3 partes iremos desenvolver nossas próprias extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
 
 <hr />
 
