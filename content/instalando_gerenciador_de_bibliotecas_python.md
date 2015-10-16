@@ -19,6 +19,15 @@ display: flex;   justify-content: center;   align-items: center;
 </style>
 
 
+TODO:
+* instalacao apartir de controle de versao, branch, commit
+* instalacao apartir do cache local
+* instalacao apartir de outro servidor do pypi ou utilizando o seu proprio servicor pypi (devpi)
+* instalacao apartir de arquivos de requisitos
+* pesquisando informacoes sobre os pacotes (pypi-cli)
+* verificando se pacotes instalados estao atualizados (yolk3, )
+
+
 # <a name="introducao" href="#introducao">Introdução</a>
 
 > Tá com pressa, pule para a <a name="pule-para-instalacao" href="{filename}instalando_gerenciador_de_bibliotecas_python.md#instalando-o-pip">instalação</a>
@@ -62,7 +71,7 @@ A resposta é NÃO. Para isso, nós temos o [**pip**](https://pip.pypa.io)
 
 # 1 <a name="mas-que-raios-e-pip" href="#mas-que-raios-e-pip">Mas que raios é *pip*?</a>
 
-O **pip** é o gerenciador de pacotes oficial de Python. Ele permite, entre várias outras coisas, pesquisar, baixar, instalar, atualizar e desinstalar qualquer uma das mais de **66.625** bibliotecas Python disponiveis no [**PyPI**](https://pypi.python.org/pypi) (servidor oficial de pacotes python) ou fazer o mesmo para qualquer biblioteca python diponivel no Github, Gitlab, Bitbucket entre outros, que possua na raiz um arquivo chamado `setup.py`.
+O **pip** é o gerenciador de pacotes oficial de Python. Ele permite, entre várias outras coisas, pesquisar, baixar, instalar, atualizar e desinstalar qualquer uma das mais de **67.667** bibliotecas Python disponiveis no [**PyPI**](https://pypi.python.org/pypi) (servidor oficial de pacotes python) ou fazer o mesmo para qualquer biblioteca python diponivel no Github, Gitlab, Bitbucket entre outros, que possua na raiz um arquivo chamado `setup.py`.
 
 Para quem vem de outras linguagens de programação, no que tange o gerenciamento de dependencias, o **pip** é algo *similar* ao [Maven](https://maven.apache.org/) e [Gradle](https://gradle.org/) de Java, ou [Composer](https://getcomposer.org/) de PHP, ou [npm](https://www.npmjs.com/) de NodeJS, ou [gem](https://rubygems.org/pages/download) de Ruby .
 
@@ -70,9 +79,9 @@ Para quem vem de outras linguagens de programação, no que tange o gerenciament
 
 Basicamente, há tres formas de instalar o **pip**:
 
-2.1 - utilizar o módulo *ensurepip*
+2.1 - utilizar o módulo *ensurepip* que já vem com o Python 3.4 ou superior.
 2.2 - utilizar o instalador *get-pip.py*
-2.3 - utilizar o gerenciador de pacotes da distribuição(no caso de você estiver utilizando Linux)
+2.3 - utilizar o gerenciador de pacotes da distribuição (no caso de você estiver utilizando Linux)
 
 ### 2.1 <a name="instalando-utilizando-ensurepip" href="#instalando-utilizando-ensurepip">Instalando o **pip** utilizando o módulo *ensurepip*</a>
 
@@ -124,10 +133,11 @@ wget -H https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py; sudo -H python3
 
 > **Problemas conhecidos:** Infelizmente, `get-pip.py` sobreescreve o comando `pip`, vinculando-o a ultima versão do Python que você utilizou para executar o `get-pip.py`, ou seja, se você utilizou Python3.4 para executar `get-pip.py`, o comando `pip` vai instalar pacotes no Python3.4, se logo após, você executar `get-pip.py` utilizando Python2.7, `pip` vai instalar pacotes no Python2.7 e não mais no Python3.4.
 
-> Esse problema já foi reportado nos issues [#2936](https://github.com/pypa/pip/issues/2936) e [#2973](https://github.com/pypa/pip/issues/2973).
+> Esse problema já foi reportado nos issues [#2936](https://github.com/pypa/pip/issues/2936) e [#2973](https://github.com/pypa/pip/issues/2973) entre outros.
+> Esse e outros problemas relacionados tambem levaram um dos core developers do *pip* a propor [depreciar totalmente o comando `pip`](https://github.com/pypa/pip/issues/3164).
 
 
-Exemplo:
+Exemplo de como ocorreria a instalação:
 <script type="text/javascript" src="https://asciinema.org/a/27354.js" id="asciicast-27354" async></script>
 
 
