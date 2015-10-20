@@ -1,6 +1,6 @@
 Title: What the Flask? Pt-3 Plug & Use - extensões essenciais para iniciar seu projeto
 Slug: what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto
-Date: 2015-10-23 00:00
+Date: 2015-10-21 09:00
 Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
@@ -40,12 +40,11 @@ What The Flask - 3/6
 
 Nesta série estamos desenvolvendo um mini CMS para publicação de notícias, o código está disponível no [github](http://github.com/rochacbruno/wtf) e para cada fase da evolução do projeto tem uma branch diferente. Esse aplicativo de notícias tem os seguintes requisitos:
 
+- Front-end usando o Bootstrap
 - Banco de dados MongoDB
 - Controle de acesso para que apenas editores autorizados publiquem notícias
-- Interface administrativa para notícias, categorias, tags, media e usuários
-- Front end usando o Bootstrap
+- Interface administrativa para as notícias e usuários
 - Cache das notícias para minimizar o acesso ao banco de dados
-- Banco de dados MongoDB
 
 > **NOTE:** Existem várias extensões para Flask, algumas são aprovadas pelos desenvolvedores e entram para a lista disponível no site oficial, algumas entram para a listagem do metaflask (projeto em desenvolvimento), e uma grande parte está apenas no github. Como existem várias extensões que fazem a mesma coisa, as vezes é dificil escolher qual delas utilizar, eu irei mostrar aqui apenas as que eu utilizo e que já tenho experiência, mas isso não quer dizer que sejam as melhores, sinta-se a vontade para tentar com outras e incluir sua sugestão nos comentários.
 
@@ -53,7 +52,8 @@ Nesta série estamos desenvolvendo um mini CMS para publicação de notícias, o
 - [Flask MongoEngine](#mongoengine) - Para armazenar os dados em um banco que é fácil fácil!
 - [Flask Security](#flask_security) - Controle de acesso
 - [Flask-Admin](#flask_admin) - Um admin tão poderoso quanto o Django Admin
-- [Flask Cache](#flask_cache) - Para não estressar o Mongo
+- [Flask Cache](#flask_cache) - Para deixar o MongoDB "de boas"
+- Bônus: Utilizaremos a Flask-DebugToolbar
 
 > **TL;DR:** A versão final do app deste artigo esta no [github](https://github.com/rochacbruno/wtf/tree/extended), os apressados podem querer executar o app e explorar o seu código antes de ler o artigo completo.
 
@@ -295,6 +295,10 @@ Porém nosso site de notícias precisa utilizar **MongoDB** e para isso vamos re
 
 ## <a href="#mongoengine" name="mongoengine"> Utilizando MongoDB com Flask</a>
 
+<figure style="float:left;margin-right:10px;">
+<img src="/images/rochacbruno/mongo.jpg" alt="mongo" >
+</figure>
+
 Vamos migrar do Dataset + SQlite para MongoDB e obviamente você irá precisar do MongoDb Server rodando, você pode preferir instalar o Mongo localmente se estiver em uma máquina Linux/Debian: ``sudo apt-get install mongodb`` ou siga instruções no site oficial do Mongo de acordo com seu sistema operacional.
 
 Uma opção melhor é utilizar o **docker** para executar o MongoDB, desta forma você não precisa instalar o servidor de banco de dados em seu computador, precisa apenas do Docker e da imagem oficial do Mongo.
@@ -524,6 +528,10 @@ Para explorar os dados do MongoDB visualmente você pode utilizar o RoboMongo.
 
 ## <a href="#flask_security" name="flask_security">Controle de acesso com o Flask Security</a>
 
+<figure style="float:left;margin-right:10px;width:25%;">
+<img src="/images/rochacbruno/security.jpg" alt="security" >
+</figure>
+
 Nosso CMS de notícias está inseguro, ou seja, qualquer um que acessar a url [http://localhost:5000/noticias/cadastro](http://localhost:5000/noticias/cadastro) vai conseguir adicionar uma nova notícia sem precisar efetuar login.
 
 Para resolver este tipo de problema existe a extensão Flask-Login que oferece métodos auxiliares para autenticar usuários e também a Flask-Security é um pacote feito em cima do Flask-Login (controle de autenticação), Flask-Principal (Controle de Permissões) e Flask-Mail (envio de email).
@@ -558,8 +566,6 @@ Adicione ao ``development_instance/config.cfg``
 SECRET_KEY = 'super-secret'
 SECURITY_PASSWORD_HASH = 'pbkdf2_sha512'
 SECURITY_PASSWORD_SALT = SECRET_KEY
-SECURITY_REGISTERABLE = True
-SECURITY_TRACKABLE = True
 ```
 
 > Importante se esta chave for perdida todas as senhas armazenadas serão invalidadas.
@@ -724,6 +730,7 @@ Adicione as seguintes configurações no arquivo ``development_instance/config.c
 
 ```python
 SECURITY_REGISTERABLE = True
+SECURITY_TRACKABLE = True  # para armazenar data, IP, ultimo login dos users.
 
 # as opções abaixo devem ser removidas em ambiente de produção
 SECURITY_SEND_REGISTER_EMAIL = False
@@ -802,7 +809,15 @@ As opções de customização e instruções de como alterar os formulários e t
 
 ## <a href="#flask_admin" name="flask_admin">Flask Admin - Um admin tão poderoso quanto o Django Admin!</a>
 
+<figure>
+<img src="/images/rochacbruno/admin.jpg" alt="admin" >
+</figure>
+
 Todos sabemos que uma das grandes vantagens de um framework full-stack como Django ou Web2py é a presença de um Admin para o banco de dados. Mesmo sendo Micro-Framework o Flask conta com a extensão Flask-Admin que o transforma em uma solução tão completa quanto o Django-Admin.
+
+O Flask-Admin é uma das mais importantes extensões para o Flask e é frequentemente atualizada e tem uma comunidade muito ativa! O AirBnb recentemente lançou o [AirFlow que utiliza o Flask-Admin](http://mrjoes.github.io/2015/06/17/flask-admin-120.html)
+
+E o [QuokkaCMS](http://www.quokkaproject.org), principal CMS desenvolvido com Flask e MongoDB é baseado também no Flask-Admin.
 
 Para começar vamos colocar os requisitos no arquivo de requirements!!
 
@@ -1057,19 +1072,247 @@ admin.add_view(UserModelView(User, category='accounts'))
 ...
 ```
 
+> NOTE: Não iremos nos aprofundar em todas as opções de customização do Flask-admin, portanto consulte a [documentação](https://flask-admin.readthedocs.org/) para saber mais.
+
 <figure>
 <img src="/images/rochacbruno/admin_user_columns.png" alt="admin_user_columns" >
 </figure>
 
+> O diff com todas as alterações referentes ao Flask-Admin estão no commit [1359c4cf9a31a0d471a3226a1bec2a672f9ffbbb](https://github.com/rochacbruno/wtf/commit/1359c4cf9a31a0d471a3226a1bec2a672f9ffbbb)
+
+## <a href="#flask_cache" name="flask_cache">Flask Cache - Deixando o MongoDB "de boas"</a>
 
 
-> NOTE: Não iremos nos aprofundar em todas as opções de customização do Flask-admin, portanto consulte a [documentação](https://flask-admin.readthedocs.org/) para saber mais.
+A cada vez que acessamos a home do nosso site uma consulta é feita ao MongoDB, e isso está definido em **blueprints/noticias.py**
+
+```python
+@noticias_blueprint.route("/")
+def index():
+    todas_as_noticias = Noticia.objects.all()
+    return render_template('index.html',
+                           noticias=todas_as_noticias,
+                           title=u"Todas as notícias")
+```
+
+Na linha ``todas_as_noticias = Noticia.objects.all()`` fazemos uma query ao MongoDB, se 10.000 usuários acessarem a nossa página 10.000 acessos serão feitos ao MongoDB.
+
+O mesmo acontece na view de acesso a uma notícia ``noticia = Noticia.objects.get(id=noticia_id)`` vai até o MongoDB e faz a query procurando a notícia pelo **id** e teremos novamente problemas se por exemplo muitos usuários acessarem a mesma notícia ao mesmo tempo.
+
+Podemos otimizar as queries no Mongo utilizando **indices** porém o mais indicado é o uso de cache.
+
+<figure style="float:left;margin-right:10px;width:30%;">
+<img src="/images/rochacbruno/deboas.jpg" alt="deboas" >
+</figure>
+
+Em ambiente de alta disponibilidade é altamente recomendado usar um servidor de cache como o **Varnish** para servir de camada intermediária ou até mesmo gerar páginas HTML estáticas de cada uma das notícias.
+
+Mas em caso de sites menores podermos contar com um sistema de cache mais simples utilizando MemCached, Redis ou até mesmo sistema de arquivos para armazenar o cache.
+
+Em nosso projeto usaremos o Flask-Cache que poderá ser usado com Redis ou da maneira simples utilizando o sistema de arquivos.
+
+### Debug Toolbar
+
+Antes de mais nada precisamos de uma ajuda para enxergarmos o problema, vamos utilizar a Flask-DebugToolbar para nos mostrar o custo de nossas idas ao banco de dados e outras coisas uteis para o desenvolvimento em Flask.
+
+Adicione ao arquivo **requirements.txt** a **flask-debugtoolbar** e utilize o flask-mongoengine diretamente do github.
+
+```
+https://github.com/mitsuhiko/flask/tarball/master
+https://github.com/MongoEngine/flask-mongoengine/tarball/master
+nose
+Flask-Bootstrap
+Flask-Security
+Flask-Login==0.2.11
+Flask-Admin
+flask-debugtoolbar
+flask-cache
+```
+
+> NOTE: usaremos o flask-mongoengine diretamente do github **https://github.com/MongoEngine/flask-mongoengine/tarball/master** pois a versão do PyPI ainda não está compatível com a debug-toolbar
+
+E atualize sua **env** ``pip install -r requirements.txt --upgrade``
+
+Agora edite o arquivo **development_instance/config.cfg** adicionando as seguintes entradas.
+
+**development_instance/config.cfg**
+```python
+DEBUG = True
+DEBUG_TOOLBAR_ENABLED = True
+DEBUG_TB_INTERCEPT_REDIRECTS = False
+DEBUG_TB_PROFILER_ENABLED = True
+DEBUG_TB_TEMPLATE_EDITOR_ENABLED = True
+DEBUG_TB_PANELS = (
+    'flask_debugtoolbar.panels.versions.VersionDebugPanel',
+    'flask_debugtoolbar.panels.timer.TimerDebugPanel',
+    'flask_debugtoolbar.panels.headers.HeaderDebugPanel',
+    'flask_debugtoolbar.panels.request_vars.RequestVarsDebugPanel',
+    'flask_debugtoolbar.panels.template.TemplateDebugPanel',
+    'flask_mongoengine.panels.MongoDebugPanel',
+    'flask_debugtoolbar.panels.logger.LoggingPanel',
+    'flask_debugtoolbar.panels.profiler.ProfilerDebugPanel',
+    'flask_debugtoolbar.panels.config_vars.ConfigVarsDebugPanel',
+)
+```
+
+Inicialize a extensão no arquivo **news_app.py**
 
 
-Extensões recomendadas que não foram abordadas neste artigo
+```python
+...
+from flask_debugtoolbar import DebugToolbarExtension
+...
+
+def create_app(mode):
+   ...
+    DebugToolbarExtension(app)
+    return app
+```
+
+Agora execute o projeto ``python run.py`` e navegue pelo site e pelo admin e analise os painéis do Flask-DebugToolbar que aparecerão na lateral direita.
+
+<figure>
+<img src="/images/rochacbruno/debug_toolbar.png" alt="debug_toolbar" >
+</figure>
+
+Note que temos vários painéis de DEBUG incluindo o painel MongoDB exibindo o tempo consumido para o acesso ao banco de dados, clicando neste botão da toolbar você poderá visualizar as queries que foram feitas ao MongoDB.
+
+E também é interessante analisar o botão **Profiler** que exibe e o consumo de memória e CPU em cada parte de nosso app.
+
+<figure>
+<img src="/images/rochacbruno/profiler.png" alt="profiler" >
+</figure>
+
+No nosso caso como estamos em ambiente de desenvolvimento e com apenas um usuário fazendo requests os números serão insignificantes, porém basta colocar em produção e ter um **slashdot effect** que as coisas começarão a complicar.
+
+Portanto vamos utilizar o **Flask-Cache** para minimizar o acesso ao MongoDB.
+
+O Flask-Cache possui integração com alguns sistemas de cache e são eles:
+
+Built-in cache types:
+
+- null: NullCache (default)
+- simple: SimpleCache
+- memcached: MemcachedCache (pylibmc or memcache required)
+- gaememcached: GAEMemcachedCache
+- redis: RedisCache (Werkzeug 0.7 required)
+- filesystem: FileSystemCache
+- saslmemcached: SASLMemcachedCache (pylibmc required)
+
+> NOTE: O mais recomendado é o uso de **Redis** ou **memcached** mas como isso exige a instalação de libs adicionais utilizaremos o **FileSystemCache** em nosso exemplo, porém o uso de cache em file system pode ser até mais lento que o acesso direto ao banco, portanto vamos utiliza-lo somente como exemplo.
+
+Crie um arquivo **cache.py** na raiz do projeto:
+
+```python
+from flask_cache import Cache
+cache = Cache(config={'CACHE_TYPE': 'filesystem', 'CACHE_DIR': '/tmp'})
+```
+
+Vamos inicializar a extensão da mesma forma que fizemos com as outras e neste ponto nosso arquivo **news_app.py** deverá estar assim:
+
+```python
+# coding: utf-8
+from os import path
+from flask import Flask
+from flask_bootstrap import Bootstrap
+from flask_security import Security, MongoEngineUserDatastore
+from flask_debugtoolbar import DebugToolbarExtension
+
+from .admin import configure_admin
+from .blueprints.noticias import noticias_blueprint
+from .db import db
+from .security_models import User, Role
+from .cache import cache
+
+
+def create_app(mode):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
+
+    app = Flask("wtf",
+                instance_path=instance_path,
+                instance_relative_config=True)
+
+    app.config.from_object('wtf.default_settings')
+    app.config.from_pyfile('config.cfg')
+
+    app.config['MEDIA_ROOT'] = path.join(
+        app.config.get('PROJECT_ROOT'),
+        app.instance_path,
+        app.config.get('MEDIA_FOLDER')
+    )
+
+    app.register_blueprint(noticias_blueprint)
+
+    Bootstrap(app)
+    db.init_app(app)
+    Security(app=app, datastore=MongoEngineUserDatastore(db, User, Role))
+    configure_admin(app)
+    DebugToolbarExtension(app)
+    cache.init_app(app)
+    return app
+```
+
+Pronto, agora podemos começar a utilizar o cache nas views e templates.
+
+> NOTE: Escrevi um artigo explicando o Flask-Cache com mais detalhes que está disponível [em meu blog](http://brunorocha.org/python/flask/usando-o-flask-cache.html)
+
+Vamos colocar cache nas views de acesso ao MongoDB importaremos o cache que criamos no arquivo **cache.py** e utilizaremos diretamente ou como forma de decorator.
+
+
+**blueprints/noticias.py**
+
+```python
+...
+from ..cache import cache
+...
+```
+
+Agora vamos utilizar o cache como decorator para cachear a view **index** durante 5 minutos utilizando ``@cache.cached(timeout=300)`` para decorar a view.
+
+```python
+@noticias_blueprint.route("/")
+@cache.cached(timeout=300)
+def index():
+    todas_as_noticias = Noticia.objects.all()
+    return render_template('index.html',
+                           noticias=todas_as_noticias,
+                           title=u"Todas as notícias")
+
+```
+
+Agora acesse [localhost:5000](http://localhost:5000) e repare que no primeiro acesso o MongoDB será acessado mas quando der refresh (f5) agora o acesso não será mais feito durante 5 minutos.
+
+<figure>
+<img src="/images/rochacbruno/cached.png" alt="cached" >
+</figure>
+
+Uma outra maneira de cachear é chamando o cache diretamente, vamos fazer isso na view **noticia** usando **cache.get** e **cache.set**
+
+```python
+@noticias_blueprint.route("/noticia/<noticia_id>")
+def noticia(noticia_id):
+    noticia_cacheada = cache.get(noticia_id)
+    if noticia_cacheada:
+        noticia = noticia_cacheada
+    else:
+        noticia = Noticia.objects.get(id=noticia_id)
+        cache.set(noticia_id, noticia, timeout=300)
+    return render_template('noticia.html', noticia=noticia)
+```
+
+Além das dessas duas maneiras também é possível cachear blocos de template e memoizar funções que recebem argumentos.
+
+> BEWARE: Utilizar cache e controle de acesso é algo que deve ser feito com cuidado em nosso exemplo se um usuário autenticado acessar uma notícia com acesso controlado provavelmente o cache irá armazenar esta versão e todos os outros usuários terão acesso. Portanto se este for o seu caso, utilize o nome do usuário ou grupo como chave do cache.
+
+Se quiser saber mais detalhes sobre o Flask-Cache consulte a postagem que fiz em meu [blog](http://brunorocha.org/python/flask/usando-o-flask-cache.html) e a [documentação oficial](https://pythonhosted.org/Flask-Cache/).
+
+> O diff com as alterações realizadas com o Flask-Cache encontra-se em [27bacd25a788ffc041de332403a2426cd199b828](https://github.com/rochacbruno/wtf/commit/27bacd25a788ffc041de332403a2426cd199b828)
+
+Algumas outras extensões recomendadas que não foram abordadas neste artigo
 
 - [Flask Email] Para avisar os autores que tem novo comentário
-- [Flask Queue] Pare enviar o email assincronamente e não bloquear o request
+- [Flask Queue/Celery] Pare enviar o email assincronamente e não bloquear o request
 - [Flask Classy] Um jeito fácil de criar API REST e Views
 - [Flask Oauth e OauthLib] Login com o Feicibuque e tuinter
 
