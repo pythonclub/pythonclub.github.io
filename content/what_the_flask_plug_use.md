@@ -550,10 +550,16 @@ Para encriptar os passwords dos usuários o Flask-Login irá utilizar a chave se
 
 Para testes e desenvolvimento você pode utilizar texto puro. **mas em produção escolha uma chave segura!**
 
+Além disso o Flask-Security precisa que seja especificado qual tipo de hash usar nos passwords.
+
 Adicione ao ``development_instance/config.cfg``
 
 ```python
 SECRET_KEY = 'super-secret'
+SECURITY_PASSWORD_HASH = 'pbkdf2_sha512'
+SECURITY_PASSWORD_SALT = SECRET_KEY
+SECURITY_REGISTERABLE = True
+SECURITY_TRACKABLE = True
 ```
 
 > Importante se esta chave for perdida todas as senhas armazenadas serão invalidadas.
@@ -600,9 +606,6 @@ class User(db.Document, UserMixin):
     last_login_ip = db.StringField(max_length=255)
     current_login_ip = db.StringField(max_length=255)
     login_count = db.IntField()
-    username = db.StringField(max_length=50, required=False, unique=True)
-    remember_token = db.StringField(max_length=255)
-    authentication_token = db.StringField(max_length=255)
 
     @classmethod
     def createuser(cls, name, email, password,
@@ -803,7 +806,8 @@ Todos sabemos que uma das grandes vantagens de um framework full-stack como Djan
 
 Para começar vamos colocar os requisitos no arquivo de requirements!!
 
-**requirements.txt
+**requirements.txt**
+
 ```
 https://github.com/mitsuhiko/flask/tarball/master
 flask-mongoengine
@@ -818,7 +822,248 @@ Instalar com ``pip install -r requirements.txt --upgrade``
 
 ### Admin para o seu banco de dados MongoDB!!!
 
+O Flask-Admin é um painel administrativo para bancos de dados de seus projetos Flask e ele tem suporte a diversos ORMs e Tecnologias como MySQL, PostGres, SQLServer e ORMs SQLAlchemy, Peewee, PyMongo e MongoEngine.
 
+O Flask Admin utiliza o Bootstrap por padrão para a camada visual do admin, mas é possivel customizar com o uso de temas.
+
+A primeira coisa a ser feita depois de ter o Flask-Admin instalado é inicializar o admin da mesma maneira que fizemos com as outras extensões.
+
+Vamos adicionar as seguintes linhas ao arquivo **news_app.py**
+
+```python
+from flask_admin import Admin
+...
+
+def create_app(mode):
+   ...
+   admin = Admin(app, name='Noticias', template_mode='bootstrap3')
+   return app
+```
+
+Ficando o arquivo completo.
+
+```python
+# coding: utf-8
+from os import path
+from flask import Flask
+from flask_bootstrap import Bootstrap
+from flask_security import Security, MongoEngineUserDatastore
+from flask_admin import Admin
+
+from .blueprints.noticias import noticias_blueprint
+from .db import db
+from .security_models import User, Role
+
+
+def create_app(mode):
+    instance_path = path.join(
+        path.abspath(path.dirname(__file__)), "%s_instance" % mode
+    )
+
+    app = Flask("wtf",
+                instance_path=instance_path,
+                instance_relative_config=True)
+
+    app.config.from_object('wtf.default_settings')
+    app.config.from_pyfile('config.cfg')
+
+    app.config['MEDIA_ROOT'] = path.join(
+        app.config.get('PROJECT_ROOT'),
+        app.instance_path,
+        app.config.get('MEDIA_FOLDER')
+    )
+
+    app.register_blueprint(noticias_blueprint)
+
+    Bootstrap(app)
+    db.init_app(app)
+    Security(app=app, datastore=MongoEngineUserDatastore(db, User, Role))
+    admin = Admin(app, name='Noticias', template_mode='bootstrap3')
+    return app
+```
+
+Agora basta executar ``python run.py`` e acessar [http://localhost:5000/admin/](http://localhost:5000/admin/) e você verá a tela **index** do Flask-Admin.
+
+<figure>
+<img src="/images/rochacbruno/admin_index.png" alt="admin_index" >
+</figure>
+
+
+Se você conseguir acessar a tela acima então o Flask-Admin está inicializado corretamente, perceba que não tem nada além de uma tela em branco e um botão "home".
+
+Precisamos agora registrar nossas ModelViews que são as telas de administração para cada coleção ou tabela do banco de dados e também implementar a integração com o Flask-Security para garantir que somente pessoas autorizadas acessem o admin.
+
+#### Menu de controle de acesso
+
+Em nosso front-end incluimos na barra de menus os links de controle de acesso **login**, **alterar senha** e **logout**, precisamos agora incluir os mesmos itens na barra de menus do Flask-Admin.
+
+Para começar crie um template novo em **templates/admin_base.html** com o seguinte conteúdo.
+
+```html
+{% extends 'admin/base.html' %}
+
+{% block access_control %}
+<div class="navbar-text btn-group pull-right">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <i class="glyphicon glyphicon-user"></i>
+    {% if current_user.is_authenticated() %}
+        {% if current_user.name -%}
+            {{ current_user.name }}
+        {% else -%}
+            {{ current_user.email }}
+        {%- endif %}
+    <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+       <li><a href="{{url_for_security('logout')}}">Log out</a></li>
+    </ul>
+    {% else %}
+       Access
+       <span class="caret"></span></a>
+       <ul class="dropdown-menu" role="menu">
+           <li><a href="{{url_for_security('login')}}">Login</a></li>
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}
+```
+
+Agora altere o template base do Flask-Admin incluindo o parametro ``base_template='admin_base.html'`` no **news_app.py**
+
+```
+def create_app(mode):
+    ...
+    admin = Admin(app, name='Noticias', template_mode='bootstrap3',
+                  base_template='admin_base.html')
+    return app
+```
+
+<figure>
+<img src="/images/rochacbruno/admin_index_login.png" alt="admin_index_login" >
+</figure>
+
+O Flask-Admin não possui uma forma automática de integração com o Flask-Security, porém podemos facilmente sobrescrever a classe de ModelView incluindo o controle de acesso necessário.
+
+Para que isso fique mais fácil vamos centralizar a configuração do Flask-Admin em um único arquivo.
+
+Crie um arquivo chamado **wtf/admin.py** na raiz do projeto, iremos extender a ModelView do Flask-Admin tornando-a segura e exigindo login e também iremos registrar os models **Noticia**, **User** e **Role** em nosso painel de adminsitração.
+
+> NOTE: Se desejar que apenas usuários que pertençam ao grupo **admin** tenham acesso descomente as linhas do método **is_acessible**
+
+**wtf/admin.py**
+```python
+# coding: utf-8
+from flask import abort, redirect, request, url_for
+from flask_security import current_user
+from flask_admin.contrib.mongoengine import ModelView
+from flask_admin import Admin
+
+from .models import Noticia
+from .security_models import User, Role
+
+
+admin = Admin(name='Noticias', template_mode='bootstrap3',
+              base_template='admin_base.html')
+
+
+# Create customized model view class
+class SafeModelView(ModelView):
+
+    def is_accessible(self):
+        if not current_user.is_authenticated():
+            return False
+        # if not current_user.has_role('admin'):
+        #     return False
+        return True
+
+    def _handle_view(self, name, **kwargs):
+        """
+        Redireciona o usuário para página de login ou de acesso negado
+        """
+        if not self.is_accessible():
+            if current_user.is_authenticated():
+                abort(403)  # negado, caso não pertença ao grupo admin.
+            else:
+                return redirect(url_for('security.login', next=request.url))
+
+
+def configure_admin(app):
+    admin.init_app(app)
+    admin.add_view(SafeModelView(Noticia))
+    admin.add_view(SafeModelView(User, category='accounts'))
+    admin.add_view(SafeModelView(Role, category='accounts'))
+```
+
+Agora só precisamos substituir a maneira como inicializamos o admin pela chamada a função **configure_admin**.
+
+No arquivo **news_app.py** troque a parte
+
+```python
+from flask_admin import Admin
+...
+
+def create_app(mode):
+    ...
+    admin = Admin(name='Noticias', template_mode='bootstrap3',
+                  base_template='admin_base.html')
+    return app
+```
+
+Pelo uso da função **configure_admin**
+
+```python
+from .admin import configure_admin
+...
+
+def create_app(mode):
+    ...
+    configure_admin(app)
+    return app
+```
+
+Desta forma ao executar ``python run.py`` e acessar [http://localhost:5000/admin/](http://localhost:5000/admin/) estando logado você irá os menus referentes aos nossos models e poderá editar/apagar/adicionar novos usuários e notícias.
+
+<figure>
+<img src="/images/rochacbruno/admin_noticia.png" alt="admin_noticia" >
+</figure>
+
+O Flask-admin possui diversas opções de customização de template, formulários, permissões. Você pode limitar quais campos exibir, alterar o comportamento dos formulários e até mesmo incluir views e formulários que não estejam no banco de dados.
+
+### Limitando os campos a serem exibidos.
+
+Atualmente clicando no menu **accounts/user** a lista exibe vários campos referentes ao cadastro de usuários (incluindo a senha encriptada).
+
+<figure>
+<img src="/images/rochacbruno/admin_user_full.png" alt="admin_user_full" >
+</figure>
+
+Altere nosso arquivo **admin.py** e crie uma nova classe **UserModelView** onde limitaremos os campos que serão listados no admin.
+
+**wtf/admin.py**
+
+```python
+...
+
+class UserModelView(SafeModelView):
+    column_list = ("name", "email", "active", "last_login_at", "login_count")
+
+...
+```
+
+E agora no final do arquivo utilize esta classe ao adicionar a view.
+
+```python
+...
+admin.add_view(UserModelView(User, category='accounts'))
+...
+```
+
+<figure>
+<img src="/images/rochacbruno/admin_user_columns.png" alt="admin_user_columns" >
+</figure>
+
+
+
+> NOTE: Não iremos nos aprofundar em todas as opções de customização do Flask-admin, portanto consulte a [documentação](https://flask-admin.readthedocs.org/) para saber mais.
 
 
 Extensões recomendadas que não foram abordadas neste artigo
