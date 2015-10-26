@@ -1,7 +1,7 @@
 Django na prática - Hello World
 #############################################
 
-:date: 2015-09-09 18:55
+:date: 2015-10-26 09:25
 :tags: python, django, django-na-pratica
 :category: Python
 :slug: django-na-pratica-aula-01
