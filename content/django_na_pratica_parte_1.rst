@@ -47,7 +47,7 @@ Ative seu virtualenv e instale o Django na versão 1.8:
 
 .. code-block:: bash
 
-    $ pip install django==1.8
+    $ pip install "django>=1.8,<1.9"
 
 
 Se tiver alguma duvida, você pode olhar na `documentação <https://docs.djangoproject.com/en/1.8/intro/install/>`_ como instalar o framework.
@@ -59,7 +59,7 @@ Para verificar se está tudo certo, abra o interpretador python e verifique a ve
 
     >>> import django
     >>> print(django.get_version())
-    1.8
+    1.8.5
 
 
 Isso é tudo que precisamos para começar =)
@@ -118,7 +118,7 @@ Abra o arquivo ``helloworld.py`` e insira uma SECRET_KEY qualquer:
     SECRET_KEY='helloworld'
 
 
-Para ambiente de teste não existe nenhum problema em deixar nossa SECRET_KEY com esse valor, porém para o ambiente de produção é necessário que seja um valor randômico. A SECRET_KEY é utilizada em diversas partes da sua aplicação e você NÂO DEVE deixá-la pública para ambientes de produção.
+Para ambiente de teste não existe nenhum problema em deixar nossa SECRET_KEY com esse valor, porém para o ambiente de produção é necessário que seja um valor randômico. A SECRET_KEY é utilizada em diversas partes do Django para criar hashes e encriptar chaves. Por esse fato, você NUNCA DEVE deixar pública o valor de SECRET_KEY utizado em ambientes de produção.
 Mais informações `aqui <https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key>`_.
 
 Executando novamente nosso ambiente, teremos o seguinte erro:
@@ -153,8 +153,8 @@ Com isso já é possível subir o ambiente de desenvolvimento.
         HINT: Django 1.7 changed the global defaults for the MIDDLEWARE_CLASSES. django.contrib.sessions.middleware.SessionMiddleware, django.contrib.auth.middleware.AuthenticationMiddleware, and django.contrib.messages.middleware.MessageMiddleware were removed from the defaults. If your project needs these middleware then you should configure this setting.
 
     System check identified 1 issue (0 silenced).
-    September 10, 2015 - 15:50:09
-    Django version 1.8.4, using settings 'helloworld'
+    September 26, 2015 - 08:50:09
+    Django version 1.8.5, using settings 'helloworld'
     Starting development server at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
