@@ -20,6 +20,7 @@ Utilizaremos a versão 1.8 do Django com Python 3!
 Requisitos
 ==========
 
+* Linux (Ubuntu)
 * Python 3.X
 * Virtualenv
 * pip
