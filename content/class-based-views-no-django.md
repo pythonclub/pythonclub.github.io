@@ -1,6 +1,6 @@
 Title: Class Based Views no Django
 Slug: class-based-views-django
-Date: 2015-10-23 10:00
+Date: 2015-10-26 14:50
 Tags: python,blog,tutorial,django,cbv
 Author: Raphael Passini Diniz
 Email:  raphapassini@gmail.com
