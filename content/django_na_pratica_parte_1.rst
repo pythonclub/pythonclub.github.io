@@ -118,7 +118,7 @@ Abra o arquivo ``helloworld.py`` e insira uma SECRET_KEY qualquer:
     SECRET_KEY='helloworld'
 
 
-Para ambiente de teste não existe nenhum problema em deixar nossa SECRET_KEY com esse valor, porém para o ambiente de produção é necessário que seja um valor randômico. A SECRET_KEY é utilizada em diversas partes do Django para criar hashes e encriptar chaves. Por esse fato, você NUNCA DEVE deixar pública o valor de SECRET_KEY utizado em ambientes de produção.
+Para ambiente de teste não existe nenhum problema em deixar nossa SECRET_KEY com esse valor, porém para o ambiente de produção é necessário que seja um valor randômico. A SECRET_KEY é utilizada em diversas partes do Django para criar hashes e encriptar chaves. Por esse fato, você NUNCA DEVE deixar pública o valor de SECRET_KEY utilizado em ambientes de produção.
 Mais informações `aqui <https://docs.djangoproject.com/en/1.8/ref/settings/#secret-key>`_.
 
 Executando novamente nosso ambiente, teremos o seguinte erro:
@@ -175,10 +175,10 @@ Se você visualizar no terminal onde o ambiente está sendo executado, verá a s
     AttributeError: 'Settings' object has no attribute 'ROOT_URLCONF'
 
 
-Para encontrar as views* que serão renderizadas no projeto, o Django procura primeiro as configurações no
+Para encontrar as *views* que serão renderizadas no projeto, o Django procura primeiro as configurações no
 arquivo apontado pelo ``ROOT_URLCONF``.
 
-* uma view é uma função responsável por retornar algo para ser renderizado no browser, pode ser um html, um arquivo, um json e etc. *
+* uma view é uma função responsável por retornar algo para ser renderizado no browser, pode ser um html, um arquivo, um json e etc.
 
 
 Como toda nossa aplicação ficará por enquanto no arquivo ``helloworld.py``, vamos apontar nosso ``ROOT_URLCONF`` para ele.
