@@ -15,7 +15,7 @@ Essa semana fiz uma palestra em um BEV no `Luizalabs <http://luizalabs.com/>`_.
 Resolvi falar sobre Django, pois é um framework que utilizamos na empresa para diversos projetos.
 
 O objetivo é ensinar algumas técnicas simples e que auxiliam a diminuir o número de consultas que realizamos
-no banco de dados.
+no banco de dados.de
 
 Os slides podem acessados `aqui <https://docs.google.com/presentation/d/1SV27J8rFfORxE_JrU5NPahfqDJk6y87MuQUeKVTA0Gw/edit?usp=sharing>`_.
 
@@ -75,7 +75,7 @@ Os elementos são:
       Responsável por interagir diretamente com a Query.
 
 **Query**
-    * Cria uma estrutura de dados complexa com todos selementos presentes em uma consulta.
+    * Cria uma estrutura de dados complexa com todos os elementos presentes em uma consulta.
       Gera uma representação SQL de um QuerySet.
 
 **SQLCompiler**
@@ -85,8 +85,8 @@ Os elementos são:
 Agora que conhecemos os 5 elementos principais, vamos falar sobre **QuerySet**, é com ele
 que vamos conseguir construir queries mais eficientes.
 
-QuerySet são Lazy
------------------
+QuerySets são Lazy
+------------------
 Algo que é importante notar sobre o comportamento das QuerySets, são que elas são Lazy.
 
 Mas o que é isso?
@@ -163,7 +163,7 @@ Temos um loop e a cada iteração invocamos um atributo do models que é uma cha
         print cadastro.user
 
 Esse é um código simples e que geralmente não vemos problemas nenhum, mas iremos nos supreender
-quantas queries são realizadas no banco de dados.
+com quantas queries são realizadas no banco de dados.
 
 .. code-block:: python
 
@@ -178,11 +178,11 @@ quantas queries são realizadas no banco de dados.
     >> print len(connection.queries)
     501
 
-Foram realizadas **501** consultas iterar sobre 500 cadastros (1 consulta para retornar todos os cadastros e 1 consulta para cada vez que acessamos o atributo ``user``).
+Foram realizadas **501** consultas para iterar sobre 500 cadastros (1 consulta para retornar todos os cadastros e 1 consulta para cada vez que acessamos o atributo ``user``).
 Isso ocorre, porque estamos acessando um atributo que é um relacionamento para outra tabela,
-cada vez que o Django acessa esse atributo ele precisa fazer uma nova consulta no banco de dados.
+cada vez que o Django acessa esse atributo uma nova consulta precisa ser realizada no banco de dados.
 
-Isso é válido tanto para campos OneToOne e ForeignKey.
+Isso é válido tanto para OneToOne e ForeignKey.
 
 Como podemos resolver isso? Utilizando o método do QuerySet chamado ``select_related``.
 
@@ -213,7 +213,7 @@ Primeiro, vamos entender o que é um relacionamento reverso.
 Relacionamento reverso
 ----------------------
 
-Por padrão o Django adiciona um relacionamento reverso quando sua tabela quando ela é referenciada por uma chave estrangeira.
+Por padrão o Django adiciona um relacionamento reverso quando sua tabela é referenciada por uma chave estrangeira.
 
 Se não passar o parâmetro related_name, irá seguir o padrão <nome_tabela>_set
 
@@ -312,7 +312,7 @@ Um problema para inserir dados é quando precisamos iterar sobre um conjunto gra
         'Lucas', 'Teste 01', 'Teste 02', 'Nome 3', # 1000 nomes no total
     ]
 
-    # Inserimos um cadastro para cada nome que existe na nossa varivavel `nomes`
+    # Inserimos um cadastro para cada nome que existe na nossa variável `nomes`
     >> for nome in nomes:
         Cadastro.objects.create(nome=nome)
 
@@ -412,7 +412,7 @@ Porém, pode-se fazer dessa maneira:
 
     >> from django.db import connection
 
-    >> Cadastro.objects.delete()
+    >> Cadastro.objects.all().delete()
 
     >> print len(connection.queries)
     1
