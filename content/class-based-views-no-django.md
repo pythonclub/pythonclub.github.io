@@ -16,10 +16,10 @@ no Django. Por motivos de agilidade vou usar ``CBV`` para me referir as
 Segundo a documentação do Django sobre CBV:
 
 > CBV's permitem você estruturar as suas views e reutilizar código aproveitando
-  heranças e mixinis
+  heranças e mixins
 
 O Django já vem CBV's genéricas que atendem as necessidades da maioria das aplicações.
-Essas views genéricas são flexiveis o sufiente para você poder adaptá-las as
+Essas views genéricas são flexiveis o suficiente para você poder adaptá-las as
 suas necessidades.
 
 Nesse tutorial eu vou falar brevemente sobre os 4 grupos de CBV's que existem
@@ -68,7 +68,7 @@ construídas.
 
 ### <a name="view"></a>View
 
-A classe génerica *master*. **Todas** as outras classes herdam dessa classe.
+A classe genérica *master*. **Todas** as outras classes herdam dessa classe.
 O fluxo básico de execução dessa classe quando recebe uma requisição é:
 
 1. ``dispatch()``
@@ -76,7 +76,7 @@ O fluxo básico de execução dessa classe quando recebe uma requisição é:
 3. ``options()``
 
 A função ``dispatch()`` verifica se a classe tem um método com o nome do verbo
-HTTP usado na requisição. Caso não haja um ``http.HttpResponseNotAllowed`` é
+HTTP usado na requisição. Caso não haja, um ``http.HttpResponseNotAllowed`` é
 retornado.
 
 Essa classe sempre responde a requisições com o verbo ``OPTIONS`` retornando
@@ -102,7 +102,7 @@ No exemplo acima a classe só responde a requisições do tipo ``GET`` e
 
 ### <a name="template_view"></a>Template View
 
-Renderiza um template. O fluxo básico de execução dessa clase quando recebe
+Renderiza um template. O fluxo básico de execução dessa classe quando recebe
 uma requisição é:
 
 1. ``dispatch()``
@@ -162,7 +162,7 @@ A URL a ser redirecionada pode conter parâmetros no estilo dicionário-de-strin
 Os parâmetros capturados na URL do ``RedirectView`` serão repassados para a
 URL que o usuário está sendo redirecionado.
 
-O fluxo básico de execução dessa clase quando recebe
+O fluxo básico de execução dessa classe quando recebe
 uma requisição é:
 
 1. ``dispatch()``
@@ -212,7 +212,7 @@ Principais atributos:
 - ``pattern_name``: O nome do padrão de URL. Um ``reverse`` será aplicado
   usando os mesmos
   ``args`` e ``kwargs`` passados para a ``RedirectView``
-- ``permanent``: Se for ``True`` retorna o status code como 301 caso contrário
+- ``permanent``: Se for ``True`` retorna o status code como 301, caso contrário,
   retorna 302.
 - ``query_string``: Se for ``True`` a query_string será enviada para a URL de
   destino.
@@ -230,7 +230,7 @@ parâmetro enviado na URL.
 No fluxo de execução dessa view o objeto que está sendo utilizado está em
 ``self.object``
 
-O fluxo básico de execução dessa clase quando recebe
+O fluxo básico de execução dessa classe quando recebe
 uma requisição é:
 
 1. ``dispatch()``
@@ -253,7 +253,7 @@ Django tenta o segundo e assim por diante.
 
 Em seguida o ``get_slug_field()`` entra em ação, essa função deve retornar o
 nome do campo que será usado para fazer a busca pelo objeto. Por default o
-Django procura pelo campo ``slug``
+Django procura pelo campo ``slug``.
 
 Agora o ``get_queryset`` deve retornar um queryset que será usado para buscar
 um objeto. Aqui é um ótimo lugar para, por exemplo, aplicar um filtro para
@@ -342,7 +342,7 @@ Uma página que representa uma lista de objetos.
 Enquanto essa view está executando a variável ``self.object_list`` vai conter
 a lista de objetos que a view está utilizando.
 
-O fluxo básico de execução dessa clase quando recebe
+O fluxo básico de execução dessa classe quando recebe
 uma requisição é:
 
 1. ``dispatch()``
@@ -409,18 +409,18 @@ O nome do template que é usado em ambas as views ``DetailView`` e ``ListView``
 
 * O valor da variável ``template_name`` na View (se definido)
 * O valor do campo ``template_name_field`` na instância do objeto que a view
-  esta usando.
+  está usando.
 * ``<app_label>/<model_name><template_name_suffix>.html``
 
 
 ## <a name="editing_views"></a>Editing Views
 
-As views descritas abaixo contém o comportamento básico para edição de conteúdo
+As views descritas abaixo contém o comportamento básico para edição de conteúdo.
 
 ### <a name="form_view"></a>FormView
 
 Uma view que mostra um formulário. Se houver erro, mostra o formulário novamente
-contendo os erros de validação; Em caso de sucesso redireciona o usuário para
+contendo os erros de validação. Em caso de sucesso redireciona o usuário para
 uma nova URL.
 
 **forms.py**
@@ -476,8 +476,8 @@ Grande parte do "poder" das CBV's vem quando precisamos trabalhar com models.
 
 As views listadas abaixo: ``CreateView``, ``UpdateView`` e ``DeleteView`` foram
 criadas para facilitar esse trabalho com os models, essas views podem gerar um
-``ModelForm`` de maneira automatica, desde que seja possível determinar qual
-é o model que a view esta utilizando.
+``ModelForm`` de maneira automática, desde que seja possível determinar qual
+é o model que a view está utilizando.
 
 A view vai tentar determinar o model a ser usado das seguintes formas:
 
@@ -507,7 +507,7 @@ class AuthorCreate(CreateView):
 
 ### <a name="create_update_delete_view"></a>CreateView, UpdateView e DeleteView
 
-Uma view que exibe um form para criar, atualizar ou apagaer um objeto.
+Uma view que exibe um form para criar, atualizar ou apagar um objeto.
 Caso existam erros no formulário, este é exibido novamente junto com as
 mensagens de erro.
 
@@ -564,7 +564,7 @@ urlpatterns = [
 O atributo ``fields`` determina quais campos do model devem estar presentes no
 formulário. É obrigatório especificar o atributo ``fields`` ou então o atributo
 ``form_class``, nunca os dois ao mesmo tempo, pois isso geraria uma exceção
-[``ImproperlyConfigured``](https://docs.djangoproject.com/en/1.8/ref/exceptions/#django.core.exceptions.ImproperlyConfigured)
+[``ImproperlyConfigured``](https://docs.djangoproject.com/en/1.8/ref/exceptions/#django.core.exceptions.ImproperlyConfigured).
 
 É importante notar também que a ``DeleteView`` exibe as informações do objeto que
 será deletado quando é acessada usando o verbo ``GET``, quando usado o verbo
@@ -583,7 +583,7 @@ filtrados por datas, por exemplo: posts em um blog, notícias, consultas ao méd
 ### <a name="archive_view"></a>ArchiveIndexView
 
 Uma página que exibe os "últimas" objetos inseridos, desconsiderando aqueles com uma
-data futura a não ser que o atributo ``allow_future`` seja definido como ``True``
+data futura a não ser que o atributo ``allow_future`` seja definido como ``True``.
 
 É importante notar que:
 
@@ -592,7 +592,7 @@ data futura a não ser que o atributo ``allow_future`` seja definido como ``True
 - Além da lista de objetos o contexto também contem a variável ``date_list``
   contendo todos os anos que tem objetos em ordem decrescente.
   Isso pode ser alterado para mês ou dia usando o atributo
-  ``date_list_period``. Isso se aplica a todas as *Data-based generic views*
+  ``date_list_period``. Isso se aplica a todas as *Data-based generic views*.
 
 Implementação simples:
 
@@ -903,3 +903,4 @@ começar pela [Documentação oficial](https://docs.djangoproject.com/en/1.8/top
 - <https://docs.djangoproject.com/en/1.8/topics/class-based-views/>
 - <https://docs.djangoproject.com/en/1.8/ref/class-based-views/>
 - <https://github.com/django/django/blob/master/django/views/generic/>
+- <http://ccbv.co.uk/>
