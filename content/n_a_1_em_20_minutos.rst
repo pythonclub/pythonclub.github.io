@@ -296,7 +296,9 @@ Para esses casos, utilizamos o `prefetch_related <https://docs.djangoproject.com
         print cadastro.enderecos.all()
 
     >> print len(connection.queries)
-    1
+    2
+
+Hum, 2 queries? Por quê? Porque o Django precisa realizar a primeira query para retornar todos os cadastros e uma query para retornar todos os endereços e então realizar o JOIN através do Python =)
 
 Legal, aprendemos a como diminuir o número de consultas que realizamos quando desejamos retirar alguma informação do banco de dados, mas e quando desejamos inserir, atualizar e deletar?
 
