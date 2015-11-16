@@ -1,8 +1,15 @@
-Title: Material do Tutorial: Web Scraping na Nuvem
+Title: Web Scraping na Nuvem com Scrapy
 Date: 2015-11-13 10:04
-Author: elias
+Author: Elias Dorneles
 Slug: material-do-tutorial-web-scraping-na-nuvem
+Tags: scrapy,spider,web-scraping,scraping,crawling,js2xml,extruct,web,scrapy-cloud,scrapinghub
+Email: eliasdorneles@gmail.com
+Github: eliasdorneles
+Twitter: eliasdorneles
+Site: http://eliasdorneles.github.io
 
+
+Este tutorial foi apresentado na Python Brasil 2015 em São José dos Campos.
 
 ## Roteiro
 
