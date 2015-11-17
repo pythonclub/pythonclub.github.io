@@ -1,6 +1,6 @@
 title: Django Rest Framework Quickstart
 Slug: django-rest-framework-quickstart
-Date: 2015-11-16 12:00
+Date: 2015-11-17 14:00
 Tags: Python, Django, REST
 Author: Regis da Silva
 Email:  regis.santos.100@gmail.com
