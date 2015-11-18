@@ -33,7 +33,7 @@ A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 
 1. [**Hello Flask**](/what_the_flask_introducao_ao_desenvolvimento_web_com_python.html): Introdução ao desenvolvimento web com Flask  - **<-- Você está aqui**
 2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): boas práticas na estrutura de aplicações Flask
-3. **Plug & Use**: extensões essenciais para iniciar seu projeto
+3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto): extensões essenciais para iniciar seu projeto.
 4. **DRY**: Criando aplicativos reusáveis com Blueprints
 5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
 6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
