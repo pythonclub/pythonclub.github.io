@@ -23,11 +23,11 @@ Como descrito acima, já existe uma tecnologia para realizar essa função, ent�
 
 Primeiro vamos começar pela instalação do OCR e suas dependências. Abra o terminal e digite o seguinte comando:
 	
-**$ sudo apt-get install tesseract-ocr tesseract-ocr-por gscan2pdf imagemagick nautilus-open-terminal**
+	$ sudo apt-get install tesseract-ocr tesseract-ocr-por gscan2pdf imagemagick nautilus-open-terminal
 
 Agora partiremos para a instalação do wrapper que irá permitir a utilização do OCR em nossos scripts:
 
-**sudo pip install pytesseract**
+	sudo pip install pytesseract
 
 
 ### Mão Na Massa!
