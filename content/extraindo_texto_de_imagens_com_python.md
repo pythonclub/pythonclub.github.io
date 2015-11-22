@@ -25,9 +25,17 @@ Primeiro vamos começar pela instalação do Tesseract OCR. Abra o terminal e di
 	
 	$ sudo apt-get install tesseract-ocr tesseract-ocr-por
 
-Também precisamos instalar a biblioteca Pillow, ela será necessária para carregar a imagem para nosso script:
+Também precisamos instalar a biblioteca Pillow e suas dependências. Ela será necessária para carregar a imagem para nosso script:
 
+	Ubuntu 12.04/14.04:
+
+	$ sudo apt-get install python-dev python3-dev build-essential liblcms1-dev zlib1g-dev libtiff4-dev libjpeg8-dev libfreetype6-dev libwebp-dev
 	$ sudo -H pip install Pillow
+
+	Ubuntu 15.04/15.10
+	$ sudo apt-get install python-dev python3-dev build-essential liblcms2-dev zlib1g-dev libtiff4-dev libjpeg8-dev libfreetype6-dev libwebp-dev
+	$ sudo -H pip install Pillow
+
 
 Agora partiremos para a instalação do wrapper que irá permitir a utilização do Tesseract através do python:
 
