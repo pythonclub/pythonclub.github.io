@@ -1,5 +1,5 @@
 Title: Extraindo Texto de Imagens Com Python
-Date: 2015-11-20 23:00
+Date: 2015-11-22 17:00
 Tags: imagens,ocr,pytesseract,extrair texto
 Category: Manipulação de imagens
 Slug: extraindo-texto-de-imagens-com-python
