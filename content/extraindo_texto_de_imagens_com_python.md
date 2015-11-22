@@ -15,24 +15,28 @@ Já precisou extrair texto de imagens mas não sabia como? aprenda como fazer is
 
 ### O que é OCR?
 
-Segundo o Wikipedia, OCR é um acrónimo para o inglês Optical Character Recognition, é uma tecnologia para reconhecer caracteres a partir de um arquivo de imagem ou mapa de bits sejam eles escaneados, escritos a mão, datilografados ou impressos. Dessa forma, através do OCR é possível obter um arquivo de texto editável por um computador. Retirado de: [https://pt.wikipedia.org/wiki/Reconhecimento_%C3%B3tico_de_caracteres]
+Segundo o Wikipedia, OCR é um acrónimo para o inglês Optical Character Recognition, é uma tecnologia para reconhecer caracteres a partir de um arquivo de imagem ou mapa de bits sejam eles escaneados, escritos a mão, datilografados ou impressos. Dessa forma, através do OCR é possível obter um arquivo de texto editável por um computador. A engine OCR que vamos utilizar é a **Tesseract**, a mesma foi inicialmente desenvolvida nos laboratórios da HP e tem seu projeto hospedado em: [https://github.com/tesseract-ocr/tesseract]. Texto adaptado de: [https://pt.wikipedia.org/wiki/Reconhecimento_%C3%B3tico_de_caracteres]
 
 Como descrito acima, já existe uma tecnologia para realizar essa função, então apenas precisamos utilizá-la em nosso script python e assim desenvolvermos o que a imaginação permitir.
 
 ### Instalando Dependências (Ubuntu)
 
-Primeiro vamos começar pela instalação do OCR e suas dependências. Abra o terminal e digite o seguinte comando:
+Primeiro vamos começar pela instalação do Tesseract OCR. Abra o terminal e digite o seguinte comando:
 	
-	$ sudo apt-get install tesseract-ocr tesseract-ocr-por gscan2pdf imagemagick nautilus-open-terminal
+	$ sudo apt-get install tesseract-ocr tesseract-ocr-por
 
-Agora partiremos para a instalação do wrapper que irá permitir a utilização do OCR em nossos scripts:
+Também precisamos instalar a biblioteca Pillow, ela será necessária para carregar a imagem para nosso script:
 
-	sudo pip install pytesseract
+	$ sudo -H pip install Pillow
+
+Agora partiremos para a instalação do wrapper que irá permitir a utilização do Tesseract através do python:
+
+	$ sudo -H pip install pytesseract
 
 
 ### Mão Na Massa!
 
-Finalmente chegamos a parte prática desse artigo, como dito anteriormente são apenas 3 linhas simples de código, mas antes de começar baixe a seguinte imagem para realizar seus testes:
+Finalmente chegamos a parte prática desse artigo. Como dito anteriormente, são apenas 3 linhas de código, mas antes de começar baixe a seguinte imagem para realizar seus testes:
 
 ![imagem para teste](images/andrelramos/ocr2.png "Imagem Para Teste")
 
@@ -40,7 +44,7 @@ Agora vamos ao código:
 
 	:::python
 	
-	from PIL import Image # Importando o módulo PIL para abrir a imagem no script
+	from PIL import Image # Importando o módulo Pillow para abrir a imagem no script
 	
 	import pytesseract # Módulo para a utilização da tecnologia OCR
 
@@ -48,4 +52,6 @@ Agora vamos ao código:
 
 Simples né? Mas nem sempre o texto sai 100% correto, depende muito da qualidade da imagem e da quantidade de detalhes que a mesma possui, porem existe algumas técnicas usadas para fazer melhorias na imagem diminuindo a chance de erros na hora da extração.
 
-Por hoje é só, boa programação gelera =D
+**Alguns links que podem te ajudar a aproveitar ao maximo da tecnologia OCR:**
+*[http://pt.scribd.com/doc/88203318/Como-escanear-livros-com-qualidade-e-produzir-textos-por-OCR#scribd]
+*[http://profs.if.uff.br/tjpp/blog/entradas/ocr-de-qualidade-no-linux]
