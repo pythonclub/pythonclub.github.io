@@ -20,12 +20,15 @@ O [django-admin ou manage.py][1] já tem um bocado de comandos interessantes, os
 * [test][9] - roda os testes da aplicação.
 * [loaddata][14] - carrega dados iniciais a partir de um json, por exemplo, `./manage.py loaddata fixtures.json`
 * [shell][15] - inicializa um interpretador Python interativo.
+* [dbshell][18] - acessa o banco de dados através da linha de comando, ou seja, você pode executar comandos sql do banco, por exemplo, diretamente no terminal.
 * [inspectdb][16] - retorna todos os modelos Django que geraram as tabelas do banco de dados.
 * [runserver][17] - roda o servidor local do projeto Django.
 
 Mas de repente você precisa criar um comando personalizado conforme a sua necessidade. A palavra chave é `BaseCommand` ou [Writing custom django-admin commands][2].
 
 ## Começando do começo
+
+> Importante: estamos usando Django 1.8 e Python 3.
 
 ### Criando o projeto
 
@@ -67,6 +70,10 @@ touch core/management/commands/{__init__.py,hello.py,initdata.py,search.py}
 
 
 ## Sintaxe do novo comando
+
+> Importante: estamos usando Django 1.8 e Python 3.
+
+O Django 1.8 usa o `argparse` como parser de argumentos do `command`, mais informações em [module-argparse][19].
 
 ```python
 from django.core.management.base import BaseCommand, CommandError
@@ -159,13 +166,13 @@ from django.db import models
 class Movie(models.Model):
     title = models.CharField(u'título', max_length=100)
     year = models.PositiveIntegerField('ano', null=True, blank=True)
-    released = models.CharField(u'lançamento', max_length=100, null=True, blank=True)
-    director = models.CharField('diretor', max_length=100, null=True, blank=True)
-    actors = models.CharField('atores', max_length=100, null=True, blank=True)
+    released = models.CharField(u'lançamento', max_length=100, default='', blank=True)
+    director = models.CharField('diretor', max_length=100, default='', blank=True)
+    actors = models.CharField('atores', max_length=100, default='', blank=True)
     poster = models.URLField('poster', null=True, blank=True)
     imdbRating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     imdbVotes = models.PositiveIntegerField(null=True, blank=True)
-    imdbID = models.CharField(max_length=50, null=True, blank=True)
+    imdbID = models.CharField(max_length=50, default='', blank=True)
 
     class Meta:
         ordering = ['title']
@@ -202,6 +209,15 @@ pip install requests
 
 **initdata.py**
 
+O código a seguir é longo, mas basicamente temos
+
+* `print_red(name)` função que imprime um texto em vermelho (opcional)
+* `get_html(year)` função que lê os dados da api usando [requests][20], e depois escolhe um filme randomicamente a partir de 2 letras
+* `get_movie(year)` se o dicionário conter `{'Response': 'True', ...}` então retorna um dicionário do filme localizado
+* `validate_values()` faz a validação de alguns dados
+* `save()` salva os dados no banco
+* `handle(movies, year)` este é o comando principal. Busca os filmes várias vezes, conforme definido pela variável `movies`, e salva os n filmes.
+
 ```python
 import random
 import string
@@ -230,6 +246,7 @@ class Command(BaseCommand):
     )
 
     def print_red(self, name):
+        ''' imprime em vermelho '''
         print("\033[91m {}\033[00m".format(name))
 
     def get_html(self, year):
@@ -239,24 +256,25 @@ class Command(BaseCommand):
         '''
 
         ''' Escolhe duas letras aleatoriamente '''
-        c = ''.join(random.choice(string.ascii_lowercase)for _ in range(2))
+        letters = ''.join(random.choice(string.ascii_lowercase)
+                          for _ in range(2))
         ''' Se não for definido o ano, então escolhe um randomicamente '''
         if year is None:
             year = str(random.randint(1950, 2015))
-        url = 'http://www.omdbapi.com/?t=' + c + \
+        url = 'http://www.omdbapi.com/?t=' + letters + \
             '*&y=' + str(year) + '&plot=short&r=json'
         return requests.get(url).json()
 
     def get_movie(self, year, **kwargs):
         ''' Retorna um dicionário do filme '''
-        m = self.get_html(year)
+        movie = self.get_html(year)
         j = 1  # contador
         ''' Faz a validação de Response. Se a resposta for falsa, então busca outro filme. '''
-        while m['Response'] == 'False' and j < 100:
-            m = self.get_html(year)
+        while movie['Response'] == 'False' and j < 100:
+            movie = self.get_html(year)
             self.print_red('Tentanto %d vezes\n' % j)
             j += 1
-        return m
+        return movie
 
     def validate_values(self, **kwargs):
         ''' faz a validação de ... '''
@@ -321,7 +339,6 @@ Faz o crawler numa api de filmes e retorna os dados.
 ```python
 from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
-from django.db.models import Q
 from core.models import Movie
 
 
@@ -342,16 +359,19 @@ class Command(BaseCommand):
     )
 
     def handle(self, title=None, year=None, **options):
-        if title is not None and year is not None:
-            q = Movie.objects.filter(Q(title__istartswith=title) &
-                                     Q(year=year))
-        elif title is not None:
-            q = Movie.objects.filter(title__istartswith=title)
-        elif year is not None:
-            q = Movie.objects.filter(year=year)
-        for i in q:
-            print(i.year, i.title)
-        print('\n%s filmes localizados.' % q.count())
+        ''' dicionário de filtros '''
+        filters = {
+            'title__istartswith': title,
+            'year': year
+        }
+
+        filter_by = {key: value for key,
+                     value in filters.items() if value is not None}
+        queryset = Movie.objects.filter(**filter_by)
+
+        for movie in queryset:
+            print(movie.year, movie.title)
+        print('\n%s filmes localizados.' % queryset.count())
 ```
 
 **Uso**
@@ -393,3 +413,6 @@ Mais algumas referências:
 [15]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#shell
 [16]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#inspectdb
 [17]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#runserver-port-or-address-port
+[18]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#dbshell
+[19]: https://docs.python.org/2/library/argparse.html#module-argparse
+[20]: http://docs.python-requests.org/en/latest/
