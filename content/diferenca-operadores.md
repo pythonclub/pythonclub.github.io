@@ -7,6 +7,7 @@ Email:  gjuniioor@protonmail.ch
 Github: gjuniioor
 Site: https://gjuniioor.github.io
 Category: Python
+Status: draft
 
 Diferença entre == e is
 -----------
