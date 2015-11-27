@@ -17,3 +17,6 @@ cache/*
 
 # Pycharm
 .idea
+
+# Virtualenv
+venv/
