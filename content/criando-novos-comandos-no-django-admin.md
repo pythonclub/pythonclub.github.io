@@ -1,6 +1,6 @@
 title: Criando novos comandos no django-admin
 Slug: criando-novos-comandos-no-django-admin
-Date: 2015-11-24 22:00
+Date: 2015-11-29 22:00
 Tags: Python, Django
 Author: Regis da Silva
 Email:  regis.santos.100@gmail.com
@@ -171,7 +171,6 @@ class Movie(models.Model):
     actors = models.CharField('atores', max_length=100, default='', blank=True)
     poster = models.URLField('poster', null=True, blank=True)
     imdbRating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    imdbVotes = models.PositiveIntegerField(null=True, blank=True)
     imdbID = models.CharField(max_length=50, default='', blank=True)
 
     class Meta:
@@ -214,9 +213,9 @@ O código a seguir é longo, mas basicamente temos
 * `print_red(name)` função que imprime um texto em vermelho (opcional)
 * `get_html(year)` função que lê os dados da api usando [requests][20], e depois escolhe um filme randomicamente a partir de 2 letras
 * `get_movie(year)` se o dicionário conter `{'Response': 'True', ...}` então retorna um dicionário do filme localizado
-* `validate_values()` faz a validação de alguns dados
 * `save()` salva os dados no banco
 * `handle(movies, year)` este é o comando principal. Busca os filmes várias vezes, conforme definido pela variável `movies`, e salva os n filmes.
+
 
 ```python
 import random
@@ -256,8 +255,7 @@ class Command(BaseCommand):
         '''
 
         ''' Escolhe duas letras aleatoriamente '''
-        letters = ''.join(random.choice(string.ascii_lowercase)
-                          for _ in range(2))
+        letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
         ''' Se não for definido o ano, então escolhe um randomicamente '''
         if year is None:
             year = str(random.randint(1950, 2015))
@@ -276,19 +274,10 @@ class Command(BaseCommand):
             j += 1
         return movie
 
-    def validate_values(self, **kwargs):
-        ''' faz a validação de ... '''
-        False if kwargs['imdbRating'] == "N/A" else True
-        False if kwargs['imdbVotes'] == "N/A" else True
-
     def save(self, **kwargs):
         try:
-            ''' verifica as validações '''
-            if self.validate_values(**kwargs):
-                ''' Então remove a virgula de imdbVotes '''
-                kwargs['imdbVotes'] = kwargs['imdbVotes'].replace(',', '')
-                ''' SALVA os dados '''
-                Movie.objects.create(**kwargs)
+            ''' SALVA os dados '''
+            Movie.objects.create(**kwargs)
         except ValidationError as e:
             self.print_red(e.messages)
             self.print_red('O objeto não foi salvo.\n')
@@ -299,7 +288,10 @@ class Command(BaseCommand):
             movies = int(movies)
         ''' busca os filmes n vezes, a partir da variavel "movies" '''
         for i in range(movies):
+            ''' verifica as validações '''
             m = self.get_movie(year)
+            if m['imdbRating'] == "N/A":
+                m['imdbRating'] = 0.0
             ''' Transforma "year" em inteiro '''
             if "–" in m['Year']:
                 m['Year'] = year
@@ -311,7 +303,6 @@ class Command(BaseCommand):
                 "actors": m['Actors'],
                 "poster": m['Poster'],
                 "imdbRating": m['imdbRating'],
-                "imdbVotes": m['imdbVotes'],
                 "imdbID": m['imdbID'],
             }
             self.save(**data)
@@ -365,8 +356,7 @@ class Command(BaseCommand):
             'year': year
         }
 
-        filter_by = {key: value for key,
-                     value in filters.items() if value is not None}
+        filter_by = {key: value for key, value in filters.items() if value is not None}
         queryset = Movie.objects.filter(**filter_by)
 
         for movie in queryset:
@@ -413,6 +403,3 @@ Mais algumas referências:
 [15]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#shell
 [16]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#inspectdb
 [17]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#runserver-port-or-address-port
-[18]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#dbshell
-[19]: https://docs.python.org/2/library/argparse.html#module-argparse
-[20]: http://docs.python-requests.org/en/latest/
