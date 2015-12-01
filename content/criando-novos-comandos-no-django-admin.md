@@ -1,12 +1,12 @@
 title: Criando novos comandos no django-admin
 Slug: criando-novos-comandos-no-django-admin
-Date: 2015-11-29 22:00
+Date: 2015-12-01 22:00
 Tags: Python, Django
 Author: Regis da Silva
 Email:  regis.santos.100@gmail.com
 Github: rg3915
 Twitter: rg3915
-Category: Python, Django
+Category: Django
 
 Veja aqui como criar o seu próprio comando para ser usado com o django-admin ou manage.py do Django.
 
@@ -18,7 +18,7 @@ O [django-admin ou manage.py][1] já tem um bocado de comandos interessantes, os
 * [migrate][7] - sincroniza o banco de dados com as novas migrações.
 * [createsuperuser][8] - cria novos usuários.
 * [test][9] - roda os testes da aplicação.
-* [loaddata][14] - carrega dados iniciais a partir de um json, por exemplo, `./manage.py loaddata fixtures.json`
+* [loaddata][14] - carrega dados iniciais a partir de um json, por exemplo, `python manage.py loaddata fixtures.json`
 * [shell][15] - inicializa um interpretador Python interativo.
 * [dbshell][18] - acessa o banco de dados através da linha de comando, ou seja, você pode executar comandos sql do banco, por exemplo, diretamente no terminal.
 * [inspectdb][16] - retorna todos os modelos Django que geraram as tabelas do banco de dados.
@@ -88,22 +88,22 @@ class Command(BaseCommand):
     )
 
     def handle(self, **options):
-        print('Hello world.')
+        self.stdout.write('Hello world.')
         if options['awards']:
-            print('Awards')
+            self.stdout.write('Awards')
 ```
 
-Entendeu? Basicamente o `handle` é a função que executa o comando principal, no caso o `print('Hello world.')`, ou seja, se você digitar o comando a seguir ele imprime a mensagem na tela.
+Entendeu? Basicamente o `handle` é a função que executa o comando principal, no caso o `self.stdout.write('Hello world.')`, ou seja, se você digitar o comando a seguir ele imprime a mensagem na tela.
 
 ```bash
-$ ./manage.py hello
+$ python manage.py hello
 Hello World
 ```
 
 `--awards` é um argumento opcional, você também pode digitar `-a`.
 
 ```bash
-$ ./manage.py hello -a
+$ python manage.py hello -a
 Hello World
 Awards
 ```
@@ -127,9 +127,9 @@ class Command(BaseCommand):
                             help='Ajuda da opção aqui.')
 
     def handle(self, *args, **options):
-        print('Hello world.')
+        self.stdout.write('Hello world.')
         if options['awards']:
-            print('Awards')
+            self.stdout.write('Awards')
 ```
 
 A diferença é que aqui usamos `parser.add_argument` ao invés de `make_option`.
@@ -143,13 +143,13 @@ class Command(BaseCommand):
     help = 'Print hello world'
 
     def handle(self, **options):
-        print('Hello World')
+        self.stdout.write('Hello World')
 ```
 
 **Uso**
 
 ```bash
-$ ./manage.py hello
+$ python manage.py hello
 ```
 
 ### initdata.py
@@ -185,8 +185,8 @@ class Movie(models.Model):
 Não se esqueça de fazer
 
 ```bash
-./manage.py makemigrations
-./manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 **admin.py**
@@ -218,6 +218,8 @@ O código a seguir é longo, mas basicamente temos
 
 
 ```python
+# -*- coding: utf-8 -*- #
+
 import random
 import string
 import requests
@@ -228,10 +230,10 @@ from core.models import Movie
 
 
 class Command(BaseCommand):
-    help = 'Faz o crawler numa api de filmes e retorna os dados.\n \
-    Uso: ./manage.py initdata\n \
-    ou: ./manage.py initdata -m 20\n \
-    ou: ./manage.py initdata -m 20 -y 2015'
+    help = """Faz o crawler numa api de filmes e retorna os dados.
+    Uso: python manage.py initdata
+    ou: python manage.py initdata -m 20
+    ou: python manage.py initdata -m 20 -y 2015"""
     option_list = BaseCommand.option_list + (
         make_option('--movies', '-m',
                     dest='movies',
@@ -245,29 +247,31 @@ class Command(BaseCommand):
     )
 
     def print_red(self, name):
-        ''' imprime em vermelho '''
+        """imprime em vermelho"""
         print("\033[91m {}\033[00m".format(name))
 
     def get_html(self, year):
-        '''
+        """
         Le os dados na api http://www.omdbapi.com/ de forma aleatoria
         e escolhe um filme buscando por 2 letras
-        '''
+        """
 
-        ''' Escolhe duas letras aleatoriamente '''
-        letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
-        ''' Se não for definido o ano, então escolhe um randomicamente '''
+        # Escolhe duas letras aleatoriamente
+                letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
+        
+        # Se não for definido o ano, então escolhe um randomicamente
         if year is None:
             year = str(random.randint(1950, 2015))
-        url = 'http://www.omdbapi.com/?t=' + letters + \
-            '*&y=' + str(year) + '&plot=short&r=json'
+        url = 'http://www.omdbapi.com/?t={letters}*&y={year}&plot=short&r=json'.format(letters=letters, year=str(year))
         return requests.get(url).json()
 
     def get_movie(self, year, **kwargs):
-        ''' Retorna um dicionário do filme '''
+        """ Retorna um dicionário do filme """
+        
         movie = self.get_html(year)
         j = 1  # contador
-        ''' Faz a validação de Response. Se a resposta for falsa, então busca outro filme. '''
+        
+        # Faz a validação de Response. Se a resposta for falsa, então busca outro filme.
         while movie['Response'] == 'False' and j < 100:
             movie = self.get_html(year)
             self.print_red('Tentanto %d vezes\n' % j)
@@ -275,26 +279,32 @@ class Command(BaseCommand):
         return movie
 
     def save(self, **kwargs):
+        """SALVA os dados"""
         try:
-            ''' SALVA os dados '''
             Movie.objects.create(**kwargs)
         except ValidationError as e:
             self.print_red(e.messages)
             self.print_red('O objeto não foi salvo.\n')
 
     def handle(self, movies, year, **options):
-        ''' se "movies" não for nulo, transforma em inteiro '''
+        """ se "movies" não for nulo, transforma em inteiro """
+        
+        self.verbosity = int(options.get('verbosity'))
+        
         if movies is not None:
             movies = int(movies)
-        ''' busca os filmes n vezes, a partir da variavel "movies" '''
+        
+        # busca os filmes n vezes, a partir da variavel "movies"
         for i in range(movies):
-            ''' verifica as validações '''
+            # verifica as validações
             m = self.get_movie(year)
             if m['imdbRating'] == "N/A":
                 m['imdbRating'] = 0.0
-            ''' Transforma "year" em inteiro '''
+            
+            # Transforma "year" em inteiro
             if "–" in m['Year']:
                 m['Year'] = year
+            
             data = {
                 "title": m['Title'],
                 "year": m['Year'],
@@ -305,21 +315,24 @@ class Command(BaseCommand):
                 "imdbRating": m['imdbRating'],
                 "imdbID": m['imdbID'],
             }
-            self.save(**data)
-            print('\n', i + 1, data['year'], data['title'])
 
-        print('\nForam salvos %d filmes' % movies)
+            self.save(**data)
+            
+            if self.verbosity > 0:
+                self.stdout.write('\n {0} {1} {2}'.format(i + 1, data['year'], data['title']))
+        if self.verbosity > 0:
+            self.stdout.write('\nForam salvos %d filmes' % movies)
 ```
 
 **Uso**
 
 ```bash
-Usage: ./manage.py initdata [options] 
+Usage: python manage.py initdata [options] 
 
 Faz o crawler numa api de filmes e retorna os dados.
-     Uso: ./manage.py initdata
-     ou: ./manage.py initdata -m 20
-     ou: ./manage.py initdata -m 20 -y 2015
+     Uso: python manage.py initdata
+     ou: python manage.py initdata -m 20
+     ou: python manage.py initdata -m 20 -y 2015
 ```
 
 
@@ -334,10 +347,11 @@ from core.models import Movie
 
 
 class Command(BaseCommand):
-    help = "Localiza um filme pelo título ou ano de lançamento.\n \
-    Uso: ./manage.py search -t 'Ted 2'\n \
-    ou: ./manage.py search -y 2015\n \
-    ou: ./manage.py search -t 'a' -y 2015"
+    help = """Localiza um filme pelo título ou ano de lançamento.
+    Uso: python manage.py search -t 'Ted 2'
+    ou: python manage.py search -y 2015
+    ou: python manage.py search -t 'a' -y 2015"""
+    
     option_list = BaseCommand.option_list + (
         make_option('--title', '-t',
                     dest='title',
@@ -350,7 +364,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, title=None, year=None, **options):
-        ''' dicionário de filtros '''
+        """ dicionário de filtros """
+        self.verbosity = int(options.get('verbosity'))
+        
         filters = {
             'title__istartswith': title,
             'year': year
@@ -359,20 +375,21 @@ class Command(BaseCommand):
         filter_by = {key: value for key, value in filters.items() if value is not None}
         queryset = Movie.objects.filter(**filter_by)
 
-        for movie in queryset:
-            print(movie.year, movie.title)
-        print('\n%s filmes localizados.' % queryset.count())
+        if self.verbosity > 0:
+            for movie in queryset:
+                self.stdout.write("{0} {1}".format(movie.year, movie.title))
+            self.stdout.write('\n{0} filmes localizados.'.format(queryset.count()))
 ```
 
 **Uso**
 
 ```bash
-Usage: ./manage.py search [options] 
+Usage: python manage.py search [options] 
 
 Localiza um filme pelo título ou ano de lançamento.
-     Uso: ./manage.py search -t 'Ted 2'
-     ou: ./manage.py search -y 2015
-     ou: ./manage.py search -t 'a' -y 2015
+     Uso: python manage.py search -t 'Ted 2'
+     ou: python manage.py search -y 2015
+     ou: python manage.py search -t 'a' -y 2015
 ```
 
 
