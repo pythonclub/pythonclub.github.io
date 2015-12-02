@@ -108,7 +108,7 @@ Hello World
 Awards
 ```
 
-`action="store_true"` significa que o comando é opcional.
+`action="store_true"` significa que ele armazena um valor verdadeiro.
 
 **Obs**: A partir do Django 1.8 os comandos de argumentos opcionais são baseados em `**options`.
 
