@@ -1,6 +1,6 @@
 title: Criando novos comandos no django-admin
 Slug: criando-novos-comandos-no-django-admin
-Date: 2015-12-01 22:00
+Date: 2015-12-03 22:00
 Tags: Python, Django
 Author: Regis da Silva
 Email:  regis.santos.100@gmail.com
@@ -257,7 +257,7 @@ class Command(BaseCommand):
         """
 
         # Escolhe duas letras aleatoriamente
-                letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
+        letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
         
         # Se não for definido o ano, então escolhe um randomicamente
         if year is None:
@@ -420,3 +420,6 @@ Mais algumas referências:
 [15]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#shell
 [16]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#inspectdb
 [17]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#runserver-port-or-address-port
+[18]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#dbshell
+[19]: https://docs.python.org/2/library/argparse.html#module-argparse
+[20]: http://docs.python-requests.org/en/latest/
