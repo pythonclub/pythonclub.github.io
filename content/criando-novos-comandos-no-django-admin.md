@@ -257,7 +257,7 @@ class Command(BaseCommand):
         """
 
         # Escolhe duas letras aleatoriamente
-                letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
+        letters = ''.join(random.choice(string.ascii_lowercase) for _ in range(2))
         
         # Se não for definido o ano, então escolhe um randomicamente
         if year is None:
