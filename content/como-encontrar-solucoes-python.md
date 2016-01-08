@@ -17,7 +17,7 @@ Quando estamos aprendendo algo, o início geralmente é difícil. Conseguir abso
 
 A diferença entre uma pessoa experiente comparado a um iniciante é que a pessoa experiente errou muito mais vezes do que um iniciante, e com o tempo aprendeu com os erros.
 
-E na área de programação temos inúmeros tutorials e cursos espalhados pela internet, e geralmente as pessoas começam a aprender por conta própria. E quando acontece um problema (e isso irá acontecer inevitavelmente) e não sabemos como solucioná-lo, se torna um obstáculo chato. 
+E na área de programação temos inúmeros tutoriais e cursos espalhados pela internet, e geralmente as pessoas começam a aprender por conta própria. E quando acontece um problema (e isso irá acontecer inevitavelmente) e não sabemos como solucioná-lo, se torna um obstáculo chato. 
 
 Neste artigo irei mostrar algumas formas de poder encontrar soluções para seus problemas enquanto aprende a programar. 
 
