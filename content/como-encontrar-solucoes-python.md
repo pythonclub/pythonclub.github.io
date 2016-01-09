@@ -45,13 +45,13 @@ TypeError: unsupported operand type(s) for +: 'set' and 'tuple'
 
 ### O que aconteceu? 
 
-Na variável **a** criamos uma *lista* com os nomes *Eric, Python e JavaScript*, e depois criamos uma *tupla* com os nomes *Django e Flask*. 
+Na variável **a** criamos um *set* com os nomes *Eric, Python e JavaScript*, e depois criamos uma *tupla* com os nomes *Django e Flask*. 
 
-Ao tentarmos juntar **a + b**, o interpretador Python nos retorna um erro: *TypeError: unsupported operand type(s) for +: 'set' and 'tuple'*. Ou seja, o que ele diz é que não podemos somar uma lista a uma tupla.
+Ao tentarmos juntar **a + b**, o interpretador Python nos retorna um erro: *TypeError: unsupported operand type(s) for +: 'set' and 'tuple'*. Ou seja, o que ele diz é que não podemos somar um set a uma tupla.
 
 O interpretador Python realiza as operações em tempo real, e se caso o que você deseja fazer não estiver correto, o interpretador irá informar o erro. Se o erro não for explícito para você, basta copiar e colar o erro no Google e encontrará os motivos do erro.
 
-Para resolver esse problema, uma das soluções apresentada é transformar nossa lista em uma tupla, onde fazemos a conversão em tempo de execução com o comando **tuple(a) + b**. 
+Para resolver esse problema, uma das soluções apresentada é transformar nosso set em uma tupla, onde fazemos a conversão em tempo de execução com o comando **tuple(a) + b**. 
 
 ## [Ipython](http://ipython.org/)
 
@@ -196,16 +196,26 @@ Ao observarmos uma funcionalidade queremos entender o que ele faz, e muitas veze
 
 Clique em **Forward** e veja o que acontece.
 
+# Outras opções
+
+Também existem outras ferramentas que podem auxiliar e melhorar seu código:
+
+- ##### [Anaconda para Sublime Text](http://damnwidget.github.io/anaconda/)
+- ##### [Autopep8](https://pypi.python.org/pypi/autopep8)
+- ##### [Jedi](https://github.com/davidhalter/jedi)
+- ##### [Pyflakes](https://pypi.python.org/pypi/pyflakes)
+- ##### [PDB](https://docs.python.org/2/library/pdb.html)
+
 ## Locais onde podemos postar nossas dúvidas
 
 Vale sempre lembrar que é muito importante consultar a documentação oficial do Python, seja a [versão 2](https://docs.python.org/2/) ou a [versão 3](https://docs.python.org/3/).
 
 Também existem outro lugar muito legal, o **[Stackoverflow](http://pt.stackoverflow.com/)**. Se ainda o problema persistir, acesse as listas de discussões da comunidade Python no Brasil. 
 
-- **Python Brasil** - [https://groups.google.com/forum/#!forum/python-brasil](https://groups.google.com/forum/#!forum/python-brasil)
-- **Django Brasil** - [https://groups.google.com/forum/#!forum/django-brasil](https://groups.google.com/forum/#!forum/django-brasil)
-- **Web2py Brasil** - [https://groups.google.com/forum/#!forum/web2py-users-brazil](https://groups.google.com/forum/#!forum/web2py-users-brazil)
-- **Flask Brasil** - [https://groups.google.com/forum/#!forum/flask-brasil](https://groups.google.com/forum/#!forum/flask-brasil)
-- **Comunidades locais da comunidade Python ao redor do Brasil** - [http://pythonbrasil.github.io/wiki/comunidades-locais](http://pythonbrasil.github.io/wiki/comunidades-locais)
+- ##### Python Brasil - [https://groups.google.com/forum/#!forum/python-brasil](https://groups.google.com/forum/#!forum/python-brasil)
+- ##### Django Brasil - [https://groups.google.com/forum/#!forum/django-brasil](https://groups.google.com/forum/#!forum/django-brasil)
+- ##### Web2py Brasil - [https://groups.google.com/forum/#!forum/web2py-users-brazil](https://groups.google.com/forum/#!forum/web2py-users-brazil)
+- ##### Flask Brasil - [https://groups.google.com/forum/#!forum/flask-brasil](https://groups.google.com/forum/#!forum/flask-brasil)
+- ##### Comunidades locais da comunidade Python ao redor do Brasil - [http://pythonbrasil.github.io/wiki/comunidades-locais](http://pythonbrasil.github.io/wiki/comunidades-locais)
 
 Deixe nos comentários seu feedback, e se tiver outra dica que não foi citado, não deixe de indicar.
