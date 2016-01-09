@@ -45,13 +45,13 @@ TypeError: unsupported operand type(s) for +: 'set' and 'tuple'
 
 ### O que aconteceu? 
 
-Na variável **a** criamos uma *lista* com os nomes *Eric, Python e JavaScript*, e depois criamos uma *tupla* com os nomes *Django e Flask*. 
+Na variável **a** criamos um *set* com os nomes *Eric, Python e JavaScript*, e depois criamos uma *tupla* com os nomes *Django e Flask*. 
 
-Ao tentarmos juntar **a + b**, o interpretador Python nos retorna um erro: *TypeError: unsupported operand type(s) for +: 'set' and 'tuple'*. Ou seja, o que ele diz é que não podemos somar uma lista a uma tupla.
+Ao tentarmos juntar **a + b**, o interpretador Python nos retorna um erro: *TypeError: unsupported operand type(s) for +: 'set' and 'tuple'*. Ou seja, o que ele diz é que não podemos somar um set a uma tupla.
 
 O interpretador Python realiza as operações em tempo real, e se caso o que você deseja fazer não estiver correto, o interpretador irá informar o erro. Se o erro não for explícito para você, basta copiar e colar o erro no Google e encontrará os motivos do erro.
 
-Para resolver esse problema, uma das soluções apresentada é transformar nossa lista em uma tupla, onde fazemos a conversão em tempo de execução com o comando **tuple(a) + b**. 
+Para resolver esse problema, uma das soluções apresentada é transformar nosso set em uma tupla, onde fazemos a conversão em tempo de execução com o comando **tuple(a) + b**. 
 
 ## [Ipython](http://ipython.org/)
 
@@ -195,6 +195,16 @@ Ao observarmos uma funcionalidade queremos entender o que ele faz, e muitas veze
 <iframe width="800" height="500" frameborder="0" src="http://www.pythontutor.com/visualize.html#code=prefix+%3D+%22Hello+%22%0A%0An1+%3D+raw_input(%22Enter+your+name%22%29%0A%0An2+%3D+raw_input(%22Enter+another+name%22%29%0A%0Ares+%3D+prefix+%2B+n1+%2B+%22+and+%22+%2B+n2%0Aprint(res%29&mode=display&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=2&rawInputLstJSON=%5B%5D&curInstr=0"> </iframe>
 
 Clique em **Forward** e veja o que acontece.
+
+# Outras opções
+
+Também existem outras ferramentas que podem auxiliar e melhorar seu código:
+
+- **Anaconda para Sublime Text** - [http://damnwidget.github.io/anaconda/](http://damnwidget.github.io/anaconda/)
+- **Autopep8** - [https://pypi.python.org/pypi/autopep8](https://pypi.python.org/pypi/autopep8)
+- **Jedi** - [https://github.com/davidhalter/jedi](https://github.com/davidhalter/jedi)
+- **Pyflakes** - [https://pypi.python.org/pypi/pyflakes](https://pypi.python.org/pypi/pyflakes)
+- **PDB** - [https://docs.python.org/2/library/pdb.html](https://docs.python.org/2/library/pdb.html)
 
 ## Locais onde podemos postar nossas dúvidas
 
