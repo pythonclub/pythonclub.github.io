@@ -1,6 +1,6 @@
 Title: Como encontrar soluções para seus problemas com Python
 Slug: como-encontrar-solucoes-python
-Date: 2015-01-08 11:30
+Date: 2015-01-09 10:30
 Tags: python,blog,tutorial,aulas
 Author: Eric Hideki
 Email:  eric8197@gmail.com
