@@ -200,11 +200,11 @@ Clique em **Forward** e veja o que acontece.
 
 Também existem outras ferramentas que podem auxiliar e melhorar seu código:
 
-- ##### [Anaconda para Sublime Text](http://damnwidget.github.io/anaconda/)
-- ##### [Autopep8](https://pypi.python.org/pypi/autopep8)
-- ##### [Jedi](https://github.com/davidhalter/jedi)
-- ##### [Pyflakes](https://pypi.python.org/pypi/pyflakes)
-- ##### [PDB](https://docs.python.org/2/library/pdb.html)
+- **Anaconda para Sublime Text** - [http://damnwidget.github.io/anaconda/](http://damnwidget.github.io/anaconda/)
+- **Autopep8** - [https://pypi.python.org/pypi/autopep8](https://pypi.python.org/pypi/autopep8)
+- **Jedi** - [https://github.com/davidhalter/jedi](https://github.com/davidhalter/jedi)
+- **Pyflakes** - [https://pypi.python.org/pypi/pyflakes](https://pypi.python.org/pypi/pyflakes)
+- **PDB** - [https://docs.python.org/2/library/pdb.html](https://docs.python.org/2/library/pdb.html)
 
 ## Locais onde podemos postar nossas dúvidas
 
@@ -212,10 +212,10 @@ Vale sempre lembrar que é muito importante consultar a documentação oficial d
 
 Também existem outro lugar muito legal, o **[Stackoverflow](http://pt.stackoverflow.com/)**. Se ainda o problema persistir, acesse as listas de discussões da comunidade Python no Brasil. 
 
-- ##### Python Brasil - [https://groups.google.com/forum/#!forum/python-brasil](https://groups.google.com/forum/#!forum/python-brasil)
-- ##### Django Brasil - [https://groups.google.com/forum/#!forum/django-brasil](https://groups.google.com/forum/#!forum/django-brasil)
-- ##### Web2py Brasil - [https://groups.google.com/forum/#!forum/web2py-users-brazil](https://groups.google.com/forum/#!forum/web2py-users-brazil)
-- ##### Flask Brasil - [https://groups.google.com/forum/#!forum/flask-brasil](https://groups.google.com/forum/#!forum/flask-brasil)
-- ##### Comunidades locais da comunidade Python ao redor do Brasil - [http://pythonbrasil.github.io/wiki/comunidades-locais](http://pythonbrasil.github.io/wiki/comunidades-locais)
+- **Python Brasil** - [https://groups.google.com/forum/#!forum/python-brasil](https://groups.google.com/forum/#!forum/python-brasil)
+- **Django Brasil** - [https://groups.google.com/forum/#!forum/django-brasil](https://groups.google.com/forum/#!forum/django-brasil)
+- **Web2py Brasil** - [https://groups.google.com/forum/#!forum/web2py-users-brazil](https://groups.google.com/forum/#!forum/web2py-users-brazil)
+- **Flask Brasil** - [https://groups.google.com/forum/#!forum/flask-brasil](https://groups.google.com/forum/#!forum/flask-brasil)
+- **Comunidades locais da comunidade Python ao redor do Brasil** - [http://pythonbrasil.github.io/wiki/comunidades-locais](http://pythonbrasil.github.io/wiki/comunidades-locais)
 
 Deixe nos comentários seu feedback, e se tiver outra dica que não foi citado, não deixe de indicar.
