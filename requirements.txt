@@ -1,5 +1,5 @@
 #-e git+https://github.com/getpelican/pelican.git#egg=pelican
-pelican==3.3.6
+pelican==3.6.3
 Markdown
 pelican-youtube
 pelican-vimeo
