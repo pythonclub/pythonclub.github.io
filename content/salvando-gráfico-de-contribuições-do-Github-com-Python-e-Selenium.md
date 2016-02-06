@@ -117,10 +117,50 @@ No save, utilizamos o que ensinei acima para gerar o arquivo da seguinte maneira
 img = ImageGrab.grab(bbox=(460,540,770,208)).save("{0}_gitshot_{1}.png" .format(date.today(), USERNAME))
 ```
 -----
+
 Este será o resultado. O nome do arquivo, no meu caso, ficou ```"2016-01-24_gitshot_othonalberto.png"```.
 
 ![Resultado](images/othonalberto/2016-01-24_gitshot_othonalberto.png "Resultado")
 
+-----
+Código completo:
+
+```python
+
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+
+from selenium import webdriver
+import yaml
+from datetime import date
+import pyscreenshot as ImageGrab
+
+cur_dir = os.path.dirname(os.path.realpath(__file__))
+secret_path = os.path.join(cur_dir, 'secrets.yml')
+
+with open(secret_path, 'r') as stream:
+    data = yaml.load(stream)
+    USERNAME = data.get('user','')
+    PASSWORD = data.get('password')
+
+driver = webdriver.Firefox()
+driver.get("https://github.com/login")
+driver.maximize_window()
+
+email = driver.find_element_by_id("login_field")
+email.send_keys(USERNAME)
+senha = driver.find_element_by_id("password")
+senha.send_keys(PASSWORD)
+driver.find_element_by_name('commit').click()
+
+driver.get("https://github.com/{0}" .format(USERNAME))
+
+img = ImageGrab.grab(bbox=(460,540,770,208)).save("{0}_gitshot_{1}.png" .format(date.today(), USERNAME))
+# bbox=(X1, Y1, X2, Y2)
+
+```
 -----
 É isso! Espero ter contribuído com o conhecimento de vocês com este post e gerado curiosidade para que experimentem o Selenium.
 
