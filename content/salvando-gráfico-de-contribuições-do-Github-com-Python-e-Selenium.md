@@ -1,5 +1,5 @@
 Title: Salvando gráfico de contribuições do Github com Python e Selenium
-Date: 2016-02-05 18:28:45
+Date: 2016-02-11 11:47:44
 Tags: python, selenium, github
 Slug: salvando-grafico-github-python-selenium
 Author: Othon Alberto
@@ -21,6 +21,9 @@ Obviamente, meu projetinho é bem mais simples, mas foi algo divertido de se faz
 Abaixo, irei mostrar como fazer. Visto que há muita gente que usa Python sem ser programador por profissão, tentarei explicar de forma mais simples possível. O código completo pode ser encontrado no [meu Github](https://github.com/othonalberto/ghss).
 
 -----
+
+Neste código, utilizaremos o Python2.
+
 Primeiramente, temos que importar todas as bibliotecas necessárias.
 
 Na linha 1, importamos o "OS", que será utilizado para "acharmos" o arquivo ``` secrets.yml ```. Explicarei daqui a pouco. 
