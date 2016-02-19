@@ -118,7 +118,7 @@ def increase_price_crazy(price):
 
     return max(price, min(new_prices))
 ```
-> **Nota:** Está função  foi criada apenas para  efeitos didáticos. 
+> **Nota:** Esta função  foi criada apenas para  efeitos didáticos. 
 
 Vamos agora ulilizar esta função no lugar da função `increase_price_by_10_percent`:
 
@@ -147,6 +147,11 @@ Podemos concluir que é possível executar operações paralelas em python utili
 Espero que este post tenha contribuído de alguma forma com conhecimento de vocês, sugestões e criticas serão bem vindas, obrigado!.
 
 > **Disclaimer:** Existem varios conceitos  como, locks, deadlocks, futures, data races e etc. que não foram abordados aqui para que o post não ficasse muito longo e complexo.
+A Versão do python utilizada foi a 3.5, a lib `concurrent.futures` está dispónivel desde a versão 3.2 do Python, no entanto, exite um backport para a versão 2.7  que é facilmente instalável via 'pip install futures'.
+
+
+
+
 
 O código completo pode ser encontrado [aqui](https://github.com/cordjr/concurrent.futtures.sample/blob/master/main.py).
 
