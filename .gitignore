@@ -20,3 +20,6 @@ cache/*
 
 # Virtualenv
 venv/
+
+MacOS Files
+.DS_Store
