@@ -1,6 +1,6 @@
 Title: Paralelismo em Python usando concurrent.futures
 Slug: paralelismo-em-python-usando-concurrent.futures
-Date: 2016-02-11 20:30
+Date: 2016-02-19 09:00
 Tags: python, concorrencia, paralelismo
 Author: José Cordeiro de Oliveira Junior
 Email:  cordjr@gmail.com
