@@ -15,11 +15,11 @@ Category: Python
 
  - **Concorrência:** é quando um computador que possui apenas um core parece estar realizando duas ou mais operações ao mesmo tempo, quando na verdade está alternando a execução destas operações de forma tão rápida que temos a ilusão de que tudo é executado simultaneamente.
 e
- - **Paralelismo:** é quando um computador que possui dois ou mais cores executa operações realmente de forma paralela, utilizando para isso os cores disponíveis, ou seja, se um determinado computador tem 2 cores posso ter duas operações sendo executadas paralelamente cada uma em um core diferente.
+ - **Paralelismo:** é quando um computador que possui dois ou mais cores executa operações realmente de forma paralela, utilizando para isso os cores disponíveis, ou seja, se um determinado computador tem 2 cores, posso ter duas operações sendo executadas paralelamente cada uma em um core diferente.
 
- Infelizmente o GIL (Global Interpreter Lock do Python) é restritivo quanto ao uso de threads paralelas em Python, porém o módulo `cuncurrent.futures` permite que possámos utilizar múltiplos cores. Para isso, este módulo "engana" o GIL criando novos interpretadores como subprocessos do interpretador principal. Desta maneira, cada subprocesso tem seu próprio GIL e, por fim, cada subprocesso tem um ligação com o processo principal, de forma que recebem instruções para realizar operações e retornar resultados.
+ Infelizmente o GIL (Global Interpreter Lock do Python) é restritivo quanto ao uso de threads paralelas em Python, porém o módulo `concurrent.futures` permite que possamos utilizar múltiplos cores. Para isso, este módulo "engana" o GIL criando novos interpretadores como subprocessos do interpretador principal. Desta maneira, cada subprocesso tem seu próprio GIL e, por fim, cada subprocesso tem um ligação com o processo principal, de forma que recebem instruções para realizar operações e retornar resultados.
 
- Agora que já vimos um pouco de teoria vamos colocar em prática o uso do `concurrent.futures`. Vamos supor que tenhámos um lista de preços e que queremos aumentar em 10% o valor de cada item.
+ Agora que já vimos um pouco de teoria vamos colocar em prática o uso do `concurrent.futures`. Vamos supor que tenhamos um lista de preços e que queremos aumentar em 10% o valor de cada item.
  
  Vamos então criar uma função que gere uma lista de preços:
 
@@ -118,7 +118,7 @@ def increase_price_crazy(price):
 
     return max(price, min(new_prices))
 ```
-> **Nota:** Esta função  foi criada apenas para  efeitos didáticos. 
+> **Nota:** Está função  foi criada apenas para  efeitos didáticos. 
 
 Vamos agora ulilizar esta função no lugar da função `increase_price_by_10_percent`:
 
