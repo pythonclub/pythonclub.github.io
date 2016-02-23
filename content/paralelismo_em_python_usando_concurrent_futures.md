@@ -118,7 +118,7 @@ def increase_price_crazy(price):
 
     return max(price, min(new_prices))
 ```
-> **Nota:** Está função  foi criada apenas para  efeitos didáticos. 
+> **Nota:** Esta função  foi criada apenas para  efeitos didáticos. 
 
 Vamos agora ulilizar esta função no lugar da função `increase_price_by_10_percent`:
 
