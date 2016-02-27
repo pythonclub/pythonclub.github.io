@@ -1,6 +1,6 @@
 Title: Upload de arquivos no Django: entendo os modos de leitura
 Date: 2016-02-26 18:39
-Tags: django, python3, csv, upload, HttpRequest, UploadedFile
+Tags: django, csv, upload, HttpRequest, UploadedFile, python3
 Category: Django
 Slug: upload-de-arquivos-no-django-entendo-os-modos-de-leitura
 Author: Eduardo Cuducos
