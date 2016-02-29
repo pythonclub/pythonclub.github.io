@@ -11,7 +11,7 @@ Como Contribuir
 * Faça um fork desse repositório, clicando no botão [![Fork][14]][15], na parte superior direita da pagina do Github
 * Clone seu fork:
 
-    ``git clone --recursive https://github.com/SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
+    ``git clone --recursive git@github.com:SEU_USUARIO_DO_GITHUB/pythonclub.github.io.git``
 
 * Instale os requirements ``pip install -r requirements.txt`` - se você não tiver o pip instalado, instale-o: https://pip.pypa.io/en/latest/installing.html#install-pip
 * Todas as publicações ficam na pasta ``content``, os textos podem ser escritos
