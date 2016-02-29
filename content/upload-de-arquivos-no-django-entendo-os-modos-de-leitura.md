@@ -13,7 +13,7 @@ Linkedin: cuducos
 
 # Upload de arquivos no Django: entendo os modos de leitura
 
-Em uma conversa com a galera do [Welcome to the Django] acabei experimentando e aprendendo – na prática — sobre _csv_, _strings_, _bytes_, _file object_ e a maneira como uploads funcionam. Resgistrei minha exploração e espero que mais gente possa encontrar uma ou outra coisa nova aqui!
+Em uma conversa com a galera do [Welcome to the Django](http://welcometothedjango.com.br) acabei experimentando e aprendendo – na prática — sobre _csv_, _strings_, _bytes_, _file object_ e a maneira como uploads funcionam. Resgistrei minha exploração e espero que mais gente possa encontrar uma ou outra coisa nova aqui!
 
 ## O problema
 
