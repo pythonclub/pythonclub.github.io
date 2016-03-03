@@ -3,4 +3,5 @@ pelican==3.6.3
 Markdown
 pelican-youtube
 pelican-vimeo
+pelican-alias
 # rst2pdf
