@@ -11,9 +11,7 @@ Site: http://cuducos.me
 Twitter: cuducos
 Linkedin: cuducos
 
-# Upload de arquivos no Django: entendo os modos de leitura
-
-Em uma conversa com a galera do [Welcome to the Django](http://welcometothedjango.com.br) acabei experimentando e aprendendo – na prática — sobre _csv_, _strings_, _bytes_, _file object_ e a maneira como uploads funcionam. Resgistrei minha exploração e espero que mais gente possa encontrar uma ou outra coisa nova aqui!
+Em uma conversa com a galera do [Welcome to the Django](http://welcometothedjango.com.br) acabei experimentando e aprendendo – na prática — sobre _csv_, _strings_, _bytes_, _file object_ e a maneira como uploads funcionam. Registrei minha exploração e espero que mais gente possa encontrar uma ou outra coisa nova aqui!
 
 ## O problema
 
@@ -43,12 +41,12 @@ Para explorar isso, eu precisava simular o ambiente da minha _view_. Comecei cri
 ```
 Linha 1, foo
 Linha 2, bar
-Linha 3, acentação
+Linha 3, acentuação
 ```
 
 Depois fui ler a [documentação do `HttpRequest.FILES`](https://docs.djangoproject.com/en/1.9/ref/request-response/#django.http.HttpRequest.FILES) e descobri que os arquivos ali disponíveis são instâncias de [`UploadedFile`](https://docs.djangoproject.com/en/1.9/ref/files/uploads/#django.core.files.uploadedfile.UploadedFile).
 
-Logo, se eu criar uma instância da classe `UploadedFile`, posso acessar um objeto do mesmo tipo que eu acessava na _view_ pelo `resques.FILES['file.csv']`. Para criar essa instância, preciso de um arquivo aberto, algo como `open(file_path, modo)`. Para continuar a simulação, eu precisava saber de que forma o Django abre o arquivo do upload quando instancia ele no `HttpRequest.FILES`.
+Logo, se eu criar uma instância da classe `UploadedFile`, posso acessar um objeto do mesmo tipo que eu acessava na _view_ pelo `request.FILES['file.csv']`. Para criar essa instância, preciso de um arquivo aberto, algo como `open(file_path, modo)`. Para continuar a simulação, eu precisava saber de que forma o Django abre o arquivo do upload quando instancia ele no `HttpRequest.FILES`.
 
 Eu desconfiava que não era em texto (`r`), que era em binário (`rb`). A documentação do [curl](https://curl.haxx.se/docs/manpage.html#-F), por exemplo, indicava que os arquivos eram enviados como binários. A documentação da [Requests](http://docs.python-requests.org/en/master/user/advanced/#streaming-uploads) tem um aviso grande, em vermelho, desencorajando qualquer um usar outro modo que não o binário.
 
@@ -95,7 +93,7 @@ for line in csv.reader(uploaded.file):
 
     ['Linha 1', ' foo']
     ['Linha 2', ' bar']
-    ['Linha 3', ' acentação']
+    ['Linha 3', ' acentuação']
 
 
 Enfim, esse métodos `UploadedFile.close()` e `UploadedFile.open(mode=mode)` podem ser muito úteis quando queremos fazer algo diferente de gravar os arquivos recebidos em disco.
