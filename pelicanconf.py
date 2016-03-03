@@ -62,6 +62,7 @@ PLUGIN_PATHS = [
 
 PLUGINS = [
     'gravatar',
+    'pelican_alias', # para criar alias para artigos
     'sitemap',
     'pelican_youtube',  # funciona somente com arquivos rst
     'pelican_vimeo',  # funciona somente com arquivos rst
