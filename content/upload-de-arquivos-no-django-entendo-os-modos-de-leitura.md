@@ -3,8 +3,6 @@ Date: 2016-02-26 18:39
 Tags: django, csv, upload, HttpRequest, UploadedFile
 Category: Django
 Slug: upload-de-arquivos-no-django-entendendo-os-modos-de-leitura
-Alias: upload-de-arquivos-no-django-entendo-os-modos-de-leitura
-
 Author: Eduardo Cuducos
 About_author: Sociólogo, geek, cozinheiro e fã de esportes.
 Email:  cuducos@gmail.com
@@ -12,6 +10,7 @@ Github: cuducos
 Site: http://cuducos.me
 Twitter: cuducos
 Linkedin: cuducos
+Alias: /upload-de-arquivos-no-django-entendo-os-modos-de-leitura
 
 Em uma conversa com a galera do [Welcome to the Django](http://welcometothedjango.com.br) acabei experimentando e aprendendo – na prática — sobre _csv_, _strings_, _bytes_, _file object_ e a maneira como uploads funcionam. Registrei minha exploração e espero que mais gente possa encontrar uma ou outra coisa nova aqui!
 
