@@ -15,7 +15,7 @@ Linkedin: cuducos
 
 A ideia desse exercício é introduzir a ideia de _test driven development_ (TDD) usando [Python](http://http://python.org) e [Flask](http://flask.pocoo.org/) — digo isso pois a aplicação final desse “tutorial” não é nada avançada, tampouco funcional. E isso se explica por dois motivos: primeiro, o foco é sentir o que é o _driven_ do TDD, ou seja, como uma estrutura de _tests first_ (sempre começar escrevendo os testes, e não a aplicação) pode guiar o processo de desenvolvimento; e, segundo, ser uma atividade rápida, de mais ou menos 1h.
 
-Em outras palavras, não espere aprender muito de Python ou Flask. Aqui se concentre em sentir a diferença de utilizar uma método de programar. Todo o resto é secundário.
+Em outras palavras, não espere aprender muito de Python ou Flask. Aqui se concentre em sentir a diferença de utilizar um método de programar. Todo o resto é secundário.
 
 ## 1. Preparando o ambiente
 
@@ -60,7 +60,7 @@ Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.4 i
 
 Vamos usar, nesse exercício, basicamente 2 arquivos:
 
-* `app.py`: onde criamos nossa aplicação web;;
+* `app.py`: onde criamos nossa aplicação web;
 * `tests.py`: onde escrevemos os testes que guiarão o desenvolvimento da aplicação, e que, também, garantirão que ela funcione.
 
 
@@ -70,7 +70,7 @@ No arquivo `tests.py` vamos usar o módulo [unittest](https://docs.python.org/3.
 
 Criaremos uma estrutura básica para que, toda vez que esse arquivo seja executado, o `unittest` se encarregue de encontrar todos os nossos testes e rodá-los.
 
-Vamos começar escrevendo com uma exemplo fictício: testes para um método que ainda não criamos, um método que calcule números fatoriais. A ideia é só entender como escreveremos testes em um arquivo (`tests.py`) para testar o que escreveremos no outro arquivo (`app.py`).
+Vamos começar escrevendo com um exemplo fictício: testes para um método que ainda não criamos, um método que calcule números fatoriais. A ideia é só entender como escreveremos testes em um arquivo (`tests.py`) para testar o que escreveremos no outro arquivo (`app.py`).
 
 A estrutura básica a seguir cria um caso de teste da `unittest` e, quando executada, teste nosso método `fatorial(numero)` para todos os números de 0 até 6:
 
@@ -179,7 +179,7 @@ Esse arquivo agora faz quatro coisas referentes a nossa aplicação web:
 1. Tenta acessar a “raíz” da nossa aplicação — ou seja, se essa aplicação web estivesse no servidor `pythonclub.com.br` estaríamos acessando [http://pythonclub.com.br/](http://pythonclub.com.br/).
 1. Verifica se, ao acessar esse endereço, ou seja, se ao fazer a requisição HTTP para essa URL, temos como resposta o código 200, que representa sucesso.
 
-Os códigos de status de requisição HTTP mais comuns são o `200` (sucesso), `404` (página não encontrada) e `302` (redirecionamento) — mas a [lista de completa](https://pt.wikipedia.org/wiki/Lista_de_códigos_de_status_HTTP) é muito maior que isso. 
+Os códigos de status de requisição HTTP mais comuns são o `200` (sucesso), `404` (página não encontrada) e `302` (redirecionamento) — mas a [lista completa](https://pt.wikipedia.org/wiki/Lista_de_códigos_de_status_HTTP) é muito maior que isso. 
 
 De qualquer forma não conseguiremos rodar esses testes. O interpretador do Python vai nos retornar um erro:
 
@@ -280,7 +280,7 @@ app = meu_web_app.test_client()
 response = app.get('/')
 ```
 
-Podemos usar um método especial da classe `unittest.TestCase` para reaporiveitar essas linhas. O método `TestCase.setUp()` é executado ao iniciar cada teste, e através do `self` podemos acessar objetos de um método a partir de outro método:
+Podemos usar um método especial da classe `unittest.TestCase` para reaproveitar essas linhas. O método `TestCase.setUp()` é executado ao iniciar cada teste, e através do `self` podemos acessar objetos de um método a partir de outro método:
 
 ```python
 class TestHome(unittest.TestCase):
@@ -396,7 +396,7 @@ Vamos começar com um HTML básico, criando a pasta `templates` e dentro dela o 
 </html>
 ```
 
-Se a gente abrir essa página no navegador já podemos ver que ela é um pouco menos do que o que a gente tinha antes. Então vamos alterar nosso `test_content()` para garantir que ao invés de termos somente a _string_ com nosso nome na aplicação, tempos esse templete renderizado:
+Se a gente abrir essa página no navegador já podemos ver que ela é um pouco menos do que o que a gente tinha antes. Então vamos alterar nosso `test_content()` para garantir que ao invés de termos somente a _string_ com nosso nome na aplicação, tempos esse template renderizado:
 
 ```python
 def test_content(self):
@@ -498,7 +498,7 @@ OK
 
 ### Passando variáveis para o contexto do template
 
-O problema da nossa página é que ela é estática. Vamos usar o Python e o Flask para que quando a gente acesse `/cuducos` a gente veja a minha página, com meus dados. Mas caso a gente acesse `/z4r4tu5tr4`, a gente o conteúdo referente ao outro Eduardo que palestrou no Grupy comigo.
+O problema da nossa página é que ela é estática. Vamos usar o Python e o Flask para que quando a gente acesse `/cuducos` a gente veja a minha página, com meus dados. Mas caso a gente acesse `/z4r4tu5tr4`, a gente veja o conteúdo referente ao outro Eduardo que palestrou comigo no Grupy.
 
 Antes de mudar nossas URLS, vamos refatorar nossa aplicação e — importantíssimo! — os testes tem que continuar passando. A ideia é evitar que o conteúdo esteja “fixo” no template. Vamos fazer o conteúdo ser passado do método `pagina_principal()` para o template.
 
@@ -543,7 +543,7 @@ Por fim, vamor utilizar, ao invés das minhas informações, a variável `perfil
 </html>
 ```
 
-Feito isso, temos todas as informações disponíveis no nosso ambinete Python, e não mais no HTML. E os testes nos garantem que no final das contas, para o usuário, a página não mudou — ou seja, estamos mostrando as informações corretamente.
+Feito isso, temos todas as informações disponíveis no nosso ambiente Python, e não mais no HTML. E os testes nos garantem que no final das contas, para o usuário, a página não mudou — ou seja, estamos mostrando as informações corretamente.
 
 ### Criando conteúdo dinâmico
 
@@ -672,7 +672,7 @@ def pagina_inicial(perfil):
     return render_template('home.html', perfil=perfil)
 ```
 
-Agora o Flask recebe uma variável `perfil` depois da `/` (e sabemos que é uma variável pois envolvemos o nome `perfil` entre os sinais de `<` e `>`). E utilizamos essa variável para escolhar qual perfil passar para nosso tempate.
+Agora o Flask recebe uma variável `perfil` depois da `/` (e sabemos que é uma variável pois envolvemos o nome `perfil` entre os sinais de `<` e `>`). E utilizamos essa variável para escolher qual perfil passar para nosso tempate.
 
 ## Considerações finais
 
