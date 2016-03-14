@@ -11,8 +11,6 @@ Site: http://cuducos.me
 Twitter: cuducos
 Linkedin: cuducos
 
-# TDD com Python e Flask
-
 > Baseado na palestra que ofereci no [encontro](http://www.meetup.com/Grupy-SP/events/228437612/) do [Grupy-SP](https://groups.google.com/forum/#!forum/grupy-sp), em 12 de março de 2016. O código dessa atividade está disponível no [meu GitHub](https://github.com/cuducos/grupy-python-tdd-flask).
 
 A ideia desse exercício é introduzir a ideia de _test driven development_ (TDD) usando [Python](http://http://python.org) e [Flask](http://flask.pocoo.org/) — digo isso pois a aplicação final desse “tutorial” não é nada avançada, tampouco funcional. E isso se explica por dois motivos: primeiro, o foco é sentir o que é o _driven_ do TDD, ou seja, como uma estrutura de _tests first_ (sempre começar escrevendo os testes, e não a aplicação) pode guiar o processo de desenvolvimento; e, segundo, ser uma atividade rápida, de mais ou menos 1h.
@@ -74,7 +72,7 @@ Criaremos uma estrutura básica para que, toda vez que esse arquivo seja executa
 
 Vamos começar escrevendo com uma exemplo fictício: testes para um método que ainda não criamos, um método que calcule números fatoriais. A ideia é só entender como escreveremos testes em um arquivo (`tests.py`) para testar o que escreveremos no outro arquivo (`app.py`).
 
-A estrutura básica a seguir cria um caso de teste da `unittest` e, quado executada, teste nosso método `fatorial(numero)` para todos os números de 0 até 6:
+A estrutura básica a seguir cria um caso de teste da `unittest` e, quando executada, teste nosso método `fatorial(numero)` para todos os números de 0 até 6:
 
 ```python
 import unittest
