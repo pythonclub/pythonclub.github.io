@@ -28,23 +28,39 @@ Mas de repente você precisa criar um comando personalizado conforme a sua neces
 
 ## Começando do começo
 
-> Importante: estamos usando Django 1.8 e Python 3.
+> Importante: estamos usando Django 1.8.12 e Python 3.
 
 ### Criando o projeto
 
-Eu usei este [Makefile][13] para criar o projeto.
+Eu usei esta sequência de comandos para criar o projeto.
 
 ```bash
-wget --output-document=Makefile https://goo.gl/UMTpZ1
-make setup
-```
-
-Ele vai criar um virtualenv e pedir pra você executar os seguintes comandos:
-
-```bash
-source venv/bin/activate
+# Criando djangoproject.
+mkdir djangoproject
 cd djangoproject
-make install
+
+# Criando virtualenv
+virtualenv -p python3 .venv
+
+# Ativando o .venv.
+source .venv/bin/activate
+# Diminuindo o caminho do prompt (opcional)
+PS1="(`basename \"$VIRTUAL_ENV\"`)\e[1;34m:/\W\033[00m$ "
+
+# Instalando o Django
+pip install django==1.8.12
+pip freeze > requirements.txt
+
+# Criando o projeto myproject ...
+django-admin.py startproject myproject .
+cd myproject
+
+# Criando a app 'core' ...
+python ../manage.py startapp core
+cd ..
+
+# Editando settings.py"
+sed -i "/django.contrib.staticfiles/a\    'myproject.core'," myproject/settings.py
 ```
 
 Pronto! Agora nós já temos um projetinho Django funcionando. Note que o nome da app é **core**.
@@ -71,7 +87,7 @@ touch core/management/commands/{__init__.py,hello.py,initdata.py,search.py}
 
 ## Sintaxe do novo comando
 
-> Importante: estamos usando Django 1.8 e Python 3.
+> Importante: estamos usando Django 1.8.12 e Python 3.
 
 O Django 1.8 usa o `argparse` como parser de argumentos do `command`, mais informações em [module-argparse][19].
 
@@ -415,7 +431,6 @@ Mais algumas referências:
 [10]: https://github.com/rhblind/django-gcharts/blob/master/demosite/management/commands/initdata.py
 [11]: http://zacharyvoase.com/2009/12/09/django-boss/
 [12]: http://thingsilearned.com/2009/03/13/adding-custom-commands-to-managepy-and-django-adminpy/
-[13]: https://gist.github.com/rg3915/a26a2daef369b729e2ed
 [14]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#loaddata-fixture-fixture
 [15]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#shell
 [16]: https://docs.djangoproject.com/en/1.8/ref/django-admin/#inspectdb
