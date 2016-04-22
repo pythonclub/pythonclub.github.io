@@ -5,7 +5,7 @@ Category: Experiências
 Slug: explicit-is-better-than-implicit
 Author: Ivan Neto
 About_author: Desenvolvedor Python, esposo, pai, escritor nas horas vagas
-Email:  ivan.cr.neto@gmail.com
+Email: ivan.cr.neto@gmail.com
 Github: ivancrneto
 Twitter: ivancrneto
 Linkedin: ivanrocha
