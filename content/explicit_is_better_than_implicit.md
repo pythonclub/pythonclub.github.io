@@ -1,5 +1,14 @@
-Explicit is better than implicit
-===================
+Title: Explicit is better than implicit
+Date: 2016-04-22 23:00
+Tags: python, zen of python, experências, decisões de desenvolvimento
+Category: Experiências
+Slug: explicit-is-better-than-implicit
+Author: Ivan Neto
+About_author: Desenvolvedor Python, esposo, pai, escritor nas horas vagas
+Email:  ivan.cr.neto@gmail.com
+Github: ivancrneto
+Twitter: ivancrneto
+Linkedin: ivanrocha
 
 Esse post não é diretamente relacionado a desenvolvimento com Python, mas conta a história de uma das muitas experiências que passamos desenvolvendo e mostra como a filosofia e o _mindset_ __Python__ podem nos influenciar a tomar decisões melhores.
 
