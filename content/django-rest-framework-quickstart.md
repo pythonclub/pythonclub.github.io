@@ -14,8 +14,8 @@ Este tutorial é a parte 0/6 de uma série de posts sobre DRF.
 
 **Obs**: *Tem coisas que é melhor nem traduzir. ;)*
 
-* 0 - Quickstart
-* 1 - Serialization
+* 0 - **Quickstart**
+* 1 - [Serialization][11]
 * 2 - Requests & Responses
 * 3 - Class based views
 * 4 - Authentication & permissions
@@ -172,3 +172,4 @@ Veja o código no [GitHub][8].
 [4]: http://pythonclub.com.br/tutorial-django-17.html
 [7]: https://github.com/jakubroztocil/httpie#installation
 [8]: https://github.com/rg3915/drf-quickstart.git
+[11]: http://pythonclub.com.br/django-rest-framework-serialization.html
