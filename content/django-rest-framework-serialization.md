@@ -45,7 +45,7 @@ Então para criar a API, no meu caso, eu usei:
 $ virtualenv -p python3 .venv
 $ source .venv/bin/activate
 $ mkdir drf; cd drf
-$ pip install django==1.8.6 djangorestframework==3.3.1
+$ pip install django==1.9.5 djangorestframework==3.3.3
 $ pip install django-filter drf-nested-routers
 $ pip freeze > requirements.txt
 $ django-admin.py startproject myproject .
@@ -55,9 +55,9 @@ $ python manage.py startapp core
 Veja o meu requirements.txt
 
 ```bash
-Django==1.8.6
+Django==1.9.5
 django-filter==0.11.0
-djangorestframework==3.3.1
+djangorestframework==3.3.3
 drf-nested-routers==0.10.0
 ```
 ## Step-0 Projeto inicial
