@@ -23,3 +23,6 @@ venv/
 
 MacOS Files
 .DS_Store
+
+# alias
+src
