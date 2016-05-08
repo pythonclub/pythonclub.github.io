@@ -1,6 +1,6 @@
 Title: Python com Unittest, Travis CI, Coveralls e Landscape (Parte 2 de 4)
 Slug: python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4
-Date: 2016-05-09 20:34:44
+Date: 2016-05-08 20:34:44
 Category: Python
 Tags: git, travis-ci, python, coveralls, landscape, test, tutorial
 Author: Michell Stuttgart
@@ -22,7 +22,9 @@ Antes de inicarmos nosso trabalho de configuração do `Travis CI`, vamos aprend
 
 Após a execução do teste, recebemos um email nos informando se o teste foi bem sucedido ou se houve alguma falha. O serviço é totalmente gratuito para projetos *opensource*.
 
+<center>
 ![Alt Text](https://cdn.travis-ci.org/images/landing-page/laptop-184c9a5cfd62d0395bb388b79dd719f3.png)
+</center>
 
 #### Criando uma conta
 
@@ -30,19 +32,27 @@ Para utilizarmos o `Travis CI` em nosso projeto, precisamos primeiro realizar no
 
 Logo no topo direito da página, temos o botão abaixo, para nos inscrevermos usando nossa conta no Github.
 
+<center>
 ![](https://lh3.googleusercontent.com/-lEJ9yxUmy5I/VyOv0y729uI/AAAAAAAAF48/JVv4sadKCAgCT-qj5mwa6uPRUuLRgWuxwCCo/s273/snapshot23.png)
+</center>
 
 Ao pressionar o botão, você será direcionado para a página a seguir:
 
+<center>
 ![](https://lh3.googleusercontent.com/-UfoAnkVjvIM/VyOv0okmSZI/AAAAAAAAF48/claxTYMXu_wIazRzxEuolUjd3tC67gTaQCCo/s737/snapshot24.png)
+</center>
 
 Realize o login com seu usuário/senha do `Github`. Assim que realizar o login, na canto superior direito da tela, clique no seu nome de usuário e, em seguida, em `"Accounts"`. Com isso, uma tela com todos os repositórios que você tem permissão de escrita (repositórios pessoais, de organização, forks e etc) será exibida.
 
+<center>
 ![](https://lh3.googleusercontent.com/-Br5EzaYIm5c/VyOv1rdEbYI/AAAAAAAAF48/qhEU2rfqPWA31JEHGe6VAUZImFLN9ySkgCCo/s640/snapshot25.png)
+</center>
 
 Agora vamos ativar o serviço para o repositório que criei na primeira parte do tutorial: [codigo-avulso-test-tutorial](https://github.com/mstuttgart/codigo-avulso-test-tutorial). Basta clicar no botão "X" ao lado esquerdo do nome do seu repositório. Ele ficará assim:
 
+<center>
 ![](https://lh3.googleusercontent.com/-CzBqwdbh3TU/VyOv1TC83OI/AAAAAAAAF48/-z5ArUuRFDoTyWHdVCBTJwn7m9-YesVbQCCo/s498/snapshot26.png)
+</center>
 
 Bom, a partir de agora, seu repositório está pronto para o usar o `Travis CI`, porém antes precisamos configurar os parâmetros de teste do nosso projeto.
 
@@ -120,15 +130,21 @@ Dica: neste [link](http://lint.travis-ci.org/) você pode colar o código do seu
 ### Adicionado uma badge para o repositório
 O próximo passo é é adicionar uma `badge` para o nosso repositório. Isso não é obrigatório, mas ajuda você, sua equipe e outras pessoas que se interessarem pelo seu repositório, a visualizar o *status* da execução dos testes e verificar se seu código está funcionando corretamente.
 
+<center>
 [![Build Status](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial.svg?branch=master)](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial)
+</center>
 
 Na tela onde você ativou o `Travis CI` para seu reposiorio, clique no símbolo da engrenagem.
 
+<center>
 ![](https://lh3.googleusercontent.com/-CzBqwdbh3TU/VyOv1TC83OI/AAAAAAAAF48/-z5ArUuRFDoTyWHdVCBTJwn7m9-YesVbQCCo/s498/snapshot26.png)
+</center>
 
 Na nova tela, podemos realizar algumas configurações, como por exemplo se o `Travis CI` será executado para *push* e para *pull requests* e também podemos pegar a `badge`. Ao clicarmos no botão logo ao lado do nome do repositório, uma janela será exibida.
 
+<center>
 ![](https://lh3.googleusercontent.com/-4JWG1Dr6fZo/VyOv2INbLJI/AAAAAAAAF4U/vj7Sn0dFaaIXfddrmQbYFU-7fi1J6P2VgCCo/s604/snapshot28.png)
+</center>
 
 Selecione a *branch* a ser observada pelo Travis CI, escolha a opção `Markdown` e copie o código que aparecerá na caixa de texto para o arquivo `README.md` do seu repositório. O meu `README.md` ficou assim:
 
@@ -136,12 +152,13 @@ Selecione a *branch* a ser observada pelo Travis CI, escolha a opção `Markdown
 # Codigo Avulso Test Tutorial
 [![Build Status](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial.svg?branch=master)](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial)
 
-Tutorial de teste unitário em Python para o blog [Código Avulso](http://codigoavulso.com.br/).
 ```
 
 Com esses passos, quando algum *push* ou *pull request* for enviado ao repositório, o `Travis CI` executará os testes, garantindo assim o funcionamento estável do nosso código e nos avisando caso alguma modificação venha causar algum erro em nossa aplicação.
 
+<center>
 ![](https://lh3.googleusercontent.com/-jWqAWLLl_Pk/VyOv2kHcBnI/AAAAAAAAF4g/Cg6WWH3FV2gx00VA0FB7GMscJZvHDrFSwCCo/s800/snapshot29.png)
+</center>
 
 Vale lembrar que o tempo para *deploy* pode variar, dependendo da quantidade de testes do seu projeto, quantidade de dependências a serem instaladas e etc.
 
