@@ -10,8 +10,6 @@ Linkedin: michellstut
 Facebook: michell.stuttgart
 Site: http://codigoavulso.com.br
 
-Fala pessoal, tudo certo?
-
 Durante o desenvolvimento de um software, tão importante quanto escrever um código organizado e que siga as melhores práticas, é garantir que o mesmo cumpra os requisitos a que ele se propõe. Em outras palavras, garantir que o software funcione de maneira adequada.
 
 O processo de testes de um software faz parte do seu desenvolvimento, porém muitas vezes ele é encarado como algo tedioso e desnecessário. Entretanto, todo bom desenvolvedor sabe que investir tempo escrevendo testes para seu software está longe de ser "desperdício de tempo". O processo de teste, quando feito por uma pessoa, além de sujeitos a falhas é tedioso e demorado. Tendo isso em mente, podemos lançar mão de ferramentas que realizarão o processo de teste por nós. Em Python, umas das ferramentes da bibloteca padrão destinada a teste é a `Unittest`, que usaremos nesse tutorial.
