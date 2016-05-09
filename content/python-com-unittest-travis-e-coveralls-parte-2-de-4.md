@@ -130,7 +130,9 @@ Dica: neste [link](http://lint.travis-ci.org/) você pode colar o código do seu
 ### Adicionado uma badge para o repositório
 O próximo passo é é adicionar uma `badge` para o nosso repositório. Isso não é obrigatório, mas ajuda você, sua equipe e outras pessoas que se interessarem pelo seu repositório, a visualizar o *status* da execução dos testes e verificar se seu código está funcionando corretamente.
 
+<center>
 [![Build Status](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial.svg?branch=master)](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial)
+</center>
 
 Na tela onde você ativou o `Travis CI` para seu reposiorio, clique no símbolo da engrenagem.
 
