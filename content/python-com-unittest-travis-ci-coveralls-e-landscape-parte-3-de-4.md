@@ -1,6 +1,6 @@
 Title: Python com Unittest, Travis CI, Coveralls e Landscape (Parte 3 de 4)
 Slug: python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4
-Date: 2016-05-12 12:41:38
+Date: 2016-05-13 12:25:00
 Category: Python
 Tags: git, travis-ci, python, coveralls, landscape, test, tutorial
 Author: Michell Stuttgart
