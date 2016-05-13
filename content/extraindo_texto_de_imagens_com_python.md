@@ -34,10 +34,10 @@ Ubuntu 12.04/14.04:
 	$ sudo apt-get install python-dev python3-dev build-essential liblcms1-dev zlib1g-dev libtiff4-dev libjpeg8-dev libfreetype6-dev libwebp-dev
 	$ sudo -H pip install Pillow
 
-Ubuntu 15.04/15.10:
+Ubuntu 15.04/15.10/16.04:
 	
 	:::bash
-	$ sudo apt-get install python-dev python3-dev build-essential liblcms2-dev zlib1g-dev libtiff4-dev libjpeg8-dev libfreetype6-dev libwebp-dev
+	$ sudo apt-get install python-dev python3-dev build-essential liblcms2-dev zlib1g-dev libtiff5-dev libjpeg8-dev libfreetype6-dev libwebp-dev
 	$ sudo -H pip install Pillow
 
 
