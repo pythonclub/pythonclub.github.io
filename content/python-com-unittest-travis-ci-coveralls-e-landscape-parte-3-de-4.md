@@ -18,25 +18,25 @@ Diferente do tutorial anterior, serei breve sobre o processo de inscrição do `
 
 #### Criando uma conta
 
-Antes de começarmos a usar o `Coveralls` precisamos criar uma conta no serviço. Isso pode ser feito [aqui](https://coveralls.io/). O serviço é totalmente gratuíto para projetos `opensource`.
+Antes de começarmos a usar o `Coveralls` precisamos criar uma conta no serviço. Isso pode ser feito [aqui](https://coveralls.io/). O serviço é totalmente gratuíto para projetos *opensource*.
 
 ![](images/mstuttgart/snapshot_17.png)
 
-Após a inscrição, você será levado para uma nova página com uma listagem dos repositórios que você possui no `Github`.
+Após a inscrição, você será levado para uma nova página com uma listagem dos repositórios que você possui no [Github](https://github.com/).
 
 ![](images/mstuttgart/snapshot_18.png)
 
-Na imagem acima já podemos visualizar o projeto que estou usando neste tutorial: `codigo-avulso-test-tutorial`. Caso o seu repositório não esteja na lista, clique no botão `ADD REPOS` no canto superior direito da tela.
+Na imagem acima já podemos visualizar o projeto que estou usando neste tutorial: *codigo-avulso-test-tutorial*. Caso o seu repositório não esteja na lista, clique no botão `ADD REPOS` no canto superior direito da tela.
 
 ![](images/mstuttgart/snapshot_19.png)
 
-Ao clicar no botão, você será redirecionado a uma página onde é possível slecionar quais repositórios serão analisados pelo `Coveralls`. Caso o repositório desejado não esteja na lista, clique no botão `RE-SYNC REPOS` no canto superior direito. Ele vai realizar o escaneamento do seu perfil no `Github` e importar seus projetos.
+Ao clicar no botão, você será redirecionado a uma página onde é possível slecionar quais repositórios serão analisados pelo `Coveralls`. Caso o repositório desejado não esteja na lista, clique no botão `RE-SYNC REPOS` no canto superior direito. Ele vai realizar o escaneamento do seu perfil no [Github](https://github.com/) e importar seus projetos.
 
 Clique no botão escrito `OFF` ao lado esquerdo do nome do repositório. Isso ativará o serviço para este repositório.
 
 ![](images/mstuttgart/snapshot_20.png)
 
-Clique no botão `DETAILS` ao lado direito do nome do repositório e você será redirecionado para uma tela de configuração. Aqui o passo mais interessante é pegar a *url* da `badge`para usarmos em nosso README.md.
+Clique no botão `DETAILS` ao lado direito do nome do repositório e você será redirecionado para uma tela de configuração. Aqui o passo mais interessante é pegar a *url* da `badge`para usarmos em nosso *README.md*.
 
 [![Coverage Status](https://coveralls.io/repos/github/mstuttgart/codigo-avulso-test-tutorial/badge.svg?branch=master)](https://coveralls.io/github/mstuttgart/codigo-avulso-test-tutorial?branch=master)
 
@@ -48,22 +48,22 @@ Clique em `EMBED` e uma janelá de dialogo irá se abrir, selecione e copie o c�
 
 ![](images/mstuttgart/snapshot_22.png)
 
-Agora cole o código no cabeçalho do seu arquivo README, semelhante ao que fizemos com o `Travis CI` no tutorial anterior.
+Agora cole o código no cabeçalho do seu arquivo *README.md*, semelhante ao que fizemos com o `Travis CI` no tutorial anterior.
 
 ```markdown
 # Codigo Avulso Test Tutorial
 [![Build Status](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial.svg?branch=master)](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial)
+
 [![Coverage Status](https://coveralls.io/repos/github/mstuttgart/codigo-avulso-test-tutorial/badge.svg?branch=master)](https://coveralls.io/github/mstuttgart/codigo-avulso-test-tutorial?branch=master)
 
-Tutorial de Test em python para o blog [Código Avulso](http://codigoavulso.com.br/)
 ```
 Concluída esta estapa, o próximo passo será adicionarmos o serviço em nosso projeto no `Github`.
 
 #### Adicionando o Coveralls
 
-Vamos adicionar o serviço durante o processo de teste do projeto. Assim, depois de cada `push` ou `pull request`, o `Coveralls` irá gerar o relatório sobre nossos testes.
+Vamos adicionar o serviço durante o processo de teste do projeto. Assim, depois de cada *push* ou *pull request*, o `Coveralls` irá gerar o relatório sobre nossos testes.
 
-Abra o arquivo `.travis.yml` em seu editor. Teremos o seguinte código:
+Abra o arquivo *.travis.yml* em seu editor. Teremos o seguinte código:
 
 ```travis
 language: python
@@ -83,7 +83,7 @@ script:
   - run setup.py test
 
 ```
-Agora vamos alterá-lo adicionando a funcionalidade do `Coveralls`. O códio atualizado do `.travis.yml` pode ser visto a seguir:
+Agora vamos alterá-lo adicionando a funcionalidade do `Coveralls`. O códio atualizado do *.travis.yml* pode ser visto a seguir:
 
 ```travis
 language: python
