@@ -106,12 +106,6 @@ python:
 
 sudo: required
 
-install:
-  - pip install flake8
-
-before_script:
-  - flake8 codigo_avulso_test_tutorial
-
 script:
   - python setup.py test
 
@@ -121,8 +115,6 @@ script:
 * `language`: podemos definir qual linguagem nosso projeto utiliza. Se este parâmetro não for incluso, o `Travis CI` irá considerar a linguagem `ruby` como *default*.
 * `python`: aqui definimos que os testes serão executados usando o Python 2.7 e se desejarmos, também podemos adicionar outras versões do Python.
 * `sudo`: usado para executar o `Travis CI` como permissão de usuário `root`. Necessário caso você deseje instalar alguma dependência usando o comando `apt-get install nomepacote`.
-* `install`: aqui vamos instalar as dependêcias do nosso projeto. Como o meu projeto não depende de nenhum módulo Python externo, vamos instalar, para fins de exemplo, o módulo `flake8`. Esse módulo serve para verificarmos se o nosso código está seguindo as normas da `PEP8`.
-* `before_script`: Aqui executamos `flake8` sobre o diretório `codigo_avulso_test_tutorial`, garantindo que os arquios `.py` contidos nesse repositório estão seguindo as normas da `PEP8`.
 * `script`: nessa `tag`, finalmente vamos executar nosso *script* de teste.
 
 Dica: neste [link](http://lint.travis-ci.org/) você pode colar o código do seu arquivo `.travis.yml` para verificar se o mesmo está correto.
