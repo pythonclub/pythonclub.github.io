@@ -8,7 +8,7 @@ Email: michellstut@gmail.com
 Github: mstuttgart
 Linkedin: michellstut
 Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Site: http://mstuttgart.com.br
 
 Fala pessoal, tudo bem?
 
@@ -163,4 +163,4 @@ Aqui encerramos a terceira parte do nossa série de tutoriais sobre `Unittest`. 
 
 É isso pessoal. Obrigado por ler até aqui e até o próximo tutorial!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4](http://mstuttgart.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html)
