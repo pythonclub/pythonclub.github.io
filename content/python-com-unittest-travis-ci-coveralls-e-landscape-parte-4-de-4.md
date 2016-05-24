@@ -8,7 +8,7 @@ Email: michellstut@gmail.com
 Github: mstuttgart
 Linkedin: michellstut
 Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Site: http://mstuttgart.com.br
 
 Fala pessoal, tudo bem?
 
@@ -114,4 +114,4 @@ Vale lembrar que todas essas ferramentas ajudam muito, mas nada substitui o sens
 
 Espero que tenham gostado desta série de tutoriais. Obrigado por ler até aqui e até o próximo *post*.
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-4-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-4-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-4-de-4](http://mstuttgart.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-4-de-4.html)

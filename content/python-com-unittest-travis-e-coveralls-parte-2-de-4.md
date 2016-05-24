@@ -8,7 +8,7 @@ Email: michellstut@gmail.com
 Github: mstuttgart
 Linkedin: michellstut
 Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Site: http://mstuttgart.com.br
 
 Fala pessoal, tudo bem?
 
@@ -144,7 +144,6 @@ Selecione a *branch* a ser observada pelo Travis CI, escolha a opção `Markdown
 # Codigo Avulso Test Tutorial
 [![Build Status](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial.svg?branch=master)](https://travis-ci.org/mstuttgart/codigo-avulso-test-tutorial)
 
-Tutorial de teste unitário em Python para o blog [Código Avulso](http://codigoavulso.com.br/).
 ```
 
 Com esses passos, quando algum *push* ou *pull request* for enviado ao repositório, o `Travis CI` executará os testes, garantindo assim o funcionamento estável do nosso código e nos avisando caso alguma modificação venha causar algum erro em nossa aplicação.
@@ -163,4 +162,4 @@ Aqui encerramos a segunda parte do nossa série de tutoriais sobre `Unittest`. E
 
 Até o próximo tutorial!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4](http://mstuttgart.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4.html)
