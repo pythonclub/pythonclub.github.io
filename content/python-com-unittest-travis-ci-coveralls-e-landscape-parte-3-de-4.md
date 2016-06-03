@@ -8,7 +8,7 @@ Email: michellstut@gmail.com
 Github: mstuttgart
 Linkedin: michellstut
 Facebook: michell.stuttgart
-Site: http://mstuttgart.com.br
+Site: http://codigoavulso.com.br
 
 Fala pessoal, tudo bem?
 
@@ -113,7 +113,7 @@ after_success:
 ```
 
 #### Tag "install":
-Aqui adicionamos o comando 
+Aqui adicionamos o comando
 
 ```bash
 pip install coveralls
@@ -122,12 +122,12 @@ pip install coveralls
 A instalação do `coveralls` é necessaria para que possamos gerar os relatórios. Você pode instalá-lo em sua máquina e gerar relátorios em html. Fica a sugestão de estudo.
 
 #### Tag "script":
-Aqui substimuímos o comando 
+Aqui substimuímos o comando
 
 ```bash
 run setup.py test
-``` 
-por 
+```
+por
 
 ```bash
 coverage run --source=codigo_avulso_test_tutorial setup.py test
@@ -136,7 +136,7 @@ coverage run --source=codigo_avulso_test_tutorial setup.py test
 Esse comando executa os mesmo testes de antes, mas já prove um relatório sobre a cobertura de testes do seu código.
 
 #### Tag "after_success":
-A última alteração foi adicionar a tag `after_success`. 
+A última alteração foi adicionar a tag `after_success`.
 
 ```bash
 after_success:
@@ -145,8 +145,8 @@ after_success:
 
 Essa tag indica que após a execuação bem sucedida dos testes, deve-se iniciar o serviço de analise do `Coveralls`.
 
-Assim que terminar de fazer essas alterações você já pode enviar o seu código para o `Github`. Assim que subir o código, o `Travis CI` irá iniciar o processo de teste. 
-Finalizando os testes, o `Coveralls` será iniciado. Se tudo ocorrer bem, a badge que adicionamos no aquivo README.md do projeto será atualizada exibindo a porcentagem do nosso código 
+Assim que terminar de fazer essas alterações você já pode enviar o seu código para o `Github`. Assim que subir o código, o `Travis CI` irá iniciar o processo de teste.
+Finalizando os testes, o `Coveralls` será iniciado. Se tudo ocorrer bem, a badge que adicionamos no aquivo README.md do projeto será atualizada exibindo a porcentagem do nosso código
 que está coberta por testes. Você pode clicar na badge ou ir até o seu perfil no site do [Coveralls](https://coveralls.io) e verificar com mais detalhes as informações sobre seu projeto.
 
 <center>
@@ -163,4 +163,4 @@ Aqui encerramos a terceira parte do nossa série de tutoriais sobre `Unittest`. 
 
 É isso pessoal. Obrigado por ler até aqui e até o próximo tutorial!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4](http://mstuttgart.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html)
