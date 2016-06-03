@@ -13,6 +13,7 @@ Curso Python asyncio: Aula 00 - Introdução ao módulo asyncio
 :facebook: carlosmaniero
 
 
+Primeira aula do curso de asyncio. 
 Nessa vídeo aula são abordadas as principais diferenças entre Concorrência e Paralelismo.
 
 Slides:
