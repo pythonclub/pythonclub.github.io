@@ -1,7 +1,7 @@
 Curso Python asyncio: Aula 01 - Iterators e Generators 
 ######################################################
 
-:date: 2016-06-03 17:30
+:date: 2016-06-11 12:30
 :tags: python, asyncio
 :category: Tutoriais
 :slug: curso-asyncio-aula1
