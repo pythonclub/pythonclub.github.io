@@ -19,11 +19,11 @@ Se você é geek e me conhece, ou se me segue nas redes sociais, já ouviu eu fa
 
 A resposta foi o [webassets-elm](https://github.com/cuducos/webassets-elm) — pacote que escrevi hoje e já está [disponível no PyPI](https://pypi.python.org/pypi/webassets-elm).
 
-Nesse texto vou fazer uma pequena introdução sobre interfaces reativas, sobre Elm em si, e depois explico um pouco do problema que o [webassets-elm](https://github.com/cuducos/webassets-elm) resolve — _spoiler_: é gambiarra.
+Nesse texto vou fazer uma pequena introdução sobre interfaces reativas, sobre Elm em si, e depois explico um pouco do problema que o [webassets-elm](https://github.com/cuducos/webassets-elm) resolve — spoiler: é gambiarra.
 
 ## O que é um _front-end_ com componente reativo?
 
-Compomentes reativos são elementos na interface do usuário que seguem a [programação reativa](https://en.wikipedia.org/wiki/Reactive_programming): “um paradigma de programação orientado ao fluxo de dados e a propagação de mudanças” — como a Wikipédia define.
+Componentes reativos são elementos na interface do usuário que seguem a [programação reativa](https://en.wikipedia.org/wiki/Reactive_programming): “um paradigma de programação orientado ao fluxo de dados e a propagação de mudanças” — como a Wikipédia define.
 
 Mas o que isso quer dizer? Comecemos com um exemplo básico **não** reativo:
 
@@ -36,11 +36,11 @@ print(c)  # 42
 a = 11
 print(c) # 42
 ```
-Se esse bloco fosse reativo, ao mudar o valor de `a`, a alteração deveria também mudar o valor de `c` — ou seja, o segunto `print(c)` deveria resultar em `13`, não em `42`.
+Se esse bloco fosse reativo, ao mudar o valor de `a`, a alteração deveria também mudar o valor de `c` — ou seja, o segundo `print(c)` deveria resultar em `13`, não em `42`.
 
-Isso é muito útil quando gerenciamos interfaces complexas no _front-end_: ao invés de gerenciarmos vários `div`, `span` com suas classes e conteúdos, definimos uma estrutura de dados e as _regras_ para rendereização desses dados em HTML. Alterando os dados, o HTML é atualizado automáticamente.
+Isso é muito útil quando gerenciamos interfaces complexas no _front-end_: ao invés de gerenciarmos vários `div`, `span` com suas classes e conteúdos, definimos uma estrutura de dados e as _regras_ para renderização desses dados em HTML. Alterando os dados, o HTML é atualizado automaticamente.
 
-Isso seria uma carroça de lerdeza se tivéssemos que atualiar o [DOM](https://pt.wikipedia.org/wiki/Modelo_de_Objeto_de_Documentos) cada vez que nossos dados fossem alterados — afinal [não é o JavaScript que é lento, o DOM é que é](https://www.youtube.com/watch?v=hQVTIJBZook). Por isso mesmo todos as alternativas para _front-end_ reativo — [Elm](http://elm-lang.org/), [React](https://facebook.github.io/react/), [Vue](https://vuejs.org/) e muitas outras — trabalham com um DOM virtual: todas as alterações são feitas primeiro nesse (eficiente) DOM virtual, que é comparado com o DOM real e então apenas as alterações mínimas são feitas no (lento) DOM real para que a interface seja atualizada. Simples assim.
+Isso seria uma carroça de lerdeza se tivéssemos que atualziar o [DOM](https://pt.wikipedia.org/wiki/Modelo_de_Objeto_de_Documentos) cada vez que nossos dados fossem alterados — afinal [não é o JavaScript que é lento, o DOM é que é](https://www.youtube.com/watch?v=hQVTIJBZook). Por isso mesmo todos as alternativas para _front-end_ reativo — [Elm](http://elm-lang.org/), [React](https://facebook.github.io/react/), [Vue](https://vuejs.org/) e muitas outras — trabalham com um DOM virtual: todas as alterações são feitas primeiro nesse (eficiente) DOM virtual, que é comparado com o DOM real e então apenas as alterações mínimas são feitas no (lento) DOM real para que a interface seja atualizada. Simples assim.
 
 ## Por quê Elm?
 
