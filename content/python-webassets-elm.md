@@ -11,8 +11,6 @@ Site: http://cuducos.me
 Twitter: cuducos
 Linkedin: cuducos
 
-# Python, webassets & Elm
-
 Se você é geek e me conhece, ou se me segue nas redes sociais, já ouviu eu falar de [Elm](http://elm-lang.org/). É uma solução para _front-end_ com componentes reativos — mas Elm não é JavaScript. É uma outra linguagem, outro ambiente, outro compilador etc.
 
 É uma linguagem que muito me impressionou. Sou novato, engatinhando, tentando levantar e tomando belos tombos. Mas hoje resolvi um desses tombos: como integrar o Elm que uso para _front-end_ com _back-ends_ em Python.
