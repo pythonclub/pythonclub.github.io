@@ -11,8 +11,6 @@ Site: http://cuducos.me
 Twitter: cuducos
 Linkedin: cuducos
 
-# Python, webassets & Elm
-
 Se você é geek e me conhece, ou se me segue nas redes sociais, já ouviu eu falar de [Elm](http://elm-lang.org/). É uma solução para _front-end_ com componentes reativos — mas Elm não é JavaScript. É uma outra linguagem, outro ambiente, outro compilador etc.
 
 É uma linguagem que muito me impressionou. Sou novato, engatinhando, tentando levantar e tomando belos tombos. Mas hoje resolvi um desses tombos: como integrar o Elm que uso para _front-end_ com _back-ends_ em Python.
@@ -40,7 +38,7 @@ Se esse bloco fosse reativo, ao mudar o valor de `a`, a alteração deveria tamb
 
 Isso é muito útil quando gerenciamos interfaces complexas no _front-end_: ao invés de gerenciarmos vários `div`, `span` com suas classes e conteúdos, definimos uma estrutura de dados e as _regras_ para renderização desses dados em HTML. Alterando os dados, o HTML é atualizado automaticamente.
 
-Isso seria uma carroça de lerdeza se tivéssemos que atualziar o [DOM](https://pt.wikipedia.org/wiki/Modelo_de_Objeto_de_Documentos) cada vez que nossos dados fossem alterados — afinal [não é o JavaScript que é lento, o DOM é que é](https://www.youtube.com/watch?v=hQVTIJBZook). Por isso mesmo todos as alternativas para _front-end_ reativo — [Elm](http://elm-lang.org/), [React](https://facebook.github.io/react/), [Vue](https://vuejs.org/) e muitas outras — trabalham com um DOM virtual: todas as alterações são feitas primeiro nesse (eficiente) DOM virtual, que é comparado com o DOM real e então apenas as alterações mínimas são feitas no (lento) DOM real para que a interface seja atualizada. Simples assim.
+Isso seria uma carroça de lerdeza se tivéssemos que atualizar o [DOM](https://pt.wikipedia.org/wiki/Modelo_de_Objeto_de_Documentos) cada vez que nossos dados fossem alterados — afinal [não é o JavaScript que é lento, o DOM é que é](https://www.youtube.com/watch?v=hQVTIJBZook). Por isso mesmo todos as alternativas para _front-end_ reativo — [Elm](http://elm-lang.org/), [React](https://facebook.github.io/react/), [Vue](https://vuejs.org/) e muitas outras — trabalham com um DOM virtual: todas as alterações são feitas primeiro nesse (eficiente) DOM virtual, que é comparado com o DOM real e então apenas as alterações mínimas são feitas no (lento) DOM real para que a interface seja atualizada. Simples assim.
 
 ## Por quê Elm?
 
@@ -66,7 +64,7 @@ Enfim, se se interessam por Elm, além dos links que coloquei no texto, sugiro m
 
 ## Webassets & webassets-elm
 
-Para quem não conhece, o [webassets](http://webassets.readthedocs.io/) é pacote muito utilizado no mundo Python para compilar, dar um _minify_ e comprimir CSS, JS etc. Por exemplo ele tem filtros que transfromam o todos os [SASS](http://sass-lang.com) em CSS e, depois, junta tudo em um único `.css` bem compacto.
+Para quem não conhece, o [webassets](http://webassets.readthedocs.io/) é pacote muito utilizado no mundo Python para compilar, dar um _minify_ e comprimir CSS, JS etc. Por exemplo ele tem filtros que transformam o todos os [SASS](http://sass-lang.com) em CSS e, depois, junta tudo em um único `.css` bem compacto.
 
 A integração com [Flask](http://flask.pocoo.org) ou [Django](http://djangoproject.com) é super fácil e útil com o [flask-assets](http://flask-assets.readthedocs.io/) ou [django-assets](http://django-assets.readthedocs.org/). Com isso sua própria aplicação gera, no servidor, seus _assets_. Em ambiente de desenvolvimento e produção a geração dos _assets_ passa a ocorrer automaticamente (sem necessidade de _watchers_ ou de rodar manualmente `sass`, `coffee`, `browserify`, `webpack`, `grunt`, `gulp` etc.).
 
@@ -105,7 +103,7 @@ Em outras palavras, se o `source_path` for `/home/johndoe/42.sass`, é como se d
 
 Mas o `elm-make` não funciona assim. Ele gera uma arquivo. Se chamarmos `elm-make hello.elm` ele gera um `index.html` (com o JavaScript compilado dentro). Podemos gerar apenas um JavaScript usando o argumento `--output`. Por exemplo, podemos usar `elm-make hello.elm --output hello.js` e teríamos apenas o JavaScript compilado no arquivo `hello.js`.
 
-Por esse motivo o _wemassets-elm_ precisou de [uma gambiarra](https://github.com/cuducos/webassets-elm/blob/master/webassets_elm/__init__.py#L25-L43). Primeiro ele chama o `elm-make` gravando um arquivo temporário:
+Por esse motivo o _webassets-elm_ precisou de [uma gambiarra](https://github.com/cuducos/webassets-elm/blob/master/webassets_elm/__init__.py#L25-L43). Primeiro ele chama o `elm-make` gravando um arquivo temporário:
 
 ```python
 tmp = mkstemp(suffix='.js')
