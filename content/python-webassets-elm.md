@@ -64,7 +64,7 @@ Enfim, se se interessam por Elm, além dos links que coloquei no texto, sugiro m
 
 ## Webassets & webassets-elm
 
-Para quem não conhece, o [webassets](http://webassets.readthedocs.io/) é pacote muito utilizado no mundo Python para compilar, dar um _minify_ e comprimir CSS, JS etc. Por exemplo ele tem filtros que transfromam o todos os [SASS](http://sass-lang.com) em CSS e, depois, junta tudo em um único `.css` bem compacto.
+Para quem não conhece, o [webassets](http://webassets.readthedocs.io/) é pacote muito utilizado no mundo Python para compilar, dar um _minify_ e comprimir CSS, JS etc. Por exemplo ele tem filtros que transformam o todos os [SASS](http://sass-lang.com) em CSS e, depois, junta tudo em um único `.css` bem compacto.
 
 A integração com [Flask](http://flask.pocoo.org) ou [Django](http://djangoproject.com) é super fácil e útil com o [flask-assets](http://flask-assets.readthedocs.io/) ou [django-assets](http://django-assets.readthedocs.org/). Com isso sua própria aplicação gera, no servidor, seus _assets_. Em ambiente de desenvolvimento e produção a geração dos _assets_ passa a ocorrer automaticamente (sem necessidade de _watchers_ ou de rodar manualmente `sass`, `coffee`, `browserify`, `webpack`, `grunt`, `gulp` etc.).
 
