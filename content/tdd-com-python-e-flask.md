@@ -243,7 +243,7 @@ Temos uma aplicação web rodando, mas quando tentamos acessar a raíz dela, ela
 O Flask facilita muito a criação de aplicações web. De forma simplificada a qualquer método Python pode ser atribuída uma URL. Isso é feito com um decorador:
 
 ```
-@app.route('/')
+@meu_web_app.route('/')
 def pagina_inicial():
     return ''
 ```
