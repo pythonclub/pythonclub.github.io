@@ -1,5 +1,5 @@
 Title: Bot telegram mais web scraping
-Slug: Bot telegram mais web scraping
+Slug: bot-telegram-mais-web-scraping
 Date: 2016-10-23 20:30
 Tags: python,blog,tutorial,aulas
 Author: Pedro Souza.
