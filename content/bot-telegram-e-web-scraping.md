@@ -15,7 +15,7 @@ parte irei falar um pouco como criar um bot no telegram e como
 programa-lo para nos responder.
 
 [**Bot simples.**](https://pythonclub.com.br/content/bot-telegram-e-web-scraping.md)
-[**Bot e Web Scraping**](https://pythonclub.com.br/content/bot-e-web-scraping)
+**Bot e Web Scraping**
 
 Primeiro de tudo precisamos cria o bot, para isso usamos o próprio bot 
 do telegram que faz isso para gente. Para isso bastar iniciar uma 
