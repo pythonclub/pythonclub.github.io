@@ -1,5 +1,5 @@
-Title: Bot telegram mais web scraping
-Slug: bot-telegram-mais-web-scraping
+Title: Bot telegram mais web scraping - parte 1
+Slug: bot-telegram-mais-web-scraping-parte-1
 Date: 2016-10-23 20:30
 Tags: python,blog,tutorial,aulas
 Author: Pedro Souza.
@@ -14,7 +14,7 @@ Irei separa o artigo em 2 partes para não ficar extenso. Nessa primeira
 parte irei falar um pouco como criar um bot no telegram e como 
 programa-lo para nos responder.
 
-[**Bot simples.**](/bot-telegram-e-web-scraping.md)
+[**Bot simples.**]({filename}bot-telegram-e-web-scraping-parte1.md)
 **Bot e Web Scraping**
 
 Primeiro de tudo precisamos cria o bot, para isso usamos o próprio bot 
