@@ -25,8 +25,8 @@ Vejam o exemplo nesse programa, com falha:
 	    logging.debug('Start of factorial(%s%%)' % (n))
 	    total = 1
 	    for i in range(n+1):
-		total *= i
-		logging.debug('i is ' + str(i) + ', total is ' + str(total))
+		    total *= i
+		    logging.debug('i is ' + str(i) + ', total is ' + str(total))
 	    logging.debug('End of factorial(%s%%)' % (n))
 	    return total
 
