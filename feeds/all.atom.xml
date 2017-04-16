@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/all.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-11T02:00:00-03:00</updated><entry><title>Seu primeiro projeto Django com Sublime Text no Linux</title><link href="http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime.html" rel="alternate"></link><updated>2014-05-11T02:00:00-03:00</updated><author><name>Fabiano Góes</name></author><id>tag:pythonclub.com.br,2014-05-11:primeiro-projeto-django-no-linux-com-sublime.html</id><summary type="html">&lt;div class="section" id="o-objetivo-deste-artigo"&gt;
+&lt;h2&gt;O objetivo deste artigo:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Instalar/Verificar python instalado no Sistema Operacional.&lt;/li&gt;
+&lt;li&gt;Instalar gerenciador de pacotes python: pip.&lt;/li&gt;
+&lt;li&gt;Instalar o virtualenv.&lt;/li&gt;
+&lt;li&gt;Criar/Ativar o virtualenv do projeto.&lt;/li&gt;
+&lt;li&gt;Instalar o Django dentro do virtualenv.&lt;/li&gt;
+&lt;li&gt;Criar um projeto Django.&lt;/li&gt;
+&lt;li&gt;Criar uma app Django dentro do projeto.&lt;/li&gt;
+&lt;li&gt;Instalar Sublime Text.&lt;/li&gt;
+&lt;li&gt;Criar uma classe Model.&lt;/li&gt;
+&lt;li&gt;Criar uma rota: home.&lt;/li&gt;
+&lt;li&gt;Criar a view: home.&lt;/li&gt;
+&lt;li&gt;Configurar o Admin.&lt;/li&gt;
+&lt;li&gt;Rodar o Projeto.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="ambiente-usado-durante-a-escrita-deste-artigo"&gt;
+&lt;h3&gt;Ambiente usado durante a escrita deste artigo&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Sistema Operacional: Linux Ubuntu 12.04 LTS&lt;/li&gt;
+&lt;li&gt;Python 2.7.3&lt;/li&gt;
+&lt;li&gt;Django 1.6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;No Linux/Ubuntu não precisamos instalar Python, porque já é nativo em sistemas operacionais baseados em Unix, mas para termos certeza basta executar o comando no terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python –version
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;o resultado será:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Python 2.7.3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vamos começar instalando os pacotes necessários no Sistema Operacional:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install python-dev python-setuptools
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo easy_install pip
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para testarmos se o virtualenv está instalado corretamente executaremos no terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv --version
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Resultado:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;1.11.5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O pacote &lt;strong&gt;python-setuptools&lt;/strong&gt; foi utilizado apenas para instalarmos o &lt;strong&gt;easy_install&lt;/strong&gt; que usamos para instalar o &lt;strong&gt;pip&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A partir de agora, no ambiente virtual sempre usaremos o &lt;strong&gt;pip&lt;/strong&gt; para instalar os pacotes.&lt;/p&gt;
+&lt;p&gt;Muito bem, com o &lt;strong&gt;virtualenv&lt;/strong&gt; instalado, o próximo passo será criar nosso &lt;strong&gt;virtualenv&lt;/strong&gt; e instalarmos o &lt;strong&gt;Django&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Vamos criar nosso virtualenv chamado &lt;strong&gt;pythonclub&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv pythonclub --no-site-packages
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;--no-site-packages&lt;/strong&gt; = esse parametro do virtualenv indica que o ambiente virtual será totalmente isolado do sistema operacional, que só enxergará os pacotes instalados dentro do virtualenv.&lt;/p&gt;
+&lt;p&gt;Agora vamos entrar dentro do ambiente virtual que criamos e vamos ativá-lo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;pythonclub/
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;source &lt;/span&gt;bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Neste momento temos o ambiente virtual criado e ativado, pronto para instalar o &lt;strong&gt;django&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Quando executamos o comando &lt;strong&gt;pip install django&lt;/strong&gt; sem especificarmos a versão desejada,
+o pip instala a ultima versão disponivel. Se quizermos instalar uma versão específica devemos executar assim:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install &lt;span class="nv"&gt;django&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.5.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Então podemos finalmente criar o projeto django executando o seguinte comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;django-admin.py startproject first_django_project
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Com o projeto criado, devemos criar uma app chamada: &lt;strong&gt;core&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;first_django_project
+&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py startapp core
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Alterar o arquivo settings.py para adicionar a app &lt;strong&gt;core&lt;/strong&gt; em &lt;strong&gt;INSTALLED_APPS&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.contenttypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.sessions&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.messages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.staticfiles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;core&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;OBS:&lt;/strong&gt; perceba que ao usar o &lt;strong&gt;Django 1.6&lt;/strong&gt; a app admin já estará instalada.&lt;/p&gt;
+&lt;p&gt;Até aqui a estrutura de diretórios está assim:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;../first_django_project/
+├── core
+│   ├── admin.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── first_django_project
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── settings.py
+│   ├── settings.pyc
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv. O restante são diretórios do projeto.&lt;/p&gt;
+&lt;p&gt;Para rodar o projeto, digite o comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py runserver
+Validating models...
+
+0 errors found
+May 11, 2014 - 03:30:48
+Django version 1.6.4, using settings &lt;span class="s1"&gt;&amp;#39;first_django_project.settings&amp;#39;&lt;/span&gt;
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+&lt;span class="o"&gt;[&lt;/span&gt;11/May/2014 03:30:59&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1&amp;quot;&lt;/span&gt; 200 1757
+&lt;/pre&gt;&lt;/div&gt;
+&lt;img alt="comando runserver do django-admin.py" src="images/fabianogoes/django-runserver.png" /&gt;
+&lt;p&gt;Chegou o momento de instalarmos o editor. No caso deste tutorial usaremos o &lt;strong&gt;Sublime Text 3&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo add-apt-repository ppa:webupd8team/sublime-text-3
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install sublime-text-installer
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Com o Sublime já instalado, quero dizer que existe inúmeros plugins disponíveis,
+mas este assunto sai um pouco do escopo deste tutorial, mesmo assim quero indicar dentre estes inúmeros plugins, dois que não vivo sem: &lt;strong&gt;Djaneiro&lt;/strong&gt; e &lt;strong&gt;SublimeCodeIntel&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;indico 2 sites para saber um pouco sobre os plugins:
+&lt;a class="reference external" href="https://sublime.wbond.net/"&gt;Sublime wbond&lt;/a&gt;
+&lt;a class="reference external" href="http://sublimetextdicas.com.br/"&gt;Sublime Text Dicas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Para abrirmos o diretório do projeto no Sublime, iremos ao menu &lt;strong&gt;Project&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Project &amp;gt;&amp;gt; Add Forlder to Project...
+&lt;/pre&gt;
+&lt;img alt="menu projeto no SublimeText 3" src="images/fabianogoes/sublime-project.png" /&gt;
+&lt;p&gt;O fluxo de um request em projetos django é o seguinte:
+URL --&amp;gt; VIEW --&amp;gt; TEMPLATE&lt;/p&gt;
+&lt;p&gt;Então vamos começar criando uma url &lt;em&gt;home&lt;/em&gt; para o projeto, no arquivo urls.py:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;r&amp;#39;^$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;core.views.home&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;home&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Com a url criada e apontando para view &lt;strong&gt;core.views.home&lt;/strong&gt; vamos criar a tal view &lt;strong&gt;home&lt;/strong&gt;,
+no arquivo core/views.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.shortcuts&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;home&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;texto&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Seu primeiro projeto Django no Linux/Ubuntu com Sublime Text 3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Agora resta criarmos o template &lt;strong&gt;index.html&lt;/strong&gt;.
+Não me aprofundando muito, quero dizer que existe uma convenção no django que procura o template em um diretório: &lt;strong&gt;app_name/templates&lt;/strong&gt;.
+No caso ficará assim: &lt;strong&gt;first_django_project/core/templates&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;OK, vamos criar este diretório e o template &lt;strong&gt;index.html&lt;/strong&gt;,
+estando no diretório root do projeto: &lt;strong&gt;first_django_project&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir core/templates
+&lt;span class="nv"&gt;$ &lt;/span&gt;touch core/templates/index.html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;maravilha, o html do &lt;strong&gt;index.html&lt;/strong&gt; é bem básico:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&lt;/span&gt; &lt;span class="na"&gt;lang=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;en&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Pythonclub&lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;{{ texto }}&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ STATIC_URL }}images/logo_275x130.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Na view &lt;strong&gt;home&lt;/strong&gt; escrevemos no contexto uma variável chamada: &lt;strong&gt;texto&lt;/strong&gt;, e agora no template
+estou exibindo esta variável usando: &lt;strong&gt;{{ texto }}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Executando o projeto novamente o resultado será:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py runserver
+Validating models...
+
+0 errors found
+May 11, 2014 - 03:30:48
+Django version 1.6.4, using settings &lt;span class="s1"&gt;&amp;#39;first_django_project.settings&amp;#39;&lt;/span&gt;
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+&lt;span class="o"&gt;[&lt;/span&gt;11/May/2014 03:30:59&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1&amp;quot;&lt;/span&gt; 200 1757
+&lt;/pre&gt;&lt;/div&gt;
+&lt;img alt="comando runserver do django-admin.py" src="images/fabianogoes/runserv-index.png" /&gt;
+&lt;p&gt;Para finalizarmos vamos criar uma classe model simples, apenas para ilustrar o uso do &lt;strong&gt;Admin&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;no arquivo core/models.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Pessoa&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;cpf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__unicode__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vamos rodar o comando &lt;strong&gt;syncdb&lt;/strong&gt; para o dango criar as tabelas.
+Este comando vai perguntar se você deseja criar um super usuário, digite &lt;strong&gt;yes&lt;/strong&gt;, crie o usuário &lt;strong&gt;admin&lt;/strong&gt; e dê uma senha e um email.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py syncdb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Agora vamos registar esta classe no admin, editando o arquivo core/admin.py(se o arquivo não existir crie):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;core.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Pessoa&lt;/span&gt;
+
+&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Pessoa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Rodando o projeto e acessando a url: &lt;strong&gt;http://127.0.0.1:8000/admin/&lt;/strong&gt;
+digite o super usuário e senha criado ao rodar o comando &lt;strong&gt;syncdb&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="menu de login da interface administrativa do django" src="images/fabianogoes/django-admin.png" /&gt;
+&lt;p&gt;Neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.&lt;/p&gt;
+&lt;p&gt;Bom pessoal, é isso, um tutorial simples apenas de meio longo.&lt;/p&gt;
+&lt;p&gt;espero que gostem, um abraço a todos!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="python"></category><category term="django"></category><category term="vitualenv"></category></entry><entry><title>Introdução a testes funcionais com Selenium e Python</title><link href="http://pythonclub.com.br/introducao-a-testes-funcionais-com-selenium-e-python.html" rel="alternate"></link><updated>2014-05-09T12:00:00-03:00</updated><author><name>Mário Chaves</name></author><id>tag:pythonclub.com.br,2014-05-09:introducao-a-testes-funcionais-com-selenium-e-python.html</id><summary type="html">&lt;p&gt;Nesse post darei apenas uma introdução básica focada em auxiliar testadores a usar a linguagem de programação Python
+para executar e guardar seus scripts de teste.&lt;/p&gt;
+&lt;div class="section" id="porque-usar-a-linguagem-python-nos-testes-funcionais"&gt;
+&lt;h2&gt;Porquê usar a linguagem Python nos testes funcionais?&lt;/h2&gt;
+&lt;p&gt;Como sabemos os testes funcionais são em sua grande parte desenvolvidos por Analistas de Testes e/ou Testadores.
+Para que se tenha uma manutenção mais rápida e eficaz a medida que o código do projeto vai crescendo e ganhando mais funcionalidades, é interessante que os testes estejam coesos e de fácil entendimento. &lt;a class="reference external" href="http://pt.wiktionary.org/wiki/IMHO"&gt;IMHO&lt;/a&gt;  Python é a linguagem que deixa seu código mais elegante, limpo e entendível.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;em&gt;&amp;quot;Python é uma linguagem de programação de alto nível , interpretada, imperativa, orientada a objetos, funcional,
+de tipagem dinâmica e forte.&amp;quot;&lt;/em&gt; &lt;a class="reference external" href="http://pt.wikipedia.org/wiki/Python"&gt;Wikipedia&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;Em uma rápida comparação de verbosidade entre Python e Java com o tão criticado &amp;quot;Hello, World!&amp;quot;, podemos notar o
+que quero dizer quando citei &lt;em&gt;&amp;quot;IMHO Python é a linguagem que deixa seu código mais elegante, limpo e entendível&amp;quot;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Exemplo em Java:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;HelloWorld&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello, world!&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Exemplo em Python 2.x&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Hello, world!&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Isso mesmo, os dois exemplos fazem a mesma coisa, porém, o exemplo em Java tem 104 caracteres enquanto o exemplo
+em Python possui apenas 21 caracteres.&lt;/p&gt;
+&lt;p&gt;Mas, voltando ao que interessa, vamos ao passo-a-passo de como configurar seu ambiente e depois testar executando algo como exemplo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="montando-o-ambiente"&gt;
+&lt;h2&gt;Montando o ambiente&lt;/h2&gt;
+&lt;p&gt;Supondo que você usa Windows e não tem nada do que vamos precisar instalado, faça o download dos
+seguintes itens:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;Python 2.7.6 - &lt;a class="reference external" href="https://www.python.org/downloads/"&gt;https://www.python.org/downloads/&lt;/a&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;em&gt;Linguagem de programação de alto nível&lt;/em&gt;&lt;/dd&gt;
+&lt;dt&gt;Pip - &lt;a class="reference external" href="https://bootstrap.pypa.io/get-pip.py"&gt;https://bootstrap.pypa.io/get-pip.py&lt;/a&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;em&gt;Gerenciador de bibliotecas geralmente usado para instalar e remover libs&lt;/em&gt;&lt;/dd&gt;
+&lt;dt&gt;Mozilla Firefox - &lt;a class="reference external" href="http://www.mozilla.org/pt-BR/firefox/new/"&gt;http://www.mozilla.org/pt-BR/firefox/new/&lt;/a&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;em&gt;Navegador Web mais recomendado para o uso do Selenium e onde será instalado o plugin SeleniumIDE&lt;/em&gt;&lt;/dd&gt;
+&lt;dt&gt;PhantomJS v1.9 - &lt;a class="reference external" href="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-windows.zip"&gt;https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-windows.zip&lt;/a&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;em&gt;Navegador Headless que possibilita a execução dos testes em background, sem a necessidade de executar
+toda a interface gráfica do navegador&lt;/em&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="passos-para-a-instalacao-do-python-no-windows"&gt;
+&lt;h3&gt;Passos para a instalação do Python no Windows&lt;/h3&gt;
+&lt;p&gt;Nota: ele já vem instalado no Mac e Linux&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Executar o instalador e instalar com passos simples (Avançar, Avançar, Concluir)&lt;/li&gt;
+&lt;li&gt;Entre no CMD (Terminal) e digite python, se entrar no interpretador então já está instalado, se não, vá para o passo 3&lt;/li&gt;
+&lt;li&gt;Feche o Terminal, vá em Iniciar e clique com o botão direito sobre o “Computador” e selecione “Propriedades”&lt;/li&gt;
+&lt;li&gt;No menu lateral clique em “Definições avançadas de sistema” e selecione “Variáveis de ambiente”&lt;/li&gt;
+&lt;li&gt;Na caixa “Variáveis do sistema” selecione com um duplo clique o item “Path”&lt;/li&gt;
+&lt;li&gt;Ao final da linha “Valor da variável” insira “;C:Python27Scripts” então dê Ok, Ok e Ok novamente&lt;/li&gt;
+&lt;li&gt;Abra o CMD (Terminal) novamente, digite &lt;cite&gt;python&lt;/cite&gt;, e dê enter. Dessa vez vai entrar no interpretador!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pip-gerenciador-de-pacotes-do-python-no-windows"&gt;
+&lt;h3&gt;Pip (Gerênciador de pacotes do Python) no Windows&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Através do Terminal vá até a pasta onde você fez download do arquivo get-pip.py, provavelmente em C:UsersSeuUsuarioDownloads&lt;/li&gt;
+&lt;li&gt;Ao entrar na pasta Downloads (Se o get-pip.py estiver nela) execute: python get-pip.py (Ele fará toda a instalação do Pip)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sei-que-nao-tem-necessidade-mas-mozilla-firefox-navegador-web"&gt;
+&lt;h3&gt;Sei que não tem necessidade, mas: Mozilla Firefox (Navegador Web)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Executar o instalador e instalar com passos simples (Avançar, Avançar, Concluir)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="phantomjs-no-windows"&gt;
+&lt;h3&gt;PhantomJS no Windows&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Descompactar o arquivo e colocar a pasta “phantomjs-1.9.7-windows” dentro de C: (Veja se logo dentro dessa pasta existe um arquivo chamado phantomjs, que é um arquivo executável com o ícone de um Fantasminha) se tem, está certo, se não tem, então você tem que colocar a pasta “phantomjs-1.9.7-windows” que está dentro de “phantomjs-1.9.7-windows” em C: as vezes ao descompactar um arquivo no Windows ele descompacta em uma pasta com o mesmo nome&lt;/li&gt;
+&lt;li&gt;Vá em Iniciar e clique com o botão direito sobre o “Computador” e selecione “Propriedades”&lt;/li&gt;
+&lt;li&gt;No menu lateral clique em “Definições avançadas de sistema” e selecione “Variáveis de ambiente”&lt;/li&gt;
+&lt;li&gt;Na caixa “Variáveis do sistema” selecione com um duplo clique o item “Path”&lt;/li&gt;
+&lt;li&gt;Ao final da linha “Valor da variável” insira “;C:phantomjs-1.9.7-windows” então dê Ok, Ok e Ok novamente&lt;/li&gt;
+&lt;li&gt;Abra o CMD (Terminal) e digite &lt;cite&gt;phantomjs&lt;/cite&gt; e dê enter, se entrar no interpretador é porquê deu certo, Ctrl+c pra sair e então feche o terminal&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="selenium-ide-ide-para-facilitar-a-criacao-de-testes-com-o-selenium-no-firefox"&gt;
+&lt;h3&gt;Selenium IDE (IDE para facilitar a criação de testes com o Selenium) no Firefox&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Execute o Mozilla Firefox&lt;/li&gt;
+&lt;li&gt;Abra a seguinte URL: &lt;a class="reference external" href="http://release.seleniumhq.org/selenium-ide/2.5.0/selenium-ide-2.5.0.xpi"&gt;http://release.seleniumhq.org/selenium-ide/2.5.0/selenium-ide-2.5.0.xpi&lt;/a&gt; e a instalação já é feita de forma automática&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="biblioteca-selenium-para-o-python"&gt;
+&lt;h3&gt;Biblioteca Selenium para o Python&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Abra o Terminal, digite &amp;quot;&lt;cite&gt;pip install -U selenium&lt;/cite&gt;&amp;quot; e dê enter, a instalação é feita de forma automática&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Levando em conta que o público alvo do artigo são testadores, não estenderei ao uso de ferramentas muito interessantes também para esse fim, porém mais utilizadas por desenvolvedores, como: &lt;a class="reference external" href="https://virtualenv.pypa.io"&gt;Virtualenv&lt;/a&gt;, &lt;a class="reference external" href="http://www.fabfile.org"&gt;Fabric&lt;/a&gt;, &lt;a class="reference external" href="http://sphinx-doc.org"&gt;Sphinx&lt;/a&gt; e etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="criando-um-teste-simples-com-a-famosa-selenium-ide-lo"&gt;
+&lt;h2&gt;Criando um teste simples com a famosa Selenium IDE lo/&lt;/h2&gt;
+&lt;p&gt;Após instalar a Selenium IDE dentro do Firefox e reiniciar o navegador, clique no ícone da ferramenta que está no
+canto superior direito do Navegador.&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-btn.png" /&gt;
+&lt;p&gt;Note que na Selenium IDE, a opção de gravar já vem selecionada por padrão.&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-gravar-ligado.png" /&gt;
+&lt;p&gt;E para nossa alegria, a URL do site atual que está em nosso Firefox, já está definida no campo &amp;quot;URL Base&amp;quot; da Selenium IDE.&lt;/p&gt;
+&lt;p&gt;Cliquei no link &amp;quot;Como apoiar o IFIC&amp;quot; e acessei a seguinte página.&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-clicar-no-link.png" /&gt;
+&lt;p&gt;Ao ver o que está acontecendo na Selenium IDE, notamos que ela está gravando tudo o que está acontecendo no navegador.&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-initial-view.png" /&gt;
+&lt;p&gt;Retorno ao navegador e faço um simples assert para ver se ao entrar na página o título H1 está correto.&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-assert-h1.png" /&gt;
+&lt;p&gt;Veja como é simples ver as propriedades que podem ser usadas para certificar que você realmente está na tela correta e
+verificar se os textos estão corretamente aplicados em seus devidos lugares.&lt;/p&gt;
+&lt;p&gt;Nesse exemplo eu verifico se o título H1 da página contém &amp;quot;Como Apoiar o IFIC&amp;quot;, para isso foi necessário:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Selecionar o texto na página&lt;/li&gt;
+&lt;li&gt;Clicar com o botão direito do mouse sobre a seleção&lt;/li&gt;
+&lt;li&gt;Selecionar &amp;quot;Exibir todos os comandos disponíveis&amp;quot;, note que ele já me dar como opção na primeira tela do menu suspenso esse item que selecionei na segunda, mas preferi correr até lá apenas para ilustrar as outras opções disponíveis que existem na segunda tela do menu suspenso&lt;/li&gt;
+&lt;li&gt;Clicar em &amp;quot;assertText css=h1 Como Apoiar o IFIC&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Agora veja o que a Selenium IDE gravou:&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-assert-h1-view.png" /&gt;
+&lt;p&gt;Como era de se esperar, apenas o que você fez no navegador ;)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;em&gt;Note que se você já for um usuário experiente da Selenium IDE, souber usar os seletores e conhecer bem o código HTML
+da página, você poderá escrever todo o seu código na própria Selenium IDE e depois executar.&lt;/em&gt;&lt;/blockquote&gt;
+&lt;p&gt;Para executar o teste criado, basta clicar no botão &amp;quot;Play entire test suite&amp;quot; como na imagem abaixo:&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-play-test.png" /&gt;
+&lt;p&gt;Note que o teste foi executado com sucesso, pois está tudo verdinho :) . Logo abaixo existem algumas mensagens
+na sequência que foram executadas.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="salvando-exportando-e-executando-os-testes"&gt;
+&lt;h2&gt;Salvando/Exportando e executando os testes&lt;/h2&gt;
+&lt;div class="section" id="selenium-ide"&gt;
+&lt;h3&gt;Selenium IDE&lt;/h3&gt;
+&lt;p&gt;Ao concluir seu teste você tem a opção de salvar e então executar futuramente para verificar
+se o sistema continua funcionando como deveria.&lt;/p&gt;
+&lt;p&gt;Para salvar é muito simples, se estiver no Windows ou Linux, basta dar um Ctrl+S e no Mac Command+S, escolher
+uma pasta e clicar em Salvar.&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-save.png" /&gt;
+&lt;p&gt;Sinceramente, se você sempre quiser executar seus testes usando o Mozilla Firefox eu aconselho usar a própria
+Selenium IDE para esse propósito, pois com ela você salva seus testes em HTML e os executa tranquilamente com
+opção de rodar todo um Test Case de uma vez. Observe que após salvar o teste ele fica disponível na coluna
+&amp;quot;Test Case&amp;quot; da Selenium IDE e você pode ir adicionando os demais testes a essa coluna para que sejam todos executados.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="exportando-para-uma-linguagem-de-programacao"&gt;
+&lt;h3&gt;Exportando para uma linguagem de programação&lt;/h3&gt;
+&lt;p&gt;Na Selenium IDE existe a opção de exportar seu teste para várias linguagens de programação como: Ruby, Python,
+Java e C#.&lt;/p&gt;
+&lt;p&gt;Exportar seu teste para uma linguagem de programação pode ser bem útil para o caso de integrar seu teste
+ao código de teste desenvolvido pelos programadores já que os testes exportados pela Selenium IDE são
+codificados utilizando a lib unittest, ou seja, na forma de testes unitários.&lt;/p&gt;
+&lt;p&gt;A imagem abaixo mostra como exportar o teste para uma das linguagens disponíveis:&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-sel-export-lang.png" /&gt;
+&lt;p&gt;No caso, Python 2 / unittest / Webdriver, mas o teste poderia ser exportado para qualquer outra linguagem disponível.
+Clique nesse item e salve na pasta que desejar com um nome sucinto e seguido da extensão .py (por exemplo: test_como_apoiar.py)&lt;/p&gt;
+&lt;p&gt;Veja abaixo o código gerado pela exportação do teste para Python (48 linhas):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver.common.by&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;By&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver.common.keys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Keys&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver.support.ui&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Select&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.common.exceptions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;NoSuchElementException&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestComoApoiar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;implicitly_wait&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;base_url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://www.ific.com.br/&amp;quot;&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;verificationErrors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;accept_next_alert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_como_apoiar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt;
+        &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;base_url&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_link_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Como apoiar o IFIC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;click&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Como Apoiar o IFIC&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_css_selector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;h1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_element_present&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;how&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;what&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;how&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;what&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;NoSuchElementException&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_alert_present&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;switch_to_alert&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;NoAlertPresentException&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;close_alert_and_get_its_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;switch_to_alert&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="n"&gt;alert_text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;accept_next_alert&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dismiss&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;alert_text&lt;/span&gt;
+        &lt;span class="k"&gt;finally&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;accept_next_alert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tearDown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;assertEqual&lt;/span&gt;&lt;span class="p"&gt;([],&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;verificationErrors&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Veja o mesmo código gerado pela exportação do teste para Java (73 linhas):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;example&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;tests&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.regex.Pattern&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.concurrent.TimeUnit&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.junit.*&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;static&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;junit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;Assert&lt;/span&gt;&lt;span class="o"&gt;.*;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;static&lt;/span&gt; &lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;hamcrest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;CoreMatchers&lt;/span&gt;&lt;span class="o"&gt;.*;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.openqa.selenium.*&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.openqa.selenium.firefox.FirefoxDriver&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;org.openqa.selenium.support.ui.Select&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestComoApoiar&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;WebDriver&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;baseUrl&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;acceptNextAlert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;StringBuffer&lt;/span&gt; &lt;span class="n"&gt;verificationErrors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;StringBuffer&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@Before&lt;/span&gt;
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;FirefoxDriver&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;baseUrl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://www.ific.com.br/&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;manage&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;timeouts&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;implicitlyWait&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TimeUnit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;SECONDS&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@Test&lt;/span&gt;
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;testComoApoiar&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;baseUrl&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;findElement&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;By&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;linkText&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Como apoiar o IFIC&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)).&lt;/span&gt;&lt;span class="na"&gt;click&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;assertEquals&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Como Apoiar o IFIC&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;findElement&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;By&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;cssSelector&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;h1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)).&lt;/span&gt;&lt;span class="na"&gt;getText&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@After&lt;/span&gt;
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;tearDown&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;Exception&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;quit&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;verificationErrorString&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;verificationErrors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;toString&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(!&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;equals&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verificationErrorString&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;fail&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verificationErrorString&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isElementPresent&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;By&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;findElement&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;by&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NoSuchElementException&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;isAlertPresent&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;switchTo&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NoAlertPresentException&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;closeAlertAndGetItsText&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;Alert&lt;/span&gt; &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;switchTo&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+      &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;alertText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getText&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;acceptNextAlert&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;accept&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;dismiss&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;alertText&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;finally&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;acceptNextAlert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Tendo a versão do teste escrita em Python posso simplesmente dar um clique duplo sobre o ícone do arquivo
+test_como_apoiar.py que instantaneamente é aberto o navegador (Mozilla Firefox) e executado todo teste
+ao vivo.&lt;/p&gt;
+&lt;p&gt;Mas como já disse, se for para rodar o teste no Firefox, é melhor executar pela própria Selenium IDE.&lt;/p&gt;
+&lt;p&gt;É por isso que agora vamos saber porquê instalamos o PhantomJS.&lt;/p&gt;
+&lt;p&gt;Com o PhantomJS temos a possibilidade de executar o browser em &amp;quot;Background&amp;quot;, podemos chamar de modo &amp;quot;Headless&amp;quot;,
+isso faz com que possamos executar toda a nossa suíte de testes sem precisar ligar o Mozilla Firefox e todo o
+peso de sua interface gráfica, para isso vamos alterar a primeira linha do método setUp() e trocar o webdriver Firefox para PhantomJS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;TestComoApoiar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unittest&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PhantomJS&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Então vamos abrir o terminal, console ou cmd, como queira chamar, e navegar até a pasta onde foi salvo o arquivo test_como_apoiar.py e executar o teste com o seguinte comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;python test_como_apoiar.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O arquivo é executado como na imagem abaixo:&lt;/p&gt;
+&lt;img alt="" src="images/test-ff-change-webdriver.png" /&gt;
+&lt;p&gt;Bem amigos, a leitura foi uma breve descrição sobre os seguintes tópicos:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Porquê usar Python para guardar seus testes funcionais&lt;/li&gt;
+&lt;li&gt;Como montar o ambiente no Windows&lt;/li&gt;
+&lt;li&gt;Como criar um teste simples na Selenium IDE&lt;/li&gt;
+&lt;li&gt;Como salvar/exportar e executar com um browser Headless os testes que foram criados com a IDE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Para mais detalhes sobre o uso da biblioteca Selenium do Python acompanhe a série de artigos iniciados pelo &lt;a class="reference external" href="http://pythonclub.com.br/author/lucas-magnum.html"&gt;Lucas Magnum&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Qualquer dúvida pode entrar em contato:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Email &lt;a class="reference external" href="mailto:macndesign&amp;#64;gmail.com"&gt;macndesign&amp;#64;gmail.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Twitter &lt;a class="reference external" href="https://twitter.com/macndesign"&gt;&amp;#64;macndesign&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Facebook &lt;a class="reference external" href="https://www.facebook.com/macndesign"&gt;facebook.com/macndesign&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google + &lt;a class="reference external" href="https://plus.google.com/+M%C3%A1rioChaves81"&gt;plus.google.com/+MárioChaves81&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Grande abraço!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="selenium"></category><category term="python"></category><category term="selenium-serie"></category><category term="testes-funcionais"></category><category term="testes"></category></entry><entry><title>Selenium - O que você deveria saber - Parte 1</title><link href="http://pythonclub.com.br/selenium-parte-1.html" rel="alternate"></link><updated>2014-05-08T12:09:00-03:00</updated><author><name>Lucas Magnum</name></author><id>tag:pythonclub.com.br,2014-05-08:selenium-parte-1.html</id><summary type="html">&lt;p&gt;Esse é o primeiro post da série sobre o Selenium, pretendo cobrir desde o básico até algumas coisas mais legais :)&lt;/p&gt;
+&lt;div class="section" id="introducao"&gt;
+&lt;h2&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://docs.seleniumhq.org/"&gt;Selenium&lt;/a&gt; é um ótimo framework para realizar diversos tipos de tarefas com o browser.&lt;/p&gt;
+&lt;p&gt;Nesta série, vou tentar compartilhar com vocês o que acredito ser necessário para o bom uso da ferramenta.&lt;/p&gt;
+&lt;p&gt;Veja como está organizada a série:&lt;/p&gt;
+&lt;div class="section" id="parte-i"&gt;
+&lt;h3&gt;Parte I&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#instalacao"&gt;Instalação&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#abrindo-uma-pagina"&gt;Abrindo uma página&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference internal" href="#manipulando-elementos"&gt;Manipulando elementos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parte-2"&gt;
+&lt;h3&gt;Parte 2&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Brincando formulários&lt;/li&gt;
+&lt;li&gt;Trabalhando com múltiplas janelas&lt;/li&gt;
+&lt;li&gt;Trabalhando com frames&lt;/li&gt;
+&lt;li&gt;E se eu quiser esperar?!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parte-3"&gt;
+&lt;h3&gt;Parte 3&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Executando código javascript&lt;/li&gt;
+&lt;li&gt;Como utilizar diferentes navegadores&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class="section" id="parte-4"&gt;
+&lt;h3&gt;Parte 4&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Expected conditions&lt;/li&gt;
+&lt;li&gt;ActionsChains - Operações avançadas com o mouse&lt;/li&gt;
+&lt;li&gt;EventListener - Ouvindo seu código&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="instalacao"&gt;
+&lt;h2&gt;Instalação&lt;/h2&gt;
+&lt;p&gt;Para instalar o Selenium não existe nenhum segredo, basta executar:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install selenium
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="abrindo-uma-pagina"&gt;
+&lt;h2&gt;Abrindo uma página&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+
+&lt;span class="n"&gt;firefox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://google.com.br&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vamos entender o que está acontecendo aqui.&lt;/p&gt;
+&lt;p&gt;Primeiro eu importo o &lt;tt class="docutils literal"&gt;webdriver&lt;/tt&gt; que é o módulo que provê implementações para diferentes browsers.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Nesse caso utilizaremos o &amp;quot;Mozila Firefox&amp;quot;, pois não precisa de nenhuma configuração adicional, basta que ele esteja instalado.&lt;/p&gt;
+&lt;p&gt;Então criamos uma instância chamada &lt;tt class="docutils literal"&gt;firefox&lt;/tt&gt; e depois invocamos o metódo &lt;tt class="docutils literal"&gt;get&lt;/tt&gt; passando como parâmetro a URL da página que desejamos abrir.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;firefox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://google.com.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Outros exemplos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Abrir o site da Python Brasil&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://python.org.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Abrir o site da Python MG&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://pythonmg.com.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="manipulando-elementos"&gt;
+&lt;h2&gt;Manipulando elementos&lt;/h2&gt;
+&lt;p&gt;Sempre existe a necessidade de manipularmos algum elemento da página,
+para isso você precisa saber como encontrá-lo.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Conhecimento em HTML é necessário para facilitar a manipulação da página&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Se precisarmos encontrar um elemento pelo id, invocamos o metódo &lt;tt class="docutils literal"&gt;find_element_by_id&lt;/tt&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Se o elemento não for encontrado uma exception é gerada&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;id&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Se precisarmos encontrar todos os elementos que possuem uma classe específica, invocamos o metódo &lt;tt class="docutils literal"&gt;find_elements_by_class_name&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Retornam vários elementos ou uma lista vazia&lt;/span&gt;
+&lt;span class="n"&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;class_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Existem diversos metódos disponíveis, abaixo estão os que mais utilizo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Encontrar elemento pelo ID&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;id&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elemento pelo atributo name&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elemento pelo texto do link&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_link_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;text&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elemento pelo seu seletor css&lt;/span&gt;
+&lt;span class="n"&gt;find_element_by_css_selector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;css_selector&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elementos pelo nome da tag&lt;/span&gt;
+&lt;span class="n"&gt;find_elements_by_tag_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;tag_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Encontrar elementos pela classe&lt;/span&gt;
+&lt;span class="n"&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;class_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para visualizar todos os metódos, veja a &lt;a class="reference external" href="http://selenium-python.readthedocs.org/locating-elements.html#locating-elements"&gt;documentação&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="exemplo-para-estudo"&gt;
+&lt;h3&gt;Exemplo para estudo&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Let's code&lt;/em&gt;&lt;/p&gt;
+&lt;!--  --&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Premissas&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;No &lt;a class="reference external" href="http://pythonclub.com.br/"&gt;Python Club&lt;/a&gt; os &lt;tt class="docutils literal"&gt;posts&lt;/tt&gt; estão localizados dentro de uma &lt;tt class="docutils literal"&gt;div&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;[...]&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;[...]&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;[...]&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;E cada &lt;tt class="docutils literal"&gt;post&lt;/tt&gt; está dentro de uma &lt;tt class="docutils literal"&gt;section&lt;/tt&gt; que possue a &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;class=&amp;quot;post&amp;quot;&lt;/span&gt;&lt;/tt&gt; .&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;section&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;header&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post-header&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    [...]
+    &lt;span class="nt"&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post-title&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;post_url&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;post&lt;/span&gt;&lt;span class="na"&gt;_title&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;
+    [...]
+  &lt;span class="nt"&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/section&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Objetivo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Queremos que seja mostrado o título de cada &lt;tt class="docutils literal"&gt;post&lt;/tt&gt; e seu &lt;tt class="docutils literal"&gt;link&lt;/tt&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Execute o código abaixo e veja o resultado.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+
+&lt;span class="c"&gt;# Criar instância do navegador&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Firefox&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# Abrir a página do Python Club&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://pythonclub.com.br/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Seleciono todos os elementos que possuem a class post&lt;/span&gt;
+&lt;span class="n"&gt;posts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_elements_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Para cada post printar as informações&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;posts&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+
+    &lt;span class="c"&gt;# O elemento `a` com a class `post-title`&lt;/span&gt;
+    &lt;span class="c"&gt;# contém todas as informações que queremos mostrar&lt;/span&gt;
+    &lt;span class="n"&gt;post_title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_element_by_class_name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;post-title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# `get_attribute` serve para extrair qualquer atributo do elemento&lt;/span&gt;
+    &lt;span class="n"&gt;post_link&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;post_title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_attribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;href&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# printar informações&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;u&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;        Títutlo: {titulo}, &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&lt;/span&gt;
+&lt;span class="s"&gt;        Link: {link} &lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;titulo&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;post_title&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;post_link&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# Fechar navegador&lt;/span&gt;
+&lt;span class="n"&gt;firefox&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Código-fonte do exemplo: &lt;a class="reference external" href="https://github.com/LucasMagnum/selenium-serie/blob/master/pythonclub.py"&gt;pythonclub.py&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="desafios"&gt;
+&lt;h3&gt;Desafios&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Desafio 1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Modificar o exemplo para mostrar o nome do autor do &lt;tt class="docutils literal"&gt;post&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Desafio 2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Modificar o exemplo 01 para salvar os dados(titulo, link, autor) em um arquivo &lt;tt class="docutils literal"&gt;json&lt;/tt&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Por hoje é só!&lt;/p&gt;
+&lt;p&gt;Qualquer dúvida pode enviar um e-mail &lt;a class="reference external" href="mailto:contato&amp;#64;lucasmagnum.com.br"&gt;contato&amp;#64;lucasmagnum.com.br&lt;/a&gt; ficarei feliz em ajudar =)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="selenium"></category><category term="python"></category><category term="selenium-serie"></category></entry><entry><title>5 Django Apps que não vivo sem</title><link href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="alternate"></link><updated>2014-05-06T19:35:00-03:00</updated><author><name>Igor Santos</name></author><id>tag:pythonclub.com.br,2014-05-06:5-django-apps-que-nao-vivo-se.html</id><summary type="html">&lt;p&gt;Existem diversas apps para Django, e todas tem suas caracteristicas e são muito uteis. Abaixo uma lista de 5 apps que são indispensáveis para começar o desenvolvimento em Django, no &lt;a class="reference external" href="https://www.djangopackages.com/"&gt;django packages&lt;/a&gt; você vai encontrar uma infinidade de apps, podendo filtrar a sua busca por categorias :D&lt;/p&gt;
+&lt;p&gt;Bora para de balela e vamos ao que interessa,&lt;/p&gt;
+&lt;div class="section" id="south-migrations"&gt;
+&lt;h2&gt;1. South (Migrations)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="http://south.readthedocs.org/en/latest/"&gt;South&lt;/a&gt;, faz com que o Django suporte migrações de banco de dados de forma simples, estável e totalmente independente do backend de banco de dados utilizado, a partir da alteração dos models, você roda um comando e plin a &amp;quot;mágica&amp;quot; acontece, o base de dados está novamente igual aos seus modelos.&lt;/p&gt;
+&lt;p&gt;Essa app se tornou tão popular que na versão &lt;a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/migrations/"&gt;Django 1.7&lt;/a&gt; passou a ser nativo do Django.&lt;/p&gt;
+&lt;p&gt;Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no &lt;tt class="docutils literal"&gt;INSTALLED_APPS&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install south
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Comandos utilizados:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./manage.py schemamigration app_name --initial  &lt;span class="o"&gt;[&lt;/span&gt;cria a estrutura de migracao inicial&lt;span class="o"&gt;]&lt;/span&gt;
+./manage.py migration app_name          &lt;span class="o"&gt;[&lt;/span&gt;realiza migracao na app especificada&lt;span class="o"&gt;]&lt;/span&gt;
+./manage.py migration --all         &lt;span class="o"&gt;[&lt;/span&gt;realiza migracao em todas as apps instaladas&lt;span class="o"&gt;]&lt;/span&gt;
+./manage.py schemamigration app_name --auto &lt;span class="o"&gt;[&lt;/span&gt;realiza migracao no modelo alterado&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-nose-coverage-test"&gt;
+&lt;h2&gt;2. django-nose + coverage (Test)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="https://github.com/django-nose/django-nose"&gt;django-nose&lt;/a&gt; é uma django app que utiliza o &lt;a class="reference external" href="https://nose.readthedocs.org/en/latest/"&gt;nose&lt;/a&gt; como TestRunner do Django, isso possibilita você adicionar qualquer plugin compatível com o Nose, além de outras muitas vantagens, que na verdade não conheço a fundo.&lt;/p&gt;
+&lt;p&gt;Um plugin do Nose que achei muito bacana é o &lt;a class="reference external" href="http://django-testing-docs.readthedocs.org/en/latest/coverage.html"&gt;coverage&lt;/a&gt;, ele informa a cobertura de testes em seu código, basicamente ele realiza uma analise linha a linha, e verifica se seus testes unitários passaram por essas linhas, e no final ele apresenta um relatório com a quantidade de código testado.&lt;/p&gt;
+&lt;p&gt;Testei ele até a versão Django 1.6 e funcionou muito bem, é muito simples de instalar e configurar.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install django-nose
+pip install coverage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Configurando o settings do projeto.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django_nose&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# diz ao Django que o TestRunner sera o Nose&lt;/span&gt;
+&lt;span class="n"&gt;TEST_RUNNER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django_nose.NoseTestSuitRunner&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# alguns parametros que serao passados default ao nose&lt;/span&gt;
+&lt;span class="n"&gt;NOSE_ARGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;--with-coverage&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;--cover-package=foo,bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# informa os pacotes que ele que verifica a cobertura de tests&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Dica:&lt;/strong&gt; O recomendado é que essa configuração fique em um settings especifico para test, eu costumo separar meu settings em 4 arquivos diferentes, [common, prod, dev, test].&lt;/p&gt;
+&lt;p&gt;O coverage mostra a seguinte tabela:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+foo.models            30      5    85%   10-12, 16, 19
+bar.models            10      1    90%   4
+------------------------------------------------
+TOTAL                 40      6    87%
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Stmts: Linhas que precisam ser testadas.&lt;/li&gt;
+&lt;li&gt;Miss: Linhas que não foram testadas.&lt;/li&gt;
+&lt;li&gt;Cover: Quantidade de código coberto por testes em porcentagem.&lt;/li&gt;
+&lt;li&gt;Missing: Linhas que não foram testadas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="model-mommy-mock"&gt;
+&lt;h2&gt;3. model_mommy (Mock)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/vandersonmota/model_mommy"&gt;model_mommy&lt;/a&gt; oferece um jeito fácil e inteligente de criar fixtures para Django, é muito simples, e tem o objetivo de facilitar a escrita de testes, fazendo com que você consiga criar um objeto com apenas uma linha de código.&lt;/p&gt;
+&lt;p&gt;Esse é um simples exemplo, com coisas mais comuns no seu dia,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;model_mommy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyCaseTest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# criar e persiste o User na database&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# cria o User sem persistir&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prepare&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# cria o User, atribui um username e persiste&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;user.test&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# cria e persiste uma lista de User&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list_users&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_quantity&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; não foi preciso importar o model User, pois o model_mommy faz isso pra você, mas tome cuidado, o model_mommy é case sensitive.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dica:&lt;/strong&gt; seguindo a mesma dica do django-nose, adicione o model_mock ao INSTALLED_APPS de uma settings especifica para testes, ou para desenvolvimento.&lt;/p&gt;
+&lt;p&gt;Essa é uma django app muito poderosa e possui diversas outras funcionalidades, vale a pena fazer uma visitinha no &lt;a class="reference external" href="https://github.com/vandersonmota/model_mommy"&gt;seu repositório&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-extensions-extensions"&gt;
+&lt;h2&gt;4. Django Extensions (Extensions)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/index.html"&gt;django extensions&lt;/a&gt; possui uma &lt;a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/command_extensions.html"&gt;lista considerável&lt;/a&gt; de funcionalidades, a ideia é juntar diversas funcionalidades que agilizam o desenvolvimento, e adicioná-los a lista de comandos do &lt;strong&gt;manage.py&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Mas quero falar de uma funcionalidade especifica que uso muito, é o &lt;a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/shell_plus.html"&gt;shell_plus&lt;/a&gt;, que carrega automaticamente models das apps instaladas no meu projeto, no shell interativo do python, além disso você possui diversas configurações bacanas, como escolher tipos diferentes de shell python, como por exemplo &lt;a class="reference external" href="https://github.com/ipython/ipython"&gt;ipython&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./manage.py shell_plus --use-ipython
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-debug-toolbar-debug"&gt;
+&lt;h2&gt;5. Django Debug Toolbar (Debug)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="https://github.com/django-debug-toolbar/django-debug-toolbar"&gt;django debug toolbar&lt;/a&gt;, é um panel que exibe diversas informações sobre o request e response atual, o debug toolbar possui diversas configurações o que faz que seja possível configurá-lo até em produção, apenas para o administrador do projeto, como &lt;em&gt;quase tudo&lt;/em&gt; em python simples, está tudo bem detalhado na &lt;a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/"&gt;documentação&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Basta instalar com pip e adicionar o projeto no &lt;tt class="docutils literal"&gt;INSTALLED_APPS&lt;/tt&gt;, e realizar uma configuração simples:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MIDDLEWARE_CLASSES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;debug_toolbar.middleware.DebugToolbarMiddleware&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="c"&gt;# certifique de que a app staticfiles esta instalada&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.staticfiles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="c"&gt;# app necessario para Django 1.7+&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;debug_toolbar.apps.DebugToolbarConfig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c"&gt;# caso versao do django &amp;lt; 1.7, instale a app abaixo&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;debug_toolbar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;STATIC_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/static/&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;DEBUG_TOOLBAR_PATCH_SETTINGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+&lt;span class="c"&gt;# se internal ips estiver vazio por default o ip e 127.0.0.1, essa&lt;/span&gt;
+&lt;span class="c"&gt;# variavel se faz necessaria para que seja apresentado o panel com&lt;/span&gt;
+&lt;span class="c"&gt;# as inforamacoes&lt;/span&gt;
+&lt;span class="n"&gt;INTERNAL_IPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Configurando o &lt;tt class="docutils literal"&gt;views.py&lt;/tt&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf.urls&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;patterns&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;debug_toolbar&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;urlpatterns&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;patterns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;r&amp;#39;^__debug__/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;debug_toolbar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O django-debug-toolbar possui muitas funcionalidades, e como dito antes, é bem fácil &lt;a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/configuration.html"&gt;configurá-las&lt;/a&gt;, sinta-se a vontade para usar e abusar.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="django-apps"></category><category term="south"></category><category term="test"></category><category term="nose"></category><category term="coverage"></category></entry><entry><title>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</title><link href="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" rel="alternate"></link><updated>2014-05-04T22:21:00-03:00</updated><author><name>Artur Felipe de Sousa</name></author><id>tag:pythonclub.com.br,2014-05-04:sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html</id><summary type="html">&lt;h3&gt;Python 2.x ou python 3.x?&lt;/h3&gt;
+&lt;p&gt;Quem de nós já não se deparou com a seguinte dúvida: Qual versão do
+python devo usar para começar meu projeto?&lt;/p&gt;
+&lt;p&gt;Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão
+polêmica, a primeira incopatível com suas anteriores (2.x). A intenção era de
+corrigir antigas "chatices" que vinham incomodando o Guido van Rossum e a
+comunidade, e remover coisas desnecessárias. Alguns exemplos mais comuns:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Todas as strings são unicode &lt;strong&gt;str()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;O comando print virou a built-in &lt;strong&gt;print()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Iterators ao invés de listas: &lt;strong&gt;map(), filter(), zip()&lt;/strong&gt; e &lt;strong&gt;range()&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Tipo long passou a ser somente int&lt;/li&gt;
+&lt;li&gt;Todas as classes são new-style&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Para mais detalhes &lt;a href="https://docs
+.python.org/3.0/whatsnew/3.0.html"&gt;https://docs.python.org/3.0/whatsnew/3.0.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;O python 3 já está na versão 3.4 e vem sendo cada vez mais suportado por
+bibliotecas e frameworks mais populares tais como:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Django (1.5+)&lt;/li&gt;
+&lt;li&gt;Pyramid (1.3a1+)&lt;/li&gt;
+&lt;li&gt;Flask&lt;/li&gt;
+&lt;li&gt;SqlAlchemy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Todas essas ferramentas tiveram a mesma preocupação que deve estar passando
+pela sua cabeça agora: Como migrar ou criar código compatível o máximo possível
+entre essas versões?&lt;/p&gt;
+&lt;p&gt;É aí que entra a biblioteca six.&lt;/p&gt;
+&lt;h3&gt;Six?&lt;/h3&gt;
+&lt;p&gt;O six é uma biblioteca de compatibilidade entre o python 2 e 3. O nome "six"
+surgiu da grande sacada do Benjamin Petersons, 2 * 3 == 6, muita imaginação
+não? Todo o código do six está contido em apenas um arquivo python
+&lt;a href="https://bitbucket.org/gutworth/six/src/a497bee85dd833681574672b5a2ec29
+6e33c525c/six.py?at=default" title="Repositório do six"&gt;six.py&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Para instalar o six, basta usar o pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Vamos começar com um exemplo de código que funciona somente na versão 2.7.5:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;Python 2 compatible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;is unicode&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;O primeiro erro observado é o comando print que gera um erro de sintaxe, o
+seguinte é o identificador unicode que não existe mais no python 3 (passou a
+ser str somente).&lt;/p&gt;
+&lt;p&gt;Uma versão deste código que funciona no python 3.4.0 seria:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;Python 3 compatible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;is unicode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Utilizando o six para compatibilizar o código, teríamos:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;six&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;Python 2 and 3 compatible&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;string_types&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;print_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;is unicode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;No exemplo acima foi utilizada a constante &lt;strong&gt;six.string_types&lt;/strong&gt;. Essas
+constantes são normalmente utilizadas como segundo argumento da função
+&lt;strong&gt;isinstance()&lt;/strong&gt;. &lt;a href="https://pythonhosted.org/six/#constants"&gt;Veja mais delas&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;No python 3 alguns atributos e metódos foram substituídos ou removidos de
+alguns tipos de estrutura de dados. Os métodos &lt;strong&gt;iterkeys(), itervalues(),
+iteritems()&lt;/strong&gt; e &lt;strong&gt;iterlists()&lt;/strong&gt;, por exemplo, foram renomeados dos dicionários
+por &lt;strong&gt;keys(), values(), items()&lt;/strong&gt; e &lt;strong&gt;lists()&lt;/strong&gt; respectivamente.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Python 2.7.5&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;valueiterator&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x10738e680&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# Python 3.4.0&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;dict_values&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Versões compatíveis destes métodos podem ser encontradas no six:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Python 2.x 3.x&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;six&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;my_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Artur Sousa&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_info&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dictionary&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;valueiterator&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x10738e680&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iterkeys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;dict_keyiterator&lt;/span&gt; &lt;span class="nb"&gt;object&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mh"&gt;0x10b2f4638&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://pythonhosted.org/six/#object-model-compatibility"&gt;Dentre outras...&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;No python 3 algumas libs foram reorganizadas da biblioteca padrão. O
+&lt;strong&gt;HTMLParser&lt;/strong&gt; por exemplo virou &lt;strong&gt;html.parser&lt;/strong&gt;. Para isso o six oferece o
+módulo moves.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;six.moves&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;html_parser&lt;/span&gt; &lt;span class="c"&gt;# 2.x: HTMLParser 3.x: html.parser&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;six.moves&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cPickle&lt;/span&gt;  &lt;span class="c"&gt;# 2.x: cPickle 3.x: pickle&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Uma tabela de compatibilidade de métodos e atributos pode ser vista
+&lt;a href="https://pythonhosted.org/six/#module-six.moves"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Esta foi apenas uma parte das funcionalidades que o six oferece para garantir
+o funcionamento de códigos escritos nas versões 2 e 3 do python.&lt;/p&gt;
+&lt;p&gt;O Django utiliza o six a partir da versão 1.5. Veja um exemplo de uso:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# django.contrib.admin.helpers.py - Django 1.7b3&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;AdminErrorList&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;forms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;utils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ErrorList&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Stores all errors for the form/formsets in an add/change stage view.&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;inline_formsets&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;AdminErrorList&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_bound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;form&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;inline_formset&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;inline_formsets&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inline_formset&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;non_form_errors&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+                &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;errors_in_inline_form&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;inline_formset&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;six&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;itervalues&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;errors_in_inline_form&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Então galera, esse foi um artigo introdutório sobre o six, mostrando alguns
+casos de uso e um pouco das diferenças entre o python 2 e 3. Espero que vocês
+tenham gostado. Fiquem à vontade para enviar dúvidas, sugestões ou críticas.&lt;/p&gt;
+&lt;p&gt;Até mais...&lt;/p&gt;</summary><category term="python"></category><category term="six"></category><category term="compatibility"></category><category term="python3"></category></entry><entry><title>Como colaborar na tradução do Djangobook sem conhecer programação</title><link href="http://pythonclub.com.br/como_colaborar_com_projetos_open_source.html" rel="alternate"></link><updated>2014-05-01T13:16:00-03:00</updated><author><name>Eric Hideki</name></author><id>tag:pythonclub.com.br,2014-05-01:como_colaborar_com_projetos_open_source.html</id><summary type="html">&lt;p&gt;Uma das perguntas que os iniciantes sempre se perguntam é: Como ganhar experiência? Ou colaborar com projetos open source sem ter conhecimentos? Pois é, saiba que você pode colaborar sem dificuldades, e que
+qualquer colaboração é muito importante.&lt;/p&gt;
+&lt;p&gt;Um dos projetos que estão em andamento é a tradução do Djangobook. Djangobook é um dos tutoriais mais lidos em todo o mundo, uma das principais portas de entrada no mundo do desenvolvimento web. Através dos tutoriais do livro você será capaz de criar rápidas, robustas e organizadas aplicações.&lt;/p&gt;
+&lt;p&gt;Sabe um pouco de inglês e gostaria de praticar? Nada melhor do que traduzir um texto ou artigo.&lt;/p&gt;
+&lt;p&gt;Primeiramente crie ou acesse sua conta no github.com. É simples, basta inserir um e-mail e colocar a senha e pronto, já podemos criar nossos projetos.&lt;/p&gt;
+&lt;p&gt;Agora vamos acessar o projeto original: &lt;a class="reference external" href="https://github.com/Londerson/djangobook"&gt;https://github.com/Londerson/djangobook&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nisso teremos o botão &lt;tt class="docutils literal"&gt;fork&lt;/tt&gt; do projeto. O que ele irá fazer? Irá criar uma cópia do projeto para seus repositórios.&lt;/p&gt;
+&lt;p&gt;Acessamos o repositório e veremos que temos uma lista enorme de arquivos, cada um deles é um capítulo. Nisso escolhemos o arquivo que pretendemos alterar.&lt;/p&gt;
+&lt;p&gt;Entramos no botão &amp;quot;Edit&amp;quot; e nisso surgirá um painel de edição de texto. Dentro dele podemos reescrever o texto.&lt;/p&gt;
+&lt;p&gt;Depois temos a seção abaixo escrito Propose file change, nele podemos colocar o título do arquivo que estamos alterando/enviado, e logo depois os comentários sobre quais foram as alterações que efetuamos. Então clicamos no botão &lt;tt class="docutils literal"&gt;Propose file change&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Na parte inferior estará demonstrando algumas linhas de código em vermelho e verde, respectivamente. Nas linhas vermelhas estão os arquivos que serão deletados, já os de cor verde serão os substitutos. E agora basta enviar um &lt;tt class="docutils literal"&gt;Pull Request&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Pronto. Você acaba de encaminhar uma proposta de melhoria de um projeto, basta o mantenedor observar suas alterações, se estiver de acordo com os padrões de qualidade ele irá dar um &lt;tt class="docutils literal"&gt;Merge&lt;/tt&gt; com o antigo código e pronto.&lt;/p&gt;
+</summary><category term="djangobook"></category></entry></feed>

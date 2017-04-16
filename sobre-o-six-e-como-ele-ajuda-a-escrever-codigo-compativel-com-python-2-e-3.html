@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PythonClub, ">
+
+        <link rel="alternate"  href="http://pythonclub.com.br/feeds/all.atom.xml" type="application/atom+xml" title="PythonClub Full Atom Feed"/>
+    
+    <link rel="shortcut icon" href="http://pythonclub.com.br/theme/images/favicon.ico" >
+
+            <title>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3 - Artur Felipe de Sousa // PythonClub // </title>
+
+    <meta property="fb:app_id" content="1487080281503641" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3" />
+    <meta property="og:site_name" content="PythonClub" />
+    <meta property="og:url" content="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" />
+    <meta property="og:description" content="Python 2.x ou python 3.x? Quem de nós já não se deparou com a seguinte dúvida: Qual versão do python devo usar para começar meu projeto? Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão polêmica, a primeira incopatível com ..." />
+    <!-- <meta property="og:image" content="" /> -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pure.css">
+    <link rel="stylesheet" href="http://pythonclub.com.br/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+    <div class="sidebar sidebar-article pure-u">
+        <header class="header-article">
+            <hgroup>
+                <a href="http://pythonclub.com.br/author/artur-felipe-de-sousa.html" title="See posts by Artur Felipe de Sousa">
+                        <img class="article-avatar" alt="Artur Felipe de Sousa" src="http://www.gravatar.com/avatar/806fc27cc8cd1fada8bbf11a6f85fade">
+                </a>
+                <h2 class="article-info">Artur Felipe de Sousa</h2>
+                <div>
+			<ul class="author-social">
+
+			 
+
+
+			</ul>
+                </div>
+                <small class="about-author"></small>
+                <h5>Publicado em:</h5>
+                <p>Sun 04 May 2014</p>
+                <a href="/">&larr;Home</a>
+            </hgroup>
+        </header>
+    </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Sobre o six e como ele ajuda a escrever código compatível com python 2 e 3</h1>
+                        <p class="post-meta">
+                            // Tags                                 <a class="post-category" href="http://pythonclub.com.br/tag/python.html">python</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/six.html">six</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/compatibility.html">compatibility</a>
+                                <a class="post-category" href="http://pythonclub.com.br/tag/python3.html">python3</a>
+                        </p>
+                </header>
+            </section>
+            <h3>Python 2.x ou python 3.x?</h3>
+<p>Quem de nós já não se deparou com a seguinte dúvida: Qual versão do
+python devo usar para começar meu projeto?</p>
+<p>Há 6 anos, em dezembro de 2008 foi lançada a versão 3.0 do python. Uma versão
+polêmica, a primeira incopatível com suas anteriores (2.x). A intenção era de
+corrigir antigas "chatices" que vinham incomodando o Guido van Rossum e a
+comunidade, e remover coisas desnecessárias. Alguns exemplos mais comuns:</p>
+<ul>
+<li>Todas as strings são unicode <strong>str()</strong></li>
+<li>O comando print virou a built-in <strong>print()</strong></li>
+<li>Iterators ao invés de listas: <strong>map(), filter(), zip()</strong> e <strong>range()</strong></li>
+<li>Tipo long passou a ser somente int</li>
+<li>Todas as classes são new-style</li>
+</ul>
+<p>Para mais detalhes <a href="https://docs
+.python.org/3.0/whatsnew/3.0.html">https://docs.python.org/3.0/whatsnew/3.0.html</a>.</p>
+<p>O python 3 já está na versão 3.4 e vem sendo cada vez mais suportado por
+bibliotecas e frameworks mais populares tais como:</p>
+<ul>
+<li>Django (1.5+)</li>
+<li>Pyramid (1.3a1+)</li>
+<li>Flask</li>
+<li>SqlAlchemy</li>
+</ul>
+<p>Todas essas ferramentas tiveram a mesma preocupação que deve estar passando
+pela sua cabeça agora: Como migrar ou criar código compatível o máximo possível
+entre essas versões?</p>
+<p>É aí que entra a biblioteca six.</p>
+<h3>Six?</h3>
+<p>O six é uma biblioteca de compatibilidade entre o python 2 e 3. O nome "six"
+surgiu da grande sacada do Benjamin Petersons, 2 * 3 == 6, muita imaginação
+não? Todo o código do six está contido em apenas um arquivo python
+<a href="https://bitbucket.org/gutworth/six/src/a497bee85dd833681574672b5a2ec29
+6e33c525c/six.py?at=default" title="Repositório do six">six.py</a>.</p>
+<p>Para instalar o six, basta usar o pip:</p>
+<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">six</span>
+</pre></div>
+
+
+<p>Vamos começar com um exemplo de código que funciona somente na versão 2.7.5:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="s">u&#39;Python 2 compatible&#39;</span><span class="p">,</span> <span class="nb">unicode</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;is unicode&#39;</span>
+</pre></div>
+
+
+<p>O primeiro erro observado é o comando print que gera um erro de sintaxe, o
+seguinte é o identificador unicode que não existe mais no python 3 (passou a
+ser str somente).</p>
+<p>Uma versão deste código que funciona no python 3.4.0 seria:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="s">u&#39;Python 3 compatible&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;is unicode&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Utilizando o six para compatibilizar o código, teríamos:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">six</span>
+<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="s">u&#39;Python 2 and 3 compatible&#39;</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">):</span>
+    <span class="n">six</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s">&#39;is unicode&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>No exemplo acima foi utilizada a constante <strong>six.string_types</strong>. Essas
+constantes são normalmente utilizadas como segundo argumento da função
+<strong>isinstance()</strong>. <a href="https://pythonhosted.org/six/#constants">Veja mais delas</a>.</p>
+<p>No python 3 alguns atributos e metódos foram substituídos ou removidos de
+alguns tipos de estrutura de dados. Os métodos <strong>iterkeys(), itervalues(),
+iteritems()</strong> e <strong>iterlists()</strong>, por exemplo, foram renomeados dos dicionários
+por <strong>keys(), values(), items()</strong> e <strong>lists()</strong> respectivamente.</p>
+<div class="highlight"><pre><span class="c"># Python 2.7.5</span>
+<span class="o">&gt;</span> <span class="n">my_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Artur Sousa&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">my_info</span><span class="o">.</span><span class="n">itervalues</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">dictionary</span><span class="o">-</span><span class="n">valueiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10738e680</span><span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="n">my_info</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="s">&#39;Artur Sousa&#39;</span><span class="p">]</span>
+
+<span class="c"># Python 3.4.0</span>
+<span class="o">&gt;</span> <span class="n">my_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Artur Sousa&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">my_info</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="n">dict_values</span><span class="p">([</span><span class="mi">29</span><span class="p">,</span> <span class="s">&#39;Artur Sousa&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Versões compatíveis destes métodos podem ser encontradas no six:</p>
+<div class="highlight"><pre><span class="c"># Python 2.x 3.x</span>
+<span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">six</span>
+<span class="o">&gt;</span> <span class="n">my_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Artur Sousa&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">29</span><span class="p">)</span>
+<span class="o">&gt;</span> <span class="n">six</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(</span><span class="n">my_info</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">dictionary</span><span class="o">-</span><span class="n">valueiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10738e680</span><span class="o">&gt;</span>
+<span class="o">&gt;</span> <span class="n">six</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="n">dict_keyiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10b2f4638</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p><a href="https://pythonhosted.org/six/#object-model-compatibility">Dentre outras...</a></p>
+<p>No python 3 algumas libs foram reorganizadas da biblioteca padrão. O
+<strong>HTMLParser</strong> por exemplo virou <strong>html.parser</strong>. Para isso o six oferece o
+módulo moves.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">html_parser</span> <span class="c"># 2.x: HTMLParser 3.x: html.parser</span>
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">cPickle</span>  <span class="c"># 2.x: cPickle 3.x: pickle</span>
+</pre></div>
+
+
+<p>Uma tabela de compatibilidade de métodos e atributos pode ser vista
+<a href="https://pythonhosted.org/six/#module-six.moves">aqui</a>.</p>
+<p>Esta foi apenas uma parte das funcionalidades que o six oferece para garantir
+o funcionamento de códigos escritos nas versões 2 e 3 do python.</p>
+<p>O Django utiliza o six a partir da versão 1.5. Veja um exemplo de uso:</p>
+<div class="highlight"><pre><span class="c"># django.contrib.admin.helpers.py - Django 1.7b3</span>
+<span class="k">class</span> <span class="nc">AdminErrorList</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">ErrorList</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stores all errors for the form/formsets in an add/change stage view.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">,</span> <span class="n">inline_formsets</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdminErrorList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_bound</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">errors</span><span class="p">)))</span>
+            <span class="k">for</span> <span class="n">inline_formset</span> <span class="ow">in</span> <span class="n">inline_formsets</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inline_formset</span><span class="o">.</span><span class="n">non_form_errors</span><span class="p">())</span>
+                <span class="k">for</span> <span class="n">errors_in_inline_form</span> <span class="ow">in</span> <span class="n">inline_formset</span><span class="o">.</span><span class="n">errors</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">itervalues</span><span class="p">(</span><span class="n">errors_in_inline_form</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>Então galera, esse foi um artigo introdutório sobre o six, mostrando alguns
+casos de uso e um pouco das diferenças entre o python 2 e 3. Espero que vocês
+tenham gostado. Fiquem à vontade para enviar dúvidas, sugestões ou críticas.</p>
+<p>Até mais...</p>
+            <div class="sharing">
+                <!-- Facebook sharing -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=1487080281503641&version=v2.0";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-share-button" data-href="http://pythonclub.com.br/sobre-o-six-e-como-ele-ajuda-a-escrever-codigo-compativel-com-python-2-e-3.html" data-type="button_count"></div>
+
+                <!-- Twitter sharing -->
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+
+            <div class="hr"></div>
+            <a href="#" class="go-top">Topo</a>
+<div class="comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = "pythonclub"; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div><footer class="footer">
+    <p>&copy; PythonClub &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+</div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50935105-1', 'pythonclub.com.br');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>PythonClub</title><link href="http://pythonclub.com.br/" rel="alternate"></link><link href="http://pythonclub.com.br/feeds/django.atom.xml" rel="self"></link><id>http://pythonclub.com.br/</id><updated>2014-05-11T02:00:00-03:00</updated><entry><title>Seu primeiro projeto Django com Sublime Text no Linux</title><link href="http://pythonclub.com.br/primeiro-projeto-django-no-linux-com-sublime.html" rel="alternate"></link><updated>2014-05-11T02:00:00-03:00</updated><author><name>Fabiano Góes</name></author><id>tag:pythonclub.com.br,2014-05-11:primeiro-projeto-django-no-linux-com-sublime.html</id><summary type="html">&lt;div class="section" id="o-objetivo-deste-artigo"&gt;
+&lt;h2&gt;O objetivo deste artigo:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Instalar/Verificar python instalado no Sistema Operacional.&lt;/li&gt;
+&lt;li&gt;Instalar gerenciador de pacotes python: pip.&lt;/li&gt;
+&lt;li&gt;Instalar o virtualenv.&lt;/li&gt;
+&lt;li&gt;Criar/Ativar o virtualenv do projeto.&lt;/li&gt;
+&lt;li&gt;Instalar o Django dentro do virtualenv.&lt;/li&gt;
+&lt;li&gt;Criar um projeto Django.&lt;/li&gt;
+&lt;li&gt;Criar uma app Django dentro do projeto.&lt;/li&gt;
+&lt;li&gt;Instalar Sublime Text.&lt;/li&gt;
+&lt;li&gt;Criar uma classe Model.&lt;/li&gt;
+&lt;li&gt;Criar uma rota: home.&lt;/li&gt;
+&lt;li&gt;Criar a view: home.&lt;/li&gt;
+&lt;li&gt;Configurar o Admin.&lt;/li&gt;
+&lt;li&gt;Rodar o Projeto.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="ambiente-usado-durante-a-escrita-deste-artigo"&gt;
+&lt;h3&gt;Ambiente usado durante a escrita deste artigo&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Sistema Operacional: Linux Ubuntu 12.04 LTS&lt;/li&gt;
+&lt;li&gt;Python 2.7.3&lt;/li&gt;
+&lt;li&gt;Django 1.6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;No Linux/Ubuntu não precisamos instalar Python, porque já é nativo em sistemas operacionais baseados em Unix, mas para termos certeza basta executar o comando no terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python –version
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;o resultado será:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Python 2.7.3
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vamos começar instalando os pacotes necessários no Sistema Operacional:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install python-dev python-setuptools
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo easy_install pip
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para testarmos se o virtualenv está instalado corretamente executaremos no terminal:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv --version
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Resultado:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;1.11.5
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O pacote &lt;strong&gt;python-setuptools&lt;/strong&gt; foi utilizado apenas para instalarmos o &lt;strong&gt;easy_install&lt;/strong&gt; que usamos para instalar o &lt;strong&gt;pip&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;A partir de agora, no ambiente virtual sempre usaremos o &lt;strong&gt;pip&lt;/strong&gt; para instalar os pacotes.&lt;/p&gt;
+&lt;p&gt;Muito bem, com o &lt;strong&gt;virtualenv&lt;/strong&gt; instalado, o próximo passo será criar nosso &lt;strong&gt;virtualenv&lt;/strong&gt; e instalarmos o &lt;strong&gt;Django&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Vamos criar nosso virtualenv chamado &lt;strong&gt;pythonclub&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;virtualenv pythonclub --no-site-packages
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;--no-site-packages&lt;/strong&gt; = esse parametro do virtualenv indica que o ambiente virtual será totalmente isolado do sistema operacional, que só enxergará os pacotes instalados dentro do virtualenv.&lt;/p&gt;
+&lt;p&gt;Agora vamos entrar dentro do ambiente virtual que criamos e vamos ativá-lo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;pythonclub/
+&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;source &lt;/span&gt;bin/activate
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Neste momento temos o ambiente virtual criado e ativado, pronto para instalar o &lt;strong&gt;django&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install django
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Quando executamos o comando &lt;strong&gt;pip install django&lt;/strong&gt; sem especificarmos a versão desejada,
+o pip instala a ultima versão disponivel. Se quizermos instalar uma versão específica devemos executar assim:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;pip install &lt;span class="nv"&gt;django&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;1.5.4
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Então podemos finalmente criar o projeto django executando o seguinte comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;django-admin.py startproject first_django_project
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Com o projeto criado, devemos criar uma app chamada: &lt;strong&gt;core&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;first_django_project
+&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py startapp core
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Alterar o arquivo settings.py para adicionar a app &lt;strong&gt;core&lt;/strong&gt; em &lt;strong&gt;INSTALLED_APPS&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.auth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.contenttypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.sessions&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.messages&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.staticfiles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;core&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;OBS:&lt;/strong&gt; perceba que ao usar o &lt;strong&gt;Django 1.6&lt;/strong&gt; a app admin já estará instalada.&lt;/p&gt;
+&lt;p&gt;Até aqui a estrutura de diretórios está assim:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;../first_django_project/
+├── core
+│   ├── admin.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── first_django_project
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── settings.py
+│   ├── settings.pyc
+│   ├── urls.py
+│   └── wsgi.py
+└── manage.py
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;OBS: Os diretórios bin/, include/ e lib/ são diretórios do virtualenv. O restante são diretórios do projeto.&lt;/p&gt;
+&lt;p&gt;Para rodar o projeto, digite o comando:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py runserver
+Validating models...
+
+0 errors found
+May 11, 2014 - 03:30:48
+Django version 1.6.4, using settings &lt;span class="s1"&gt;&amp;#39;first_django_project.settings&amp;#39;&lt;/span&gt;
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+&lt;span class="o"&gt;[&lt;/span&gt;11/May/2014 03:30:59&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1&amp;quot;&lt;/span&gt; 200 1757
+&lt;/pre&gt;&lt;/div&gt;
+&lt;img alt="comando runserver do django-admin.py" src="images/fabianogoes/django-runserver.png" /&gt;
+&lt;p&gt;Chegou o momento de instalarmos o editor. No caso deste tutorial usaremos o &lt;strong&gt;Sublime Text 3&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo add-apt-repository ppa:webupd8team/sublime-text-3
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get update
+&lt;span class="nv"&gt;$ &lt;/span&gt;sudo apt-get install sublime-text-installer
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Com o Sublime já instalado, quero dizer que existe inúmeros plugins disponíveis,
+mas este assunto sai um pouco do escopo deste tutorial, mesmo assim quero indicar dentre estes inúmeros plugins, dois que não vivo sem: &lt;strong&gt;Djaneiro&lt;/strong&gt; e &lt;strong&gt;SublimeCodeIntel&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;indico 2 sites para saber um pouco sobre os plugins:
+&lt;a class="reference external" href="https://sublime.wbond.net/"&gt;Sublime wbond&lt;/a&gt;
+&lt;a class="reference external" href="http://sublimetextdicas.com.br/"&gt;Sublime Text Dicas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Para abrirmos o diretório do projeto no Sublime, iremos ao menu &lt;strong&gt;Project&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Project &amp;gt;&amp;gt; Add Forlder to Project...
+&lt;/pre&gt;
+&lt;img alt="menu projeto no SublimeText 3" src="images/fabianogoes/sublime-project.png" /&gt;
+&lt;p&gt;O fluxo de um request em projetos django é o seguinte:
+URL --&amp;gt; VIEW --&amp;gt; TEMPLATE&lt;/p&gt;
+&lt;p&gt;Então vamos começar criando uma url &lt;em&gt;home&lt;/em&gt; para o projeto, no arquivo urls.py:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;r&amp;#39;^$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;core.views.home&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;home&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Com a url criada e apontando para view &lt;strong&gt;core.views.home&lt;/strong&gt; vamos criar a tal view &lt;strong&gt;home&lt;/strong&gt;,
+no arquivo core/views.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.shortcuts&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;home&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;texto&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Seu primeiro projeto Django no Linux/Ubuntu com Sublime Text 3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;index.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Agora resta criarmos o template &lt;strong&gt;index.html&lt;/strong&gt;.
+Não me aprofundando muito, quero dizer que existe uma convenção no django que procura o template em um diretório: &lt;strong&gt;app_name/templates&lt;/strong&gt;.
+No caso ficará assim: &lt;strong&gt;first_django_project/core/templates&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;OK, vamos criar este diretório e o template &lt;strong&gt;index.html&lt;/strong&gt;,
+estando no diretório root do projeto: &lt;strong&gt;first_django_project&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkdir core/templates
+&lt;span class="nv"&gt;$ &lt;/span&gt;touch core/templates/index.html
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;maravilha, o html do &lt;strong&gt;index.html&lt;/strong&gt; é bem básico:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&lt;/span&gt; &lt;span class="na"&gt;lang=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;en&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Pythonclub&lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;{{ texto }}&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{{ STATIC_URL }}images/logo_275x130.png&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Na view &lt;strong&gt;home&lt;/strong&gt; escrevemos no contexto uma variável chamada: &lt;strong&gt;texto&lt;/strong&gt;, e agora no template
+estou exibindo esta variável usando: &lt;strong&gt;{{ texto }}&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Executando o projeto novamente o resultado será:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py runserver
+Validating models...
+
+0 errors found
+May 11, 2014 - 03:30:48
+Django version 1.6.4, using settings &lt;span class="s1"&gt;&amp;#39;first_django_project.settings&amp;#39;&lt;/span&gt;
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+&lt;span class="o"&gt;[&lt;/span&gt;11/May/2014 03:30:59&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;GET / HTTP/1.1&amp;quot;&lt;/span&gt; 200 1757
+&lt;/pre&gt;&lt;/div&gt;
+&lt;img alt="comando runserver do django-admin.py" src="images/fabianogoes/runserv-index.png" /&gt;
+&lt;p&gt;Para finalizarmos vamos criar uma classe model simples, apenas para ilustrar o uso do &lt;strong&gt;Admin&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;no arquivo core/models.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Pessoa&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;cpf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__unicode__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vamos rodar o comando &lt;strong&gt;syncdb&lt;/strong&gt; para o dango criar as tabelas.
+Este comando vai perguntar se você deseja criar um super usuário, digite &lt;strong&gt;yes&lt;/strong&gt;, crie o usuário &lt;strong&gt;admin&lt;/strong&gt; e dê uma senha e um email.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python manage.py syncdb
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Agora vamos registar esta classe no admin, editando o arquivo core/admin.py(se o arquivo não existir crie):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;admin&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;core.models&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Pessoa&lt;/span&gt;
+
+&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;register&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Pessoa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Rodando o projeto e acessando a url: &lt;strong&gt;http://127.0.0.1:8000/admin/&lt;/strong&gt;
+digite o super usuário e senha criado ao rodar o comando &lt;strong&gt;syncdb&lt;/strong&gt;&lt;/p&gt;
+&lt;img alt="menu de login da interface administrativa do django" src="images/fabianogoes/django-admin.png" /&gt;
+&lt;p&gt;Neste momento podemos selecionar Pessoa e cadastrar pessoas ao nosso sistema.&lt;/p&gt;
+&lt;p&gt;Bom pessoal, é isso, um tutorial simples apenas de meio longo.&lt;/p&gt;
+&lt;p&gt;espero que gostem, um abraço a todos!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="python"></category><category term="django"></category><category term="vitualenv"></category></entry><entry><title>5 Django Apps que não vivo sem</title><link href="http://pythonclub.com.br/5-django-apps-que-nao-vivo-se.html" rel="alternate"></link><updated>2014-05-06T19:35:00-03:00</updated><author><name>Igor Santos</name></author><id>tag:pythonclub.com.br,2014-05-06:5-django-apps-que-nao-vivo-se.html</id><summary type="html">&lt;p&gt;Existem diversas apps para Django, e todas tem suas caracteristicas e são muito uteis. Abaixo uma lista de 5 apps que são indispensáveis para começar o desenvolvimento em Django, no &lt;a class="reference external" href="https://www.djangopackages.com/"&gt;django packages&lt;/a&gt; você vai encontrar uma infinidade de apps, podendo filtrar a sua busca por categorias :D&lt;/p&gt;
+&lt;p&gt;Bora para de balela e vamos ao que interessa,&lt;/p&gt;
+&lt;div class="section" id="south-migrations"&gt;
+&lt;h2&gt;1. South (Migrations)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="http://south.readthedocs.org/en/latest/"&gt;South&lt;/a&gt;, faz com que o Django suporte migrações de banco de dados de forma simples, estável e totalmente independente do backend de banco de dados utilizado, a partir da alteração dos models, você roda um comando e plin a &amp;quot;mágica&amp;quot; acontece, o base de dados está novamente igual aos seus modelos.&lt;/p&gt;
+&lt;p&gt;Essa app se tornou tão popular que na versão &lt;a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/migrations/"&gt;Django 1.7&lt;/a&gt; passou a ser nativo do Django.&lt;/p&gt;
+&lt;p&gt;Para versão Django anterior 1.7, também é muito simples utilizar o South basta instala-lo, e adicionar no &lt;tt class="docutils literal"&gt;INSTALLED_APPS&lt;/tt&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install south
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Comandos utilizados:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./manage.py schemamigration app_name --initial  &lt;span class="o"&gt;[&lt;/span&gt;cria a estrutura de migracao inicial&lt;span class="o"&gt;]&lt;/span&gt;
+./manage.py migration app_name          &lt;span class="o"&gt;[&lt;/span&gt;realiza migracao na app especificada&lt;span class="o"&gt;]&lt;/span&gt;
+./manage.py migration --all         &lt;span class="o"&gt;[&lt;/span&gt;realiza migracao em todas as apps instaladas&lt;span class="o"&gt;]&lt;/span&gt;
+./manage.py schemamigration app_name --auto &lt;span class="o"&gt;[&lt;/span&gt;realiza migracao no modelo alterado&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-nose-coverage-test"&gt;
+&lt;h2&gt;2. django-nose + coverage (Test)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="https://github.com/django-nose/django-nose"&gt;django-nose&lt;/a&gt; é uma django app que utiliza o &lt;a class="reference external" href="https://nose.readthedocs.org/en/latest/"&gt;nose&lt;/a&gt; como TestRunner do Django, isso possibilita você adicionar qualquer plugin compatível com o Nose, além de outras muitas vantagens, que na verdade não conheço a fundo.&lt;/p&gt;
+&lt;p&gt;Um plugin do Nose que achei muito bacana é o &lt;a class="reference external" href="http://django-testing-docs.readthedocs.org/en/latest/coverage.html"&gt;coverage&lt;/a&gt;, ele informa a cobertura de testes em seu código, basicamente ele realiza uma analise linha a linha, e verifica se seus testes unitários passaram por essas linhas, e no final ele apresenta um relatório com a quantidade de código testado.&lt;/p&gt;
+&lt;p&gt;Testei ele até a versão Django 1.6 e funcionou muito bem, é muito simples de instalar e configurar.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install django-nose
+pip install coverage
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Configurando o settings do projeto.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django_nose&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# diz ao Django que o TestRunner sera o Nose&lt;/span&gt;
+&lt;span class="n"&gt;TEST_RUNNER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django_nose.NoseTestSuitRunner&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# alguns parametros que serao passados default ao nose&lt;/span&gt;
+&lt;span class="n"&gt;NOSE_ARGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;--with-coverage&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;--cover-package=foo,bar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# informa os pacotes que ele que verifica a cobertura de tests&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Dica:&lt;/strong&gt; O recomendado é que essa configuração fique em um settings especifico para test, eu costumo separar meu settings em 4 arquivos diferentes, [common, prod, dev, test].&lt;/p&gt;
+&lt;p&gt;O coverage mostra a seguinte tabela:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+foo.models            30      5    85%   10-12, 16, 19
+bar.models            10      1    90%   4
+------------------------------------------------
+TOTAL                 40      6    87%
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Stmts: Linhas que precisam ser testadas.&lt;/li&gt;
+&lt;li&gt;Miss: Linhas que não foram testadas.&lt;/li&gt;
+&lt;li&gt;Cover: Quantidade de código coberto por testes em porcentagem.&lt;/li&gt;
+&lt;li&gt;Missing: Linhas que não foram testadas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="model-mommy-mock"&gt;
+&lt;h2&gt;3. model_mommy (Mock)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/vandersonmota/model_mommy"&gt;model_mommy&lt;/a&gt; oferece um jeito fácil e inteligente de criar fixtures para Django, é muito simples, e tem o objetivo de facilitar a escrita de testes, fazendo com que você consiga criar um objeto com apenas uma linha de código.&lt;/p&gt;
+&lt;p&gt;Esse é um simples exemplo, com coisas mais comuns no seu dia,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;model_mommy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyCaseTest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TestCase&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;setUp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# criar e persiste o User na database&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# cria o User sem persistir&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prepare&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# cria o User, atribui um username e persiste&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;u&amp;#39;user.test&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="c"&gt;# cria e persiste uma lista de User&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;list_users&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mommy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;auth.User&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_quantity&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; não foi preciso importar o model User, pois o model_mommy faz isso pra você, mas tome cuidado, o model_mommy é case sensitive.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dica:&lt;/strong&gt; seguindo a mesma dica do django-nose, adicione o model_mock ao INSTALLED_APPS de uma settings especifica para testes, ou para desenvolvimento.&lt;/p&gt;
+&lt;p&gt;Essa é uma django app muito poderosa e possui diversas outras funcionalidades, vale a pena fazer uma visitinha no &lt;a class="reference external" href="https://github.com/vandersonmota/model_mommy"&gt;seu repositório&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-extensions-extensions"&gt;
+&lt;h2&gt;4. Django Extensions (Extensions)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/index.html"&gt;django extensions&lt;/a&gt; possui uma &lt;a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/command_extensions.html"&gt;lista considerável&lt;/a&gt; de funcionalidades, a ideia é juntar diversas funcionalidades que agilizam o desenvolvimento, e adicioná-los a lista de comandos do &lt;strong&gt;manage.py&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Mas quero falar de uma funcionalidade especifica que uso muito, é o &lt;a class="reference external" href="http://django-extensions.readthedocs.org/en/latest/shell_plus.html"&gt;shell_plus&lt;/a&gt;, que carrega automaticamente models das apps instaladas no meu projeto, no shell interativo do python, além disso você possui diversas configurações bacanas, como escolher tipos diferentes de shell python, como por exemplo &lt;a class="reference external" href="https://github.com/ipython/ipython"&gt;ipython&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;./manage.py shell_plus --use-ipython
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-debug-toolbar-debug"&gt;
+&lt;h2&gt;5. Django Debug Toolbar (Debug)&lt;/h2&gt;
+&lt;p&gt;O &lt;a class="reference external" href="https://github.com/django-debug-toolbar/django-debug-toolbar"&gt;django debug toolbar&lt;/a&gt;, é um panel que exibe diversas informações sobre o request e response atual, o debug toolbar possui diversas configurações o que faz que seja possível configurá-lo até em produção, apenas para o administrador do projeto, como &lt;em&gt;quase tudo&lt;/em&gt; em python simples, está tudo bem detalhado na &lt;a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/"&gt;documentação&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Basta instalar com pip e adicionar o projeto no &lt;tt class="docutils literal"&gt;INSTALLED_APPS&lt;/tt&gt;, e realizar uma configuração simples:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MIDDLEWARE_CLASSES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;debug_toolbar.middleware.DebugToolbarMiddleware&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="c"&gt;# certifique de que a app staticfiles esta instalada&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;django.contrib.staticfiles&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c"&gt;# ...&lt;/span&gt;
+    &lt;span class="c"&gt;# app necessario para Django 1.7+&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;debug_toolbar.apps.DebugToolbarConfig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="c"&gt;# caso versao do django &amp;lt; 1.7, instale a app abaixo&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;debug_toolbar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;STATIC_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;/static/&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;DEBUG_TOOLBAR_PATCH_SETTINGS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+
+&lt;span class="c"&gt;# se internal ips estiver vazio por default o ip e 127.0.0.1, essa&lt;/span&gt;
+&lt;span class="c"&gt;# variavel se faz necessaria para que seja apresentado o panel com&lt;/span&gt;
+&lt;span class="c"&gt;# as inforamacoes&lt;/span&gt;
+&lt;span class="n"&gt;INTERNAL_IPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Configurando o &lt;tt class="docutils literal"&gt;views.py&lt;/tt&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf.urls&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;patterns&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;debug_toolbar&lt;/span&gt;
+
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;urlpatterns&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;patterns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;r&amp;#39;^__debug__/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;include&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;debug_toolbar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;O django-debug-toolbar possui muitas funcionalidades, e como dito antes, é bem fácil &lt;a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/configuration.html"&gt;configurá-las&lt;/a&gt;, sinta-se a vontade para usar e abusar.&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="django"></category><category term="django-apps"></category><category term="south"></category><category term="test"></category><category term="nose"></category><category term="coverage"></category></entry><entry><title>Como colaborar na tradução do Djangobook sem conhecer programação</title><link href="http://pythonclub.com.br/como_colaborar_com_projetos_open_source.html" rel="alternate"></link><updated>2014-05-01T13:16:00-03:00</updated><author><name>Eric Hideki</name></author><id>tag:pythonclub.com.br,2014-05-01:como_colaborar_com_projetos_open_source.html</id><summary type="html">&lt;p&gt;Uma das perguntas que os iniciantes sempre se perguntam é: Como ganhar experiência? Ou colaborar com projetos open source sem ter conhecimentos? Pois é, saiba que você pode colaborar sem dificuldades, e que
+qualquer colaboração é muito importante.&lt;/p&gt;
+&lt;p&gt;Um dos projetos que estão em andamento é a tradução do Djangobook. Djangobook é um dos tutoriais mais lidos em todo o mundo, uma das principais portas de entrada no mundo do desenvolvimento web. Através dos tutoriais do livro você será capaz de criar rápidas, robustas e organizadas aplicações.&lt;/p&gt;
+&lt;p&gt;Sabe um pouco de inglês e gostaria de praticar? Nada melhor do que traduzir um texto ou artigo.&lt;/p&gt;
+&lt;p&gt;Primeiramente crie ou acesse sua conta no github.com. É simples, basta inserir um e-mail e colocar a senha e pronto, já podemos criar nossos projetos.&lt;/p&gt;
+&lt;p&gt;Agora vamos acessar o projeto original: &lt;a class="reference external" href="https://github.com/Londerson/djangobook"&gt;https://github.com/Londerson/djangobook&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nisso teremos o botão &lt;tt class="docutils literal"&gt;fork&lt;/tt&gt; do projeto. O que ele irá fazer? Irá criar uma cópia do projeto para seus repositórios.&lt;/p&gt;
+&lt;p&gt;Acessamos o repositório e veremos que temos uma lista enorme de arquivos, cada um deles é um capítulo. Nisso escolhemos o arquivo que pretendemos alterar.&lt;/p&gt;
+&lt;p&gt;Entramos no botão &amp;quot;Edit&amp;quot; e nisso surgirá um painel de edição de texto. Dentro dele podemos reescrever o texto.&lt;/p&gt;
+&lt;p&gt;Depois temos a seção abaixo escrito Propose file change, nele podemos colocar o título do arquivo que estamos alterando/enviado, e logo depois os comentários sobre quais foram as alterações que efetuamos. Então clicamos no botão &lt;tt class="docutils literal"&gt;Propose file change&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Na parte inferior estará demonstrando algumas linhas de código em vermelho e verde, respectivamente. Nas linhas vermelhas estão os arquivos que serão deletados, já os de cor verde serão os substitutos. E agora basta enviar um &lt;tt class="docutils literal"&gt;Pull Request&lt;/tt&gt;.&lt;/p&gt;
+&lt;p&gt;Pronto. Você acaba de encaminhar uma proposta de melhoria de um projeto, basta o mantenedor observar suas alterações, se estiver de acordo com os padrões de qualidade ele irá dar um &lt;tt class="docutils literal"&gt;Merge&lt;/tt&gt; com o antigo código e pronto.&lt;/p&gt;
+</summary><category term="djangobook"></category></entry></feed>
