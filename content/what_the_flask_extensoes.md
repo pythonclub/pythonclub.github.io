@@ -1,6 +1,6 @@
-Title: What the Flask? pt-4 e 5 Como Criar Extensões e Plugins para o Flask
+Title: What the Flask? pt 4 e 5 Criando Extensões para o Flask
 Slug: what-the-flask-pt-4-5-como-criar-extensoes-e-plugins-para-flask
-Date: 2017-05-01 09:00
+Date: 2017-04-24 09:00
 Tags: flask,web,tutorial,what-the-flask
 Author: Bruno Cezar Rocha
 Email:  rochacbruno@gmail.com
@@ -31,28 +31,26 @@ What The Flask - 4-5/6
 1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python): Introdução ao desenvolvimento web com Flask
 2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando aplicações Flask
 3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto): extensões essenciais para iniciar seu projeto.
-4. [**e 5 Criando Extensões e Plugins para o Flask**](what-the-flask-pt-4-5-como-criar-extensoes-e-plugins-para-flask)(**<-- Você está aqui**)
+4. [**e 5 Criando Extensões para o Flask**](what-the-flask-pt-4-5-como-criar-extensoes-e-plugins-para-flask)(**<-- Você está aqui**)
 6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
 
 
 Não sei se você ainda se lembra? mas estavámos desenvolvendo um [CMS de notícias](http://github.com/rochacbruno/wtf),
-utilizamos MongoDB, Flask-Security, Flask-Admin e Bootstrap.
-
-Agora vamos nos aprofundar um pouco mais nos detalhes do `Blueprint` e então
-criar passo a passo uma extensão (ou se preferir pode chamar de plugin) para o
-Flask.
+utilizamos MongoDB, Flask-Security, Flask-Admin e Bootstrap, neste artigo
+iremos adicionar mais uma extensão em nosso CMS, mas iremos criar a extensão
+ao invés de usar uma das extensões disponiveis.
 
 > **Extensão ou Plugin?** Por [definição](https://pt.wikipedia.org/wiki/Plug-in)
-`plugin` é a palavra usada para descrever um aplicativo totalmente externo e
-desacoplado da lógica do framework, enquanto `extensão` é o termo usado para
+**plugin** é a palavra usada para descrever um aplicativo totalmente externo e
+desacoplado da lógica do framework. Enquanto **extensão** é o termo usado para
 descrever um módulo que utiliza as mesmas estruturas do framework e que pode opcionalmente ser ativado.
-No Flask sempre será mais comum usarmos apenas a palavra `Extension` pois
-conforme já mencionado aqui nesta série, o `flask` encoraja a sobrecarga de
+No Flask sempre será mais comum usarmos apenas a palavra **Extension** pois
+conforme já mencionado aqui nesta série, o **flask** encoraja a sobrecarga de
 seus métodos internos fazendo com que a maioria das extensões injetem
-funcionalidades diretamente ou até mesmo alterem o `core` do framework
+funcionalidades diretamente ou até mesmo alterem o **core** do framework
 e por isso o termo extensão é mais utilizado pela comunidade.
-Podemos usar a palavra `plugin` para descrever módulos que sejam escritos para adicionar funcionalidades não ao flask mas sim a camadas de mais alto nível da aplicação e que não seja de uso geral. `Extension` é um módulo que pode ser
-reaproveitado por qualquer aplicativo escrito em `flask` enquanto `plugin` é
+Podemos usar a palavra **plugin** para descrever módulos que sejam escritos para adicionar funcionalidades não ao flask mas sim a camadas de mais alto nível da aplicação e que não seja de uso geral. **Extension** é um módulo que pode ser
+reaproveitado por qualquer aplicativo escrito em **flask** enquanto **plugin** é
 um módulo escrito especificamente para a sua aplicação.
 
 # Quando criar uma extensão?
@@ -157,12 +155,15 @@ Só para exemplificar veja o seguinte exemplo:
 
 ```python
 app = Flask(__name__)  # criamos a instancia de app
+admin = Admin()  # instancia do Flask-Admin ainda não inicializada
 
 do_something(app)  # injeta ou altera funcionalidades do app
-do_another_thing(app)  # injeta ou altera funcionalidades do app
+do_another_thing(app, admin)  # injeta ou altera funcionalidades do app ou do admin
 Security(app)  # adiciona funcionalidades de login e controle de acesso
 Cache(app)  # adiciona cache para views e templates
 Sitemap(app)  # A extensão que iremos criar! adiciona o /sitemap.xml no app
+
+admin.init_app(app)  # agora sim inicializamos o flask-admin no modo lazy
 ```
 
 Olhando o código acima pode parecer bastante simples, você pode achar que basta
@@ -170,7 +171,7 @@ receber a intância de `app` e sair alterando sem seguir nenhum padrão.
 
 ```python
 def do_something(app):
-    "Mal exemplo de factory injeta ou altera funcionalidades do app"
+    "Mal exemplo de factory que injeta ou altera funcionalidades do app"
     # adiciona rotas
     @app.route('/qualquercoisa)
     def qualquercoisa():
@@ -226,7 +227,36 @@ mas não se preocupe pois usando Blueprint isso já é resolvido automaticamente
 # Criando a extensão Simple Sitemap
 
 Ok, agora que você já sabe a teoria vamos para a prática, vamos reescrever o
-nosso app do **Exemplo 1** usando uma extensão chamada `flask_simple_sitemap`
+nosso app do **Exemplo 1** usando uma extensão chamada `flask_simple_sitemap` e para isso vamos começar criando a extensão:
+
+A extensão será um novo módulo Python que vai ser instalado usando `setup` ou `pip` portanto crie um projeto separado.
+
+```bash
+$ cd Projects # pasta onde vc armazena seus projetos
+
+$ mkdir simple_sitemap  # o diretório root do projeto
+$ cd simple_sitemap
+$ touch setup.py  # precisaremos instalar a extensão
+$ mkdir templates  # usaremos Jinja para gerar o XML
+$ touch sitemap.xml  # O template Jinja
+$ echo 'include templates/sitemap.xml' > MANIFEST.in  # incluindo templates no build manifest do setuptools
+$ echo '# Prometo documentar essa extensão!' > README.md  # é sempre bom incluir uma documentação básica
+$ touch tests.py  # se não tiver testes não serve para nada! :)
+$ touch simple_sitemap.py  # A Extensão será escrita neste arquivo
+```
+
+Agora voce terá a seguinte estrutura:
+
+```bash
+simple_sitemap/
+|__ templates/
+|  |__ sitemap.xml
+|__ simple_sitemap.py
+|__ tests.py
+|__ setup.py
+|__ MANIFEST.in
+|__ README.md
+```
 
 
 
