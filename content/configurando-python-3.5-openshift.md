@@ -34,7 +34,7 @@ Após tudo isso vamos colocar a mão na massa, abra seu terminal e vamos lá.
 ``` shell
 rhc app create <app-name> https://raw.githubusercontent.com/Grief/openshift-cartridge-python-3.5/master/metadata/manifest.yml diy-0.1
 ```
-Substituindo "<app-name>" pelo nome de sua aplicação.
+Substituindo "`<app-name>`" pelo nome de sua aplicação.
 O arquivo manifest.yml criado por Changaco(github) e "forkeado" por Grief(github) contém as configurações de um cartridge customizado que contém o python 3.5.
 
 Para os curiosos o conteúdo do arquivo
@@ -88,13 +88,13 @@ Version-Overrides:
     - python(version) = 3.5
 ```
 
-Após isso sua aplicação já estárá executando, caso deseje acessar o endereço da mesma deverá ser http://<app-name>-<username>.rhcloud.com.
+Após isso sua aplicação já estárá executando, caso deseje acessar o endereço da mesma deverá ser http://`<app-name>`-<username>.rhcloud.com.
 Você verá que a página do seu projeto não é nada mais do que o diy (Dot It Yourself), que é uma aplicação Ruby de exemplo que você pode alterar, e é o que vamos fazer.
 
 Se você acessar o diretório do seu projeto verá que existe um diretório ".openshift", dentro desse diretório existe um outro diretório chamado "action_hooks", e dentro desse diretório existem dois arquivos "start" e "stop".
 
-+ "<app-name>/.openshift/action_hooks/start"
-+ "<app-name>/.openshift/action_hooks/stop"
++ "`<app-name>`/.openshift/action_hooks/start"
++ "`<app-name>`/.openshift/action_hooks/stop"
 
 Os dois arquivos são respectivamente os comandos para "subir" e "pausar" sua aplicação.
 
