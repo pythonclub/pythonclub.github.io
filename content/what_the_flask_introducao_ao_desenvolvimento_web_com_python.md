@@ -14,29 +14,27 @@ Category: Flask
 
 
 
-What The Flask - 1/6
+What The Flask - 1/5
 -----------
 
-### 6 passos para ser um Flask ninja!
+### 5 passos para ser um Flask ninja!
 
-Nesta série de 6 artigos/tutoriais pretendo abordar de maneira bem detalhada
+Nesta série de 5 artigos/tutoriais pretendo abordar de maneira bem detalhada
 o desenvolvimento web com o framework Flask.
 
 Depois de mais de um ano desenvolvendo projetos profissionais com o Flask e
-adquirindo experiência também no desenvolvimento do projeto open source
-[Quokka CMS](http://quokkaproject.org) resolvi compartilhar algumas dicas
+adquirindo experiência também no desenvolvimento de [projetos open source com Flask](http://brunorocha.org/my-projects/) como o [QuokkaCMS](http://quokkaproject.org) resolvi compartilhar algumas dicas
 para facilitar a vida de quem pretende começar a desenvolver para web com Python.
 
 > **TL;DR:** A versão final do aplicativo explicado neste artigo está no [github](https://github.com/rochacbruno/wtf)
 
 A série **W**hat **T**he **F**lask será dividida nos seguintes capítulos.
 
-1. [**Hello Flask**](/what_the_flask_introducao_ao_desenvolvimento_web_com_python.html): Introdução ao desenvolvimento web com Flask  - **<-- Você está aqui**
-2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): boas práticas na estrutura de aplicações Flask
-3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto): extensões essenciais para iniciar seu projeto.
-4. **DRY**: Criando aplicativos reusáveis com Blueprints
-5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
-6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
+1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python.html): Introdução ao desenvolvimento web com Flask(**<-- Você está aqui**)
+2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask.html): Estruturando aplicações Flask
+3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto.html): extensões essenciais para iniciar seu projeto
+4. [**Magic(app)**](/what-the-flask-pt-4-extensoes-para-o-flask.html): Criando Extensões para o Flask
+5. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem
 
 # Hello Flask
 ### Parte 1 - Introdução ao desenvolvimento web com Flask
@@ -1418,15 +1416,19 @@ Acesse o app via [localhost:5000](http://localhost:5000) e veja que agora a barr
 
 O aplicativo completo pode ser obtido no [repositorio do github](https://github.com/rochacbruno/wtf).
 
-> **END:** Sim chegamos ao fim desta primeira parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 5 partes iremos nos aprofundar em boas práticas, uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
+> **END:** Sim chegamos ao fim desta primeira parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 4 partes iremos nos aprofundar em boas práticas, uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
 
 <hr />
 
-> **PUBLICIDADE:** Estou iniciando um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
+> **PUBLICIDADE:** Iniciarei um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
 
 <hr />
 
 > **PUBLICIDADE 2:** Também estou escrevendo um livro de receitas **Flask CookBook** através da plataforma LeanPub, caso tenha interesse por favor preenche o formulário na [página do livro](https://leanpub.com/pythoneflask)
+
+<hr />
+
+> **PUBLICIDADE 3:** Inscreva-se no meu novo [canal de tutoriais](http://www.youtube.com/channel/UCKkjiNMtdyCOFE3-w7TB8xw?sub_confirmation=1)
 
 
 Muito obrigado e aguardo seu feedback com dúvidas, sugestões, correções ou bitcoins (LOL) na caixa de comentários abaixo.
