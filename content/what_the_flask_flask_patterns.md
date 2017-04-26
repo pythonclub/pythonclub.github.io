@@ -14,22 +14,21 @@ Category: Flask
 
 
 
-What The Flask - 2/6
+What The Flask - 2/5
 -----------
 
-> **CONTEXT PLEASE:** Esta é a segunda parte da série **What The Flask**, 6 artigos para se tornar um **Flasker** (não, não é um cowboy que carrega sua garrafinha de whisky para todo lado). A primeira parte está aqui no [PythonClub](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python) e o app está no [github](https://github.com/rochacbruno/wtf/tree/pt-1).
+> **CONTEXT PLEASE:** Esta é a segunda parte da série **What The Flask**, 5 artigos para se tornar um **Flasker** (não, não é um cowboy que carrega sua garrafinha de whisky para todo lado). A primeira parte está aqui no [PythonClub](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python) e o app está no [github](https://github.com/rochacbruno/wtf/tree/pt-1).
 
 <figure style="float:left;margin-right:30px;">
 <img src="/images/rochacbruno/cowboy_flask.jpg" alt="a flasker" style="width:90%">
 <figcaption>Professional Flask Developer</figcaption>
 </figure>
 
-1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python): Introdução ao desenvolvimento web com Flask
-2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando aplicações Flask - **<-- Você está aqui**
-3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto): extensões essenciais para iniciar seu projeto.
-4. **DRY**: Criando aplicativos reusáveis com Blueprints
-5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
-6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
+1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python.html): Introdução ao desenvolvimento web com Flask
+2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask.html): Estruturando aplicações Flask(**<-- Você está aqui**)
+3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto.html): extensões essenciais para iniciar seu projeto
+4. [**Magic(app)**](/what-the-flask-pt-4-extensoes-para-o-flask.html): Criando Extensões para o Flask
+5. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem
 
 <br>
 > **Você sabia?** Flask quer dizer "Frasco/Frasqueira", ou seja, aquela garrafinha ali da foto acima que geralmente os cowboys, os Irlandeses, o John Wayne, os bebados profissionais e os hipsters gostam de utilizar para tomar desde vodka, whisky, vinho e até suco de caju (no caso dos [hipsters](http://www.cafepress.com/+hipster+flasks)). Bom você pode estar se perguntando: Por que colocar esse nome em um framework? Antes do Flask já existia o Bottle "garrafa" que surgiu com a idéia revolucionária de ser um framework de um [arquivo só](https://github.com/defnull/bottle/blob/master/bottle.py). Como o criador do Flask é meio contrário a esta idéia de colocar um monte de código Python em um único arquivo ele decidiu ironizar e fazer uma piada de 1 de abril e então criou um framework chamado [Denied](http://denied.immersedcode.org/) que era uma piada ironizando o Bottle e outros micro frameworks, mas as pessoas levaram a sério e gostaram do [estilo do denied!](http://denied.immersedcode.org/screencast.mp4) A partir disso ele decidiu pegar as boas idéias tanto do Bottle como do Denied e criar algo sério e então surgiu o Flask. O nome vem da idéia de que **Bottle**/Garrafa é para tomar de goladas, mas **Flask**/Frasco você toma **uma gota por vez**, desta forma você aprecia melhor a bebida e até hoje o slogan do Flask é " Development one drop at time".
@@ -495,6 +494,9 @@ class BasicTestCase(unittest.TestCase):
              self.assertEqual(request.args.get('name'), 'BrunoRocha')
 ```
 
+> **UPDATE NOTE:** O Flask 0.12.1 inclui o `app.test_client` que é recomendado ao invés do uso de `app.test_request_context`, porém na data da escrita deste artigo
+> o Flask ainda estava na versão 0.10.0. Na parte 4 deste tutorial abordamos os testes com **py.test** e **app.test_client**
+
 ### <a href="#multiple_apps" name="multiple_apps">2. Instanciar multiplos apps em um mesmo projeto </a>
 
 ##### /wtf/multiple_run.py
@@ -586,6 +588,7 @@ Usar o método **update** em conjunto com a funcionalidade de descompactação d
 
 Como já falei no ínicio deste tópico, é muito comum você precisar que as configurações variem de acordo com o ambiente ou servidor em que está rodando, para isso o Flask fornece mais 3 abordagems de configurações bastante úteis.
 
+> **UPDATE NOTE**: Desenvolvi a ferramenta **Dynaconf** que possui integração com o Flask e fornece configurações dinâmicas, veja mais em: [http://github.com/rochacbruno/dynaconf](http://github.com/rochacbruno/dynaconf)
 
 #### Usando um arquivo de configurações *.cfg
 
@@ -1068,15 +1071,19 @@ Também temos o **multiple_run** que utiliza o DispatcherMiddleware para juntar 
 
 Nos próximos capítulos iremos evoluir este app para o uso de algumas extensões essenciais, uncluiremos controle de login, cache, interface de administração, suporte a html e markdown nas noticias e outras coisas.
 
-> **END:** Sim chegamos ao fim desta segunda parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 4 partes iremos nos aprofundar no uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
+> **END:** Sim chegamos ao fim desta segunda parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 3 partes iremos nos aprofundar no uso e desenvolvimento de extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
 
 <hr />
 
-> **PUBLICIDADE:** Estou iniciando um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
+> **PUBLICIDADE:** Iniciarei um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
 
 <hr />
 
 > **PUBLICIDADE 2:** Também estou escrevendo um livro de receitas **Flask CookBook** através da plataforma LeanPub, caso tenha interesse por favor preenche o formulário na [página do livro](https://leanpub.com/pythoneflask)
+
+<hr />
+
+> **PUBLICIDADE 3:** Inscreva-se no meu novo [canal de tutoriais](http://www.youtube.com/channel/UCKkjiNMtdyCOFE3-w7TB8xw?sub_confirmation=1)
 
 
 Muito obrigado e aguardo seu feedback com dúvidas, sugestões, correções etc na caixa de comentários abaixo.

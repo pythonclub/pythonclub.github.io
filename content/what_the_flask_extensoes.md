@@ -29,9 +29,9 @@ What The Flask - 4/5
 
 1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python.html): Introdução ao desenvolvimento web com Flask
 2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask.html): Estruturando aplicações Flask
-3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto.html): extensões essenciais para iniciar seu projeto.
+3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto.html): extensões essenciais para iniciar seu projeto
 4. [**Magic(app)**](/what-the-flask-pt-4-extensoes-para-o-flask.html): Criando Extensões para o Flask(**<-- Você está aqui**)
-6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
+5. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem
 
 
 Não sei se você ainda se lembra? mas estavámos desenvolvendo um [CMS de notícias](http://github.com/rochacbruno/wtf),

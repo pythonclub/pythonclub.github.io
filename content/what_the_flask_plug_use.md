@@ -14,22 +14,21 @@ Category: Flask
 
 
 
-What The Flask - 3/6
+What The Flask - 3/5
 -----------
 
-> Finalmente!!! A terceira parte da série **What The Flask**, mas ainda não acabou, serão 6 artigos para se tornar um **Flasker**, neste capítulo falaremos sobre como instalar e configurar as principais extensões do Flask para torna-lo uma solução full-stack com bootstrap no front-end, ORM para banco de dados, admin parecido com o Django Admin, Cache, Sistema de filas (celery/huey), Controle de Acesso, Envio de email, API REST e Login Social.
+> Finalmente!!! A terceira parte da série **What The Flask**, mas ainda não acabou, serão 5 artigos para se tornar um **Flasker**, neste capítulo falaremos sobre como instalar e configurar as principais extensões do Flask para torna-lo uma solução full-stack com bootstrap no front-end, ORM para banco de dados, admin parecido com o Django Admin, Cache, Sistema de filas (celery/huey), Controle de Acesso, Envio de email, API REST e Login Social.
 
 <figure style="float:left;margin-right:30px;width:35%">
 <img src="/images/rochacbruno/lego_snake.jpg" alt="snake" >
 <figcaption>Extending Flask</figcaption>
 </figure>
 
-1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python): Introdução ao desenvolvimento web com Flask
-2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask): Estruturando aplicações Flask
-3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto): extensões essenciais para iniciar seu projeto. **<-- Você está aqui**
-4. **DRY**: Criando aplicativos reusáveis com Blueprints
-5. **from flask.ext import magic**: Criando extensões para o Flask e para o Jinja2
-6. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem.
+1. [**Hello Flask**](/what-the-flask-pt-1-introducao-ao-desenvolvimento-web-com-python.html): Introdução ao desenvolvimento web com Flask
+2. [**Flask patterns**](/what-the-flask-pt-2-flask-patterns-boas-praticas-na-estrutura-de-aplicacoes-flask.html): Estruturando aplicações Flask
+3. [**Plug & Use**](/what-the-flask-pt-3-plug-use-extensoes-essenciais-para-iniciar-seu-projeto.html): extensões essenciais para iniciar seu projeto(**<-- Você está aqui**)
+4. [**Magic(app)**](/what-the-flask-pt-4-extensoes-para-o-flask.html): Criando Extensões para o Flask
+5. **Run Flask Run**: "deploiando" seu app nos principais web servers e na nuvem
 
 <br>
 
@@ -1311,6 +1310,10 @@ Se quiser saber mais detalhes sobre o Flask-Cache consulte a postagem que fiz em
 
 Algumas outras extensões recomendadas que não foram abordadas neste artigo
 
+
+- [Flasgger](https://github.com/rochacbruno/flasgger) Para criar APIs com documentaçãi via Swagger UI
+- [Flask Google Maps](http://github.com/rochacbruno/Flask-GoogleMaps) Para inserir mapas facilmente em apps Flask
+- [Flask Dynaconf](https://github.com/rochacbruno/dynaconf) Para configurações dinâmicas
 - [Flask Email] Para avisar os autores que tem novo comentário
 - [Flask Queue/Celery] Pare enviar o email assincronamente e não bloquear o request
 - [Flask Classy] Um jeito fácil de criar API REST e Views
@@ -1320,15 +1323,19 @@ Algumas outras extensões recomendadas que não foram abordadas neste artigo
 
 <hr>
 
-> **END:** Sim chegamos ao fim desta terceira parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 3 partes iremos desenvolver nossas próprias extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
+> **END:** Sim chegamos ao fim desta terceira parte da série **W**hat **T**he **F**lask. Eu espero que você tenha aproveitado as dicas aqui mencionadas. Nas próximas 2 partes iremos desenvolver nossas próprias extensões e blueprints e também questṍes relacionados a deploy de aplicativos Flask. Acompanhe o PythonClub, o meu [site](http://brunorocha.org) e meu [twitter](http://twitter.com/rochacbruno) para ficar sabendo quando a próxima parte for publicada.
 
 <hr />
 
-> **PUBLICIDADE:** Estou iniciando um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
+> **PUBLICIDADE:** Iniciarei um curso online de Python e Flask, para iniciantes abordando com muito mais detalhes e exemplos práticos os temas desta série de artigos e muitas outras coisas envolvendo Python e Flask, o curso será oferecido no CursoDePython.com.br, ainda não tenho detalhes especificos sobre o valor do curso, mas garanto que será um preço justo e acessível. Caso você tenha interesse por favor preencha este [formulário](https://docs.google.com/forms/d/1qWx4pzNVSPQmxsLgYBjTve6b_gGKfKLMSkPebvpMJwg/viewform?usp=send_form) pois dependendo da quantidade de pessoas interessadas o curso sairá mais rapidamente.
 
 <hr />
 
 > **PUBLICIDADE 2:** Também estou escrevendo um livro de receitas **Flask CookBook** através da plataforma LeanPub, caso tenha interesse por favor preenche o formulário na [página do livro](https://leanpub.com/pythoneflask)
+
+<hr />
+
+> **PUBLICIDADE 3:** Inscreva-se no meu novo [canal de tutoriais](http://www.youtube.com/channel/UCKkjiNMtdyCOFE3-w7TB8xw?sub_confirmation=1)
 
 
 Muito obrigado e aguardo seu feedback com dúvidas, sugestões, correções etc na caixa de comentários abaixo.
