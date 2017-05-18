@@ -915,6 +915,8 @@ def cadastro():
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
+    # caso tenha problemas com multithreading na hora de inserir o registro no db use
+    # app.run(debug=False, use_reloader=False)
 ```
 
 Salve e execute seu aplicativo ``python news_app.py`` e acesse [http://localhost:5000/noticias/cadastro](http://localhost:5000/noticias/cadastro)
@@ -1407,6 +1409,8 @@ def media(filename):
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=True)
+    # caso tenha problemas com multithreading na hora de inserir o registro no db use
+    # app.run(debug=False, use_reloader=False)
 ```
 
 Após salvar os templates e o news_app.py modificado reinicie o serviço flask no terminal usando CTRL+C e executando novamente ``python news_app.py``. Isso é necessário pois o Flask cria o cache de templates no momento da inicialização do aplicativo.
