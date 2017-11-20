@@ -10,7 +10,7 @@ Linkedin: mendesxeduardo
 Category: programação funcional
 
 <figure style="float:left;">
-<img src="/images/z4r4tu5tr4/lambda.png">
+<img src="/images/z4r4tu5tr4/lambda.jpg">
 </figure>
 </br>
 
