@@ -1,6 +1,6 @@
 title: Programação funcional com Python #0- saindo da zona de conforto
 Slug: progrmacao-funcional-com-python-0
-Date: 2017-11-13 23:17
+Date: 2017-11-20 19:43
 Tags: python,fp,funcional,functional programming
 Author: Eduardo Mendes
 Email:  mendesxeduardo@gmail.com
