@@ -5,7 +5,7 @@ Tags: python,fp,funcional,functional programming
 Author: Eduardo Mendes
 Email:  mendesxeduardo@gmail.com
 Github: z4r4tu5tr4
-Site: youtube.com/c/eduardomendes
+Site: http://youtube.com/c/eduardomendes
 Linkedin: mendesxeduardo
 Category: programação funcional
 
