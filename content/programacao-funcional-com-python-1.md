@@ -1,5 +1,5 @@
 title: Programação funcional com Python #1 - Funções
-Slug: progrmacao-funcional-com-python-0
+Slug: progrmacao-funcional-com-python-1
 Date: 2017-12-08 13:30
 Tags: python,fp,funcional,functional programming
 Author: Eduardo Mendes
