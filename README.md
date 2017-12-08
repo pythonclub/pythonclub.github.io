@@ -1,6 +1,6 @@
 [pythonclub.com.br][0]
 ======================
-Duvidas sobre este projeto, deixe sua mensagem em [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/pythonclub/pythonclub.github.io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Duvidas sobre este projeto, deixe sua mensagem em [![Gitter](https://badges.gitter.im/pythonclub/pythonclub.github.io.svg)](https://gitter.im/pythonclub/pythonclub.github.io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Blog colaborativo sobre tecnologias que envolvam a linguagem Python
 
