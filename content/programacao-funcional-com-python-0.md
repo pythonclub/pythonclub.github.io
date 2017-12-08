@@ -1,18 +1,14 @@
-title: Programação funcional com Python #0- saindo da zona de conforto
+title: Programação funcional com Python #0 - Saindo da zona de conforto
 Slug: progrmacao-funcional-com-python-0
 Date: 2017-11-20 19:43
 Tags: python,fp,funcional,functional programming
 Author: Eduardo Mendes
 Email:  mendesxeduardo@gmail.com
 Github: z4r4tu5tr4
-Site: youtube.com/c/eduardomendes
+Site: http://youtube.com/c/eduardomendes
 Linkedin: mendesxeduardo
 Category: programação funcional
 
-<figure style="float:left;">
-<img src="/images/z4r4tu5tr4/lambda.jpg">
-</figure>
-</br>
 
 # 0. Saindo da zona de conforto
 
@@ -150,3 +146,5 @@ Outro grande homem e que vale a pena mencionar e ser buscado é o [Haskell Curry
 A primeira linguagem funcional 'oficial' (não gosto muito de dizer isso) é o Lisp (List Processing) criada pelo fenomenal [John McCarthy](https://pt.wikipedia.org/wiki/John_McCarthy) que também vale a pena ser pesquisado e estudado.
 
 Veremos o básico sobre os tipos de função no próximo tópico.
+
+OBS: [Referências](https://github.com/z4r4tu5tr4/python-funcional/blob/master/referencias.md) usadas durante todos os tópicos.
