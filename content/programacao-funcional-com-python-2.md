@@ -1,6 +1,6 @@
 title: Programação funcional com Python #2 - Iteraveis e iteradores
 Slug: progrmacao-funcional-com-python-2
-Date: 2017-12-08 13:30
+Date: 2017-12-23 22:50
 Tags: python,fp,funcional,functional programming
 Author: Eduardo Mendes
 Email:  mendesxeduardo@gmail.com
