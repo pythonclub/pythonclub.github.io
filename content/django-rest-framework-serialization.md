@@ -10,9 +10,17 @@ Category: Python, Django, REST
 
 Eu resolvi estudar um pouco mais de [DRF][0] depois do tutorial do [Hugo Brilhante][1] na [Python Brasil 11][2].
 
-> **Obs**: se você não sabe Django sugiro que leia este [tutorial][4] antes.
+> Este artigo foi atualizado em 14 de Fevereiro de 2018.
 
-Este tutorial é a parte 1/6 de uma série de posts sobre DRF.
+Este artigo está usando:
+
+* Python 3.5.2
+* Django 2.0.2
+* djangorestframework 3.7.7
+
+Favor clonar o projeto do [GitHub](https://github.com/rg3915/drf#clonando-o-projeto), favor ler o README para instalação.
+
+> **Obs**: se você não sabe Django sugiro que leia este [tutorial][4] antes.
 
 **Obs**: *Tem coisas que é melhor nem traduzir. ;)*
 
@@ -20,9 +28,6 @@ Este tutorial é a parte 1/6 de uma série de posts sobre DRF.
 * 1 - **Serialization**
 * 2 - Requests & Responses
 * 3 - Class based views
-* 4 - Authentication & permissions
-* 5 - Relationships & hyperlinked APIs
-* 6 - Viewsets & routers
 
 Pra quem não sabe, para usar API Web usamos REST, no caso, [Django Rest Framework][0], framework web do [Django][3].
 
@@ -42,10 +47,10 @@ Então para criar a API, no meu caso, eu usei:
 ## Configurando um novo ambiente
 
 ```bash
-$ virtualenv -p python3 .venv
+$ python3 -m venv .venv
 $ source .venv/bin/activate
 $ mkdir drf; cd drf
-$ pip install django==1.9.5 djangorestframework==3.3.3
+$ pip install django==2.0.2 djangorestframework==3.7.7
 $ pip install django-filter drf-nested-routers
 $ pip freeze > requirements.txt
 $ django-admin.py startproject myproject .
@@ -55,11 +60,15 @@ $ python manage.py startapp core
 Veja o meu requirements.txt
 
 ```bash
-Django==1.9.5
-django-filter==0.11.0
-djangorestframework==3.3.3
-drf-nested-routers==0.10.0
+dj-database-url==0.4.2
+Django==2.0.2
+django-extensions==1.9.9
+django-filter==1.1.0
+djangorestframework==3.7.7
+drf-nested-routers==0.90.0
+python-decouple==3.1
 ```
+
 ## Step-0 Projeto inicial
 
 Abra o arquivo `settings.py` e em `INSTALLED_APPS` acrescente
@@ -344,21 +353,24 @@ def person_detail(request, pk):
 Agora, vamos criar as urls. Crie um novo arquivo `core/urls.py`.
 
 ```python
-from django.conf.urls import url
+from django.urls import path
 from core import views
 
 urlpatterns = [
-    url(r'^persons/$', views.person_list),
-    url(r'^persons/(?P<pk>[0-9]+)/$', views.person_detail),
+    path('persons/', views.PersonList.as_view()),
+    path('persons/<int:pk>/', views.PersonDetail.as_view()),
 ]
 ```
 
 E acrescente a seguinte linha em `myproject/urls.py`.
 
 ```python
+from django.urls import include, path
+from django.contrib import admin
+
 urlpatterns = [
-    url(r'^', include('core.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    path('', include('core.urls')),
+    path('admin/', admin.site.urls),
 ]
 ```
 

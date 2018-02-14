@@ -10,7 +10,41 @@ Category: Python, Django, REST
 
 Veremos aqui uma forma rápida de criar uma API REST com [Django Rest Framework][0].
 
-Este tutorial é a parte 0/6 de uma série de posts sobre DRF.
+> Este artigo foi atualizado em 14 de Fevereiro de 2018.
+
+Este artigo está usando:
+
+* Python 3.5.2
+* Django 2.0.2
+* djangorestframework 3.7.7
+
+Favor clonar o projeto do [GitHub](https://github.com/rg3915/drf#clonando-o-projeto), favor ler o README para instalação.
+
+Repare nas alterações das urls na nova versão do Django.
+
+```python
+urls.py
+from django.urls import include, path
+from django.contrib import admin
+
+urlpatterns = [
+    path('', include('core.urls')),
+    path('admin/', admin.site.urls),
+]
+```
+
+```python
+# core/urls.py
+from django.urls import path
+from core import views
+
+urlpatterns = [
+    path('persons/', views.person_list),
+    path('persons/<int:pk>/', views.person_detail),
+]
+```
+
+Além disso, tivemos alterações significativas em [settings.py](https://github.com/rg3915/drf/blob/master/myproject/settings.py).
 
 **Obs**: *Tem coisas que é melhor nem traduzir. ;)*
 
@@ -18,16 +52,13 @@ Este tutorial é a parte 0/6 de uma série de posts sobre DRF.
 * 1 - [Serialization][11]
 * 2 - Requests & Responses
 * 3 - Class based views
-* 4 - Authentication & permissions
-* 5 - Relationships & hyperlinked APIs
-* 6 - Viewsets & routers
 
 > **Obs**: se você não sabe [Django][3] sugiro que leia este [tutorial][4] antes.
 
 ## Começando
 
 ```bash
-$ virtualenv -p python3 env
+$ python3 -m venv .venv
 $ source env/bin/activate
 $ mkdir drf-quickstart
 $ cd drf-quickstart
@@ -41,10 +72,15 @@ $ python manage.py createsuperuser  --username='admin' --email=''
 
 Veja o meu requirements.txt
 
-	Django==1.8.6
-	argparse==1.2.1
-	djangorestframework==3.3.1
-	wsgiref==0.1.2
+```bash
+dj-database-url==0.4.2
+Django==2.0.2
+django-extensions==1.9.9
+django-filter==1.1.0
+djangorestframework==3.7.7
+drf-nested-routers==0.90.0
+python-decouple==3.1
+```
 
 ## Editando `settings.py`
 
