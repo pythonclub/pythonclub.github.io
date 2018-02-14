@@ -26,8 +26,8 @@ Favor clonar o projeto do [GitHub](https://github.com/rg3915/drf#clonando-o-proj
 
 * 0 - [Quickstart][10]
 * 1 - **Serialization**
-* 2 - Requests & Responses
-* 3 - Class based views
+* 2 - [Requests & Responses][11]
+* 3 - [Class based views][12]
 
 Pra quem não sabe, para usar API Web usamos REST, no caso, [Django Rest Framework][0], framework web do [Django][3].
 
@@ -446,3 +446,5 @@ GitHub: Se você quiser pode olhar meu [GitHub][8], mas terá que ver os *commit
 [8]: https://github.com/rg3915/drf.git
 [9]: http://www.django-rest-framework.org/tutorial/1-serialization/
 [10]: http://pythonclub.com.br/django-rest-framework-quickstart.html
+[11]: http://pythonclub.com.br/django-rest-framework-requests-responses.html
+[12]: http://pythonclub.com.br/django-rest-framework-class-based-views.html

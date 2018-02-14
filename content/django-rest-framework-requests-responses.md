@@ -11,7 +11,7 @@ Category: Python, Django, REST
 * 0 - [Quickstart][10]
 * 1 - [Serialization][11]
 * 2 - **Requests & Responses**
-* 3 - Class based views
+* 3 - [Class based views][12]
 
 Este post é continuação do post [Django Rest Framework Serialization][11].
 
@@ -118,3 +118,4 @@ Até a próxima.
 
 [10]: http://pythonclub.com.br/django-rest-framework-quickstart.html
 [11]: http://pythonclub.com.br/django-rest-framework-serialization.html
+[12]: http://pythonclub.com.br/django-rest-framework-class-based-views.html
