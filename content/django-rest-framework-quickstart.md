@@ -50,8 +50,8 @@ Além disso, tivemos alterações significativas em [settings.py](https://github
 
 * 0 - **Quickstart**
 * 1 - [Serialization][11]
-* 2 - Requests & Responses
-* 3 - Class based views
+* 2 - [Requests & Responses][12]
+* 3 - [Class based views][13]
 
 > **Obs**: se você não sabe [Django][3] sugiro que leia este [tutorial][4] antes.
 
@@ -209,3 +209,5 @@ Veja o código no [GitHub][8].
 [7]: https://github.com/jakubroztocil/httpie#installation
 [8]: https://github.com/rg3915/drf-quickstart.git
 [11]: http://pythonclub.com.br/django-rest-framework-serialization.html
+[12]: http://pythonclub.com.br/django-rest-framework-requests-responses.html
+[13]: http://pythonclub.com.br/django-rest-framework-class-based-views.html
