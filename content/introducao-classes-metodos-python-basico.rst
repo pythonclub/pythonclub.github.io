@@ -50,7 +50,8 @@ Juntando os dois temos:
 
 
 
-A primeira pergunta que você vai ter é o porque do ``self`` em ``metodo``. A resposta curta é, todo metodo criado dentro de uma classe deve definir como primeiro parametro o ``self``. Para a resposta longa, por favor, leia a excelente explicação que o Pedro Werneck fez: http://www.pedrowerneck.com/o-porque-do-self-explicito-em-python-pt-br.html
+A primeira pergunta que você vai ter é o porque do ``self`` em ``metodo``. A resposta curta é, todo metodo criado dentro de uma classe deve definir como primeiro parametro o ``self``. Para a resposta longa, por favor, leia a excelente explicação que o Pedro Werneck fez: `O porquê do self explícito em Python <http://archive.is/cX2mq>`_
+
 
 A segunda pergunta é: para que serve o ``pass``?
 
