@@ -2,7 +2,7 @@ Title: Upload de Arquivos com Socket e Struct
 Slug: upload-de-arquivos-com-socket-e-struct
 Date: 2018-05-17 19:24:00
 Category: Network
-Tags: python,tutorial,network,sctruct,socket
+Tags: python,tutorial,network,struct,socket
 Author: Silvio Ap Silva
 Email: contato@kanazuchi.com
 Github: kanazux
