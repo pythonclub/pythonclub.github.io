@@ -18,7 +18,7 @@ Mais informações sobre classes e métodos podem ser encontradas nos links abai
 
 PS: *Considere a sintaxe para Python 3*.
 
-Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica. Se você criar uma outra classe chamada Fabio, esse objeto também será uma instancia da classe Pessoa.
+Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica. Se você criar um outro ojbeto chamado Fabio, esse objeto também será uma instancia da classe Pessoa.
 
 Na sua sintaxe mais elementar definimos uma classe conforme abaixo:
 
