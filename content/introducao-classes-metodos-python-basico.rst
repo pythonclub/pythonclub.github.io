@@ -14,11 +14,11 @@ Eu não sou a melhor pessoa do mundo para explicar este assunto, mas vou tentar 
 
 Mais informações sobre classes e métodos podem ser encontradas nos links abaixo. Veja os exemplos em `https://github.com/rg3915/python-classes-metodos <https://github.com/rg3915/python-classes-metodos/tree/master/pythonBasico>`_.
 
-> Este artigo foi atualizado em 23 de Maio de 2018.
+> Este artigo foi atualizado em 26 de Maio de 2018.
 
 PS: *Considere a sintaxe para Python 3*.
 
-Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica.
+Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica. Se você criar uma outra classe chamada Fabio, esse objeto também será uma instancia da classe Pessoa.
 
 Na sua sintaxe mais elementar definimos uma classe conforme abaixo:
 
@@ -55,7 +55,6 @@ Juntando os dois temos:
 
 A primeira pergunta que você vai ter é o porque do ``self`` em ``metodo``. A resposta curta é, todo metodo criado dentro de uma classe deve definir como primeiro parametro o ``self``. Para a resposta longa, por favor, leia a excelente explicação que o Pedro Werneck fez: `O porquê do self explícito em Python <http://archive.is/cX2mq>`_
 
-
 A segunda pergunta é: para que serve o ``pass``?
 
 A resposta é que, em Python, ao contrario de várias outras liguagens de programação, os blocos de código **NÃO** são definidos com os caracteres ``{`` e ``}``, mas sim com indentação e o caractere ``:``. Devido a esse fato, python necessitava de algo para explicitar quando se quer definir um bloco vazio. O ``pass`` foi criado exatamente para explicitar essa situação.
@@ -74,6 +73,33 @@ Um exemplo de uma função vazia feita em linguagem C e a mesma função vazia f
         pass
 
 Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* (isso tambem é conhecido como "`CapitalizeWords <http://pep8.org/#descriptive-naming-styles>`_") e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
+
+
+Exemplo 0 - Pessoa
+------------------
+
+No exemplo mencionado no começo desse post o código mais simples seria o seguinte:
+
+.. code-block:: python
+
+	class Pessoa(object):
+
+	    def __init__(self, nome):
+	        self.nome = nome
+
+	    def __str__(self):
+	        return self.nome
+
+
+	regis = Pessoa('Regis')
+	print(regis)
+	fabio = Pessoa('Fabio')
+	print(fabio)
+
+Note que ``regis`` é uma instância da classe ``Pessoa``, e ``fabio`` é uma outra instância. Ou seja, temos dois **objetos**: ``regis`` e ``fabio``.
+
+Os dois métodos serão explicados no próximo exemplo.
+
 
 Exemplo 1 - Calculadora simples
 -------------------------------
