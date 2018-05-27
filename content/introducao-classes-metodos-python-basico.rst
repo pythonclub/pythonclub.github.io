@@ -10,11 +10,15 @@ Introdução a Classes e Métodos em Python (básico)
 :github: rg3915
 :summary: Abordaremos aqui o básico sobre o uso de classes e métodos e a manipulação de dados em Python.
 
-Eu não sou a melhor pessoa do mundo para explicar este assunto, mas eu escrevi este post para introduzir um tópico sobre *manipulação de banco de dados em SQLite3 com Python*, porém mais informações sobre classes e métodos podem ser encontradas nos links abaixo. Veja os exemplos em `https://github.com/rg3915/pythonDesktopApp <https://github.com/rg3915/pythonDesktopApp/tree/master/pythonBasico>`_.
+Eu não sou a melhor pessoa do mundo para explicar este assunto, mas vou tentar fazer uma breve introdução a classes e métodos em Python.
+
+Mais informações sobre classes e métodos podem ser encontradas nos links abaixo. Veja os exemplos em `https://github.com/rg3915/python-classes-metodos <https://github.com/rg3915/python-classes-metodos/tree/master/pythonBasico>`_.
+
+> Este artigo foi atualizado em 26 de Maio de 2018.
 
 PS: *Considere a sintaxe para Python 3*.
 
-Segundo a documentação do `Python <https://docs.python.org/2/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto** é uma variável cujo tipo é uma classe, ou seja, um **objeto é uma instância** de uma classe.
+Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica. Se você criar um outro ojbeto chamado Fabio, esse objeto também será uma instancia da classe Pessoa.
 
 Na sua sintaxe mais elementar definimos uma classe conforme abaixo:
 
@@ -43,15 +47,13 @@ Juntando os dois temos:
 .. code-block:: python
 
 	class NomeDaClasse(object):
-		atributo1 = None
 
 		def metodo(self, args):
-			pass	
+			pass
 
 
 
 A primeira pergunta que você vai ter é o porque do ``self`` em ``metodo``. A resposta curta é, todo metodo criado dentro de uma classe deve definir como primeiro parametro o ``self``. Para a resposta longa, por favor, leia a excelente explicação que o Pedro Werneck fez: `O porquê do self explícito em Python <http://archive.is/cX2mq>`_
-
 
 A segunda pergunta é: para que serve o ``pass``?
 
@@ -62,7 +64,7 @@ Um exemplo de uma função vazia feita em linguagem C e a mesma função vazia f
 .. code-block:: C
 
     void metodo(int num){
-        
+
     }
 
 .. code-block:: python
@@ -70,9 +72,34 @@ Um exemplo de uma função vazia feita em linguagem C e a mesma função vazia f
     def metodo(num):
         pass
 
-Voltando a explicação sobre a classe: O ``atributo1`` é um atributo com valor inicial ``None`` (nada). Poderia ser ``atributo1 = 0``, por exemplo.
+Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* (isso tambem é conhecido como "`CapitalizeWords <http://pep8.org/#descriptive-naming-styles>`_") e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
 
-Importante: Note que para nome de **classes** usamos *PalavrasComeçandoPorMaiúscula* (isso tambem é conhecido como "CamelCase") e para nome de **métodos (funções)** usamos *minúsculas_separadas_por_underscore*. Esta é uma convenção adotada pelos *Pythonistas* segundo o `Guia de Estilo <http://www.python.org.br/wiki/GuiaDeEstilo>`_ **PEP 8** - `Style Guide for Python Code <http://legacy.python.org/dev/peps/pep-0008/>`_ escrito por `Guido Van Rossum <http://www.python.org.br/wiki/GuidoVanRossum>`_.
+
+Exemplo 0 - Pessoa
+------------------
+
+No exemplo mencionado no começo desse post o código mais simples seria o seguinte:
+
+.. code-block:: python
+
+	class Pessoa(object):
+
+	    def __init__(self, nome):
+	        self.nome = nome
+
+	    def __str__(self):
+	        return self.nome
+
+
+	regis = Pessoa('Regis')
+	print(regis)
+	fabio = Pessoa('Fabio')
+	print(fabio)
+
+Note que ``regis`` é uma instância da classe ``Pessoa``, e ``fabio`` é uma outra instância. Ou seja, temos dois **objetos**: ``regis`` e ``fabio``.
+
+Os dois métodos serão explicados no próximo exemplo.
+
 
 Exemplo 1 - Calculadora simples
 -------------------------------
@@ -187,16 +214,21 @@ Usando o **terminal no modo interativo** façamos:
 	>>> from calculadora2 import Calculadora
 	>>> c = Calculadora()
 	>>> print('Soma:', c.soma(2,3))
+	Soma: 5
 	>>> print('Subtração:', c.subtrai(2,10))
+	Subtração: -8
 	>>> print('Multiplicação:', c.multiplica(3,3))
+	Multiplicação: 9
 	>>> print('Divisão:', c.divide(128,2))
+	Divisão: 64.0
+	>>>
 
 A vantagem de colocar os parâmetros em cada método, é que podemos calcular qualquer valor sem ter que instanciar uma nova classe para cada valor diferente.
 
 Exemplo 3 - Classe Pedido
 -------------------------
 
-Agora veremos um exemplo que mais se aproxima do que iremos fazer em banco de dados, mas aqui iremos apenas instanciar os objetos e armazená-los em memória numa lista.
+Agora veremos um outro exemplo, mas aqui iremos apenas instanciar os objetos e armazená-los em memória numa lista.
 
 Veremos o código na íntegra e depois os comentários.
 
@@ -246,6 +278,9 @@ Podemos rodar o Python no modo `modo interativo <https://docs.python.org/3/tutor
 	>>> u2 = User('Fabio',20)
 	>>> u2.save()
 	>>> print(User.all())
+	[<User: 1 - Regis - 35>
+	, <User: 2 - Fabio - 20>
+	]
 
 Agora os comentários:
 
@@ -342,11 +377,63 @@ Note que nesse ``print`` a lista está vazia.
 
 Após chamar o ``save`` para as duas instâncias elas são guardadas e o método ``User.all()`` retorna essa lista.
 
+Exemplo 4 - Televisão
+---------------------
+
+Escrevi mais um exemplo para fixar melhor o entendimento: `tv.py <https://github.com/rg3915/python-classes-metodos/blob/master/pythonBasico/tv/tv.py>`_.
+
+.. code-block:: python
+
+	class Televisao():
+
+	    def __init__(self):
+	        self.ligada = False
+	        self.canal = 2
+
+	    def muda_canal_para_baixo(self):
+	        self.canal -= 1
+
+	    def muda_canal_para_cima(self):
+	        self.canal += 1
+
+	if __name__ == '__main__':
+	    tv = Televisao()
+	    print('Canal inicial:', tv.canal)
+	    print('Ligada:', tv.ligada)
+
+	    tv.ligada = True
+	    tv.canal = 5
+
+	    print('Ligada:', tv.ligada)
+	    print('Canal inicial:', tv.canal)
+	    tv.muda_canal_para_cima()
+	    print('Canal +', tv.canal)
+	    tv.muda_canal_para_cima()
+	    print('Canal +', tv.canal)
+	    tv.muda_canal_para_baixo()
+	    print('Canal -', tv.canal)
+
+Este programa está muito bem explicado no video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_.
+
+A seguir o resultado do programa:
+
+.. code-block:: python
+
+		$ python tv.py
+		('Canal inicial:', 2)
+		('Ligada:', False)
+		('Ligada:', True)
+		('Canal inicial:', 5)
+		('Canal +', 6)
+		('Canal +', 7)
+		('Canal -', 6)
+
+
 Agradeço a colaboração de `Fabio Cerqueira <https://gist.github.com/fabiocerqueira/1b05352a26892dea6813>`_.
 
 Veja os exemplos em `https://github.com/rg3915/pythonDesktopApp <https://github.com/rg3915/pythonDesktopApp/tree/master/pythonBasico>`_.
 
-Mais informações em 
+Mais informações em
 
 `Classes Python <https://docs.python.org/2/tutorial/classes.html#class-objects>`_
 
