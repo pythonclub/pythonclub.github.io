@@ -18,13 +18,13 @@ Mais informações sobre classes e métodos podem ser encontradas nos links abai
 
 PS: *Considere a sintaxe para Python 3*.
 
-Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica. Se você criar um outro ojbeto chamado Fabio, esse objeto também será uma instancia da classe Pessoa.
+Segundo a documentação do `Python <https://docs.python.org/3/tutorial/classes.html#class-objects>`_ e o video `Python para Zumbis <https://www.youtube.com/watch?v=Zr_FiKbgRbU>`_, uma **classe** associa dados (**atributos**) e operações (**métodos**) numa só estrutura. Um **objeto é uma instância** de uma classe. Ou seja, uma representação da classe. Por exemplo, Regis é uma instância de uma classe chamada Pessoa, mas a Pessoa é a classe que o representa de uma forma genérica. Se você criar um outro objeto chamado Fabio, esse objeto também será uma instancia da classe Pessoa.
 
 Na sua sintaxe mais elementar definimos uma classe conforme abaixo:
 
 .. code-block:: python
 
-	class NomeDaClasse(object):
+	class NomeDaClasse:
 		pass
 
 E um método (função) como:
@@ -46,7 +46,7 @@ Juntando os dois temos:
 
 .. code-block:: python
 
-	class NomeDaClasse(object):
+	class NomeDaClasse:
 
 		def metodo(self, args):
 			pass
@@ -82,7 +82,7 @@ No exemplo mencionado no começo desse post o código mais simples seria o segui
 
 .. code-block:: python
 
-	class Pessoa(object):
+	class Pessoa:
 
 	    def __init__(self, nome):
 	        self.nome = nome
@@ -109,7 +109,7 @@ Existem pelo menos duas formas diferentes de trabalhar com os parâmetros de ent
 .. code-block:: python
 
 	#calculadora.py
-	class Calculadora(object):
+	class Calculadora:
 
 	    def __init__(self, a, b):
 	        self.a = a
@@ -192,7 +192,7 @@ Agora faremos uma classe sem valor inicial e com **dois parâmetros** *para todo
 .. code-block:: python
 
 	#calculadora2.py
-	class Calculadora(object):
+	class Calculadora:
 
 	    def soma(self, a, b):
 	        return a + b
@@ -235,7 +235,7 @@ Veremos o código na íntegra e depois os comentários.
 .. code-block:: python
 
 	#user.py
-	class User(object):
+	class User:
 
 	    seq = 0
 	    objects = []
@@ -288,7 +288,7 @@ Definindo a classe
 
 .. code-block:: python
 
-	class User(object):
+	class User:
 
 Define um atributo que servirá como contador inicial e um atributo ``objects`` (tupla vazia) que é uma lista de instâncias de ``User`` que foram salvos (que chamaram o método ``save``).
 
