@@ -10,12 +10,12 @@ Linkedin: SilvioApSilva
 Twitter: @kanazux
 Site: http://kanazuchi.com
 
-Apesar de termos muitas formas de enviarmos arquivos para servidores hoje em dia, como por exemplo o *scp* e *rsync*, podemos usar o python com seus modulos *built-in* para enviar arquivos a servidores usando struct para serializar os dados e socket para criar uma conexão cliente/servidor.
+Apesar de termos muitas formas de enviarmos arquivos para servidores hoje em dia, como por exemplo o *scp* e *rsync*, podemos usar o python com seus módulos *built-in* para enviar arquivos a servidores usando struct para serializar os dados e socket para criar uma conexão cliente/servidor.
 
 ### *Struct*
 
-O modulo [struct](https://docs.python.org/3/library/struct.html) é usado para converter bytes no python em formatos do struct em C.
-Com ele podemos enviar num unico conjunto de dados o nome de um arquivo e os bytes referentes ao seus dados.
+O módulo [struct](https://docs.python.org/3/library/struct.html) é usado para converter bytes no python em formatos do struct em C.
+Com ele podemos enviar num único conjunto de dados o nome de um arquivo e os bytes referentes ao seus dados.
 
 Struct também é utilizado para serializar diversos tipos de dados diferentes, como bytes, inteiros, floats além de outros, no nosso caso usaremos apenas bytes.
 
@@ -38,7 +38,7 @@ with open(arquivo, 'rb') as arq:
     dados_upload = serializar.pack(*[arquivo.encode(), dados_arquivo])
 ```
 
-Por padrão, struct usa caracteres no inicio da sequencia dos dados para definir a ordem dos bytes, tamanho e alinhamento dos bytes nos dados empacotados.
+Por padrão, struct usa caracteres no início da sequência dos dados para definir a ordem dos bytes, tamanho e alinhamento dos bytes nos dados empacotados.
 Esses caracteres podem ser vistos na [seção 7.1.2.1](https://docs.python.org/3/library/struct.html#byte-order-size-and-alignment) da documentação.
 Como não definimos, será usado o **@** que é o padrão.
 
@@ -75,8 +75,8 @@ O modulo [socket](https://docs.python.org/3/library/socket.html) prove interface
 
 #### Familias de sockets
 
-Diversas familias de sockets podem ser usadas para termos acessos a objetos que nos permitam fazer chamadas de sistema.
-Mais informações sobre as familias podem ser encontradas na [seção 18.1.1](https://docs.python.org/3/library/socket.html#socket-families) da documentação. No nosso exemplo usaremos a AF_INET.
+Diversas famílias de sockets podem ser usadas para termos acessos a objetos que nos permitam fazer chamadas de sistema.
+Mais informações sobre as famílias podem ser encontradas na [seção 18.1.1](https://docs.python.org/3/library/socket.html#socket-families) da documentação. No nosso exemplo usaremos a AF_INET.
 
 #### AF_INET
 
@@ -85,7 +85,7 @@ Para endereços IPv6 o modulo disponibiliza o **AF_INET6**
 
 #### Constante [SOCK_STREAM]
 
-As constantes representam as familias de sockets, como a constante AF_INET e os protocolos usados como parametros para o modulo socket.
+As constantes representam as famílias de sockets, como a constante AF_INET e os protocolos usados como parâmetros para o modulo socket.
 Um dos protocolos mais usados encontrados na maioria dos sistemas é o SOCK_STREAM.
 
 Ele é um protocolo baseado em comunicação que permite que duas partes estabeleçam uma conexão e conversem entre si.
@@ -107,19 +107,19 @@ porta = 6124
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ```
 
-Agora usaremos o metodo bind para criarmos um ponto de conexão para nosso cliente. Esse metodo espera por uma tupla contento o host e porta como parametros.
+Agora usaremos o metodo bind para criarmos um ponto de conexão para nosso cliente. Esse método espera por uma tupla contento o host e porta como parâmetros.
 
 ```python
 sock.bind((host, porta))
 ```
 
-Agora vamos colocar nosso servidor socket em modo escuta com o metodo listen. Esse metodo recebe como parametro um numero inteiro (**backlog**) definindo qual o tamanho da fila que será usada para receber pacotes SYN até dropar a conexão. Usaremos um valor baixo o que evita SYN flood na rede. Mais informações sobre *backlog* podem ser encontradas na [RFC 7413](https://tools.ietf.org/html/rfc7413).
+Agora vamos colocar nosso servidor socket em modo escuta com o metodo listen. Esse método recebe como parâmetro um número inteiro (**backlog**) definindo qual o tamanho da fila que será usada para receber pacotes SYN até dropar a conexão. Usaremos um valor baixo o que evita SYN flood na rede. Mais informações sobre *backlog* podem ser encontradas na [RFC 7413](https://tools.ietf.org/html/rfc7413).
 
 ```python
 sock.listen(5)
 ```
 
-Agora vamos colocar o nosso socket em um loop esperando por uma conexão e um inicio de conversa. Pra isso vamos usar o metodo *accept* que nos devolve uma tupla, onde o primeiro elemento é um novo objeto socket para enviarmos e recebermos informações, e o segundo contendo informações sobre o endereço de origem e porta usada pelo cliente.
+Agora vamos colocar o nosso socket em um loop esperando por uma conexão e um início de conversa. Pra isso vamos usar o metodo *accept* que nos devolve uma tupla, onde o primeiro elemento é um novo objeto socket para enviarmos e recebermos informações, e o segundo contendo informações sobre o endereço de origem e porta usada pelo cliente.
 
 **Vamos criar um diretório para salvar nosso novo arquivo.**
 
@@ -162,7 +162,7 @@ while True:
 
 > Cliente
 
-Nosso cliente irá usar o metodo *connect* para se connectar no servidor e a partir dai começar enviar e receber mensagens. Ele também recebe como parametros uma tupla com o host e porta de conexão do servidor.
+Nosso cliente irá usar o metodo *connect* para se conectar no servidor e a partir dai começar enviar e receber mensagens. Ele também recebe como parâmetros uma tupla com o host e porta de conexão do servidor.
 
 ```python
 host = '127.0.0.1'
