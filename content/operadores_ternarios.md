@@ -32,7 +32,7 @@ usamos este tipo de condições, por exemplo:
 Graças a indentação e ao espaçamento, vemos onde onde começa e/ou 
 termina o bloco  executado caso a varável `vencer_o_thanos` seja 
 `True`. Quanto mais `if`'s você aninhar, mais bonito seu 
-código fica e em momento algum o mesmo se torna mais consfuso 
+código fica e em momento algum o mesmo se torna mais confuso 
 (ao menos, não deveria se tornar). Entretanto, sempre fico 
 extremamente incomodado quando tenho de escrever um bloco apenas 
 marcar uma variável, como por exemplo:
