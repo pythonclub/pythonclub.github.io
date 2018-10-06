@@ -29,13 +29,13 @@ usamos este tipo de condições, por exemplo:
     else:
         foo()
 
-Vemos claramente onde onde o bloco executado caso `vencer_o_thanos`
-seja `True` começa e/ou termina graças a indentação. Quanto mais `if`s
-você concatenar, mais bonito seu código fica e em momento algum  o mesmo
-se torna mais consfuso (ao menos, não deveria se tornar).
-Entretanto, sempre fico extremamente incomodado quando tenho de 
-escrever um bloco tão longo para apenas marcar uma variável. Um bloco
-de código como o abaixo me da um grande incomodo.
+Graças a indentação e ao espaçamento, vemos onde onde começa e/ou 
+termina o bloco  executado caso a varável `vencer_o_thanos` seja 
+`True`. Quanto mais `if`'s você aninhar, mais bonito seu 
+código fica e em momento algum o mesmo se torna mais consfuso 
+(ao menos, não deveria se tornar). Entretanto, sempre fico 
+extremamente incomodado quando tenho de escrever um bloco apenas 
+marcar uma variável, como por exemplo:
 
     :::python
 
