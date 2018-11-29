@@ -1,7 +1,7 @@
 Algoritmos de Ordenação
 ########################
 
-:date: 2018-11-20 23:10
+:date: 2018-11-29 13:10
 :tags: python, algoritmos
 :category: Python
 :slug: algoritmos-ordenacao
@@ -48,12 +48,11 @@ Código do algoritmo
 Selection Sort
 ==============
 
-Como o algoritmo funciona: Como implementar o algoritmo usando Python: `https://www.youtube.com/watch?v=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r <https://www.youtube.com/watch?v=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r&list=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r&t=0s&index=4>`_.
+Como o algoritmo funciona: Como implementar o algoritmo usando Python: `https://www.youtube.com/watch?v=vHxtP9BC-AA <https://www.youtube.com/watch?v=vHxtP9BC-AA&list=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r&index=4>`_.
 
+.. youtube::  vHxtP9BC-AA
 
-.. youtube::  PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r
-
-Como implementar o algoritmo usando Python: `https://www.youtube.com/watch?v=0ORfCwwhF_I <https://www.youtube.com/watch?v=0ORfCwwhF_I&index=5&list=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r>`_.
+Como implementar o algoritmo usando Python: `https://www.youtube.com/watch?v=0ORfCwwhF_I <https://www.youtube.com/watch?v=0ORfCwwhF_I&index=5&list=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r&index=5>`_.
 
 .. youtube::  0ORfCwwhF_I
 
@@ -96,3 +95,40 @@ Código do algoritmo
                 p -= 1
 
             array[p] = current_element
+
+
+Merge Sort
+==============
+
+Como o algoritmo funciona: Como implementar o algoritmo usando Python: `https://www.youtube.com/watch?v=Lnww0ibU0XM <https://www.youtube.com/watch?v=Lnww0ibU0XM&list=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r&t=0s&index=8>`_.
+
+.. youtube::  Lnww0ibU0XM
+
+
+Como implementar o algoritmo usando Python - Parte I: `https://www.youtube.com/watch?v=cXJHETlYyVk <https://www.youtube.com/watch?v=cXJHETlYyVk&index=9&list=PLvo_Yb_myrNBhIdq8qqtNSDFtnBfsKL2r>`_.
+
+.. youtube::  cXJHETlYyVk
+
+Código do algoritmo
+
+.. code-block:: python
+
+    def sort(array):
+        sort_half(array, 0, len(array) - 1)
+
+
+    def sort_half(array, start, end):
+        if start >= end:
+            return
+
+        middle = (start + end) // 2
+
+        sort_half(array, start, middle)
+        sort_half(array, middle + 1, end)
+
+        merge(array, start, end)
+
+
+    def merge(array, start, end):
+        array[start: end + 1] = sorted(array[start: end + 1])
+
