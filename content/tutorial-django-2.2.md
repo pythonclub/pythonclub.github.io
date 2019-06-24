@@ -50,12 +50,10 @@ Depois ative o ambiente digitando
 source .venv/bin/activate
 ```
 
+> Lembre-se, sempre quando você for mexer no projeto, tenha certeza de ter ativado o `virtualenv`, executando o comando `source .venv/bin/activate`. Você deve repetir esse comando toda a vez que você abrir um novo terminal.
 
 ## Instalando Django 2.2.2
 
-> Lembre-se, sempre quando você for mexer no projeto, tenha certeza de ter ativado o `virtualenv`, executando o comando `source .venv/bin/activate`.
-
-Você deve repetir esse comando toda a vez que você abrir um novo terminal.
 
 Basta digitar
 
