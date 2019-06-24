@@ -16,9 +16,9 @@ Até a data deste post o Django está na versão 2.2.2, e requer Python 3.
 
 ## O que você precisa?
 
-Python 3, pip e virtualenv.
+Python 3.6 ou superior, pip e virtualenv.
 
-Considere que você tenha instalado Python3, [pip](https://pip.readthedocs.io/en/latest/) e [virtualenv](https://virtualenv.pypa.io/en/latest/).
+Considere que você tenha instalado Python 3.6 ou superior, [pip](https://pip.readthedocs.io/en/latest/) e [virtualenv](https://virtualenv.pypa.io/en/latest/).
 
 
 ## Criando o ambiente
