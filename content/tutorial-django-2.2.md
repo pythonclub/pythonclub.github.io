@@ -18,28 +18,7 @@ Até a data deste post o Django está na versão 2.2.2, e requer Python 3.
 
 Python 3, pip e virtualenv.
 
-Você vai precisar do [pip](https://pip.readthedocs.io/en/latest/) e do [virtualenv](https://virtualenv.pypa.io/en/latest/).
-
-* Instale primeiro o `pip`
-
-Primeira opção
-
-```
-$ wget https://bootstrap.pypa.io/get-pip.py
-$ sudo python get-pip.py
-```
-
-Segunda opção
-
-`$ sudo apt-get install -y python-pip`
-
-* Depois instale o `virtualenv`
-
-```
-$ sudo pip install virtualenv
-$ # ou
-$ sudo apt-get install -y virtualenv
-```
+Considere que você tenha instalado Python3, [pip](https://pip.readthedocs.io/en/latest/) e [virtualenv](https://virtualenv.pypa.io/en/latest/).
 
 
 ## Criando o ambiente
