@@ -6,9 +6,8 @@ Tags: git, travis-ci, python, coveralls, landscape, test, tutorial
 Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
-Linkedin: michellstut
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Linkedin: mstuttgart
+Site: https://mstuttgart.github.io
 
 Fala pessoal, tudo bem?
 
@@ -163,4 +162,4 @@ Aqui encerramos a terceira parte do nossa série de tutoriais sobre `Unittest`. 
 
 É isso pessoal. Obrigado por ler até aqui e até o próximo tutorial!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4](https://mstuttgart.github.io/2016/04/29/2016-04-29-python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4/)

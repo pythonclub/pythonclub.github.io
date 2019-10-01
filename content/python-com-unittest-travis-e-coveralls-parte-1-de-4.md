@@ -6,9 +6,8 @@ Tags: git, travis-ci, python, coveralls, landscape, test, tutorial
 Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
-Linkedin: michellstut
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Linkedin: mstuttgart
+Site: https://mstuttgart.github.io
 
 Durante o desenvolvimento de um software, tão importante quanto escrever um código organizado e que siga as melhores práticas, é garantir que o mesmo cumpra os requisitos a que ele se propõe. Em outras palavras, garantir que o software funcione de maneira adequada.
 
@@ -390,4 +389,4 @@ Os testes que escrevemos foram bem simples, apenas para fim de exemplo. Porém e
 
 É isso pessoal. Obrigado por ler até aqui. Até a próxima postagem!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-1-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-1-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-1-de-4](https://mstuttgart.github.io/2016/04/12/2016-04-12-python-com-unittest-travis-e-coveralls-parte-1-de-4/)

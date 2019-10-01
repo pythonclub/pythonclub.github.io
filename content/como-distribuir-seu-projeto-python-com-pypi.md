@@ -6,9 +6,8 @@ Tags: python, pypi, tutorial, desenvolvimento, pypi, pip
 Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
-Linkedin: michellstut
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Linkedin: mstuttgart
+Site: https://mstuttgart.github.io
 
 Imagine a seguinte situação: você passou alguns dias (ou mesmo meses) desenvolvendo uma módulo python, escreveu testes, implementou funcionalidades e depois de alguns ajustes, chegou a hora de liberar seu software para que outros desenvolvedores possam utilizá-lo. Qual o melhor modo de distribuí-lo?
 
