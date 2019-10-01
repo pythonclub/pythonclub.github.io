@@ -7,8 +7,7 @@ Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
 Linkedin: michell.stuttgart
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Site: https://mstuttgart.github.io/
 Summary: Conheça o Peewee, um prático e minimalista ORM Python
 
 [Peewee](http://peewee.readthedocs.io/en/latest/index.html) é um ORM destinado a criar e gerenciar tabelas de banco de dados relacionais através de objetos Python. Segundo a [wikipedia](https://pt.wikipedia.org/wiki/Mapeamento_objeto-relacional), um ORM é:

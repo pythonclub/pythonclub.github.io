@@ -6,9 +6,8 @@ Tags: git, travis-ci, python, coveralls, landscape, test, tutorial
 Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
-Linkedin: michellstut
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Linkedin: mstuttgart
+Site: https://mstuttgart.github.io
 
 Fala pessoal, tudo bem?
 

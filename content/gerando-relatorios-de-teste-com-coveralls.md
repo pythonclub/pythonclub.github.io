@@ -6,9 +6,8 @@ Tags: python, coveralls, coverage, relatório, test
 Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
-Linkedin: michellstut
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Linkedin: mstuttgart
+Site: https://mstuttgart.github.io/
 
 Na [terceira parte](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html) do tutorial sobre *unittest*, vimos como utilizar o serviço [Coveralls](https://coveralls.io/) para gerar relatórios sobre o testes do nosso projeto. Entretanto, uma "desvantagem" do serviço é que o processo de análise é iniciado apenas quando executarmos um *push* ou um *pull request*. Sendo assim, não seria interessante termos a liberdade de executar esses testes localmente?
 

@@ -6,9 +6,8 @@ Tags: python,tutorial,list comprehensions
 Author: Michell Stuttgart
 Email: michellstut@gmail.com
 Github: mstuttgart
-Linkedin: michellstut
-Facebook: michell.stuttgart
-Site: http://codigoavulso.com.br
+Linkedin: mstuttgart
+Site: https://mstuttgart.github.io
 
 A utilização de listas em Python é algo trivial. A facilidade provida pela linguagem aliada a simplicidade da estrutura de dados *list* a torna, ao lado dos dicionários *dict*, uma das estrutura de dados mais utilizadas em Python. Aqui neste tutorial irei compartilhar algo que aprendi trabalhando com listas e dicionário em Python, mais especificamente no que diz respeito a *abrangência* de listas (e dicionários).
 
