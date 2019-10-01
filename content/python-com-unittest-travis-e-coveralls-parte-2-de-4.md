@@ -161,4 +161,4 @@ Aqui encerramos a segunda parte do nossa série de tutoriais sobre `Unittest`. E
 
 Até o próximo tutorial!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-2-de-4](https://mstuttgart.github.io/2016/04/19/2016-04-19-python-com-unittest-travis-e-coveralls-parte-2-de-4/)
