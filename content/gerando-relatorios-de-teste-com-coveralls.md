@@ -9,7 +9,7 @@ Github: mstuttgart
 Linkedin: mstuttgart
 Site: https://mstuttgart.github.io/
 
-Na [terceira parte](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4.html) do tutorial sobre *unittest*, vimos como utilizar o serviço [Coveralls](https://coveralls.io/) para gerar relatórios sobre o testes do nosso projeto. Entretanto, uma "desvantagem" do serviço é que o processo de análise é iniciado apenas quando executarmos um *push* ou um *pull request*. Sendo assim, não seria interessante termos a liberdade de executar esses testes localmente?
+Na [terceira parte](https://mstuttgart.github.io/2016/04/29/2016-04-29-python-com-unittest-travis-ci-coveralls-e-landscape-parte-3-de-4/) do tutorial sobre *unittest*, vimos como utilizar o serviço [Coveralls](https://coveralls.io/) para gerar relatórios sobre o testes do nosso projeto. Entretanto, uma "desvantagem" do serviço é que o processo de análise é iniciado apenas quando executarmos um *push* ou um *pull request*. Sendo assim, não seria interessante termos a liberdade de executar esses testes localmente?
 
 Felizmente, os desenvolvedores do [Coveralls](https://coveralls.io/) pensaram nisso e criaram um conjunto de comandos que nos permite executá-lo pelo terminal.
 
@@ -143,4 +143,4 @@ Neste tutorial vimos um pouco mais sobre o `Coveralls`. Evitei colocar as inform
 
 É isso pessoal, obrigado pela leitura e até o próximo tutorial.
 
-**Publicado originalmente:** [gerando-relatorios-de-testes-com-coveralls](http://codigoavulso.com.br/gerando-relatorios-de-testes-com-coveralls.html)
+**Publicado originalmente:** [gerando-relatorios-de-testes-com-coveralls](https://mstuttgart.github.io/2016/05/18/2016-05-18-gerando-relatorios-de-teste-com-coveralls/)
