@@ -389,4 +389,4 @@ Os testes que escrevemos foram bem simples, apenas para fim de exemplo. Porém e
 
 É isso pessoal. Obrigado por ler até aqui. Até a próxima postagem!
 
-**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-1-de-4](http://codigoavulso.com.br/python-com-unittest-travis-ci-coveralls-e-landscape-parte-1-de-4.html)
+**Publicado originalmente:** [python-com-unittest-travis-ci-coveralls-e-landscape-parte-1-de-4](https://mstuttgart.github.io/2016/04/12/2016-04-12-python-com-unittest-travis-e-coveralls-parte-1-de-4/)
