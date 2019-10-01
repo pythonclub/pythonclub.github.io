@@ -99,7 +99,7 @@ Vamos criar um segundo dicionário contendo apenas as chaves que são consoantes
  novo_dicionario = {'b': 4, 'c': 6, 'd': 8, 'f': 12}
 ```
 
-Utilizando um algoritmo genérico, podemos reslo o problema da seguinte maneira:
+Utilizando um algoritmo genérico, podemos resolver o problema da seguinte maneira:
 
 ```python
 novo_dicionario = {}
