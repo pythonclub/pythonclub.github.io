@@ -11,12 +11,12 @@ Site: https://mstuttgart.github.io
 
 A utilização de listas em Python é algo trivial. A facilidade provida pela linguagem aliada a simplicidade da estrutura de dados *list* a torna, ao lado dos dicionários *dict*, uma das estrutura de dados mais utilizadas em Python. Aqui neste tutorial irei compartilhar algo que aprendi trabalhando com listas e dicionário em Python, mais especificamente no que diz respeito a *abrangência* de listas (e dicionários).
 
-### Abrangência de listas
+## Abrangência de listas
 
 A abrangência de listas, ou do inglês *list comprehensions*, é um  termo utilizado para descrever uma sintaxe compacta que o Python nos oferece para criamos uma lista baseada em outra lista. Pareceu confuso? Ok, vamos aos exemplos!
 
-#### Exemplo 1
-Vamos suport que temos a seguinte lista de valores:
+### Exemplo 1
+Vamos supor que temos a seguinte lista de valores:
 
 ```python
 valores = [1, 2, 3, 4, 5]
@@ -49,7 +49,7 @@ valores_dobro = [valor*2 for valor in valores]
 ```
 Bacana não? O exemplo seguinte podemos incrementar mais o exemplo acima.
 
-#### Exemplo 2
+### Exemplo 2
 
 Vamos supor que desejamos criar uma lista onde apenas os valores pares (resto da divisão por 2 é zero) serão multiplicados por 2. Abaixo temos a nossa lista de valores:
 
@@ -85,7 +85,7 @@ valores_dobro = [valor * 2 for valor in valores if valor % 2 == 0]
 ```
 Muito mais simples, não? Vamos para o próximo exemplo.
 
-#### Exemplo 3
+### Exemplo 3
 
 De maneira semelhante a lista, nós também podemos aplicar a abrangência em lista e dicionários. Segue um exemplo onde temos o seguinte dicionário:
 
@@ -99,7 +99,7 @@ Vamos criar um segundo dicionário contendo apenas as chaves que são consoantes
  novo_dicionario = {'b': 4, 'c': 6, 'd': 8, 'f': 12}
 ```
 
-Utilizando um algoritmo genérico, podemos resolver o problema da seguinte maneira:
+Utilizando um algoritmo genérico, podemos reslo o problema da seguinte maneira:
 
 ```python
 novo_dicionario = {}
@@ -120,14 +120,12 @@ Aplicando agora a abrangência, conseguimos compactar o código acima de maneira
 novo_dicionario = {chave: 2 * valor for chave, valor in dicionario.items() if chave in ['b', 'c', 'd', 'f']}
 ```
 
-### Conclusão
+## Conclusão
 
 Chegamos ao final de mais um tutorial! Sempre temos de ter em mente que tão importante quanto escrever um código que funciona, é mantê-lo (seja por você ou por outro programador). Neste ponto, a abrangência de lista (e outras estruturas de dados) nos ajudam a escrever um código claro e fácil de dar manutenção.
 
 Até o próximo tutorial pessoal!
 
-**Publicado originalmente:** [Abrangencia de listas e dicionários com Python](http://codigoavulso.com.br/abrangencia-de-listas-e-dicionarios.html)
-
-### Referências
+## Referências
 
 * [Python eficaz: 59 maneiras de programar melhor em Python; Slatkin, Brett; Novatec Editora, 2016.](https://novatec.com.br/livros/python-eficaz/)
