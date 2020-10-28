@@ -68,7 +68,7 @@ python manage.py runserver
 
 Você terá uma imagem assim do seu projeto:
 
-![](https://jacksonosvaldo.github.io/img/django_db.png)
+![](https://jacksonosvaldo.github.io/img/django_db.png) 
 
 ## Configurando o django-dbbackup
 
