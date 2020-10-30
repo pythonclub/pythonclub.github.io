@@ -1,5 +1,5 @@
 Title: Fazendo backup do banco de dados no Django
-Date: 2020-10-27 22:19
+Date: 2020-10-30 10:40
 Tags: Python,Django,backup
 Category: Python
 Slug: fazendo-backup-do-banco-de-dados-no-django
