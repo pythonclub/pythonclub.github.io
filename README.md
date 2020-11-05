@@ -80,17 +80,6 @@ Para finalizar o servidor use:
 
 ``./develop_server.sh stop``
 
-Futuras Publicações
--------------------
-
-Alguns dos contribuidores criaram o compromisso de publicar alguns artigos.
-
-Foi estabelecido um prazo maximo para a entrega dos artigos com o intuito de que o contribuidor realmente publique o artigo com o conteudo que ele mesmo definiu.
-
-Você pode ver a lista contendo os nomes dos artigos nesta planilha no [Google Drive][7].
-
-Quando tiver um assunto e uma data de entrega, adicione na planinha, ao finalizar o seu artigo, envie o pull request e atualize a planilha marcando que sua publicação já foi entregue.
-
 
 [0]: http://pythonclub.com.br/
 [1]: https://pages.github.com/
