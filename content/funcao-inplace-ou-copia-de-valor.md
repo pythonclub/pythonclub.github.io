@@ -29,10 +29,10 @@ resultado = [10, 4, 16, 12, 8]
 A ideia do padrão *in place* é alterar a própria variável recebida pela função (ou o próprio objeto, caso esteja lidando com orientação a objetos). Neste caso, bastaria calcular o dobro do valor de cada posição da lista, e sobrescrever a posição com seu resultado. Exemplo:
 
 ```python
-from typing import List, NoReturn
+from typing import List
 
 
-def dobro_inplace(lista: List[int]) -> NoReturn:
+def dobro_inplace(lista: List[int]) -> None:
     for i in range(len(lista)):
         lista[i] = 2 * lista[i]
 
@@ -51,7 +51,7 @@ Variável: valores | Tipo: <class 'list'> | Valor: [10, 4, 16, 12, 8]
 Variável: retorno | Tipo: <class 'NoneType'> | Valor: None
 ```
 
-Com essa execução é possível observar que os valores da lista foram alterados, e que o retorno da função é nulo (`None`), ou seja, a função alterou a própria lista passada como argumento. Outro ponto importante a ser observado é a assinatura da função (tipo dos argumentos e do retorno da função), que recebe uma lista de inteiros e não tem retorno (`NoReturn`). Dessa forma embora seja possível chamar essa função diretamente quando está se informando os argumentos de outra função, como `print(dobro_inplace(valores))`, a função `print` receberia `None` e não a lista como argumento.
+Com essa execução é possível observar que os valores da lista foram alterados, e que o retorno da função é nulo (`None`), ou seja, a função alterou a própria lista passada como argumento. Outro ponto importante a ser observado é a assinatura da função (tipo dos argumentos e do retorno da função), que recebe uma lista de inteiros e não tem retorno ou é nulo (`None`). Dessa forma embora seja possível chamar essa função diretamente quando está se informando os argumentos de outra função, como `print(dobro_inplace(valores))`, a função `print` receberia `None` e não a lista como argumento.
 
 ### Função com cópia de valor
 
