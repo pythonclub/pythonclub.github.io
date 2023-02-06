@@ -54,7 +54,7 @@ Arquivo .gitignore:
 
 O que é o arquivo .gitignore: http://pt-br.gitready.com/iniciante/2009/01/19/ignoring-files.html
 
-Gerador de arquivo .gitignore: http://www.gitignore.io/
+Gerador de arquivo .gitignore: https://www.toptal.com/developers/gitignore
 
 Exemplos de arquivo .gitignore para diversas linguagens: https://github.com/github/gitignore
 
