@@ -1,0 +1,55 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - pelican
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      
+      - name: Configura python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "2.7"
+          cache: pip
+      
+      - name: Instala dependências
+        run: pip install -r requirements.txt
+
+      - name: Build do site
+        run: make publish
+
+      - name: Upload do site
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: output/
+
+  deploy:
+    name: Deploy
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
