@@ -9,8 +9,8 @@ BASE = os.path.dirname(__file__)
 AUTHOR = u'PythonClub'
 AUTHOR_EMAIL = u'gravatar@pythonclub.com.br'
 SITENAME = u'PythonClub'
-SITEURL = 'http://pythonclub.com.br'
-SITELOGO = 'http://res.cloudinary.com/diu8g9l0s/image/upload/v1400201393/pythonclub/logo_275x130.png'
+SITEURL = 'https://pythonclub.com.br'
+SITELOGO = 'https://res.cloudinary.com/diu8g9l0s/image/upload/v1400201393/pythonclub/logo_275x130.png'
 
 GITHUB_URL = 'https://github.com/pythonclub/pythonclub.github.io'
 DISQUS_SITENAME = 'pythonclub'
@@ -93,7 +93,7 @@ SITEMAP = {
 THEME = 'theme'
 
 # Theme Pure config
-PROFILE_IMAGE_URL = "http://res.cloudinary.com/diu8g9l0s/image/upload/v1399566411/fundo_python_a6iqip.png"
+PROFILE_IMAGE_URL = "https://res.cloudinary.com/diu8g9l0s/image/upload/v1399566411/fundo_python_a6iqip.png"
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
