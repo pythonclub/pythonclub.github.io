@@ -23,11 +23,10 @@ jobs:
           submodules: recursive
       
       - name: Instala dependências de compilação
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-            libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-            xz-utils tk-dev libffi-dev liblzma-dev
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
+          version: 1.0
 
       - name: Cache pyenv versions
         uses: actions/cache@v4
