@@ -35,7 +35,7 @@ jobs:
         run: make publish
 
       - name: Upload do site
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: output/
 
