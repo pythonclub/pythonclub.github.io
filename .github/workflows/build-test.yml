@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v5
@@ -22,7 +22,7 @@ jobs:
       - name: Configura python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.5"
+          python-version: '3.5.10'
           cache: pip
       
       - name: Instala dependências
