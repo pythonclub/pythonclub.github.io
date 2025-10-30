@@ -15,18 +15,38 @@ concurrency:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v5
         with:
           submodules: recursive
       
-      - name: Configura python
-        uses: actions/setup-python@v6
+      - name: Instala dependências de compilação
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+            libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+            xz-utils tk-dev libffi-dev liblzma-dev
+
+      - name: Cache pyenv versions
+        uses: actions/cache@v4
         with:
-          python-version: '3.5.10'
-          cache: pip
+          path: $HOME/.pyenv/versions
+          key: ${{ runner.os }}-pyenv-3.5.10
+          restore-keys: |
+            ${{ runner.os }}-pyenv-
+
+      - name: Instala pyenv e Python 3.5.10
+        run: |
+          curl https://pyenv.run | bash
+          export PYENV_ROOT="$HOME/.pyenv"
+          export PATH="$PYENV_ROOT/bin:$PATH"
+          eval "$(pyenv init -)"
+          pyenv install -s 3.5.10
+          pyenv global 3.5.10
+          python --version
+          python -m pip install --upgrade pip setuptools wheel
       
       - name: Instala dependências
         run: pip install -r requirements.txt
@@ -45,7 +65,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
