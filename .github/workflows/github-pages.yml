@@ -25,7 +25,7 @@ jobs:
       - name: Configura python
         uses: actions/setup-python@v6
         with:
-          python-version: "2.7"
+          python-version: "3.5"
           cache: pip
       
       - name: Instala dependências

@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           submodules: recursive
       
       - name: Configura python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
-          python-version: "2.7"
+          python-version: "3.5"
           cache: pip
       
       - name: Instala dependências
@@ -30,3 +30,4 @@ jobs:
 
       - name: Build do site
         run: make publish
+
