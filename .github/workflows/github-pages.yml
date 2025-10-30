@@ -41,11 +41,14 @@ jobs:
           curl https://pyenv.run | bash
           export PYENV_ROOT="$HOME/.pyenv"
           export PATH="$PYENV_ROOT/bin:$PATH"
+          echo "$PYENV_ROOT/bin:$PATH" >> $GITHUB_PATH
           eval "$(pyenv init -)"
           pyenv install -s 3.5.10
           pyenv global 3.5.10
           python --version
           python -m pip install --upgrade pip setuptools wheel
+
+
       
       - name: Instala dependências
         run: pip install -r requirements.txt
