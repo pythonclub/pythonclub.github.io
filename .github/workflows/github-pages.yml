@@ -28,27 +28,10 @@ jobs:
           packages: make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev
           version: 1.0
 
-      - name: Cache pyenv versions
-        uses: actions/cache@v4
+      - name: Setup Python
+        uses: shamilniyas/pyenv-action@v2.6.5
         with:
-          path: $HOME/.pyenv/versions
-          key: ${{ runner.os }}-pyenv-3.5.10
-          restore-keys: |
-            ${{ runner.os }}-pyenv-
-
-      - name: Instala pyenv e Python 3.5.10
-        run: |
-          curl https://pyenv.run | bash
-          export PYENV_ROOT="$HOME/.pyenv"
-          export PATH="$PYENV_ROOT/bin:$PATH"
-          echo "$PYENV_ROOT/bin:$PATH" >> $GITHUB_PATH
-          eval "$(pyenv init -)"
-          pyenv install -s 3.5.10
-          pyenv global 3.5.10
-          python --version
-          python -m pip install --upgrade pip setuptools wheel
-
-
+          default: 3.5.10
       
       - name: Instala dependências
         run: pip install -r requirements.txt
